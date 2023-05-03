@@ -1,0 +1,26 @@
+on: [push]
+
+jobs:
+  test_execute_action:
+    runs-on: ubuntu-latest
+    name: test execute action
+    steps:
+      - uses: pnpm/action-setup@v2.2.4
+        with:
+          version: latest
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+          cache-dependency-path: "pnpm-lock.yaml"
+      - name: install dependencies
+        run: pnpm install
+      - name: package
+        run: pnpm run build
+      - name: Execute Automagically
+        uses: ./
+        with:
+          url: 'https://storage.googleapis.com/mocktopus/index.html'
+          token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
