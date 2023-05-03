@@ -7,9 +7,6 @@ inputs:
   token:
     description: 'Your unique identifier'
     required: true
-outputs:
-  result:
-    description: 'stringified response'
 runs:
   using: 'node16'
   main: 'dist/index.js'
