@@ -1,0 +1,15 @@
+name: 'AutomagicallyExecutor'
+description: 'Trigger Automagically given a url and a valid token'
+inputs:
+  url: 
+    description: 'Url of the app to test'
+    required: true
+  token:
+    description: 'Your unique identifier'
+    required: true
+outputs:
+  result:
+    description: 'stringified response'
+runs:
+  using: 'node18'
+  main: 'main.js'

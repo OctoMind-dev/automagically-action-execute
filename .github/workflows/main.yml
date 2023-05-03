@@ -1,0 +1,22 @@
+on: [push]
+
+jobs:
+  test_execute_action:
+    runs-on: ubuntu-latest
+    name: test execute action
+    steps:
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v3
+      # TODO add a proper build step
+      - name: install dependencies
+        run: npm install
+      - name: Execute Automagically
+        uses: ./ # Uses an action in the root directory
+        id: AutomagicallyExecutor
+        with:
+          url: 'https://recipehandler.web.app/'
+          token: ${{ secrets.AutomagicallyToken }}
+      - name: Get the output time
+        run: echo ${{ steps.AutomagicallyExecutor.outputs.result }}
