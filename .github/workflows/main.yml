@@ -15,8 +15,7 @@ jobs:
       - name: package
         run: pnpm run build
       - name: Execute Automagically
-        uses: ./ # Uses an action in the root directory
-        id: AutomagicallyExecutor
+        uses: ./
         with:
           url: 'https://recipehandler.web.app/'
           token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
