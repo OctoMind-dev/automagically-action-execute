@@ -2,9 +2,14 @@ import core from "@actions/core";
 import fetch from "node-fetch";
 
 const url = core.getInput("url");
-console.log("🚀 ~ file: main.js:5 ~ url:", url)
+if (url.length === 0) {
+  core.setFailed("url is set to an empty string")
+}
+
 const token = core.getInput("token");
-console.log("🚀 ~ file: main.js:7 ~ token:", token)
+if (token.length === 0) {
+  core.setFailed("token is set to an empty string")
+}
 
 try {
   const response = await fetch(
