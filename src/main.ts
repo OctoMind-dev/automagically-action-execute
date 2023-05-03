@@ -25,7 +25,7 @@ try {
   }
 } catch (error) {
   if (error instanceof Error) {
-    core.setFailed(error.message)
+    core.setFailed(`unable to execute automagically: ${error.message}`)
   } else {
     core.setFailed('unknown Error')
   }
