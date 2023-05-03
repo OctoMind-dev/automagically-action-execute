@@ -1,6 +1,6 @@
 {
   "name": "automagically-action-execute",
-  "version": "0.0.1-dev",
+  "version": "1.0.0",
   "private": true,
   "main": "lib/main.js",
   "type": "module",
