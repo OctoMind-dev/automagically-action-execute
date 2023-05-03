@@ -1,12 +1,10 @@
 import core from "@actions/core";
-import github from "@actions/github";
 import fetch from "node-fetch";
 
 const url = core.getInput("url");
+console.log("🚀 ~ file: main.js:5 ~ url:", url)
 const token = core.getInput("token");
-
-const payload = JSON.stringify(github.context.payload, undefined, 2);
-console.log(`The event payload: ${payload}`);
+console.log("🚀 ~ file: main.js:7 ~ token:", token)
 
 try {
   const response = await fetch(
