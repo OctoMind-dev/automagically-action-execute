@@ -12,4 +12,4 @@ outputs:
     description: 'stringified response'
 runs:
   using: 'node16'
-  main: 'main.js'
+  main: 'dist/index.js'

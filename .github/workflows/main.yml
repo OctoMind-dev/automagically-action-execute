@@ -9,9 +9,10 @@ jobs:
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v3
-      # TODO add a proper build step
       - name: install dependencies
         run: npm install
+      - name: package
+        run: npm run package
       - name: Execute Automagically
         uses: ./ # Uses an action in the root directory
         id: AutomagicallyExecutor
