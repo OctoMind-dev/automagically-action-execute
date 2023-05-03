@@ -17,6 +17,6 @@ jobs:
         id: AutomagicallyExecutor
         with:
           url: 'https://recipehandler.web.app/'
-          token: ${{ secrets.AutomagicallyToken }}
+          token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
       - name: Get the output time
         run: echo ${{ steps.AutomagicallyExecutor.outputs.result }}
