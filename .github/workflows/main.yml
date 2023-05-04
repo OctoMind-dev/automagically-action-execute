@@ -22,5 +22,5 @@ jobs:
       - name: Execute Automagically
         uses: ./
         with:
-          url: 'https://recipehandler.web.app/'
+          url: 'https://storage.googleapis.com/mocktopus/index.html'
           token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
