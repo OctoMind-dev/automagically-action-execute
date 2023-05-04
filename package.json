@@ -2,16 +2,18 @@
   "name": "automagically-action-execute",
   "version": "1.0.0",
   "private": true,
-  "main": "lib/main.js",
+  "main": "dist/index.js",
   "type": "module",
   "scripts": {
     "lint": "eslint src/**/*.ts",
-    "build": "tsc && ncc build --source-map --license licenses.txt"
+    "build": "rimraf ./dist && tsc && ncc build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/OctoMind-dev/automagically-action-execute.git"
   },
+  "author": "OctoMind-dev",
+  "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.10.0",
     "node-fetch": "^3.3.1"
@@ -24,8 +26,8 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-github": "^4.7.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "js-yaml": "^4.1.0",
     "prettier": "^2.8.8",
+    "rimraf": "^5.0.0",
     "typescript": "^5.0.4"
   }
 }
