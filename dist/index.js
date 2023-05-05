@@ -7100,6 +7100,9 @@ if (token.length === 0) {
 }
 try {
     const response = await (0,node_fetch__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .ZP)('https://automagically-5vr3ysri3a-ey.a.run.app/api/v1/execute', {
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({ token, url }),
         method: 'POST'
     });

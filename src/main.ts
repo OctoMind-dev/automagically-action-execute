@@ -15,6 +15,9 @@ try {
   const response = await fetch(
     'https://automagically-5vr3ysri3a-ey.a.run.app/api/v1/execute',
     {
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({token, url}),
       method: 'POST'
     }
