@@ -1,4 +1,5 @@
 import core from '@actions/core'
+import github from '@actions/github'
 import fetch from 'node-fetch'
 
 const url = core.getInput('url')
@@ -18,7 +19,16 @@ try {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({token, url}),
+      body: JSON.stringify({
+        token,
+        url,
+        context: {
+          source: 'github',
+          issueNumber: github.context.issue.number,
+          repo: github.context.repo.repo,
+          owner: github.context.repo.owner
+        }
+      }),
       method: 'POST'
     }
   )
