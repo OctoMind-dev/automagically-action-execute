@@ -14040,7 +14040,7 @@ try {
         method: 'POST'
     });
     if (!response.ok) {
-        throw new Error(await response.text());
+        throw new Error(`response not ok ${response.status}, body: ${await response.json()}`);
     }
 }
 catch (error) {
