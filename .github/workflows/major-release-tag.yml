@@ -14,11 +14,11 @@ jobs:
         id: variables
         run: |
           VERSION=${GITHUB_REF#refs/tags/}
-          echo "MAJOR=${VERSION%%.*}" >> $GITHUB_ENV
+          echo "MAJOR=${VERSION%%.*}" >> $GITHUB_OUTPUT
 
       - name: Tag Repo
         uses: richardsimko/update-tag@v1
         with:
-          tag_name: ${{github.env.MAJOR}}
+          tag_name: ${{steps.variables.outputs.MAJOR}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
