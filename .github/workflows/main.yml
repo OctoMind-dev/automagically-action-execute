@@ -1,4 +1,10 @@
-on: [push]
+on: 
+  pull_request:
+    branches: [main]
+
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   test_execute_action:
