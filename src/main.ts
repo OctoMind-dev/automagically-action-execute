@@ -23,8 +23,6 @@ const context = {
   owner: github.context.repo.owner
 }
 
-core.debug(JSON.stringify({issue: github.context.issue}))
-
 core.debug(JSON.stringify({executeUrl, context}, null, 2))
 
 try {
