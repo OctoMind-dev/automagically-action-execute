@@ -12,9 +12,9 @@ if (token.length === 0) {
   core.setFailed('token is set to an empty string')
 }
 
-const automagicallyURL =
-  core.getInput('automagically-url') ??
-  'https://automagically-5vr3ysri3a-ey.a.run.app'
+const urlDefault = 'https://automagically-5vr3ysri3a-ey.a.run.app'
+const urlOverride = core.getInput('automagically-url')
+const automagicallyURL = urlOverride.length === 0 ? urlDefault : urlOverride
 
 try {
   const response = await fetch(`${automagicallyURL}/api/v1/execute`, {
