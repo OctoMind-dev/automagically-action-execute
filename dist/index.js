@@ -14045,14 +14045,16 @@ try {
     if (!response.ok) {
         throw new Error(`response not ok ${response.status}, ${JSON.stringify({
             body: await response.json()
-        })}`);
+        }, null, 2)}`);
     }
 }
 catch (error) {
     if (error instanceof Error) {
-        _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(`unable to execute automagically: ${JSON.stringify({
-            error: error.message
-        })}`);
+        _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(`unable to execute automagically:  ${typeof error.message === 'object'
+            ? JSON.stringify({
+                error: error.message
+            })
+            : error.message}`);
     }
     else {
         _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed('unknown Error');

@@ -36,17 +36,25 @@ try {
 
   if (!response.ok) {
     throw new Error(
-      `response not ok ${response.status}, ${JSON.stringify({
-        body: await response.json()
-      })}`
+      `response not ok ${response.status}, ${JSON.stringify(
+        {
+          body: await response.json()
+        },
+        null,
+        2
+      )}`
     )
   }
 } catch (error) {
   if (error instanceof Error) {
     core.setFailed(
-      `unable to execute automagically: ${JSON.stringify({
-        error: error.message
-      })}`
+      `unable to execute automagically:  ${
+        typeof error.message === 'object'
+          ? JSON.stringify({
+              error: error.message
+            })
+          : error.message
+      }`
     )
   } else {
     core.setFailed('unknown Error')
