@@ -14031,6 +14031,7 @@ const context = {
     repo: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo.repo,
     owner: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo.owner
 };
+_actions_core__WEBPACK_IMPORTED_MODULE_0__.debug(JSON.stringify({ githubContext: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context }));
 _actions_core__WEBPACK_IMPORTED_MODULE_0__.debug(JSON.stringify({ executeUrl, context }, null, 2));
 try {
     const response = await (0,node_fetch__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .ZP)(executeUrl, {
