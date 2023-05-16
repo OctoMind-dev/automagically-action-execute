@@ -14022,8 +14022,10 @@ const token = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('token');
 if (token.length === 0) {
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed('token is set to an empty string');
 }
+const automagicallyURL = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('automagically-url') ??
+    'https://automagically-5vr3ysri3a-ey.a.run.app';
 try {
-    const response = await (0,node_fetch__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .ZP)('https://automagically-5vr3ysri3a-ey.a.run.app/api/v1/execute', {
+    const response = await (0,node_fetch__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .ZP)(`${automagicallyURL}/api/v1/execute`, {
         headers: {
             'Content-Type': 'application/json'
         },
@@ -14045,7 +14047,9 @@ try {
 }
 catch (error) {
     if (error instanceof Error) {
-        _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(`unable to execute automagically: ${error.message}`);
+        _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(`unable to execute automagically: ${JSON.stringify({
+            error: error.message
+        })}`);
     }
     else {
         _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed('unknown Error');
