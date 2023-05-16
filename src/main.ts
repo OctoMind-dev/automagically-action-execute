@@ -16,8 +16,17 @@ const urlDefault = 'https://automagically-5vr3ysri3a-ey.a.run.app'
 const urlOverride = core.getInput('automagically-url')
 const automagicallyURL = urlOverride.length === 0 ? urlDefault : urlOverride
 
+const executeUrl = `${automagicallyURL}/api/v1/execute`
+const context = {
+  issueNumber: github.context.issue.number,
+  repo: github.context.repo.repo,
+  owner: github.context.repo.owner
+}
+
+core.debug(JSON.stringify({executeUrl, context}, null, 2))
+
 try {
-  const response = await fetch(`${automagicallyURL}/api/v1/execute`, {
+  const response = await fetch(executeUrl, {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -26,9 +35,7 @@ try {
       url,
       context: {
         source: 'github',
-        issueNumber: github.context.issue.number,
-        repo: github.context.repo.repo,
-        owner: github.context.repo.owner
+        ...context
       }
     }),
     method: 'POST'
