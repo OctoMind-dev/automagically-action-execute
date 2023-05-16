@@ -14023,9 +14023,9 @@ if (token.length === 0) {
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed('token is set to an empty string');
 }
 const urlDefault = 'https://automagically-5vr3ysri3a-ey.a.run.app';
-const urlOverride = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('automagically-url');
-const automagicallyURL = urlOverride.length === 0 ? urlDefault : urlOverride;
-const executeUrl = `${automagicallyURL}/api/v1/execute`;
+const urlOverride = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('automagicallyUrl');
+const automagicallyUrl = urlOverride.length === 0 ? urlDefault : urlOverride;
+const executeUrl = `${automagicallyUrl}/api/v1/execute`;
 const context = {
     issueNumber: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.issue.number,
     repo: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo.repo,

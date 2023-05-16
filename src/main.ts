@@ -13,10 +13,10 @@ if (token.length === 0) {
 }
 
 const urlDefault = 'https://automagically-5vr3ysri3a-ey.a.run.app'
-const urlOverride = core.getInput('automagically-url')
-const automagicallyURL = urlOverride.length === 0 ? urlDefault : urlOverride
+const urlOverride = core.getInput('automagicallyUrl')
+const automagicallyUrl = urlOverride.length === 0 ? urlDefault : urlOverride
 
-const executeUrl = `${automagicallyURL}/api/v1/execute`
+const executeUrl = `${automagicallyUrl}/api/v1/execute`
 const context = {
   issueNumber: github.context.issue.number,
   repo: github.context.repo.repo,
