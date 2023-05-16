@@ -36,7 +36,9 @@ try {
 
   if (!response.ok) {
     throw new Error(
-      `response not ok ${response.status}, body: ${await response.json()}`
+      `response not ok ${response.status}, ${JSON.stringify({
+        body: await response.json()
+      })}`
     )
   }
 } catch (error) {
