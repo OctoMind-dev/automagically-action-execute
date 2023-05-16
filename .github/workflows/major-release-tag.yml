@@ -1,0 +1,24 @@
+name: Move Major Release Tag
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  create-tag:
+    runs-on: ubuntu-latest
+    outputs:
+      MAJOR_TAG: ${{ steps.variables.outputs.MAJOR_TAG }}
+    steps:
+      - name: Get major version
+        id: variables
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/}
+          echo "MAJOR=${VERSION%%.*}" >> $GITHUB_OUTPUT
+
+      - name: Tag Repo
+        uses: richardsimko/update-tag@v1
+        with:
+          tag_name: ${{steps.variables.outputs.MAJOR}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
