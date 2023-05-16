@@ -12,26 +12,27 @@ if (token.length === 0) {
   core.setFailed('token is set to an empty string')
 }
 
+const automagicallyURL =
+  core.getInput('automagically-url') ??
+  'https://automagically-5vr3ysri3a-ey.a.run.app'
+
 try {
-  const response = await fetch(
-    'https://automagically-5vr3ysri3a-ey.a.run.app/api/v1/execute',
-    {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        token,
-        url,
-        context: {
-          source: 'github',
-          issueNumber: github.context.issue.number,
-          repo: github.context.repo.repo,
-          owner: github.context.repo.owner
-        }
-      }),
-      method: 'POST'
-    }
-  )
+  const response = await fetch(`${automagicallyURL}/api/v1/execute`, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      token,
+      url,
+      context: {
+        source: 'github',
+        issueNumber: github.context.issue.number,
+        repo: github.context.repo.repo,
+        owner: github.context.repo.owner
+      }
+    }),
+    method: 'POST'
+  })
 
   if (!response.ok) {
     throw new Error(
@@ -40,7 +41,11 @@ try {
   }
 } catch (error) {
   if (error instanceof Error) {
-    core.setFailed(`unable to execute automagically: ${error.message}`)
+    core.setFailed(
+      `unable to execute automagically: ${JSON.stringify({
+        error: error.message
+      })}`
+    )
   } else {
     core.setFailed('unknown Error')
   }
