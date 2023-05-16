@@ -1,15 +1,16 @@
+name: Test Execute Action
+
 on: 
   pull_request:
     branches: [main]
 
 permissions:
-  # id-token: write
   contents: read
 
 jobs:
-  test_execute_action:
+  test-execute-action:
     runs-on: ubuntu-latest
-    name: test execute action
+    name: Execute Action Test
     steps:
       - uses: pnpm/action-setup@v2.2.4
         with:
