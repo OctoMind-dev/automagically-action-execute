@@ -14022,8 +14022,9 @@ const token = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('token');
 if (token.length === 0) {
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed('token is set to an empty string');
 }
-const automagicallyURL = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('automagically-url') ??
-    'https://automagically-5vr3ysri3a-ey.a.run.app';
+const urlDefault = 'https://automagically-5vr3ysri3a-ey.a.run.app';
+const urlOverride = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('automagically-url');
+const automagicallyURL = urlOverride.length === 0 ? urlDefault : urlOverride;
 try {
     const response = await (0,node_fetch__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .ZP)(`${automagicallyURL}/api/v1/execute`, {
         headers: {
