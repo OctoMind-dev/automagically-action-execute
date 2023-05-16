@@ -1,8 +1,10 @@
 name: Move Major Release Tag
 
 on:
-  release:
-    types: [created]
+  pull_request:
+    branches: [main]
+  # release:
+  #   types: [created]
 
 jobs:
   create-tag:
