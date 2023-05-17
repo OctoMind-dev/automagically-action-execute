@@ -16,3 +16,6 @@ To use this action a token is required. Don't have one? We're here to help.
     url: 
     token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
 ```
+
+
+trigger pipes
