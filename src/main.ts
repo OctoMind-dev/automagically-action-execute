@@ -12,8 +12,8 @@ if (token.length === 0) {
   core.setFailed('token is set to an empty string')
 }
 
-const urlDefault = 'https://automagically-5vr3ysri3a-ey.a.run.app'
-const urlOverride = core.getInput('automagicallyUrl')
+const urlDefault = 'https://app.octomind.dev'
+const urlOverride = core.getInput('automagicallyBaseUrl')
 const automagicallyUrl = urlOverride.length === 0 ? urlDefault : urlOverride
 
 const executeUrl = `${automagicallyUrl}/api/v1/execute`
