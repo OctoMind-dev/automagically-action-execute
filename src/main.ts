@@ -42,10 +42,11 @@ try {
   })
 
   if (!response.ok) {
+    const contentType = response.headers.get('Content-Type')
     throw new Error(
       `response not ok ${response.status}, ${JSON.stringify(
         {
-          body: await response.json()
+          body: contentType === 'application/json' ? await response.json() : {}
         },
         null,
         2
