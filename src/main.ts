@@ -12,6 +12,16 @@ if (token.length === 0) {
   core.setFailed('token is set to an empty string')
 }
 
+const sha = github.context.sha
+if (sha.length === 0) {
+  core.setFailed('sha is set to an empty string')
+}
+
+const ref = github.context.ref
+if (ref.length === 0) {
+  core.setFailed('ref is set to an empty string')
+}
+
 const urlDefault = 'https://app.octomind.dev'
 const urlOverride = core.getInput('automagicallyBaseUrl')
 const automagicallyUrl = urlOverride.length === 0 ? urlDefault : urlOverride
@@ -20,7 +30,9 @@ const executeUrl = `${automagicallyUrl}/api/v1/execute`
 const context = {
   issueNumber: github.context.issue.number,
   repo: github.context.repo.repo,
-  owner: github.context.repo.owner
+  owner: github.context.repo.owner,
+  ref,
+  sha
 }
 
 core.debug(JSON.stringify({executeUrl, context}, null, 2))
