@@ -16,7 +16,7 @@ const issueNumber = github.context.issue.number
 if (!issueNumber || issueNumber < 1) {
   core.warning(
     'issue.number variable (Pull Request ID) not available. ' +
-      'Make sure you run this task in a PR build validation pipeline ' +
+      'Make sure you run this action in a workflow triggered by pull request ' +
       'if you expect a comment with the test results on your PR'
   )
 }
