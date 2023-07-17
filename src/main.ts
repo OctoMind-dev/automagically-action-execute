@@ -12,16 +12,6 @@ if (token.length === 0) {
   core.setFailed('token is set to an empty string')
 }
 
-const sha = github.context.sha
-if (sha.length === 0) {
-  core.setFailed('sha is set to an empty string')
-}
-
-const ref = github.context.ref
-if (ref.length === 0) {
-  core.setFailed('ref is set to an empty string')
-}
-
 const issueNumber = github.context.issue.number
 if (!issueNumber || issueNumber < 1) {
   core.warning(
@@ -40,8 +30,8 @@ const context = {
   issueNumber,
   repo: github.context.repo.repo,
   owner: github.context.repo.owner,
-  ref,
-  sha
+  ref: github.context.ref,
+  sha: github.context.sha
 }
 
 core.debug(JSON.stringify({executeUrl, context}, null, 2))
