@@ -14025,7 +14025,7 @@ if (token.length === 0) {
 const issueNumber = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.issue.number;
 if (!issueNumber || issueNumber < 1) {
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.warning('issue.number variable (Pull Request ID) not available. ' +
-        'Make sure you run this task in a PR build validation pipeline ' +
+        'Make sure you run this action in a workflow triggered by pull request ' +
         'if you expect a comment with the test results on your PR');
 }
 const urlDefault = 'https://app.octomind.dev';
