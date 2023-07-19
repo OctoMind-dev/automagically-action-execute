@@ -14022,6 +14022,10 @@ const token = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('token');
 if (token.length === 0) {
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed('token is set to an empty string');
 }
+const testTargetId = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('testTargetId');
+if (testTargetId.length === 0) {
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed('testTargetId is set to an empty string');
+}
 const issueNumber = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.issue.number;
 if (!issueNumber || issueNumber < 1) {
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.warning('issue.number variable (Pull Request ID) not available. ' +
@@ -14031,7 +14035,7 @@ if (!issueNumber || issueNumber < 1) {
 const urlDefault = 'https://app.octomind.dev';
 const urlOverride = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('automagicallyBaseUrl');
 const automagicallyUrl = urlOverride.length === 0 ? urlDefault : urlOverride;
-const executeUrl = `${automagicallyUrl}/api/v1/execute`;
+const executeUrl = `${automagicallyUrl}/api/v2/execute`;
 const context = {
     issueNumber,
     repo: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo.repo,
@@ -14048,6 +14052,7 @@ try {
         body: JSON.stringify({
             token,
             url,
+            testTargetId,
             context: {
                 source: 'github',
                 ...context
