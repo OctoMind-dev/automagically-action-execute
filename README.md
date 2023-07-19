@@ -9,17 +9,16 @@ To use this action a token is required. Don't have one? We're here to help.
 
 
 1. Add the `AUTOMAGICALLY_TOKEN` to your repository secrets 
-2. Add the `AUTOMAGICALLY_TEST_TARGET_ID` you will also receive from us to your repository secrets
-3. Add the following yml snippet to your steps and insert a value for `url` pointing to a publicly accessible deployment of your branch.
+2. Add the following yml snippet to your steps and insert a value for `url` pointing to a publicly accessible deployment of your branch.
 ```yml
 - uses: OctoMind-dev/automagically-action-execute@v1
   with:
     url: 
     token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
-    testTargetId: ${{ secrets.AUTOMAGICALLY_TEST_TARGET_ID }}
+    testTargetId: <your testTargetId that you also get from us>
 ```
 
 
 ## Change Log
 
-- 2023-07-23: Added requirement for setting `AUTOMAGICALLY_TEST_TARGET_ID` to enable v2 API
+- 2023-07-23: Added requirement for setting `testTargetId` to enable v2 API
