@@ -12,6 +12,11 @@ if (token.length === 0) {
   core.setFailed('token is set to an empty string')
 }
 
+const testTargetId = core.getInput('testTargetId')
+if (testTargetId.length === 0) {
+  core.setFailed('testTargetId is set to an empty string')
+}
+
 const issueNumber = github.context.issue.number
 if (!issueNumber || issueNumber < 1) {
   core.warning(
@@ -25,7 +30,7 @@ const urlDefault = 'https://app.octomind.dev'
 const urlOverride = core.getInput('automagicallyBaseUrl')
 const automagicallyUrl = urlOverride.length === 0 ? urlDefault : urlOverride
 
-const executeUrl = `${automagicallyUrl}/api/v1/execute`
+const executeUrl = `${automagicallyUrl}/api/v2/execute`
 const context = {
   issueNumber,
   repo: github.context.repo.repo,
@@ -44,6 +49,7 @@ try {
     body: JSON.stringify({
       token,
       url,
+      testTargetId,
       context: {
         source: 'github',
         ...context
