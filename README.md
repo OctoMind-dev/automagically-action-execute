@@ -18,3 +18,8 @@ To use this action a token is required. Don't have one? We're here to help.
     token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
     testTargetId: ${{ secrets.AUTOMAGICALLY_TEST_TARGET_ID }}
 ```
+
+
+## Change Log
+
+- 2023-07-23: Added requirement for setting `AUTOMAGICALLY_TEST_TARGET_ID` to enable v2 API
