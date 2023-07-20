@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import core from '@actions/core'
 import github from '@actions/github'
 import fetch from 'node-fetch'
@@ -77,9 +76,8 @@ try {
     method: 'POST'
   })
 
-  const contentType = response.headers.get('Content-Type')
-
   if (!response.ok) {
+    const contentType = response.headers.get('Content-Type')
     throw new Error(
       `response not ok ${response.status}, ${JSON.stringify(
         {
@@ -92,13 +90,8 @@ try {
   }
 
   const jsonResponse = (await response.json()) as ResponseType
-  // eslint-disable-next-line no-console
-  console.log(`${automagicallyUrl}/testreports/${jsonResponse}`)
   if (jsonResponse) {
     const testReportId = jsonResponse.testReport.id
-
-    // eslint-disable-next-line no-console
-    console.log(`${automagicallyUrl}/testreports/${testReportId}`)
 
     core.setOutput(
       'testReportUrl',

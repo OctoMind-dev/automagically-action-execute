@@ -39,5 +39,5 @@ jobs:
           testTargetId: '35c8bfca-48d2-4eb2-8042-4ee50707a295'
           token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
 
-      - name: Adding markdown
+      - name: Adding summary
         run: echo '[Test Report](${{steps.automagically.outputs.testReportUrl}})' >> $GITHUB_STEP_SUMMARY

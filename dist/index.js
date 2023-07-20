@@ -14060,18 +14060,16 @@ try {
         }),
         method: 'POST'
     });
-    const contentType = response.headers.get('Content-Type');
     if (!response.ok) {
+        const contentType = response.headers.get('Content-Type');
         throw new Error(`response not ok ${response.status}, ${JSON.stringify({
             body: contentType === 'application/json' ? await response.json() : {}
         }, null, 2)}`);
     }
-    if (contentType === 'application/json') {
-        const jsonResponse = await response.json();
-        if (jsonResponse) {
-            const testReportId = jsonResponse.id;
-            _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput('testReportUrl', `${automagicallyUrl}/testreports/${testReportId}`);
-        }
+    const jsonResponse = (await response.json());
+    if (jsonResponse) {
+        const testReportId = jsonResponse.testReport.id;
+        _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput('testReportUrl', `${automagicallyUrl}/testreports/${testReportId}`);
     }
 }
 catch (error) {
