@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import core from '@actions/core'
 import github from '@actions/github'
 import fetch from 'node-fetch'
@@ -94,6 +95,9 @@ try {
     const jsonResponse = (await response.json()) as ResponseType
     if (jsonResponse) {
       const testReportId = jsonResponse.testReport.id
+
+      // eslint-disable-next-line no-console
+      console.log(`${automagicallyUrl}/testreports/${testReportId}`)
 
       core.setOutput(
         'testReportUrl',
