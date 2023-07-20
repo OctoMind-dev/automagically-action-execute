@@ -71,6 +71,9 @@ try {
       )}`
     )
   }
+  // eslint-disable-next-line no-console, no-undef
+  console.log(response)
+
   if (contentType === 'application/json') {
     const jsonResponse = await response.json()
     if (jsonResponse) {
