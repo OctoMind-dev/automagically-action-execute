@@ -91,19 +91,19 @@ try {
     )
   }
 
-  if (contentType === 'application/json') {
-    const jsonResponse = (await response.json()) as ResponseType
-    if (jsonResponse) {
-      const testReportId = jsonResponse.testReport.id
+  const jsonResponse = (await response.json()) as ResponseType
+  // eslint-disable-next-line no-console
+  console.log(`${automagicallyUrl}/testreports/${jsonResponse}`)
+  if (jsonResponse) {
+    const testReportId = jsonResponse.testReport.id
 
-      // eslint-disable-next-line no-console
-      console.log(`${automagicallyUrl}/testreports/${testReportId}`)
+    // eslint-disable-next-line no-console
+    console.log(`${automagicallyUrl}/testreports/${testReportId}`)
 
-      core.setOutput(
-        'testReportUrl',
-        `${automagicallyUrl}/testreports/${testReportId}`
-      )
-    }
+    core.setOutput(
+      'testReportUrl',
+      `${automagicallyUrl}/testreports/${testReportId}`
+    )
   }
 } catch (error) {
   if (error instanceof Error) {
