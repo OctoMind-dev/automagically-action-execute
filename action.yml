@@ -13,6 +13,9 @@ inputs:
   automagicallyBaseUrl:
     description: 'Base URL of the automagically instance, for switching between production and staging. Defaults to Production url'
     required: false
+outputs:
+  testReportUrl: # id of output
+    description: 'Url to resulting test report'
 runs:
   using: 'node16'
   main: 'dist/index.js'
