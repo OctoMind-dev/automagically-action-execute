@@ -72,7 +72,7 @@ try {
     )
   }
   // eslint-disable-next-line no-console, no-undef
-  console.log(response)
+  console.log(await response.json())
 
   if (contentType === 'application/json') {
     const jsonResponse = await response.json()
