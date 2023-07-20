@@ -11,7 +11,7 @@ To use this action a token is required. Don't have one? We're here to help.
 1. Add the `AUTOMAGICALLY_TOKEN` to your repository secrets 
 2. Add the following yml snippet to your steps and insert a value for `url` pointing to a publicly accessible deployment of your branch.
 ```yml
-- uses: OctoMind-dev/automagically-action-execute@v1
+- uses: OctoMind-dev/automagically-action-execute@v2
   with:
     url: 
     token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
