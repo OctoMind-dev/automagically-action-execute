@@ -7,6 +7,9 @@ inputs:
   token:
     description: 'Your unique identifier'
     required: true
+  testTargetId:
+    description: 'Your test target id'
+    required: true
   automagicallyBaseUrl:
     description: 'Base URL of the automagically instance, for switching between production and staging. Defaults to Production url'
     required: false

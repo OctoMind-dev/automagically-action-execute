@@ -15,4 +15,10 @@ To use this action a token is required. Don't have one? We're here to help.
   with:
     url: 
     token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
+    testTargetId: <your testTargetId that you also get from us>
 ```
+
+
+## Change Log
+
+- 2023-07-20: Added requirement for setting `testTargetId` to enable v2 API
