@@ -2,6 +2,24 @@ import core from '@actions/core'
 import github from '@actions/github'
 import fetch from 'node-fetch'
 
+interface ResponseType {
+  testReport: {
+    id: string
+    testTargetId: string
+    createdAt: string
+    updatedAt: string
+    executionUrl: string
+    context: {
+      ref?: string
+      sha?: string
+      repo: string
+      owner: string
+      source: string
+      issueNumber?: number
+    }
+  }
+}
+
 const url = core.getInput('url')
 if (url.length === 0) {
   core.setFailed('url is set to an empty string')
@@ -71,13 +89,11 @@ try {
       )}`
     )
   }
-  // eslint-disable-next-line no-console, no-undef
-  console.log(await response.json())
 
   if (contentType === 'application/json') {
-    const jsonResponse = await response.json()
+    const jsonResponse = (await response.json()) as ResponseType
     if (jsonResponse) {
-      const testReportId = (jsonResponse as {id: string}).id
+      const testReportId = jsonResponse.testReport.id
 
       core.setOutput(
         'testReportUrl',
