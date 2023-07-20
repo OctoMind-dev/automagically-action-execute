@@ -58,8 +58,9 @@ try {
     method: 'POST'
   })
 
+  const contentType = response.headers.get('Content-Type')
+
   if (!response.ok) {
-    const contentType = response.headers.get('Content-Type')
     throw new Error(
       `response not ok ${response.status}, ${JSON.stringify(
         {
@@ -69,6 +70,17 @@ try {
         2
       )}`
     )
+  }
+  if (contentType === 'application/json') {
+    const jsonResponse = await response.json()
+    if (jsonResponse) {
+      const testReportId = (jsonResponse as {id: string}).id
+
+      core.setOutput(
+        'testReportUrl',
+        `${automagicallyUrl}/testreports/${testReportId}`
+      )
+    }
   }
 } catch (error) {
   if (error instanceof Error) {

@@ -32,8 +32,12 @@ jobs:
         run: pnpm run build
 
       - name: Execute Automagically
+        id: automagically
         uses: ./
         with:
           url: 'https://storage.googleapis.com/mocktopus/index.html'
           testTargetId: '35c8bfca-48d2-4eb2-8042-4ee50707a295'
           token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
+
+      - name: Adding markdown
+        run: echo '[Test Report](${{steps.automagically.outputs.testReportUrl}})' >> $GITHUB_STEP_SUMMARY
