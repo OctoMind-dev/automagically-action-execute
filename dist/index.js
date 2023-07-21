@@ -14072,7 +14072,7 @@ try {
         const testReportUrl = `${automagicallyUrl}/testreports/${testReportId}`;
         _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput('testReportUrl', testReportUrl);
         await _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading('🐙 Octomind')
-            .addLink('View your [Test Report]', testReportUrl)
+            .addLink('View your Test Report', testReportUrl)
             .write();
     }
 }
