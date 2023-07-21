@@ -96,7 +96,7 @@ try {
     core.setOutput('testReportUrl', testReportUrl)
     await core.summary
       .addHeading('🐙 Octomind')
-      .addRaw(`View your [Test Report](${testReportUrl})`)
+      .addLink('View your Test Report', testReportUrl)
       .write()
   }
 } catch (error) {
