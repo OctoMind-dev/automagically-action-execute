@@ -13,7 +13,7 @@ To use this action a token is required. Don't have one? We're here to help.
 ```yml
 - uses: OctoMind-dev/automagically-action-execute@v2
   with:
-    url: 
+    url: <publicly accessible url to your deployment>
     token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
     testTargetId: <your testTargetId that you also get from us>
 ```

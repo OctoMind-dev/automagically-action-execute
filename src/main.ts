@@ -2,6 +2,24 @@ import core from '@actions/core'
 import github from '@actions/github'
 import fetch from 'node-fetch'
 
+interface ResponseType {
+  testReport: {
+    id: string
+    testTargetId: string
+    createdAt: string
+    updatedAt: string
+    executionUrl: string
+    context: {
+      ref?: string
+      sha?: string
+      repo: string
+      owner: string
+      source: string
+      issueNumber?: number
+    }
+  }
+}
+
 const url = core.getInput('url')
 if (url.length === 0) {
   core.setFailed('url is set to an empty string')
@@ -69,6 +87,17 @@ try {
         2
       )}`
     )
+  }
+
+  const jsonResponse = (await response.json()) as ResponseType
+  if (jsonResponse) {
+    const testReportId = jsonResponse.testReport.id
+    const testReportUrl = `${automagicallyUrl}/testreports/${testReportId}`
+    core.setOutput('testReportUrl', testReportUrl)
+    await core.summary
+      .addHeading('🐙 Octomind')
+      .addLink('View your Test Report', testReportUrl)
+      .write()
   }
 } catch (error) {
   if (error instanceof Error) {
