@@ -8,6 +8,7 @@
   "rules": {
     "@typescript-eslint/no-floating-promises": "warn",
     "prettier/prettier": "warn",
-    "no-console": "warn"
+    "no-console": "warn",
+    "i18n-text/no-en": "off"
   }
 }

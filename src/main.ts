@@ -92,11 +92,11 @@ try {
   const jsonResponse = (await response.json()) as ResponseType
   if (jsonResponse) {
     const testReportId = jsonResponse.testReport.id
-
-    core.setOutput(
-      'testReportUrl',
-      `${automagicallyUrl}/testreports/${testReportId}`
-    )
+    const testReportUrl = `${automagicallyUrl}/testreports/${testReportId}`
+    core.setOutput('testReportUrl', testReportUrl)
+    core.summary
+      .addHeading('🐙 Octomind')
+      .addRaw(`View your [Test Report](${testReportUrl})`)
   }
 } catch (error) {
   if (error instanceof Error) {
