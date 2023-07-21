@@ -14069,7 +14069,11 @@ try {
     const jsonResponse = (await response.json());
     if (jsonResponse) {
         const testReportId = jsonResponse.testReport.id;
-        _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput('testReportUrl', `${automagicallyUrl}/testreports/${testReportId}`);
+        const testReportUrl = `${automagicallyUrl}/testreports/${testReportId}`;
+        _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput('testReportUrl', testReportUrl);
+        await _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading('🐙 Octomind')
+            .addRaw(`View your [Test Report](${testReportUrl})`)
+            .write();
     }
 }
 catch (error) {

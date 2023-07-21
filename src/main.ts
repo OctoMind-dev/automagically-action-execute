@@ -94,9 +94,10 @@ try {
     const testReportId = jsonResponse.testReport.id
     const testReportUrl = `${automagicallyUrl}/testreports/${testReportId}`
     core.setOutput('testReportUrl', testReportUrl)
-    core.summary
+    await core.summary
       .addHeading('🐙 Octomind')
       .addRaw(`View your [Test Report](${testReportUrl})`)
+      .write()
   }
 } catch (error) {
   if (error instanceof Error) {
