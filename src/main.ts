@@ -62,10 +62,10 @@ core.debug(JSON.stringify({executeUrl, context}, null, 2))
 try {
   const response = await fetch(executeUrl, {
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
     },
     body: JSON.stringify({
-      token,
       url,
       testTargetId,
       context: {
