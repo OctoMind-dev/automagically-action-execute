@@ -14048,7 +14048,7 @@ try {
     const response = await (0,node_fetch__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .ZP)(executeUrl, {
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
+            'x-api-key': token
         },
         body: JSON.stringify({
             url,

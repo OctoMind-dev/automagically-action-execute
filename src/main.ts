@@ -63,7 +63,7 @@ try {
   const response = await fetch(executeUrl, {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
+      'x-api-key': token
     },
     body: JSON.stringify({
       url,
