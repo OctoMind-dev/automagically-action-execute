@@ -14047,10 +14047,10 @@ _actions_core__WEBPACK_IMPORTED_MODULE_0__.debug(JSON.stringify({ executeUrl, co
 try {
     const response = await (0,node_fetch__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .ZP)(executeUrl, {
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
         },
         body: JSON.stringify({
-            token,
             url,
             testTargetId,
             context: {
