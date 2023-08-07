@@ -14010,7 +14010,7 @@ try {
 __nccwpck_require__.a(__webpack_module__, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 /* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(7733);
 /* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(3695);
-/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(4912);
+/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(1450);
 
 
 
@@ -14597,7 +14597,7 @@ return new B(c,{type:"multipart/form-data; boundary="+b})}
 
 /***/ }),
 
-/***/ 4912:
+/***/ 1450:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __nccwpck_require__) => {
 
 
@@ -14678,7 +14678,7 @@ const external_node_util_namespaceObject = __WEBPACK_EXTERNAL_createRequire(impo
 var fetch_blob = __nccwpck_require__(8967);
 // EXTERNAL MODULE: ./node_modules/.pnpm/formdata-polyfill@4.0.10/node_modules/formdata-polyfill/esm.min.js
 var esm_min = __nccwpck_require__(2000);
-;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.1/node_modules/node-fetch/src/errors/base.js
+;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.2/node_modules/node-fetch/src/errors/base.js
 class FetchBaseError extends Error {
 	constructor(message, type) {
 		super(message);
@@ -14697,7 +14697,7 @@ class FetchBaseError extends Error {
 	}
 }
 
-;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.1/node_modules/node-fetch/src/errors/fetch-error.js
+;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.2/node_modules/node-fetch/src/errors/fetch-error.js
 
 
 
@@ -14725,7 +14725,7 @@ class FetchError extends FetchBaseError {
 	}
 }
 
-;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.1/node_modules/node-fetch/src/utils/is.js
+;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.2/node_modules/node-fetch/src/utils/is.js
 /**
  * Is.js
  *
@@ -14814,7 +14814,7 @@ const isSameProtocol = (destination, original) => {
 	return orig === dest;
 };
 
-;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.1/node_modules/node-fetch/src/body.js
+;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.2/node_modules/node-fetch/src/body.js
 
 /**
  * Body.js
@@ -14938,7 +14938,7 @@ class Body {
 			return formData;
 		}
 
-		const {toFormData} = await __nccwpck_require__.e(/* import() */ 747).then(__nccwpck_require__.bind(__nccwpck_require__, 747));
+		const {toFormData} = await __nccwpck_require__.e(/* import() */ 795).then(__nccwpck_require__.bind(__nccwpck_require__, 795));
 		return toFormData(this.body, ct);
 	}
 
@@ -15213,7 +15213,7 @@ const writeToStream = async (dest, {body}) => {
 	}
 };
 
-;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.1/node_modules/node-fetch/src/headers.js
+;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.2/node_modules/node-fetch/src/headers.js
 /**
  * Headers.js
  *
@@ -15482,7 +15482,7 @@ function fromRawHeaders(headers = []) {
 	);
 }
 
-;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.1/node_modules/node-fetch/src/utils/is-redirect.js
+;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.2/node_modules/node-fetch/src/utils/is-redirect.js
 const redirectStatus = new Set([301, 302, 303, 307, 308]);
 
 /**
@@ -15495,7 +15495,7 @@ const isRedirect = code => {
 	return redirectStatus.has(code);
 };
 
-;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.1/node_modules/node-fetch/src/response.js
+;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.2/node_modules/node-fetch/src/response.js
 /**
  * Response.js
  *
@@ -15659,7 +15659,7 @@ Object.defineProperties(Response.prototype, {
 
 ;// CONCATENATED MODULE: external "node:url"
 const external_node_url_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:url");
-;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.1/node_modules/node-fetch/src/utils/get-search.js
+;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.2/node_modules/node-fetch/src/utils/get-search.js
 const getSearch = parsedURL => {
 	if (parsedURL.search) {
 		return parsedURL.search;
@@ -15672,7 +15672,7 @@ const getSearch = parsedURL => {
 
 ;// CONCATENATED MODULE: external "node:net"
 const external_node_net_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:net");
-;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.1/node_modules/node-fetch/src/utils/referrer.js
+;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.2/node_modules/node-fetch/src/utils/referrer.js
 
 
 /**
@@ -16014,7 +16014,7 @@ function parseReferrerPolicyFromHeader(headers) {
 	return policy;
 }
 
-;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.1/node_modules/node-fetch/src/request.js
+;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.2/node_modules/node-fetch/src/request.js
 /**
  * Request.js
  *
@@ -16303,10 +16303,6 @@ const getNodeRequestOptions = request => {
 		agent = agent(parsedURL);
 	}
 
-	if (!headers.has('Connection') && !agent) {
-		headers.set('Connection', 'close');
-	}
-
 	// HTTP-network fetch step 4.2
 	// chunked encoding is handled by Node.js
 
@@ -16331,7 +16327,7 @@ const getNodeRequestOptions = request => {
 	};
 };
 
-;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.1/node_modules/node-fetch/src/errors/abort-error.js
+;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.2/node_modules/node-fetch/src/errors/abort-error.js
 
 
 /**
@@ -16345,7 +16341,7 @@ class AbortError extends FetchBaseError {
 
 // EXTERNAL MODULE: ./node_modules/.pnpm/fetch-blob@3.2.0/node_modules/fetch-blob/from.js + 2 modules
 var from = __nccwpck_require__(7253);
-;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.1/node_modules/node-fetch/src/index.js
+;// CONCATENATED MODULE: ./node_modules/.pnpm/node-fetch@3.3.2/node_modules/node-fetch/src/index.js
 /**
  * Index.js
  *
