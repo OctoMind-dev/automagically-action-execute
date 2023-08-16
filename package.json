@@ -27,7 +27,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-github": "^4.9.2",
     "eslint-plugin-prettier": "^5.0.0",
-    "prettier": "^3.0.1",
+    "prettier": "^3.0.2",
     "rimraf": "^5.0.1",
     "typescript": "^5.1.6"
   }
