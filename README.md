@@ -1,7 +1,9 @@
 # automagically-action-execute
 
 This is a GitHub Action to execute automagically. 
-To use this action a token is required. Don't have one? We're here to help. 
+To use this action a token is required, which you can generate in our [octomind app](https://app.octomind.dev).
+
+See the [docs](https://docs.octomind.dev) for more details.
 
 > drop us a note: contact@octomind.dev 🐙
 
