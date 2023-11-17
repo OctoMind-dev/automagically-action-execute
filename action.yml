@@ -17,5 +17,5 @@ outputs:
   testReportUrl:
     description: 'Url to resulting test report'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
