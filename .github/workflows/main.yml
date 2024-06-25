@@ -15,15 +15,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Corepack enable
+        shell: bash
+        run: corepack enable
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'pnpm'
           cache-dependency-path: "pnpm-lock.yaml"
-
-      - name: Corepack enable
-        shell: bash
-        run: corepack enable
 
       - name: install dependencies
         run: pnpm install
