@@ -12,10 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Execute Action Test
     steps:
-      - uses: pnpm/action-setup@v4.0.0
-        with:
-          version: latest
-
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -24,6 +20,10 @@ jobs:
           node-version: 20
           cache: 'pnpm'
           cache-dependency-path: "pnpm-lock.yaml"
+
+      - name: Corepack enable
+        shell: bash
+        run: corepack enable
 
       - name: install dependencies
         run: pnpm install
