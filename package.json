@@ -4,6 +4,7 @@
   "private": true,
   "main": "lib/main.js",
   "type": "module",
+  "packageManager": "pnpm@9.4.0",
   "scripts": {
     "lint": "eslint src/**/*.ts",
     "build": "rimraf ./dist && tsc && ncc build"

@@ -12,12 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     name: Execute Action Test
     steps:
-      - uses: pnpm/action-setup@v4.0.0
-        with:
-          version: latest
-
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Corepack enable
+        shell: bash
+        run: corepack enable
 
       - uses: actions/setup-node@v4
         with:
