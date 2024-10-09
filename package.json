@@ -16,7 +16,7 @@
   "author": "OctoMind-dev",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.10.1",
+    "@actions/core": "^1.11.1",
     "@actions/github": "^6.0.0",
     "node-fetch": "^3.3.2"
   },
