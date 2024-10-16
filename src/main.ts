@@ -58,7 +58,7 @@ const urlOverride = core.getInput('automagicallyBaseUrl')
 const automagicallyUrl = urlOverride.length === 0 ? urlDefault : urlOverride
 
 const executeUrl = `${automagicallyUrl}/api/v2/execute`
-const getTestReportUrl = (testReportId: string) =>
+const getTestReportApiUrl = (testReportId: string) =>
   `${automagicallyUrl}/api/v2/test-targets/${testTargetId}/test-reports/${testReportId}`
 const context = {
   issueNumber,
@@ -102,7 +102,7 @@ try {
       const testReport = await fetchJson<TestReport>({
         method: 'GET',
         token,
-        url: getTestReportUrl(executeResponse.testReport.id)
+        url: getTestReportApiUrl(executeResponse.testReport.id)
       })
 
       currentStatus = testReport.status

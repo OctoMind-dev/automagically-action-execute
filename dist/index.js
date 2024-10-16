@@ -31332,7 +31332,7 @@ const urlDefault = 'https://app.octomind.dev';
 const urlOverride = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('automagicallyBaseUrl');
 const automagicallyUrl = urlOverride.length === 0 ? urlDefault : urlOverride;
 const executeUrl = `${automagicallyUrl}/api/v2/execute`;
-const getTestReportUrl = (testReportId) => `${automagicallyUrl}/api/v2/test-targets/${testTargetId}/test-reports/${testReportId}`;
+const getTestReportApiUrl = (testReportId) => `${automagicallyUrl}/api/v2/test-targets/${testTargetId}/test-reports/${testReportId}`;
 const context = {
     issueNumber,
     repo: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo.repo,
@@ -31369,7 +31369,7 @@ try {
             const testReport = await (0,_fetchJson__WEBPACK_IMPORTED_MODULE_3__.fetchJson)({
                 method: 'GET',
                 token,
-                url: getTestReportUrl(executeResponse.testReport.id)
+                url: getTestReportApiUrl(executeResponse.testReport.id)
             });
             currentStatus = testReport.status;
             await sleep(TIME_BETWEEN_POLLS_MILLISECONDS);
