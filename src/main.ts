@@ -1,23 +1,30 @@
 import core from '@actions/core'
 import github from '@actions/github'
-import fetch from 'node-fetch'
+import {setTimeout} from 'node:timers'
+import {fetchJson} from './fetchJson'
+
+type TestReportStatus = 'PASSED' | 'WAITING' | 'FAILED'
+
+interface TestReport {
+  id: string
+  testTargetId: string
+  createdAt: string
+  updatedAt: string
+  executionUrl: string
+  context: {
+    ref?: string
+    sha?: string
+    repo: string
+    owner: string
+    source: string
+    issueNumber?: number
+  }
+  status: TestReportStatus
+}
 
 interface ResponseType {
-  testReport: {
-    id: string
-    testTargetId: string
-    createdAt: string
-    updatedAt: string
-    executionUrl: string
-    context: {
-      ref?: string
-      sha?: string
-      repo: string
-      owner: string
-      source: string
-      issueNumber?: number
-    }
-  }
+  testReportUrl: string
+  testReport: TestReport
 }
 
 const url = core.getInput('url')
@@ -35,6 +42,8 @@ if (testTargetId.length === 0) {
   core.setFailed('testTargetId is set to an empty string')
 }
 
+const blocking = core.getBooleanInput('blocking')
+
 const issueNumber = github.context.issue.number
 if (!issueNumber || issueNumber < 1) {
   core.warning(
@@ -49,6 +58,8 @@ const urlOverride = core.getInput('automagicallyBaseUrl')
 const automagicallyUrl = urlOverride.length === 0 ? urlDefault : urlOverride
 
 const executeUrl = `${automagicallyUrl}/api/v2/execute`
+const getTestReportUrl = (testReportId: string) =>
+  `${automagicallyUrl}/api/v2/test-targets/${testTargetId}/test-reports/${testReportId}`
 const context = {
   issueNumber,
   repo: github.context.repo.repo,
@@ -59,12 +70,16 @@ const context = {
 
 core.debug(JSON.stringify({executeUrl, context}, null, 2))
 
+const sleep = (timeInMilliseconds: number): Promise<void> =>
+  new Promise(r => setTimeout(r, timeInMilliseconds))
+
+const TIME_BETWEEN_POLLS_MILLISECONDS = 5_000
+
 try {
-  const response = await fetch(executeUrl, {
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': token
-    },
+  const executeResponse = await fetchJson<ResponseType>({
+    url: executeUrl,
+    method: 'POST',
+    token,
     body: JSON.stringify({
       url,
       testTargetId,
@@ -72,32 +87,28 @@ try {
         source: 'github',
         ...context
       }
-    }),
-    method: 'POST'
+    })
   })
+  const testReportUrl = executeResponse.testReportUrl
+  core.setOutput('testReportUrl', executeResponse.testReportUrl)
+  await core.summary
+    .addHeading('🐙 Octomind')
+    .addLink('View your Test Report', testReportUrl)
+    .write()
 
-  if (!response.ok) {
-    const contentType = response.headers.get('Content-Type')
-    throw new Error(
-      `response not ok ${response.status}, ${JSON.stringify(
-        {
-          body: contentType === 'application/json' ? await response.json() : {}
-        },
-        null,
-        2
-      )}`
-    )
-  }
+  if (blocking) {
+    let currentStatus = executeResponse.testReport.status
+    while (currentStatus !== 'PASSED') {
+      const testReport = await fetchJson<TestReport>({
+        method: 'GET',
+        token,
+        url: getTestReportUrl(executeResponse.testReport.id)
+      })
 
-  const jsonResponse = (await response.json()) as ResponseType
-  if (jsonResponse) {
-    const testReportId = jsonResponse.testReport.id
-    const testReportUrl = `${automagicallyUrl}/testreports/${testReportId}`
-    core.setOutput('testReportUrl', testReportUrl)
-    await core.summary
-      .addHeading('🐙 Octomind')
-      .addLink('View your Test Report', testReportUrl)
-      .write()
+      currentStatus = testReport.status
+
+      await sleep(TIME_BETWEEN_POLLS_MILLISECONDS)
+    }
   }
 } catch (error) {
   if (error instanceof Error) {
