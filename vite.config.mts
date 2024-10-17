@@ -9,16 +9,15 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     sourcemap: true,
-    ssr: true,
+    ssr: false,
     target: 'node20',
+    lib: {
+      entry: path.resolve(import.meta.dirname, 'src/index.ts'),
+      formats: ['es'],
+      fileName: 'index'
+    },
     rollupOptions: {
-      input: {
-        index: path.resolve(import.meta.dirname, 'src/index.ts')
-      },
-      output: {
-        format: 'esm',
-        preserveModules: false
-      }
+      external: name => name.includes('node:')
     }
   },
   test: {
