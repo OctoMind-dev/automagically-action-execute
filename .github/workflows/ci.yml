@@ -1,4 +1,4 @@
-name: Test Execute Action
+name: Lint + Test
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 jobs:
-  test-execute-action:
+  Test-and-lint:
     runs-on: ubuntu-latest
     name: Execute Action Test
     steps:
@@ -40,14 +40,8 @@ jobs:
       - name: install dependencies
         run: pnpm install
 
-      - name: package
-        run: pnpm run build
+      - name: lint
+        run: pnpm run lint
 
-      - name: Execute Automagically
-        id: automagically
-        uses: ./
-        with:
-          url: 'https://storage.googleapis.com/mocktopus/index.html'
-          testTargetId: '35c8bfca-48d2-4eb2-8042-4ee50707a295'
-          token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
-          blocking: true
+      - name: test
+        run: pnpm run test

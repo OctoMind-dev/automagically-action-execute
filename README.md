@@ -18,9 +18,11 @@ See the [docs](https://octomind.dev/docs) for more details.
     url: <publicly accessible url to your deployment>
     token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
     testTargetId: <your testTargetId that you also get from us>
+    blocking: <if the pipeline should wait for all test results to pass, default is FALSE
 ```
 
 
 ## Change Log
 
 - 2023-07-20: Added requirement for setting `testTargetId` to enable v2 API
+- 2024-10-17: Added blocking parameter, if true we wait for all test results to be passed and fail the step other
