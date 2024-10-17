@@ -1,5 +1,7 @@
+// this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
 // eslint-disable-next-line import/no-namespace
 import * as core from '@actions/core'
+// this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
 // eslint-disable-next-line import/no-namespace
 import * as github from '@actions/github'
 import {setTimeout} from 'node:timers'

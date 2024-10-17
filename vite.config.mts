@@ -1,7 +1,6 @@
-import {defineConfig} from 'vite'
+import {defineConfig} from 'vitest/config'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
-// for the jobs node-js only build
 export default defineConfig({
   plugins: [tsconfigPaths()],
   test: {

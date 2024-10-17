@@ -37495,8 +37495,10 @@ const fetchJson = async ({ url, token, body, method }) => {
 };
 
 ;// CONCATENATED MODULE: ./src/executeAutomagically.ts
+// this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
 // eslint-disable-next-line import/no-namespace
 
+// this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
 // eslint-disable-next-line import/no-namespace
 
 

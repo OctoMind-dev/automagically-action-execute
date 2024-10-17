@@ -4,23 +4,25 @@ import {fetchJson} from '../src/fetchJson'
 import core from '@actions/core'
 import github from '@actions/github'
 
-vi.mock('@/fetchJson')
+vi.mock('../src/fetchJson')
 vi.mock('@actions/core')
-vi.mock('@actions/github')
+vi.mock('@actions/github', () => ({
+  default: vi.fn(),
+  context: {
+    issue: {
+      number: 10
+    },
+    repo: {
+      repo: 'some repo',
+      owner: 'some owner'
+    }
+  } as typeof github.context
+}))
 
 describe(executeAutomagically.name, () => {
   beforeEach(() => {
     vi.mocked(core).getInput.mockReturnValue('some input')
     vi.mocked(core).getBooleanInput.mockReturnValue(false)
-    vi.mocked(github).context = {
-      issue: {
-        number: 10
-      },
-      repo: {
-        repo: 'some repo',
-        owner: 'some owner'
-      }
-    } as typeof github.context
 
     vi.mocked(core.summary.addHeading).mockReturnThis()
     vi.mocked(core.summary.addLink).mockReturnThis()
