@@ -8,7 +8,7 @@
     "lint": "eslint src/**/*.ts -c .eslintrc.json",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "build": "rimraf ./dist && ncc build -o dist/index.js src/index.ts"
+    "build": "rimraf ./dist && ncc build -o dist/ src/index.ts"
   },
   "repository": {
     "type": "git",
