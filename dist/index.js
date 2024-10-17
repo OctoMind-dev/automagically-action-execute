@@ -1,137 +1,125 @@
-/******/ var __webpack_modules__ = ({
-
-/***/ 510:
-/***/ ((module) => {
-
-module.exports = eval("require")("./main");
-
-
-/***/ }),
-
-/***/ 803:
-/***/ ((__webpack_module__, __unused_webpack___webpack_exports__, __nccwpck_require__) => {
-
-__nccwpck_require__.a(__webpack_module__, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-/* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(510);
-
-await (0,_main__WEBPACK_IMPORTED_MODULE_0__.main)();
-
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } }, 1);
-
-/***/ })
-
-/******/ });
-/************************************************************************/
-/******/ // The module cache
-/******/ var __webpack_module_cache__ = {};
-/******/ 
-/******/ // The require function
-/******/ function __nccwpck_require__(moduleId) {
-/******/ 	// Check if module is in cache
-/******/ 	var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 	if (cachedModule !== undefined) {
-/******/ 		return cachedModule.exports;
-/******/ 	}
-/******/ 	// Create a new module (and put it into the cache)
-/******/ 	var module = __webpack_module_cache__[moduleId] = {
-/******/ 		// no module.id needed
-/******/ 		// no module.loaded needed
-/******/ 		exports: {}
-/******/ 	};
-/******/ 
-/******/ 	// Execute the module function
-/******/ 	var threw = true;
-/******/ 	try {
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __nccwpck_require__);
-/******/ 		threw = false;
-/******/ 	} finally {
-/******/ 		if(threw) delete __webpack_module_cache__[moduleId];
-/******/ 	}
-/******/ 
-/******/ 	// Return the exports of the module
-/******/ 	return module.exports;
-/******/ }
-/******/ 
-/************************************************************************/
-/******/ /* webpack/runtime/async module */
-/******/ (() => {
-/******/ 	var webpackQueues = typeof Symbol === "function" ? Symbol("webpack queues") : "__webpack_queues__";
-/******/ 	var webpackExports = typeof Symbol === "function" ? Symbol("webpack exports") : "__webpack_exports__";
-/******/ 	var webpackError = typeof Symbol === "function" ? Symbol("webpack error") : "__webpack_error__";
-/******/ 	var resolveQueue = (queue) => {
-/******/ 		if(queue && queue.d < 1) {
-/******/ 			queue.d = 1;
-/******/ 			queue.forEach((fn) => (fn.r--));
-/******/ 			queue.forEach((fn) => (fn.r-- ? fn.r++ : fn()));
-/******/ 		}
-/******/ 	}
-/******/ 	var wrapDeps = (deps) => (deps.map((dep) => {
-/******/ 		if(dep !== null && typeof dep === "object") {
-/******/ 			if(dep[webpackQueues]) return dep;
-/******/ 			if(dep.then) {
-/******/ 				var queue = [];
-/******/ 				queue.d = 0;
-/******/ 				dep.then((r) => {
-/******/ 					obj[webpackExports] = r;
-/******/ 					resolveQueue(queue);
-/******/ 				}, (e) => {
-/******/ 					obj[webpackError] = e;
-/******/ 					resolveQueue(queue);
-/******/ 				});
-/******/ 				var obj = {};
-/******/ 				obj[webpackQueues] = (fn) => (fn(queue));
-/******/ 				return obj;
-/******/ 			}
-/******/ 		}
-/******/ 		var ret = {};
-/******/ 		ret[webpackQueues] = x => {};
-/******/ 		ret[webpackExports] = dep;
-/******/ 		return ret;
-/******/ 	}));
-/******/ 	__nccwpck_require__.a = (module, body, hasAwait) => {
-/******/ 		var queue;
-/******/ 		hasAwait && ((queue = []).d = -1);
-/******/ 		var depQueues = new Set();
-/******/ 		var exports = module.exports;
-/******/ 		var currentDeps;
-/******/ 		var outerResolve;
-/******/ 		var reject;
-/******/ 		var promise = new Promise((resolve, rej) => {
-/******/ 			reject = rej;
-/******/ 			outerResolve = resolve;
-/******/ 		});
-/******/ 		promise[webpackExports] = exports;
-/******/ 		promise[webpackQueues] = (fn) => (queue && fn(queue), depQueues.forEach(fn), promise["catch"](x => {}));
-/******/ 		module.exports = promise;
-/******/ 		body((deps) => {
-/******/ 			currentDeps = wrapDeps(deps);
-/******/ 			var fn;
-/******/ 			var getResult = () => (currentDeps.map((d) => {
-/******/ 				if(d[webpackError]) throw d[webpackError];
-/******/ 				return d[webpackExports];
-/******/ 			}))
-/******/ 			var promise = new Promise((resolve) => {
-/******/ 				fn = () => (resolve(getResult));
-/******/ 				fn.r = 0;
-/******/ 				var fnQueue = (q) => (q !== queue && !depQueues.has(q) && (depQueues.add(q), q && !q.d && (fn.r++, q.push(fn))));
-/******/ 				currentDeps.map((dep) => (dep[webpackQueues](fnQueue)));
-/******/ 			});
-/******/ 			return fn.r ? promise : getResult();
-/******/ 		}, (err) => ((err ? reject(promise[webpackError] = err) : outerResolve(exports)), resolveQueue(queue)));
-/******/ 		queue && queue.d < 0 && (queue.d = 0);
-/******/ 	};
-/******/ })();
-/******/ 
-/******/ /* webpack/runtime/compat */
-/******/ 
-/******/ if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = new URL('.', import.meta.url).pathname.slice(import.meta.url.match(/^file:\/\/\/\w:/) ? 1 : 0, -1) + "/";
-/******/ 
-/************************************************************************/
-/******/ 
-/******/ // startup
-/******/ // Load entry module and return exports
-/******/ // This entry module used 'module' so it can't be inlined
-/******/ var __webpack_exports__ = __nccwpck_require__(803);
-/******/ __webpack_exports__ = await __webpack_exports__;
-/******/ 
+import core from "@actions/core";
+import github from "@actions/github";
+import { setTimeout } from "node:timers";
+import fetch from "node-fetch";
+const fetchJson = async ({
+  url,
+  token,
+  body,
+  method
+}) => {
+  const response = await fetch(url, {
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": token
+    },
+    body,
+    method
+  });
+  if (!response.ok) {
+    const contentType = response.headers.get("Content-Type");
+    throw new Error(
+      `response not ok ${response.status}, ${JSON.stringify(
+        {
+          body: contentType === "application/json" ? await response.json() : {}
+        },
+        null,
+        2
+      )}`
+    );
+  }
+  return await response.json();
+};
+const TIME_BETWEEN_POLLS_MILLISECONDS = 5e3;
+const DEFAULT_URL = "https://app.octomind.dev";
+const sleep = (timeInMilliseconds) => new Promise((r) => setTimeout(r, timeInMilliseconds));
+const getExecuteUrl = (automagicallyUrl) => `${automagicallyUrl}/api/v2/execute`;
+const getTestReportApiUrl = (automagicallyUrl, testTargetId, testReportId) => `${automagicallyUrl}/api/v2/test-targets/${testTargetId}/test-reports/${testReportId}`;
+const main = async (pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS) => {
+  const urlOverride = core.getInput("automagicallyBaseUrl");
+  const automagicallyUrl = urlOverride.length === 0 ? DEFAULT_URL : urlOverride;
+  const issueNumber = github.context.issue.number;
+  if (!issueNumber || issueNumber < 1) {
+    core.warning(
+      "issue.number variable (Pull Request ID) not available. Make sure you run this action in a workflow triggered by pull request if you expect a comment with the test results on your PR"
+    );
+  }
+  const context = {
+    issueNumber,
+    repo: github.context.repo.repo,
+    owner: github.context.repo.owner,
+    ref: github.context.ref,
+    sha: github.context.sha
+  };
+  core.debug(
+    JSON.stringify(
+      { executeUrl: getExecuteUrl(automagicallyUrl), context },
+      null,
+      2
+    )
+  );
+  const url = core.getInput("url");
+  if (url.length === 0) {
+    core.setFailed("url is set to an empty string");
+  }
+  const token = core.getInput("token");
+  if (token.length === 0) {
+    core.setFailed("token is set to an empty string");
+  }
+  const testTargetId = core.getInput("testTargetId");
+  if (testTargetId.length === 0) {
+    core.setFailed("testTargetId is set to an empty string");
+  }
+  const blocking = core.getBooleanInput("blocking");
+  try {
+    const executeResponse = await fetchJson({
+      url: getExecuteUrl(automagicallyUrl),
+      method: "POST",
+      token,
+      body: JSON.stringify({
+        url,
+        testTargetId,
+        context: {
+          source: "github",
+          ...context
+        }
+      })
+    });
+    const testReportUrl = executeResponse.testReportUrl;
+    core.setOutput("testReportUrl", executeResponse.testReportUrl);
+    await core.summary.addHeading("🐙 Octomind").addLink("View your Test Report", testReportUrl).write();
+    if (blocking) {
+      let currentStatus = executeResponse.testReport.status;
+      while (currentStatus === "WAITING") {
+        const testReport = await fetchJson({
+          method: "GET",
+          token,
+          url: getTestReportApiUrl(
+            automagicallyUrl,
+            testTargetId,
+            executeResponse.testReport.id
+          )
+        });
+        currentStatus = testReport.status;
+        await sleep(pollingIntervalInMilliseconds);
+      }
+      if (currentStatus === "FAILED") {
+        core.setFailed(
+          `some test results failed, check your test report at ${testReportUrl} to find out more.`
+        );
+      }
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      core.setFailed(
+        `unable to execute automagically:  ${typeof error.message === "object" ? JSON.stringify({
+          error: error.message
+        }) : error.message}`
+      );
+    } else {
+      core.setFailed("unknown Error");
+    }
+  }
+};
+await main();
+//# sourceMappingURL=index.js.map

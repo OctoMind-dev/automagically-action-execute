@@ -9,7 +9,7 @@
     "lint": "eslint src/**/*.ts -c .eslintrc.json",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "build": "rimraf ./dist && rimraf ./lib && tsc && ncc build"
+    "build": "rimraf ./dist && rimraf ./lib && tsc && vite build"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,6 @@
   "devDependencies": {
     "@types/node": "^22.7.6",
     "@typescript-eslint/parser": "^8.9.0",
-    "@vercel/ncc": "^0.38.2",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.3",

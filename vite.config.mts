@@ -10,12 +10,13 @@ export default defineConfig({
     emptyOutDir: true,
     sourcemap: true,
     ssr: true,
+    target: 'node20',
     rollupOptions: {
       input: {
         index: path.resolve(import.meta.dirname, 'src/index.ts')
       },
       output: {
-        format: 'cjs',
+        format: 'esm',
         preserveModules: false
       }
     }
