@@ -9,7 +9,7 @@
     "lint": "eslint src/**/*.ts -c .eslintrc.json",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "build": "rimraf ./dist && tsc && ncc build"
+    "build": "rimraf ./dist && rimraf ./lib && tsc && ncc build"
   },
   "repository": {
     "type": "git",
