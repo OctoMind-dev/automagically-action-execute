@@ -10,7 +10,7 @@ permissions:
 jobs:
   Test-and-lint:
     runs-on: ubuntu-latest
-    name: Execute Action Test
+    name: Lint + Test
     steps:
       - name: Checkout
         uses: actions/checkout@v4
