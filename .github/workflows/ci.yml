@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 jobs:
-  test-execute-action:
+  lint + test:
     runs-on: ubuntu-latest
     name: Execute Action Test
     steps:
