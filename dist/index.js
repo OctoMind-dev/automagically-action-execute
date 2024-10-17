@@ -31,11 +31,15 @@ const fetchJson = async ({
   return await response.json();
 };
 const TIME_BETWEEN_POLLS_MILLISECONDS = 5e3;
+const MAXIMUM_POLL_TIME_MILLISECONDS = 2 * 60 * 60 * 1e3;
 const DEFAULT_URL = "https://app.octomind.dev";
-const sleep = (timeInMilliseconds) => new Promise((r) => setTimeout(r, timeInMilliseconds));
+const sleep = (timeInMilliseconds) => new Promise((resolve) => setTimeout(resolve, timeInMilliseconds));
 const getExecuteUrl = (automagicallyUrl) => `${automagicallyUrl}/api/apiKey/v2/execute`;
 const getTestReportApiUrl = (automagicallyUrl, testTargetId, testReportId) => `${automagicallyUrl}/api/apiKey/v2/test-targets/${testTargetId}/test-reports/${testReportId}`;
-const main = async (pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS) => {
+const main = async ({
+  pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS,
+  maximumPollingTimeInMilliseconds = MAXIMUM_POLL_TIME_MILLISECONDS
+} = {}) => {
   const urlOverride = core.getInput("automagicallyBaseUrl");
   const automagicallyUrl = urlOverride.length === 0 ? DEFAULT_URL : urlOverride;
   const issueNumber = github.context.issue.number;
@@ -90,7 +94,9 @@ const main = async (pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECO
     await core.summary.addHeading("🐙 Octomind").addLink("View your Test Report", testReportUrl).write();
     if (blocking) {
       let currentStatus = executeResponse.testReport.status;
-      while (currentStatus === "WAITING") {
+      const start = Date.now();
+      let now = start;
+      while (currentStatus === "WAITING" && now - start < maximumPollingTimeInMilliseconds) {
         const testReport = await fetchJson({
           method: "GET",
           token,
@@ -102,8 +108,9 @@ const main = async (pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECO
         });
         currentStatus = testReport.status;
         await sleep(pollingIntervalInMilliseconds);
+        now = Date.now();
       }
-      if (currentStatus === "FAILED") {
+      if (currentStatus !== "PASSED") {
         core.setFailed(
           `some test results failed, check your test report at ${testReportUrl} to find out more.`
         );

@@ -60,7 +60,7 @@ describe(main.name, () => {
       status: 'PASSED'
     })
 
-    await main(1)
+    await main({pollingIntervalInMilliseconds: 1})
 
     expect(fetchJson).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -88,7 +88,7 @@ describe(main.name, () => {
     })
     vi.mocked(fetchJson).mockRejectedValue(new Error('not successful'))
 
-    await main()
+    await main({pollingIntervalInMilliseconds: 1})
 
     expect(core.setFailed).toHaveBeenCalled()
   })
@@ -105,7 +105,27 @@ describe(main.name, () => {
       status: 'FAILED'
     })
 
-    await main(1)
+    await main({pollingIntervalInMilliseconds: 1})
+
+    expect(core.setFailed).toHaveBeenCalled()
+  })
+
+  it('sets to failed if polling never stops', async () => {
+    vi.mocked(core).getBooleanInput.mockReturnValue(true)
+    // execute
+    vi.mocked(fetchJson).mockResolvedValueOnce({
+      testReport: {
+        status: 'WAITING'
+      }
+    })
+    vi.mocked(fetchJson).mockResolvedValue({
+      status: 'WAITING'
+    })
+
+    await main({
+      pollingIntervalInMilliseconds: 1,
+      maximumPollingTimeInMilliseconds: 5
+    })
 
     expect(core.setFailed).toHaveBeenCalled()
   })

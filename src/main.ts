@@ -5,10 +5,11 @@ import {fetchJson} from './fetchJson'
 import {ExecuteResponse, TestReport} from './types'
 
 const TIME_BETWEEN_POLLS_MILLISECONDS = 5_000
+const MAXIMUM_POLL_TIME_MILLISECONDS = 2 * 60 * 60 * 1000
 const DEFAULT_URL = 'https://app.octomind.dev'
 
 const sleep = (timeInMilliseconds: number): Promise<void> =>
-  new Promise(r => setTimeout(r, timeInMilliseconds))
+  new Promise(resolve => setTimeout(resolve, timeInMilliseconds))
 
 const getExecuteUrl = (automagicallyUrl: string) =>
   `${automagicallyUrl}/api/apiKey/v2/execute`
@@ -20,9 +21,13 @@ const getTestReportApiUrl = (
 ) =>
   `${automagicallyUrl}/api/apiKey/v2/test-targets/${testTargetId}/test-reports/${testReportId}`
 
-export const main = async (
-  pollingIntervalInMilliseconds: number = TIME_BETWEEN_POLLS_MILLISECONDS
-): Promise<void> => {
+export const main = async ({
+  pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS,
+  maximumPollingTimeInMilliseconds = MAXIMUM_POLL_TIME_MILLISECONDS
+}: {
+  pollingIntervalInMilliseconds?: number
+  maximumPollingTimeInMilliseconds?: number
+} = {}): Promise<void> => {
   const urlOverride = core.getInput('automagicallyBaseUrl')
   const automagicallyUrl = urlOverride.length === 0 ? DEFAULT_URL : urlOverride
 
@@ -92,7 +97,13 @@ export const main = async (
 
     if (blocking) {
       let currentStatus = executeResponse.testReport.status
-      while (currentStatus === 'WAITING') {
+      const start = Date.now()
+      let now = start
+
+      while (
+        currentStatus === 'WAITING' &&
+        now - start < maximumPollingTimeInMilliseconds
+      ) {
         const testReport = await fetchJson<TestReport>({
           method: 'GET',
           token,
@@ -105,9 +116,10 @@ export const main = async (
         currentStatus = testReport.status
 
         await sleep(pollingIntervalInMilliseconds)
+        now = Date.now()
       }
 
-      if (currentStatus === 'FAILED') {
+      if (currentStatus !== 'PASSED') {
         core.setFailed(
           `some test results failed, check your test report at ${testReportUrl} to find out more.`
         )

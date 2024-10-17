@@ -49,7 +49,5 @@ jobs:
         with:
           url: 'https://storage.googleapis.com/mocktopus/index.html'
           testTargetId: '35c8bfca-48d2-4eb2-8042-4ee50707a295'
-          # TODO revert change
-          token: ${{ secrets.AUTOMAGICALLY_TOKEN_PREVIEW }}
-          automagicallyBaseUrl: "https://preview.octomind.dev"
+          token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
           blocking: true

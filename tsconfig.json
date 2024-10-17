@@ -8,6 +8,7 @@
     "strict": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
+    "noEmit": true,
     "paths": {
       "@/*": [
         "./src/*"
