@@ -33,8 +33,8 @@ const fetchJson = async ({
 const TIME_BETWEEN_POLLS_MILLISECONDS = 5e3;
 const DEFAULT_URL = "https://app.octomind.dev";
 const sleep = (timeInMilliseconds) => new Promise((r) => setTimeout(r, timeInMilliseconds));
-const getExecuteUrl = (automagicallyUrl) => `${automagicallyUrl}/api/v2/execute`;
-const getTestReportApiUrl = (automagicallyUrl, testTargetId, testReportId) => `${automagicallyUrl}/api/v2/test-targets/${testTargetId}/test-reports/${testReportId}`;
+const getExecuteUrl = (automagicallyUrl) => `${automagicallyUrl}/api/apiKey/v2/execute`;
+const getTestReportApiUrl = (automagicallyUrl, testTargetId, testReportId) => `${automagicallyUrl}/api/apiKey/v2/test-targets/${testTargetId}/test-reports/${testReportId}`;
 const main = async (pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS) => {
   const urlOverride = core.getInput("automagicallyBaseUrl");
   const automagicallyUrl = urlOverride.length === 0 ? DEFAULT_URL : urlOverride;
