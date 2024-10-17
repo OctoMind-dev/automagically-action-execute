@@ -5,11 +5,10 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "outDir": "./lib",
-    "rootDir": ".",
+    "rootDir": "./src",
     "strict": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
-    "noEmit": true,
     "paths": {
       "@/*": [
         "./src/*"
