@@ -1,19 +1,19 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "bundler",
     "outDir": "./lib",
     "strict": true,
     "noImplicitAny": true,
-    "esModuleInterop": true,
     "noEmit": true,
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    }
+    "esModuleInterop": true
   },
-  "exclude": ["node_modules"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "lib"
+  ]
 }

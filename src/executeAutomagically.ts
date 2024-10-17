@@ -1,5 +1,9 @@
-import core from '@actions/core'
-import github from '@actions/github'
+// this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
+// eslint-disable-next-line import/no-namespace
+import * as core from '@actions/core'
+// this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
+// eslint-disable-next-line import/no-namespace
+import * as github from '@actions/github'
 import {setTimeout} from 'node:timers'
 import {fetchJson} from './fetchJson'
 import {ExecuteResponse, TestReport} from './types'
@@ -21,7 +25,7 @@ const getTestReportApiUrl = (
 ) =>
   `${automagicallyUrl}/api/apiKey/v2/test-targets/${testTargetId}/test-reports/${testReportId}`
 
-export const main = async ({
+export const executeAutomagically = async ({
   pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS,
   maximumPollingTimeInMilliseconds = MAXIMUM_POLL_TIME_MILLISECONDS
 }: {
