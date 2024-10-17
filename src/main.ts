@@ -102,7 +102,6 @@ export const main = async (
             executeResponse.testReport.id
           )
         })
-        console.log(testReport);
         currentStatus = testReport.status
 
         await sleep(pollingIntervalInMilliseconds)
