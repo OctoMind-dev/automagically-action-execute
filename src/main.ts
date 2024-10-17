@@ -11,14 +11,14 @@ const sleep = (timeInMilliseconds: number): Promise<void> =>
   new Promise(r => setTimeout(r, timeInMilliseconds))
 
 const getExecuteUrl = (automagicallyUrl: string) =>
-  `${automagicallyUrl}/api/v2/execute`
+  `${automagicallyUrl}/api/apiKey/v2/execute`
 
 const getTestReportApiUrl = (
   automagicallyUrl: string,
   testTargetId: string,
   testReportId: string
 ) =>
-  `${automagicallyUrl}/api/v2/test-targets/${testTargetId}/test-reports/${testReportId}`
+  `${automagicallyUrl}/api/apiKey/v2/test-targets/${testTargetId}/test-reports/${testReportId}`
 
 export const main = async (
   pollingIntervalInMilliseconds: number = TIME_BETWEEN_POLLS_MILLISECONDS
