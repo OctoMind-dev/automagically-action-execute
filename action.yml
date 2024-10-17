@@ -13,6 +13,9 @@ inputs:
   automagicallyBaseUrl:
     description: 'Base URL of the automagically instance, for switching between production and staging. Defaults to Production url'
     required: false
+  blocking:
+    description: 'If the pipeline should be blocked until all test results in the test report are passed'
+    required: false
 outputs:
   testReportUrl:
     description: 'Url to resulting test report'

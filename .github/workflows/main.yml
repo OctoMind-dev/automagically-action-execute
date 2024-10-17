@@ -56,3 +56,6 @@ jobs:
           url: 'https://storage.googleapis.com/mocktopus/index.html'
           testTargetId: '35c8bfca-48d2-4eb2-8042-4ee50707a295'
           token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
+          # TODO remove before merge
+          automagicallyBaseUrl: "https://preview.octomind.dev"
+          blocking: true
