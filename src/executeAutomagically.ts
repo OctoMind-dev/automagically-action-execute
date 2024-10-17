@@ -1,5 +1,7 @@
-import core from '@actions/core'
-import github from '@actions/github'
+// eslint-disable-next-line import/no-namespace
+import * as core from '@actions/core'
+// eslint-disable-next-line import/no-namespace
+import * as github from '@actions/github'
 import {setTimeout} from 'node:timers'
 import {fetchJson} from './fetchJson'
 import {ExecuteResponse, TestReport} from './types'
