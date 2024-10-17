@@ -1,3 +1,3 @@
-import {main} from './main'
+import {executeAutomagically} from './executeAutomagically'
 
-await main()
+void executeAutomagically()

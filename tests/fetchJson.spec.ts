@@ -1,10 +1,10 @@
-import {fetchJson} from '@/fetchJson'
+import {fetchJson} from '../src/fetchJson'
 import fetch, {type Response} from 'node-fetch'
 import {beforeEach, describe, expect, it, vi} from 'vitest'
 
 vi.mock('node-fetch')
 
-describe(fetchJson.name, async () => {
+describe(fetchJson.name, () => {
   beforeEach(() => {
     vi.mocked(fetch).mockResolvedValue({
       json(): Promise<unknown> {

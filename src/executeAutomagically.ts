@@ -21,7 +21,7 @@ const getTestReportApiUrl = (
 ) =>
   `${automagicallyUrl}/api/apiKey/v2/test-targets/${testTargetId}/test-reports/${testReportId}`
 
-export const main = async ({
+export const executeAutomagically = async ({
   pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS,
   maximumPollingTimeInMilliseconds = MAXIMUM_POLL_TIME_MILLISECONDS
 }: {

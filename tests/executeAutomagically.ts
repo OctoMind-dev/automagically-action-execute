@@ -1,6 +1,6 @@
-import {main} from '@/main'
+import {executeAutomagically} from '../src/executeAutomagically'
 import {beforeEach, describe, expect, it, vi} from 'vitest'
-import {fetchJson} from '@/fetchJson'
+import {fetchJson} from '../src/fetchJson'
 import core from '@actions/core'
 import github from '@actions/github'
 
@@ -8,7 +8,7 @@ vi.mock('@/fetchJson')
 vi.mock('@actions/core')
 vi.mock('@actions/github')
 
-describe(main.name, () => {
+describe(executeAutomagically.name, () => {
   beforeEach(() => {
     vi.mocked(core).getInput.mockReturnValue('some input')
     vi.mocked(core).getBooleanInput.mockReturnValue(false)
@@ -28,7 +28,7 @@ describe(main.name, () => {
   })
 
   it("executes and DOESN'T wait if it's not blocking", async () => {
-    await main()
+    await executeAutomagically()
 
     expect(fetchJson).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -60,7 +60,7 @@ describe(main.name, () => {
       status: 'PASSED'
     })
 
-    await main({pollingIntervalInMilliseconds: 1})
+    await executeAutomagically({pollingIntervalInMilliseconds: 1})
 
     expect(fetchJson).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -73,7 +73,7 @@ describe(main.name, () => {
   it('sets to failed if a request throws', async () => {
     vi.mocked(fetchJson).mockRejectedValue(new Error('not successful'))
 
-    await main()
+    await executeAutomagically()
 
     expect(core.setFailed).toHaveBeenCalled()
   })
@@ -88,7 +88,7 @@ describe(main.name, () => {
     })
     vi.mocked(fetchJson).mockRejectedValue(new Error('not successful'))
 
-    await main({pollingIntervalInMilliseconds: 1})
+    await executeAutomagically({pollingIntervalInMilliseconds: 1})
 
     expect(core.setFailed).toHaveBeenCalled()
   })
@@ -105,7 +105,7 @@ describe(main.name, () => {
       status: 'FAILED'
     })
 
-    await main({pollingIntervalInMilliseconds: 1})
+    await executeAutomagically({pollingIntervalInMilliseconds: 1})
 
     expect(core.setFailed).toHaveBeenCalled()
   })
@@ -122,7 +122,7 @@ describe(main.name, () => {
       status: 'WAITING'
     })
 
-    await main({
+    await executeAutomagically({
       pollingIntervalInMilliseconds: 1,
       maximumPollingTimeInMilliseconds: 5
     })
