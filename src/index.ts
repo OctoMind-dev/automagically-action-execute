@@ -1,3 +1,3 @@
 import {executeAutomagically} from './executeAutomagically'
 
-void executeAutomagically()
+await executeAutomagically()
