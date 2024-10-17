@@ -31370,7 +31370,7 @@ const DEFAULT_URL = 'https://app.octomind.dev';
 const sleep = (timeInMilliseconds) => new Promise(r => (0,external_node_timers_namespaceObject.setTimeout)(r, timeInMilliseconds));
 const getExecuteUrl = (automagicallyUrl) => `${automagicallyUrl}/api/v2/execute`;
 const getTestReportApiUrl = (automagicallyUrl, testTargetId, testReportId) => `${automagicallyUrl}/api/v2/test-targets/${testTargetId}/test-reports/${testReportId}`;
-const main = async () => {
+const main = async (pollingTimeInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS) => {
     const urlOverride = core.getInput('automagicallyBaseUrl');
     const automagicallyUrl = urlOverride.length === 0 ? DEFAULT_URL : urlOverride;
     const issueNumber = github.context.issue.number;
@@ -31429,7 +31429,7 @@ const main = async () => {
                     url: getTestReportApiUrl(automagicallyUrl, testTargetId, executeResponse.testReport.id)
                 });
                 currentStatus = testReport.status;
-                await sleep(TIME_BETWEEN_POLLS_MILLISECONDS);
+                await sleep(pollingTimeInMilliseconds);
             }
         }
     }
