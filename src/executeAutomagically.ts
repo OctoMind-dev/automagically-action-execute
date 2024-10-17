@@ -1,5 +1,5 @@
-import core from '@actions/core'
-import github from '@actions/github'
+import type coreType from '@actions/core'
+import type githubType from '@actions/github'
 import {setTimeout} from 'node:timers'
 import {fetchJson} from './fetchJson'
 import {ExecuteResponse, TestReport} from './types'
@@ -23,11 +23,15 @@ const getTestReportApiUrl = (
 
 export const executeAutomagically = async ({
   pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS,
-  maximumPollingTimeInMilliseconds = MAXIMUM_POLL_TIME_MILLISECONDS
+  maximumPollingTimeInMilliseconds = MAXIMUM_POLL_TIME_MILLISECONDS,
+  core,
+  github
 }: {
   pollingIntervalInMilliseconds?: number
   maximumPollingTimeInMilliseconds?: number
-} = {}): Promise<void> => {
+  core: typeof coreType,
+  github: typeof githubType
+}): Promise<void> => {
   const urlOverride = core.getInput('automagicallyBaseUrl')
   const automagicallyUrl = urlOverride.length === 0 ? DEFAULT_URL : urlOverride
 

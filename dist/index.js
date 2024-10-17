@@ -35323,12 +35323,6 @@ __nccwpck_require__.d(__webpack_exports__, {
   k: () => (/* binding */ executeAutomagically)
 });
 
-// EXTERNAL MODULE: ./node_modules/.pnpm/@actions+core@1.11.1/node_modules/@actions/core/lib/core.js
-var core = __nccwpck_require__(4708);
-var core_default = /*#__PURE__*/__nccwpck_require__.n(core);
-// EXTERNAL MODULE: ./node_modules/.pnpm/@actions+github@6.0.0/node_modules/@actions/github/lib/github.js
-var github = __nccwpck_require__(3802);
-var github_default = /*#__PURE__*/__nccwpck_require__.n(github);
 ;// CONCATENATED MODULE: external "node:timers"
 const external_node_timers_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:timers");
 ;// CONCATENATED MODULE: external "node:http"
@@ -37499,44 +37493,42 @@ const fetchJson = async ({ url, token, body, method }) => {
 ;// CONCATENATED MODULE: ./src/executeAutomagically.ts
 
 
-
-
 const TIME_BETWEEN_POLLS_MILLISECONDS = 5_000;
 const MAXIMUM_POLL_TIME_MILLISECONDS = 2 * 60 * 60 * 1000;
 const DEFAULT_URL = 'https://app.octomind.dev';
 const sleep = (timeInMilliseconds) => new Promise(resolve => (0,external_node_timers_namespaceObject.setTimeout)(resolve, timeInMilliseconds));
 const getExecuteUrl = (automagicallyUrl) => `${automagicallyUrl}/api/apiKey/v2/execute`;
 const getTestReportApiUrl = (automagicallyUrl, testTargetId, testReportId) => `${automagicallyUrl}/api/apiKey/v2/test-targets/${testTargetId}/test-reports/${testReportId}`;
-const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS, maximumPollingTimeInMilliseconds = MAXIMUM_POLL_TIME_MILLISECONDS } = {}) => {
-    const urlOverride = core_default().getInput('automagicallyBaseUrl');
+const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS, maximumPollingTimeInMilliseconds = MAXIMUM_POLL_TIME_MILLISECONDS, core, github }) => {
+    const urlOverride = core.getInput('automagicallyBaseUrl');
     const automagicallyUrl = urlOverride.length === 0 ? DEFAULT_URL : urlOverride;
-    const issueNumber = (github_default()).context.issue.number;
+    const issueNumber = github.context.issue.number;
     if (!issueNumber || issueNumber < 1) {
-        core_default().warning('issue.number variable (Pull Request ID) not available. ' +
+        core.warning('issue.number variable (Pull Request ID) not available. ' +
             'Make sure you run this action in a workflow triggered by pull request ' +
             'if you expect a comment with the test results on your PR');
     }
     const context = {
         issueNumber,
-        repo: (github_default()).context.repo.repo,
-        owner: (github_default()).context.repo.owner,
-        ref: (github_default()).context.ref,
-        sha: (github_default()).context.sha
+        repo: github.context.repo.repo,
+        owner: github.context.repo.owner,
+        ref: github.context.ref,
+        sha: github.context.sha
     };
-    core_default().debug(JSON.stringify({ executeUrl: getExecuteUrl(automagicallyUrl), context }, null, 2));
-    const url = core_default().getInput('url');
+    core.debug(JSON.stringify({ executeUrl: getExecuteUrl(automagicallyUrl), context }, null, 2));
+    const url = core.getInput('url');
     if (url.length === 0) {
-        core_default().setFailed('url is set to an empty string');
+        core.setFailed('url is set to an empty string');
     }
-    const token = core_default().getInput('token');
+    const token = core.getInput('token');
     if (token.length === 0) {
-        core_default().setFailed('token is set to an empty string');
+        core.setFailed('token is set to an empty string');
     }
-    const testTargetId = core_default().getInput('testTargetId');
+    const testTargetId = core.getInput('testTargetId');
     if (testTargetId.length === 0) {
-        core_default().setFailed('testTargetId is set to an empty string');
+        core.setFailed('testTargetId is set to an empty string');
     }
-    const blocking = core_default().getBooleanInput('blocking');
+    const blocking = core.getBooleanInput('blocking');
     try {
         const executeResponse = await fetchJson({
             url: getExecuteUrl(automagicallyUrl),
@@ -37552,8 +37544,8 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
             })
         });
         const testReportUrl = executeResponse.testReportUrl;
-        core_default().setOutput('testReportUrl', executeResponse.testReportUrl);
-        await core_default().summary
+        core.setOutput('testReportUrl', executeResponse.testReportUrl);
+        await core.summary
             .addHeading('🐙 Octomind')
             .addLink('View your Test Report', testReportUrl)
             .write();
@@ -37573,20 +37565,20 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
                 now = Date.now();
             }
             if (currentStatus !== 'PASSED') {
-                core_default().setFailed(`some test results failed, check your test report at ${testReportUrl} to find out more.`);
+                core.setFailed(`some test results failed, check your test report at ${testReportUrl} to find out more.`);
             }
         }
     }
     catch (error) {
         if (error instanceof Error) {
-            core_default().setFailed(`unable to execute automagically:  ${typeof error.message === 'object'
+            core.setFailed(`unable to execute automagically:  ${typeof error.message === 'object'
                 ? JSON.stringify({
                     error: error.message
                 })
                 : error.message}`);
         }
         else {
-            core_default().setFailed('unknown Error');
+            core.setFailed('unknown Error');
         }
     }
 };
@@ -37599,8 +37591,17 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
 
 __nccwpck_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 /* harmony import */ var _executeAutomagically__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(4834);
+/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(4708);
+/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__nccwpck_require__.n(_actions_core__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(3802);
+/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__nccwpck_require__.n(_actions_github__WEBPACK_IMPORTED_MODULE_2__);
 
-await (0,_executeAutomagically__WEBPACK_IMPORTED_MODULE_0__/* .executeAutomagically */ .k)();
+
+
+await (0,_executeAutomagically__WEBPACK_IMPORTED_MODULE_0__/* .executeAutomagically */ .k)({
+    core: (_actions_core__WEBPACK_IMPORTED_MODULE_1___default()),
+    github: (_actions_github__WEBPACK_IMPORTED_MODULE_2___default())
+});
 
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } }, 1);
