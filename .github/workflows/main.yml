@@ -28,6 +28,12 @@ jobs:
       - name: install dependencies
         run: pnpm install
 
+      - name: lint
+        run: pnpm run lint
+
+      - name: test
+        run: pnpm run test
+
       - name: package
         run: pnpm run build
 
