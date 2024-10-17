@@ -1,6 +1,10 @@
 {
-  "plugins": ["@typescript-eslint"],
-  "extends": ["plugin:github/recommended"],
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "plugin:github/recommended"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json"
@@ -9,6 +13,20 @@
     "@typescript-eslint/no-floating-promises": "warn",
     "prettier/prettier": "warn",
     "no-console": "warn",
-    "i18n-text/no-en": "off"
+    "i18n-text/no-en": "off",
+    "filenames/match-regex": "off"
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [
+        ".ts",
+        ".tsx"
+      ]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    }
   }
 }

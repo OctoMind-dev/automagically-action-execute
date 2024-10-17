@@ -31185,13 +31185,6 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:stream"
 
 /***/ }),
 
-/***/ 7997:
-/***/ ((module) => {
-
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:timers");
-
-/***/ }),
-
 /***/ 7975:
 /***/ ((module) => {
 
@@ -31295,103 +31288,6 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("worker_threa
 
 module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("zlib");
 
-/***/ }),
-
-/***/ 5901:
-/***/ ((__webpack_module__, __unused_webpack___webpack_exports__, __nccwpck_require__) => {
-
-__nccwpck_require__.a(__webpack_module__, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(4708);
-/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(3802);
-/* harmony import */ var node_timers__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(7997);
-/* harmony import */ var _fetchJson__WEBPACK_IMPORTED_MODULE_3__ = __nccwpck_require__(49);
-
-
-
-
-const url = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('url');
-if (url.length === 0) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed('url is set to an empty string');
-}
-const token = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('token');
-if (token.length === 0) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed('token is set to an empty string');
-}
-const testTargetId = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('testTargetId');
-if (testTargetId.length === 0) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed('testTargetId is set to an empty string');
-}
-const blocking = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getBooleanInput('blocking');
-const issueNumber = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.issue.number;
-if (!issueNumber || issueNumber < 1) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.warning('issue.number variable (Pull Request ID) not available. ' +
-        'Make sure you run this action in a workflow triggered by pull request ' +
-        'if you expect a comment with the test results on your PR');
-}
-const urlDefault = 'https://app.octomind.dev';
-const urlOverride = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('automagicallyBaseUrl');
-const automagicallyUrl = urlOverride.length === 0 ? urlDefault : urlOverride;
-const executeUrl = `${automagicallyUrl}/api/v2/execute`;
-const getTestReportApiUrl = (testReportId) => `${automagicallyUrl}/api/v2/test-targets/${testTargetId}/test-reports/${testReportId}`;
-const context = {
-    issueNumber,
-    repo: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo.repo,
-    owner: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo.owner,
-    ref: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.ref,
-    sha: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.sha
-};
-_actions_core__WEBPACK_IMPORTED_MODULE_0__.debug(JSON.stringify({ executeUrl, context }, null, 2));
-const sleep = (timeInMilliseconds) => new Promise(r => (0,node_timers__WEBPACK_IMPORTED_MODULE_2__.setTimeout)(r, timeInMilliseconds));
-const TIME_BETWEEN_POLLS_MILLISECONDS = 5_000;
-try {
-    const executeResponse = await (0,_fetchJson__WEBPACK_IMPORTED_MODULE_3__.fetchJson)({
-        url: executeUrl,
-        method: 'POST',
-        token,
-        body: JSON.stringify({
-            url,
-            testTargetId,
-            context: {
-                source: 'github',
-                ...context
-            }
-        })
-    });
-    const testReportUrl = executeResponse.testReportUrl;
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput('testReportUrl', executeResponse.testReportUrl);
-    await _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary
-        .addHeading('🐙 Octomind')
-        .addLink('View your Test Report', testReportUrl)
-        .write();
-    if (blocking) {
-        let currentStatus = executeResponse.testReport.status;
-        while (currentStatus !== 'PASSED') {
-            const testReport = await (0,_fetchJson__WEBPACK_IMPORTED_MODULE_3__.fetchJson)({
-                method: 'GET',
-                token,
-                url: getTestReportApiUrl(executeResponse.testReport.id)
-            });
-            currentStatus = testReport.status;
-            await sleep(TIME_BETWEEN_POLLS_MILLISECONDS);
-        }
-    }
-}
-catch (error) {
-    if (error instanceof Error) {
-        _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(`unable to execute automagically:  ${typeof error.message === 'object'
-            ? JSON.stringify({
-                error: error.message
-            })
-            : error.message}`);
-    }
-    else {
-        _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed('unknown Error');
-    }
-}
-
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } }, 1);
-
 /***/ })
 
 /******/ });
@@ -31427,73 +31323,21 @@ __webpack_async_result__();
 /******/ }
 /******/ 
 /************************************************************************/
-/******/ /* webpack/runtime/async module */
+/******/ /* webpack/runtime/define property getters */
 /******/ (() => {
-/******/ 	var webpackQueues = typeof Symbol === "function" ? Symbol("webpack queues") : "__webpack_queues__";
-/******/ 	var webpackExports = typeof Symbol === "function" ? Symbol("webpack exports") : "__webpack_exports__";
-/******/ 	var webpackError = typeof Symbol === "function" ? Symbol("webpack error") : "__webpack_error__";
-/******/ 	var resolveQueue = (queue) => {
-/******/ 		if(queue && queue.d < 1) {
-/******/ 			queue.d = 1;
-/******/ 			queue.forEach((fn) => (fn.r--));
-/******/ 			queue.forEach((fn) => (fn.r-- ? fn.r++ : fn()));
-/******/ 		}
-/******/ 	}
-/******/ 	var wrapDeps = (deps) => (deps.map((dep) => {
-/******/ 		if(dep !== null && typeof dep === "object") {
-/******/ 			if(dep[webpackQueues]) return dep;
-/******/ 			if(dep.then) {
-/******/ 				var queue = [];
-/******/ 				queue.d = 0;
-/******/ 				dep.then((r) => {
-/******/ 					obj[webpackExports] = r;
-/******/ 					resolveQueue(queue);
-/******/ 				}, (e) => {
-/******/ 					obj[webpackError] = e;
-/******/ 					resolveQueue(queue);
-/******/ 				});
-/******/ 				var obj = {};
-/******/ 				obj[webpackQueues] = (fn) => (fn(queue));
-/******/ 				return obj;
+/******/ 	// define getter functions for harmony exports
+/******/ 	__nccwpck_require__.d = (exports, definition) => {
+/******/ 		for(var key in definition) {
+/******/ 			if(__nccwpck_require__.o(definition, key) && !__nccwpck_require__.o(exports, key)) {
+/******/ 				Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 			}
 /******/ 		}
-/******/ 		var ret = {};
-/******/ 		ret[webpackQueues] = x => {};
-/******/ 		ret[webpackExports] = dep;
-/******/ 		return ret;
-/******/ 	}));
-/******/ 	__nccwpck_require__.a = (module, body, hasAwait) => {
-/******/ 		var queue;
-/******/ 		hasAwait && ((queue = []).d = -1);
-/******/ 		var depQueues = new Set();
-/******/ 		var exports = module.exports;
-/******/ 		var currentDeps;
-/******/ 		var outerResolve;
-/******/ 		var reject;
-/******/ 		var promise = new Promise((resolve, rej) => {
-/******/ 			reject = rej;
-/******/ 			outerResolve = resolve;
-/******/ 		});
-/******/ 		promise[webpackExports] = exports;
-/******/ 		promise[webpackQueues] = (fn) => (queue && fn(queue), depQueues.forEach(fn), promise["catch"](x => {}));
-/******/ 		module.exports = promise;
-/******/ 		body((deps) => {
-/******/ 			currentDeps = wrapDeps(deps);
-/******/ 			var fn;
-/******/ 			var getResult = () => (currentDeps.map((d) => {
-/******/ 				if(d[webpackError]) throw d[webpackError];
-/******/ 				return d[webpackExports];
-/******/ 			}))
-/******/ 			var promise = new Promise((resolve) => {
-/******/ 				fn = () => (resolve(getResult));
-/******/ 				fn.r = 0;
-/******/ 				var fnQueue = (q) => (q !== queue && !depQueues.has(q) && (depQueues.add(q), q && !q.d && (fn.r++, q.push(fn))));
-/******/ 				currentDeps.map((dep) => (dep[webpackQueues](fnQueue)));
-/******/ 			});
-/******/ 			return fn.r ? promise : getResult();
-/******/ 		}, (err) => ((err ? reject(promise[webpackError] = err) : outerResolve(exports)), resolveQueue(queue)));
-/******/ 		queue && queue.d < 0 && (queue.d = 0);
 /******/ 	};
+/******/ })();
+/******/ 
+/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/ (() => {
+/******/ 	__nccwpck_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ })();
 /******/ 
 /******/ /* webpack/runtime/compat */
@@ -31501,10 +31345,107 @@ __webpack_async_result__();
 /******/ if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = new URL('.', import.meta.url).pathname.slice(import.meta.url.match(/^file:\/\/\/\w:/) ? 1 : 0, -1) + "/";
 /******/ 
 /************************************************************************/
-/******/ 
-/******/ // startup
-/******/ // Load entry module and return exports
-/******/ // This entry module used 'module' so it can't be inlined
-/******/ var __webpack_exports__ = __nccwpck_require__(5901);
-/******/ __webpack_exports__ = await __webpack_exports__;
-/******/ 
+var __webpack_exports__ = {};
+
+// EXPORTS
+__nccwpck_require__.d(__webpack_exports__, {
+  i: () => (/* binding */ main)
+});
+
+// EXTERNAL MODULE: ./node_modules/.pnpm/@actions+core@1.11.1/node_modules/@actions/core/lib/core.js
+var core = __nccwpck_require__(4708);
+// EXTERNAL MODULE: ./node_modules/.pnpm/@actions+github@6.0.0/node_modules/@actions/github/lib/github.js
+var github = __nccwpck_require__(3802);
+;// CONCATENATED MODULE: external "node:timers"
+const external_node_timers_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:timers");
+// EXTERNAL MODULE: ./node_modules/.pnpm/@vercel+ncc@0.38.2/node_modules/@vercel/ncc/dist/ncc/@@notfound.js?./fetchJson
+var _notfoundfetchJson = __nccwpck_require__(49);
+;// CONCATENATED MODULE: ./lib/main.js
+
+
+
+
+const TIME_BETWEEN_POLLS_MILLISECONDS = 5_000;
+const DEFAULT_URL = 'https://app.octomind.dev';
+const sleep = (timeInMilliseconds) => new Promise(r => (0,external_node_timers_namespaceObject.setTimeout)(r, timeInMilliseconds));
+const getExecuteUrl = (automagicallyUrl) => `${automagicallyUrl}/api/v2/execute`;
+const getTestReportApiUrl = (automagicallyUrl, testTargetId, testReportId) => `${automagicallyUrl}/api/v2/test-targets/${testTargetId}/test-reports/${testReportId}`;
+const main = async () => {
+    const urlOverride = core.getInput('automagicallyBaseUrl');
+    const automagicallyUrl = urlOverride.length === 0 ? DEFAULT_URL : urlOverride;
+    const issueNumber = github.context.issue.number;
+    if (!issueNumber || issueNumber < 1) {
+        core.warning('issue.number variable (Pull Request ID) not available. ' +
+            'Make sure you run this action in a workflow triggered by pull request ' +
+            'if you expect a comment with the test results on your PR');
+    }
+    const context = {
+        issueNumber,
+        repo: github.context.repo.repo,
+        owner: github.context.repo.owner,
+        ref: github.context.ref,
+        sha: github.context.sha
+    };
+    core.debug(JSON.stringify({ executeUrl: getExecuteUrl(automagicallyUrl), context }, null, 2));
+    const url = core.getInput('url');
+    if (url.length === 0) {
+        core.setFailed('url is set to an empty string');
+    }
+    const token = core.getInput('token');
+    if (token.length === 0) {
+        core.setFailed('token is set to an empty string');
+    }
+    const testTargetId = core.getInput('testTargetId');
+    if (testTargetId.length === 0) {
+        core.setFailed('testTargetId is set to an empty string');
+    }
+    const blocking = core.getBooleanInput('blocking');
+    try {
+        const executeResponse = await (0,_notfoundfetchJson.fetchJson)({
+            url: getExecuteUrl(automagicallyUrl),
+            method: 'POST',
+            token,
+            body: JSON.stringify({
+                url,
+                testTargetId,
+                context: {
+                    source: 'github',
+                    ...context
+                }
+            })
+        });
+        const testReportUrl = executeResponse.testReportUrl;
+        core.setOutput('testReportUrl', executeResponse.testReportUrl);
+        await core.summary
+            .addHeading('🐙 Octomind')
+            .addLink('View your Test Report', testReportUrl)
+            .write();
+        if (blocking) {
+            let currentStatus = executeResponse.testReport.status;
+            while (currentStatus !== 'PASSED') {
+                const testReport = await (0,_notfoundfetchJson.fetchJson)({
+                    method: 'GET',
+                    token,
+                    url: getTestReportApiUrl(automagicallyUrl, testTargetId, executeResponse.testReport.id)
+                });
+                currentStatus = testReport.status;
+                await sleep(TIME_BETWEEN_POLLS_MILLISECONDS);
+            }
+        }
+    }
+    catch (error) {
+        if (error instanceof Error) {
+            core.setFailed(`unable to execute automagically:  ${typeof error.message === 'object'
+                ? JSON.stringify({
+                    error: error.message
+                })
+                : error.message}`);
+        }
+        else {
+            core.setFailed('unknown Error');
+        }
+    }
+};
+
+var __webpack_exports__main = __webpack_exports__.i;
+export { __webpack_exports__main as main };
