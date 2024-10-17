@@ -14,7 +14,8 @@
     "prettier/prettier": "warn",
     "no-console": "warn",
     "i18n-text/no-en": "off",
-    "filenames/match-regex": "off"
+    "filenames/match-regex": "off",
+    "import/no-named-as-default-member": "off"
   },
   "settings": {
     "import/parsers": {

@@ -20,7 +20,9 @@ const getTestReportApiUrl = (
 ) =>
   `${automagicallyUrl}/api/v2/test-targets/${testTargetId}/test-reports/${testReportId}`
 
-export const main = async (): Promise<void> => {
+export const main = async (
+  pollingTimeInMilliseconds: number = TIME_BETWEEN_POLLS_MILLISECONDS
+): Promise<void> => {
   const urlOverride = core.getInput('automagicallyBaseUrl')
   const automagicallyUrl = urlOverride.length === 0 ? DEFAULT_URL : urlOverride
 
@@ -103,7 +105,7 @@ export const main = async (): Promise<void> => {
 
         currentStatus = testReport.status
 
-        await sleep(TIME_BETWEEN_POLLS_MILLISECONDS)
+        await sleep(pollingTimeInMilliseconds)
       }
     }
   } catch (error) {
