@@ -20,7 +20,9 @@ const getTestReportApiUrl = (
 ) =>
   `${automagicallyUrl}/api/v2/test-targets/${testTargetId}/test-reports/${testReportId}`
 
-export const main = async (): Promise<void> => {
+export const main = async (
+  pollingIntervalInMilliseconds: number = TIME_BETWEEN_POLLS_MILLISECONDS
+): Promise<void> => {
   const urlOverride = core.getInput('automagicallyBaseUrl')
   const automagicallyUrl = urlOverride.length === 0 ? DEFAULT_URL : urlOverride
 
@@ -90,7 +92,7 @@ export const main = async (): Promise<void> => {
 
     if (blocking) {
       let currentStatus = executeResponse.testReport.status
-      while (currentStatus !== 'PASSED') {
+      while (currentStatus === 'WAITING') {
         const testReport = await fetchJson<TestReport>({
           method: 'GET',
           token,
@@ -100,10 +102,16 @@ export const main = async (): Promise<void> => {
             executeResponse.testReport.id
           )
         })
-
+        console.log(testReport);
         currentStatus = testReport.status
 
-        await sleep(TIME_BETWEEN_POLLS_MILLISECONDS)
+        await sleep(pollingIntervalInMilliseconds)
+      }
+
+      if (currentStatus === 'FAILED') {
+        core.setFailed(
+          `some test results failed, check your test report at ${testReportUrl} to find out more.`
+        )
       }
     }
   } catch (error) {

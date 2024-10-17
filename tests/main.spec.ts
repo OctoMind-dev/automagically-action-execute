@@ -10,9 +10,6 @@ vi.mock('@actions/github')
 
 describe(main.name, () => {
   beforeEach(() => {
-    vi.mocked(fetchJson).mockResolvedValue({
-      testReportUrl: 'https://someUrl.com'
-    })
     vi.mocked(core).getInput.mockReturnValue('some input')
     vi.mocked(core).getBooleanInput.mockReturnValue(false)
     vi.mocked(github).context = {
@@ -70,7 +67,7 @@ describe(main.name, () => {
         method: 'POST'
       })
     )
-    expect(fetchJson).toHaveBeenCalledTimes(4)
+    expect(fetchJson).toHaveBeenCalledTimes(5)
   })
 
   it('sets to failed if a request throws', async () => {
@@ -92,6 +89,23 @@ describe(main.name, () => {
     vi.mocked(fetchJson).mockRejectedValue(new Error('not successful'))
 
     await main()
+
+    expect(core.setFailed).toHaveBeenCalled()
+  })
+
+  it('sets to failed if polling returns FAILED', async () => {
+    vi.mocked(core).getBooleanInput.mockReturnValue(true)
+    // execute
+    vi.mocked(fetchJson).mockResolvedValueOnce({
+      testReport: {
+        status: 'WAITING'
+      }
+    })
+    vi.mocked(fetchJson).mockResolvedValueOnce({
+      status: 'FAILED'
+    })
+
+    await main(1)
 
     expect(core.setFailed).toHaveBeenCalled()
   })
