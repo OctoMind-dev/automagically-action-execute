@@ -1,6 +1,22 @@
-import "node:fs";
-import "node:path";
-import { F as k, a as U } from "./index-DJ0tc8mD.js";
+export const id = 486;
+export const ids = [486];
+export const modules = {
+
+/***/ 486:
+/***/ ((__webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.a(__webpack_module__, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   toFormData: () => (/* binding */ Z)
+/* harmony export */ });
+/* harmony import */ var node_fs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(24);
+/* harmony import */ var node_path__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(760);
+/* harmony import */ var _index_DJ0tc8mD_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(175);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_index_DJ0tc8mD_js__WEBPACK_IMPORTED_MODULE_2__]);
+_index_DJ0tc8mD_js__WEBPACK_IMPORTED_MODULE_2__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
+
+
 let f = 0;
 const t = {
   START_BOUNDARY: f++,
@@ -163,12 +179,12 @@ async function Z(u, o) {
     throw new TypeError("no or bad content-type header, no multipart boundary");
   const r = new C(n[1] || n[2]);
   let E, l, d, H, e, i;
-  const A = [], b = new k(), m = (s) => {
+  const A = [], b = new _index_DJ0tc8mD_js__WEBPACK_IMPORTED_MODULE_2__.F(), m = (s) => {
     d += h.decode(s, { stream: !0 });
   }, N = (s) => {
     A.push(s);
   }, a = () => {
-    const s = new U(A, i, { type: e });
+    const s = new _index_DJ0tc8mD_js__WEBPACK_IMPORTED_MODULE_2__.a(A, i, { type: e });
     b.append(H, s);
   }, P = () => {
     b.append(H, d);
@@ -190,7 +206,12 @@ async function Z(u, o) {
     r.write(s);
   return r.end(), b;
 }
-export {
-  Z as toFormData
-};
+
 //# sourceMappingURL=multipart-parser-CpbRXZZ4.js.map
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ })
+
+};

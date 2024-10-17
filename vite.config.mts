@@ -1,4 +1,4 @@
-import path from 'node:path'
+import path from 'path'
 import {defineConfig} from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
@@ -6,7 +6,7 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 export default defineConfig({
   plugins: [tsconfigPaths()],
   build: {
-    outDir: 'dist',
+    outDir: 'lib',
     emptyOutDir: true,
     sourcemap: true,
     ssr: false,
