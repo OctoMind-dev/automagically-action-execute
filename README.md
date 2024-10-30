@@ -18,6 +18,8 @@ See the [docs](https://octomind.dev/docs) for more details.
     url: <publicly accessible url to your deployment>
     token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
     testTargetId: <your testTargetId that you also get from us>
+    environmentName: <environment name> that you want your test cases should run against. optional, 
+                     will use the "default" environment otherwise.
     blocking: <if the pipeline should wait for all test results to pass, default is FALSE
 ```
 
@@ -26,3 +28,6 @@ See the [docs](https://octomind.dev/docs) for more details.
 
 - 2023-07-20: Added requirement for setting `testTargetId` to enable v2 API
 - 2024-10-17: Added blocking parameter, if true we wait for all test results to be passed and fail the step other
+- 2024-10-17: Added environment name parameter, if defined we will run the test cases against the specified environment,
+  otherwise against the default environment.
+  
