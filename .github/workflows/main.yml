@@ -44,7 +44,7 @@ jobs:
         run: pnpm run build
 
       - name: Execute Automagically non-blocking
-        id: automagically
+        id: automagically-non-blocking
         uses: ./
         with:
           url: 'https://storage.googleapis.com/mocktopus/index.html'
@@ -52,7 +52,7 @@ jobs:
           token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
 
       - name: Execute Automagically blocking
-        id: automagically
+        id: automagically-blocking
         uses: ./
         with:
           url: 'https://storage.googleapis.com/mocktopus/index.html'
