@@ -16,6 +16,7 @@ inputs:
   blocking:
     description: 'If the pipeline should be blocked until all test results in the test report are passed'
     required: false
+    default: false
 outputs:
   testReportUrl:
     description: 'Url to resulting test report'
