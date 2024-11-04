@@ -17,6 +17,10 @@ inputs:
     description: 'If the pipeline should be blocked until all test results in the test report are passed'
     required: false
     default: false
+  environmentName:
+    description: "Optional, name of the environment you want to execute your tests against"
+    required: false
+    default: "default"
 outputs:
   testReportUrl:
     description: 'Url to resulting test report'

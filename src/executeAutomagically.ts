@@ -76,6 +76,7 @@ export const executeAutomagically = async ({
   }
 
   const blocking = core.getBooleanInput('blocking')
+  const environmentName = core.getInput('environmentName')
 
   try {
     const executeResponse = await fetchJson<ExecuteResponse>({
@@ -85,6 +86,7 @@ export const executeAutomagically = async ({
       body: JSON.stringify({
         url,
         testTargetId,
+        environmentName,
         context: {
           source: 'github',
           ...context
