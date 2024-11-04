@@ -18,7 +18,7 @@ See the [docs](https://octomind.dev/docs) for more details.
     url: <publicly accessible url to your deployment>
     token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
     testTargetId: <your testTargetId that you also get from us>
-    environmentName: <environment name> that you want your test cases should run against. optional, 
+    environmentName: <environment name> that your test cases should run against. optional, 
                      will use the "default" environment otherwise.
     blocking: <if the pipeline should wait for all test results to pass, optional, default is FALSE
 ```
