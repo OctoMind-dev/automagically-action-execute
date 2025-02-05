@@ -21,6 +21,7 @@ See the [docs](https://octomind.dev/docs) for more details.
     environmentName: <environment name> that your test cases should run against. optional, 
                      will use the "default" environment otherwise.
     blocking: <if the pipeline should wait for all test results to pass, optional, default is FALSE>
+    valuesToOverwrite: <multiline string in the form of VARIABLE_NAME=value per line>
 ```
 
 
@@ -30,4 +31,4 @@ See the [docs](https://octomind.dev/docs) for more details.
 - 2024-10-17: Added blocking parameter, if true we wait for all test results to be passed and fail the step other
 - 2024-10-17: Added environment name parameter, if defined we will run the test cases against the specified environment,
   otherwise against the default environment.
-  
+- 2025-02-05: Added valuesToOverwrite parameter, we will use the provided variable values instead of the ones defined in the environment for this test run.

@@ -18,6 +18,15 @@ const sleep = (timeInMilliseconds: number): Promise<void> =>
 const getExecuteUrl = (automagicallyUrl: string) =>
   `${automagicallyUrl}/api/apiKey/v2/execute`
 
+const multilineMappingToObject = (input: string[]): Record<string, string> => {
+  const keySplitOff = input
+    .filter(mapping => mapping.length > 0)
+    .map(mapping => mapping.split(':'))
+    // the api takes an array of values per key, so we just wrap the value in an array
+    .map(parts => [parts[0], [parts.slice(1).join(':')]])
+  return Object.fromEntries(keySplitOff)
+}
+
 const getTestReportApiUrl = (
   automagicallyUrl: string,
   testTargetId: string,
@@ -77,6 +86,10 @@ export const executeAutomagically = async ({
 
   const blocking = core.getBooleanInput('blocking')
   const environmentName = core.getInput('environmentName')
+  const variablesToOverwrite = core.getMultilineInput('variablesToOverwrite')
+  const variablesToOverwriteObject = variablesToOverwrite
+    ? multilineMappingToObject(variablesToOverwrite)
+    : undefined
 
   try {
     const executeResponse = await fetchJson<ExecuteResponse>({
@@ -87,6 +100,7 @@ export const executeAutomagically = async ({
         url,
         testTargetId,
         environmentName,
+        variablesToOverwrite: variablesToOverwriteObject,
         context: {
           source: 'github',
           ...context

@@ -21,6 +21,9 @@ inputs:
     description: "Optional, name of the environment you want to execute your tests against"
     required: false
     default: "default"
+  variablesToOverwrite:
+    description: "Optional, variables to overwrite in the environment"
+    required: false
 outputs:
   testReportUrl:
     description: 'Url to resulting test report'
