@@ -37508,6 +37508,15 @@ const MAXIMUM_POLL_TIME_MILLISECONDS = 2 * 60 * 60 * 1000;
 const DEFAULT_URL = 'https://app.octomind.dev';
 const sleep = (timeInMilliseconds) => new Promise(resolve => (0,external_node_timers_namespaceObject.setTimeout)(resolve, timeInMilliseconds));
 const getExecuteUrl = (automagicallyUrl) => `${automagicallyUrl}/api/apiKey/v2/execute`;
+const multilineMappingToObject = (input) => {
+    const keySplitOff = input
+        .filter(mapping => mapping.length > 0)
+        .map(mapping => mapping.split(':'))
+        // the api takes an array of values per key, so we just wrap the value in an array
+        // then we join with ':' to make it a string again and preserve colons in the value
+        .map(parts => [parts[0], [parts.slice(1).join(':')]]);
+    return Object.fromEntries(keySplitOff);
+};
 const getTestReportApiUrl = (automagicallyUrl, testTargetId, testReportId) => `${automagicallyUrl}/api/apiKey/v2/test-targets/${testTargetId}/test-reports/${testReportId}`;
 const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS, maximumPollingTimeInMilliseconds = MAXIMUM_POLL_TIME_MILLISECONDS } = {}) => {
     const urlOverride = core.getInput('automagicallyBaseUrl');
@@ -37540,6 +37549,10 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
     }
     const blocking = core.getBooleanInput('blocking');
     const environmentName = core.getInput('environmentName');
+    const variablesToOverwrite = core.getMultilineInput('variablesToOverwrite');
+    const variablesToOverwriteObject = variablesToOverwrite
+        ? multilineMappingToObject(variablesToOverwrite)
+        : undefined;
     try {
         const executeResponse = await fetchJson({
             url: getExecuteUrl(automagicallyUrl),
@@ -37549,6 +37562,7 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
                 url,
                 testTargetId,
                 environmentName,
+                variablesToOverwrite: variablesToOverwriteObject,
                 context: {
                     source: 'github',
                     ...context
