@@ -23,6 +23,7 @@ const multilineMappingToObject = (input: string[]): Record<string, string> => {
     .filter(mapping => mapping.length > 0)
     .map(mapping => mapping.split(':'))
     // the api takes an array of values per key, so we just wrap the value in an array
+    // then we join with ':' to make it a string again and preserve colons in the value
     .map(parts => [parts[0], [parts.slice(1).join(':')]])
   return Object.fromEntries(keySplitOff)
 }

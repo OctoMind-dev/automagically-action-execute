@@ -53,7 +53,7 @@ describe(executeAutomagically.name, () => {
     expect(core.getInput).toHaveBeenCalledWith('environmentName')
   })
 
-  it('includes variablesToOverwrite name if defined', async () => {
+  it('includes variablesToOverwrite name if defined and preserves colons in the values', async () => {
     const variablesToOverwrite = ['key1:value1', 'key2:value:2']
     vi.mocked(core).getMultilineInput.mockReturnValue(variablesToOverwrite)
 
