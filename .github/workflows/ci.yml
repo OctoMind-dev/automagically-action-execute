@@ -21,7 +21,9 @@ jobs:
 
       - name: Corepack enable
         shell: bash
-        run: corepack enable
+        run: |
+          npm install -g corepack@latest
+          corepack enable
 
       - name: Get pnpm store directory
         id: pnpm-cache

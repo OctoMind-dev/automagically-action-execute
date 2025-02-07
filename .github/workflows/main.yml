@@ -21,7 +21,9 @@ jobs:
 
       - name: Corepack enable
         shell: bash
-        run: corepack enable
+        run: |
+          npm install -g corepack@latest
+          corepack enable
 
       - name: Get pnpm store directory
         id: pnpm-cache
@@ -77,3 +79,15 @@ jobs:
           testTargetId: '35c8bfca-48d2-4eb2-8042-4ee50707a295'
           token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
           environmentName: "test"
+
+      - name: Execute Automagically with overwriting variables
+        id: automagically-variable-overwrite
+        uses: ./
+        with:
+          url: 'https://storage.googleapis.com/mocktopus/index.html'
+          testTargetId: '35c8bfca-48d2-4eb2-8042-4ee50707a295'
+          token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
+          environmentName: "test"
+          variablesToOverwrite: |-
+            VARIABLE_1:someValue
+            VARIABLE_2:someOtherValue

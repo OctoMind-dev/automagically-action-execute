@@ -53,6 +53,33 @@ describe(executeAutomagically.name, () => {
     expect(core.getInput).toHaveBeenCalledWith('environmentName')
   })
 
+  it('includes variablesToOverwrite name if defined and preserves colons in the values', async () => {
+    const variablesToOverwrite = ['key1:value1', 'key2:value:2']
+    vi.mocked(core).getMultilineInput.mockReturnValue(variablesToOverwrite)
+
+    await executeAutomagically()
+
+    expect(fetchJson).toHaveBeenCalledWith(
+      expect.objectContaining({
+        method: 'POST'
+      })
+    )
+
+    const sentBody = JSON.parse(
+      vi.mocked(fetchJson).mock.calls[0][0].body as string
+    )
+
+    expect(sentBody).toEqual(
+      expect.objectContaining({
+        variablesToOverwrite: {
+          key1: ['value1'],
+          key2: ['value:2']
+        }
+      })
+    )
+    expect(core.getMultilineInput).toHaveBeenCalledWith('variablesToOverwrite')
+  })
+
   it("executes and DOESN'T wait if it's not blocking", async () => {
     await executeAutomagically()
 
@@ -61,7 +88,7 @@ describe(executeAutomagically.name, () => {
         method: 'POST'
       })
     )
-    expect(fetchJson).toHaveBeenCalledTimes(2)
+    expect(fetchJson).toHaveBeenCalledTimes(1)
   })
 
   it('executes and waits until passing while blocking', async () => {
@@ -93,7 +120,7 @@ describe(executeAutomagically.name, () => {
         method: 'POST'
       })
     )
-    expect(fetchJson).toHaveBeenCalledTimes(6)
+    expect(fetchJson).toHaveBeenCalledTimes(4)
   })
 
   it('sets to failed if a request throws', async () => {
