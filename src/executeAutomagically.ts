@@ -95,6 +95,18 @@ export const executeAutomagically = async ({
     : undefined
 
   try {
+    core.debug(
+      JSON.stringify({
+        url,
+        testTargetId,
+        environmentName,
+        variablesToOverwrite: variablesToOverwriteObject,
+        context: {
+          source: 'github',
+          ...context
+        }
+      })
+    )
     const executeResponse = await fetchJson<ExecuteResponse>({
       url: getExecuteUrl(automagicallyUrl),
       method: 'POST',
