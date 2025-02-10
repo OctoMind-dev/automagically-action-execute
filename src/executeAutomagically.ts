@@ -95,7 +95,7 @@ export const executeAutomagically = async ({
     : undefined
 
   try {
-    core.debug(
+    core.info(
       JSON.stringify({
         url,
         testTargetId,

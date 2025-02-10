@@ -37554,7 +37554,7 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
         ? multilineMappingToObject(variablesToOverwrite)
         : undefined;
     try {
-        core.debug(JSON.stringify({
+        core.info(JSON.stringify({
             url,
             testTargetId,
             environmentName,
