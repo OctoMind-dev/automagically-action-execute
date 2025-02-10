@@ -37554,16 +37554,6 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
         ? multilineMappingToObject(variablesToOverwrite)
         : undefined;
     try {
-        core.info(JSON.stringify({
-            url,
-            testTargetId,
-            environmentName,
-            variablesToOverwrite: variablesToOverwriteObject,
-            context: {
-                source: 'github',
-                ...context
-            }
-        }));
         const executeResponse = await fetchJson({
             url: getExecuteUrl(automagicallyUrl),
             method: 'POST',
