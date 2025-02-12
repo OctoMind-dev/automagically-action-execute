@@ -92,6 +92,7 @@ export const executeAutomagically = async ({
   const variablesToOverwrite = core.getMultilineInput('variablesToOverwrite')
   const variablesToOverwriteObject =
     multilineMappingToObject(variablesToOverwrite)
+  const tags = core.getMultilineInput('tags')
 
   try {
     const executeResponse = await fetchJson<ExecuteResponse>({
@@ -103,6 +104,7 @@ export const executeAutomagically = async ({
         testTargetId,
         environmentName,
         variablesToOverwrite: variablesToOverwriteObject,
+        tags,
         context: {
           source: 'github',
           ...context
