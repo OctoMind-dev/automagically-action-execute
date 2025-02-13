@@ -90,12 +90,8 @@ export const executeAutomagically = async ({
   const blocking = core.getBooleanInput('blocking')
   const environmentName = core.getInput('environmentName')
   const variablesToOverwrite = core.getMultilineInput('variablesToOverwrite')
-
-  core.info(`variablesToOverwrite: ${JSON.stringify(variablesToOverwrite)}`)
-
-  const variablesToOverwriteObject = variablesToOverwrite
-    ? multilineMappingToObject(variablesToOverwrite)
-    : undefined
+  const variablesToOverwriteObject =
+    multilineMappingToObject(variablesToOverwrite)
 
   try {
     const executeResponse = await fetchJson<ExecuteResponse>({

@@ -27,6 +27,8 @@ describe(executeAutomagically.name, () => {
     vi.mocked(core.summary.addHeading).mockReturnThis()
     vi.mocked(core.summary.addLink).mockReturnThis()
     vi.mocked(core.summary.write).mockResolvedValue(core.summary)
+
+    vi.mocked(core.getMultilineInput).mockReturnValue([])
   })
 
   it('includes environment name if defined', async () => {
