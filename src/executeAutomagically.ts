@@ -94,6 +94,10 @@ export const executeAutomagically = async ({
     ? multilineMappingToObject(variablesToOverwrite)
     : undefined
 
+  core.info(
+    `variablesToOverwriteObject: ${JSON.stringify(variablesToOverwriteObject)}`
+  )
+
   try {
     const executeResponse = await fetchJson<ExecuteResponse>({
       url: getExecuteUrl(automagicallyUrl),
