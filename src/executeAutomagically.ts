@@ -18,7 +18,9 @@ const sleep = (timeInMilliseconds: number): Promise<void> =>
 const getExecuteUrl = (automagicallyUrl: string) =>
   `${automagicallyUrl}/api/apiKey/v2/execute`
 
-const multilineMappingToObject = (input: string[]): Record<string, string> => {
+const multilineMappingToObject = (
+  input: string[]
+): Record<string, string[]> => {
   const keySplitOff = input
     .filter(mapping => mapping.length > 0)
     .map(mapping => mapping.split(':'))
@@ -88,6 +90,9 @@ export const executeAutomagically = async ({
   const blocking = core.getBooleanInput('blocking')
   const environmentName = core.getInput('environmentName')
   const variablesToOverwrite = core.getMultilineInput('variablesToOverwrite')
+
+  core.info(`variablesToOverwrite: ${JSON.stringify(variablesToOverwrite)}`)
+
   const variablesToOverwriteObject = variablesToOverwrite
     ? multilineMappingToObject(variablesToOverwrite)
     : undefined
