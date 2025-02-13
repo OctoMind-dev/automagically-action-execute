@@ -89,5 +89,5 @@ jobs:
           token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
           environmentName: "test"
           variablesToOverwrite: |-
-            VARIABLE_1:someValue
-            VARIABLE_2:someOtherValue
+            VARIABLE1:someValue
+            VARIABLE2:someOtherValue

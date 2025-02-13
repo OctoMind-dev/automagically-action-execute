@@ -37550,10 +37550,10 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
     const blocking = core.getBooleanInput('blocking');
     const environmentName = core.getInput('environmentName');
     const variablesToOverwrite = core.getMultilineInput('variablesToOverwrite');
+    core.info(`variablesToOverwrite: ${JSON.stringify(variablesToOverwrite)}`);
     const variablesToOverwriteObject = variablesToOverwrite
         ? multilineMappingToObject(variablesToOverwrite)
         : undefined;
-    core.info(`variablesToOverwriteObject: ${JSON.stringify(variablesToOverwriteObject)}`);
     try {
         const executeResponse = await fetchJson({
             url: getExecuteUrl(automagicallyUrl),
