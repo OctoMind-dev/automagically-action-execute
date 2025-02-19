@@ -100,9 +100,6 @@ jobs:
           testTargetId: '35c8bfca-48d2-4eb2-8042-4ee50707a295'
           token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
           environmentName: "test"
-          variablesToOverwrite: |-
-            VARIABLE_1:someValue
-            VARIABLE_2:someOtherValue
           tags: |-
             critical
             login
