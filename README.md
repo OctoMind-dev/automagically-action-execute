@@ -22,7 +22,7 @@ See the [docs](https://octomind.dev/docs) for more details.
                      will use the "default" environment otherwise.
     blocking: <if the pipeline should wait for all test results to pass, optional, default is FALSE>
     variablesToOverwrite: <multiline string in the form of VARIABLE_NAME:value per line>
-    tags: <if only a subset of your tests should be executed use this multiline string>
+    tags: <if only a subset of your tests should be executed use this multiline string, with one tag per line>
 ```
 
 ## Change Log
