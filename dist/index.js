@@ -37551,6 +37551,7 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
     const environmentName = core.getInput('environmentName');
     const variablesToOverwrite = core.getMultilineInput('variablesToOverwrite');
     const variablesToOverwriteObject = multilineMappingToObject(variablesToOverwrite);
+    const tags = core.getMultilineInput('tags');
     try {
         const executeResponse = await fetchJson({
             url: getExecuteUrl(automagicallyUrl),
@@ -37561,6 +37562,7 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
                 testTargetId,
                 environmentName,
                 variablesToOverwrite: variablesToOverwriteObject,
+                tags,
                 context: {
                     source: 'github',
                     ...context
