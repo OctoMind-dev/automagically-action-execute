@@ -27,7 +27,7 @@
     "@vercel/ncc": "^0.38.3",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.1.2",
-    "eslint-import-resolver-typescript": "^4.3.3",
+    "eslint-import-resolver-typescript": "^4.3.4",
     "eslint-plugin-github": "^5.1.8",
     "eslint-plugin-prettier": "^5.2.6",
     "prettier": "^3.5.3",
