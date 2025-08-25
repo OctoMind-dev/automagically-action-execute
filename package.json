@@ -5,7 +5,7 @@
   "type": "module",
   "packageManager": "pnpm@9.14.2+sha512.6e2baf77d06b9362294152c851c4f278ede37ab1eba3a55fda317a4a17b209f4dbb973fb250a77abc463a341fcb1f17f17cfa24091c4eb319cda0d9b84278387",
   "scripts": {
-    "lint": "eslint src/**/*.ts -c .eslintrc.json",
+    "lint": "biome check",
     "test": "vitest run",
     "test:watch": "vitest watch",
     "build": "rimraf ./dist && ncc build src/index.ts"
@@ -17,19 +17,19 @@
   "author": "OctoMind-dev",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.11.1",
-    "@actions/github": "^6.0.1",
-    "node-fetch": "^3.3.2"
+    "@actions/core": "1.11.1",
+    "@actions/github": "6.0.1",
+    "node-fetch": "3.3.2"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.2",
-    "@types/node": "^24.2.1",
-    "@typescript-eslint/parser": "^8.39.1",
-    "@vercel/ncc": "^0.38.3",
-    "rimraf": "^6.0.1",
-    "typescript": "^5.7.3",
-    "vite": "^7.1.2",
-    "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.2.4"
+    "@types/node": "24.2.1",
+    "@typescript-eslint/parser": "8.39.1",
+    "@vercel/ncc": "0.38.3",
+    "rimraf": "6.0.1",
+    "typescript": "5.7.3",
+    "vite": "7.1.2",
+    "vite-tsconfig-paths": "5.1.4",
+    "vitest": "3.2.4"
   }
 }
