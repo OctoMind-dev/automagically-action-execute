@@ -1,10 +1,8 @@
 // this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
-// eslint-disable-next-line import/no-namespace
+/** biome-ignore-all lint/nursery/noUnresolvedImports: this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :) */
 
 import {setTimeout} from 'node:timers'
 import * as core from '@actions/core'
-// this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
-// eslint-disable-next-line import/no-namespace
 import * as github from '@actions/github'
 import {fetchJson} from './fetchJson'
 import {ExecuteResponse, TestReport} from './types'
