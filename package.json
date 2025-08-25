@@ -26,7 +26,6 @@
     "@types/node": "^24.2.1",
     "@typescript-eslint/parser": "^8.39.1",
     "@vercel/ncc": "^0.38.3",
-    "prettier": "^3.6.2",
     "rimraf": "^6.0.1",
     "typescript": "^5.7.3",
     "vite": "^7.1.2",
