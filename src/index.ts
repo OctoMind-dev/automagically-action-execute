@@ -1,3 +1,3 @@
-import {executeAutomagically} from './executeAutomagically'
+import { executeAutomagically } from "./executeAutomagically";
 
-await executeAutomagically()
+await executeAutomagically();
