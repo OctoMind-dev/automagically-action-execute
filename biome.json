@@ -81,7 +81,7 @@
         "noClassAssign": "error",
         "noCompareNegZero": "error",
         "noConfusingVoidType": "error",
-        "noConsole": "warn",
+        "noConsole": "off",
         "noControlCharactersInRegex": "error",
         "noDebugger": "error",
         "noDoubleEquals": "error",
