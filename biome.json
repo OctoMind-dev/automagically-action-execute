@@ -120,14 +120,15 @@
     "formatter": {
       "jsxQuoteStyle": "double",
       "quoteProperties": "asNeeded",
-      "trailingCommas": "none",
-      "semicolons": "asNeeded",
-      "arrowParentheses": "asNeeded",
+      "trailingCommas": "all",
+      "semicolons": "always",
+      "arrowParentheses": "always",
       "bracketSameLine": false,
-      "quoteStyle": "single",
+      "quoteStyle": "double",
       "attributePosition": "auto",
-      "bracketSpacing": false
-    }
+      "bracketSpacing": true
+    },
+    "globals": []
   },
   "html": { "formatter": { "selfCloseVoidElements": "always" } },
   "assist": {
