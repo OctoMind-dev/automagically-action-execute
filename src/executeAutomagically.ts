@@ -1,6 +1,6 @@
 // this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
-/** biome-ignore-all lint/nursery/noUnresolvedImports: this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :) */
 
+// biome-ignore lint/nursery/noUnresolvedImports: this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
 import { setTimeout } from "node:timers";
 import * as core from "@actions/core";
 import * as github from "@actions/github";
