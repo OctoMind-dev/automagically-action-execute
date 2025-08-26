@@ -9,11 +9,6 @@
     "noEmit": true,
     "esModuleInterop": true
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "lib"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules", "lib"]
 }
