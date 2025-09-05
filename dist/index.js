@@ -37040,6 +37040,8 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
     }
     const blocking = core.getBooleanInput('blocking');
     const environmentName = core.getInput('environmentName');
+    const browser = core.getInput('browser');
+    const breakpoint = core.getInput('breakpoint');
     const variablesToOverwrite = core.getMultilineInput('variablesToOverwrite');
     const variablesToOverwriteObject = multilineMappingToObject(variablesToOverwrite);
     const tags = core.getMultilineInput('tags');
@@ -37054,6 +37056,8 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
                 environmentName,
                 variablesToOverwrite: variablesToOverwriteObject,
                 tags,
+                browser,
+                breakpoint,
                 context: {
                     source: 'github',
                     ...context

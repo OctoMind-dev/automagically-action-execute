@@ -89,6 +89,8 @@ export const executeAutomagically = async ({
 
   const blocking = core.getBooleanInput('blocking')
   const environmentName = core.getInput('environmentName')
+  const browser = core.getInput('browser')
+  const breakpoint = core.getInput('breakpoint')
   const variablesToOverwrite = core.getMultilineInput('variablesToOverwrite')
   const variablesToOverwriteObject =
     multilineMappingToObject(variablesToOverwrite)
@@ -105,6 +107,8 @@ export const executeAutomagically = async ({
         environmentName,
         variablesToOverwrite: variablesToOverwriteObject,
         tags,
+        browser,
+        breakpoint,
         context: {
           source: 'github',
           ...context
