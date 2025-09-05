@@ -55,6 +55,54 @@ describe(executeAutomagically.name, () => {
     expect(core.getInput).toHaveBeenCalledWith('environmentName')
   })
 
+  it('includes breakpoint name if defined', async () => {
+    const breakpointName = 'MOBILE'
+    vi.mocked(core).getInput.mockReturnValue(breakpointName)
+
+    await executeAutomagically()
+
+    expect(fetchJson).toHaveBeenCalledWith(
+      expect.objectContaining({
+        method: 'POST'
+      })
+    )
+
+    const sentBody = JSON.parse(
+      vi.mocked(fetchJson).mock.calls[0][0].body as string
+    )
+
+    expect(sentBody).toEqual(
+      expect.objectContaining({
+        breakpoint: breakpointName
+      })
+    )
+    expect(core.getInput).toHaveBeenCalledWith('breakpoint')
+  })
+
+  it('includes browser name if defined', async () => {
+    const browserName = 'FIREFOX'
+    vi.mocked(core).getInput.mockReturnValue(browserName)
+
+    await executeAutomagically()
+
+    expect(fetchJson).toHaveBeenCalledWith(
+      expect.objectContaining({
+        method: 'POST'
+      })
+    )
+
+    const sentBody = JSON.parse(
+      vi.mocked(fetchJson).mock.calls[0][0].body as string
+    )
+
+    expect(sentBody).toEqual(
+      expect.objectContaining({
+        browser: browserName
+      })
+    )
+    expect(core.getInput).toHaveBeenCalledWith('browser')
+  })
+
   it('includes variablesToOverwrite name if defined and preserves colons in the values', async () => {
     const variablesToOverwrite = ['key1:value1', 'key2:value:2']
     vi.mocked(core).getMultilineInput.mockReturnValue(variablesToOverwrite)
