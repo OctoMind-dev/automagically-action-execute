@@ -81,7 +81,7 @@ jobs:
           environmentName: "test"
 
       - name: Execute Automagically with browser
-        id: automagically
+        id: automagically-browser
         uses: ./
         with:
           url: 'https://storage.googleapis.com/mocktopus/index.html'
@@ -90,7 +90,7 @@ jobs:
           browser: "FIREFOX"
 
       - name: Execute Automagically with breakpoint
-        id: automagically
+        id: automagically-breakpoint
         uses: ./
         with:
           url: 'https://storage.googleapis.com/mocktopus/index.html'
