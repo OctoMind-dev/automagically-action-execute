@@ -36998,7 +36998,7 @@ const TIME_BETWEEN_POLLS_MILLISECONDS = 5_000;
 const MAXIMUM_POLL_TIME_MILLISECONDS = 2 * 60 * 60 * 1000;
 const DEFAULT_URL = 'https://app.octomind.dev';
 const sleep = (timeInMilliseconds) => new Promise(resolve => (0,external_node_timers_namespaceObject.setTimeout)(resolve, timeInMilliseconds));
-const getExecuteUrl = (automagicallyUrl) => `${automagicallyUrl}/api/apiKey/v2/execute`;
+const getExecuteUrl = (automagicallyUrl) => `${automagicallyUrl}/api/apiKey/v3/execute`;
 const multilineMappingToObject = (input) => {
     const keySplitOff = input
         .filter(mapping => mapping.length > 0)
@@ -37008,7 +37008,7 @@ const multilineMappingToObject = (input) => {
         .map(parts => [parts[0], [parts.slice(1).join(':')]]);
     return Object.fromEntries(keySplitOff);
 };
-const getTestReportApiUrl = (automagicallyUrl, testTargetId, testReportId) => `${automagicallyUrl}/api/apiKey/v2/test-targets/${testTargetId}/test-reports/${testReportId}`;
+const getTestReportApiUrl = (automagicallyUrl, testTargetId, testReportId) => `${automagicallyUrl}/api/apiKey/v3/test-targets/${testTargetId}/test-reports/${testReportId}`;
 const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS, maximumPollingTimeInMilliseconds = MAXIMUM_POLL_TIME_MILLISECONDS } = {}) => {
     const urlOverride = core.getInput('automagicallyBaseUrl');
     const automagicallyUrl = urlOverride.length === 0 ? DEFAULT_URL : urlOverride;
