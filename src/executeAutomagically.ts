@@ -16,7 +16,7 @@ const sleep = (timeInMilliseconds: number): Promise<void> =>
   new Promise(resolve => setTimeout(resolve, timeInMilliseconds))
 
 const getExecuteUrl = (automagicallyUrl: string) =>
-  `${automagicallyUrl}/api/apiKey/v2/execute`
+  `${automagicallyUrl}/api/apiKey/v3/execute`
 
 const multilineMappingToObject = (
   input: string[]
@@ -35,7 +35,7 @@ const getTestReportApiUrl = (
   testTargetId: string,
   testReportId: string
 ) =>
-  `${automagicallyUrl}/api/apiKey/v2/test-targets/${testTargetId}/test-reports/${testReportId}`
+  `${automagicallyUrl}/api/apiKey/v3/test-targets/${testTargetId}/test-reports/${testReportId}`
 
 export const executeAutomagically = async ({
   pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS,
