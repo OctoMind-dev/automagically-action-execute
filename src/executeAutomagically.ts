@@ -5,8 +5,7 @@ import * as core from '@actions/core'
 // eslint-disable-next-line import/no-namespace
 import * as github from '@actions/github'
 import {setTimeout} from 'node:timers'
-import {fetchJson} from './fetchJson'
-import {ExecuteResponse, TestReport} from './types'
+import {createClientFromUrlAndApiKey} from '@octomind/octomind/client'
 
 const TIME_BETWEEN_POLLS_MILLISECONDS = 5_000
 const MAXIMUM_POLL_TIME_MILLISECONDS = 2 * 60 * 60 * 1000
@@ -29,13 +28,6 @@ const multilineMappingToObject = (
     .map(parts => [parts[0], [parts.slice(1).join(':')]])
   return Object.fromEntries(keySplitOff)
 }
-
-const getTestReportApiUrl = (
-  automagicallyUrl: string,
-  testTargetId: string,
-  testReportId: string
-) =>
-  `${automagicallyUrl}/api/apiKey/v3/test-targets/${testTargetId}/test-reports/${testReportId}`
 
 export const executeAutomagically = async ({
   pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS,
@@ -96,35 +88,47 @@ export const executeAutomagically = async ({
     multilineMappingToObject(variablesToOverwrite)
   const tags = core.getMultilineInput('tags')
 
+  const client = createClientFromUrlAndApiKey({
+    baseUrl: automagicallyUrl,
+    apiKey: token
+  })
+
   try {
-    const executeResponse = await fetchJson<ExecuteResponse>({
-      url: getExecuteUrl(automagicallyUrl),
-      method: 'POST',
-      token,
-      body: JSON.stringify({
+    const executeResponse = await client.POST('/apiKey/v3/execute', {
+      body: {
         url,
         testTargetId,
         environmentName,
         variablesToOverwrite: variablesToOverwriteObject,
         tags,
-        browser,
-        breakpoint,
+        browser: browser as 'SAFARI' | 'CHROMIUM' | 'FIREFOX',
+        breakpoint: breakpoint as 'DESKTOP' | 'TABLET' | 'MOBILE',
         context: {
           source: 'github',
           ...context
         }
-      })
+      }
     })
 
-    const testReportUrl = executeResponse.testReportUrl
-    core.setOutput('testReportUrl', executeResponse.testReportUrl)
+    if (
+      !executeResponse.data?.testReportUrl ||
+      !executeResponse.data?.testReport ||
+      !executeResponse.data.testReport.id
+    ) {
+      core.setFailed('execute did not return any data')
+      throw new Error('execute did not return any data')
+    }
+
+    const testReportUrl = executeResponse.data.testReportUrl
+
+    core.setOutput('testReportUrl', testReportUrl)
     await core.summary
       .addHeading('🐙 Octomind')
       .addLink('View your Test Report', testReportUrl)
       .write()
 
     if (blocking) {
-      let currentStatus = executeResponse.testReport.status
+      let currentStatus = executeResponse.data.testReport.status
       const start = Date.now()
       let now = start
 
@@ -132,16 +136,18 @@ export const executeAutomagically = async ({
         currentStatus === 'WAITING' &&
         now - start < maximumPollingTimeInMilliseconds
       ) {
-        const testReport = await fetchJson<TestReport>({
-          method: 'GET',
-          token,
-          url: getTestReportApiUrl(
-            automagicallyUrl,
-            testTargetId,
-            executeResponse.testReport.id
-          )
-        })
-        currentStatus = testReport.status
+        const testReport = await client.GET(
+          '/apiKey/v3/test-targets/{testTargetId}/test-reports/{testReportId}',
+          {
+            params: {
+              path: {
+                testTargetId,
+                testReportId: executeResponse.data.testReport.id
+              }
+            }
+          }
+        )
+        currentStatus = testReport.data?.status
 
         await sleep(pollingIntervalInMilliseconds)
         now = Date.now()

@@ -1,23 +1,11 @@
-export type TestReportStatus = 'PASSED' | 'WAITING' | 'FAILED'
+import {client} from '@octomind/octomind/client'
 
-export interface TestReport {
-  id: string
-  testTargetId: string
-  createdAt: string
-  updatedAt: string
-  executionUrl: string
-  context: {
-    ref?: string
-    sha?: string
-    repo: string
-    owner: string
-    source: string
-    issueNumber?: number
-  }
-  status: TestReportStatus
-}
+export type ExecuteResponse = ReturnType<
+  typeof client.POST<'/apiKey/v3/execute'>
+>
 
-export interface ExecuteResponse {
-  testReportUrl: string
-  testReport: TestReport
-}
+export type TestReport = ExecuteResponse['data']['testReport']
+
+export type TestReportResponse = ReturnType<
+  typeof client.GET<'/apiKey/v3/test-targets/{testTargetId}/test-reports/{testReportId}'>
+>
