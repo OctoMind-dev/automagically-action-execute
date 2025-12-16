@@ -1,13 +1,12 @@
 {
-  "plugins": [
-    "@typescript-eslint"
-  ],
-  "extends": [
-    "plugin:github/recommended"
-  ],
+  "plugins": ["@typescript-eslint"],
+  "extends": ["plugin:github/recommended"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.lint.json"
+  },
+  "env": {
+    "node": true
   },
   "rules": {
     "@typescript-eslint/no-floating-promises": "warn",
@@ -19,10 +18,7 @@
   },
   "settings": {
     "import/parsers": {
-      "@typescript-eslint/parser": [
-        ".ts",
-        ".tsx"
-      ]
+      "@typescript-eslint/parser": [".ts", ".tsx"]
     },
     "import/resolver": {
       "typescript": {

@@ -9,9 +9,9 @@ import {
   createMockTestReport,
   createMockTestReportResponse
 } from './mocks'
-import * as fs from 'node:fs'
 import {push} from '@octomind/octomind/push'
-import * as path from 'node:path'
+import {join} from 'node:path'
+import fs from 'node:fs'
 
 vi.mock('fs')
 vi.mock('@octomind/octomind/client')
@@ -245,9 +245,11 @@ describe(executeAutomagically.name, () => {
       maximumPollingTimeInMilliseconds: 5
     })
 
-    expect(push).toHaveBeenCalledWith(expect.objectContaining({
-      sourceDir: path.join(process.cwd(), '.octomind')
-    }))
+    expect(push).toHaveBeenCalledWith(
+      expect.objectContaining({
+        sourceDir: join(process.cwd(), '.octomind')
+      })
+    )
   })
 
   it('pushes different source directory if yml files exist and config provided', async () => {
@@ -256,11 +258,11 @@ describe(executeAutomagically.name, () => {
     vi.mocked(fs).readdirSync.mockReturnValue(['a.yaml'])
 
     const mockedDirectory = '/some/other/directory'
-    vi.mocked(core).getInput.mockImplementation((name) => {
+    vi.mocked(core).getInput.mockImplementation(name => {
       if (name === 'ymlDirectory') {
         return mockedDirectory
       }
-      return ""
+      return ''
     })
 
     vi.mocked(core).getBooleanInput.mockReturnValue(true)
@@ -280,7 +282,7 @@ describe(executeAutomagically.name, () => {
 
     expect(push).toHaveBeenCalledWith(
       expect.objectContaining({
-        sourceDir: mockedDirectory,
+        sourceDir: mockedDirectory
       })
     )
   })

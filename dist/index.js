@@ -39190,9 +39190,9 @@ const multilineMappingToObject = (input) => {
     return Object.fromEntries(keySplitOff);
 };
 const pushIfYmlsExist = async ({ sourceDir, client, testTargetId }) => {
-    const directoryExists = external_node_fs_namespaceObject.existsSync(sourceDir);
+    const directoryExists = (0,external_node_fs_namespaceObject.existsSync)(sourceDir);
     const hasYmls = directoryExists &&
-        external_node_fs_namespaceObject.readdirSync(sourceDir).some(file => file.endsWith('.yaml'));
+        (0,external_node_fs_namespaceObject.readdirSync)(sourceDir).some(file => file.endsWith('.yaml'));
     if (hasYmls) {
         return (0,push/* push */.V)({
             sourceDir,
@@ -39247,7 +39247,7 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
     const ymlSourceDirectory = core.getInput('ymlDirectory');
     const ymlDirectoryWithFallback = ymlSourceDirectory.length > 0
         ? ymlSourceDirectory
-        : external_node_path_.join(process.cwd(), '.octomind');
+        : (0,external_node_path_.join)(process.cwd(), '.octomind');
     const urlWithApiPostfix = new URL(automagicallyUrl);
     urlWithApiPostfix.pathname += '/api';
     const client = (0,tools_client.createClientFromUrlAndApiKey)({

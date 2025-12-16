@@ -8,8 +8,8 @@ import {setTimeout} from 'node:timers'
 import {createClientFromUrlAndApiKey} from '@octomind/octomind/client'
 import {push} from '@octomind/octomind/push'
 import {TestReport} from './types'
-import * as fs from 'node:fs'
-import * as path from 'node:path'
+import {existsSync, readdirSync} from 'node:fs'
+import {join} from 'node:path'
 
 const TIME_BETWEEN_POLLS_MILLISECONDS = 5_000
 const MAXIMUM_POLL_TIME_MILLISECONDS = 2 * 60 * 60 * 1000
@@ -42,10 +42,10 @@ export const pushIfYmlsExist = async ({
   client: ReturnType<typeof createClientFromUrlAndApiKey>
   testTargetId: string
 }): Promise<{versionIds: string[]} | undefined> => {
-  const directoryExists = fs.existsSync(sourceDir)
+  const directoryExists = existsSync(sourceDir)
   const hasYmls =
     directoryExists &&
-    fs.readdirSync(sourceDir).some(file => file.endsWith('.yaml'))
+    readdirSync(sourceDir).some(file => file.endsWith('.yaml'))
 
   if (hasYmls) {
     return push({
@@ -128,7 +128,7 @@ export const executeAutomagically = async ({
   const ymlDirectoryWithFallback =
     ymlSourceDirectory.length > 0
       ? ymlSourceDirectory
-      : path.join(process.cwd(), '.octomind')
+      : join(process.cwd(), '.octomind')
 
   const urlWithApiPostfix = new URL(automagicallyUrl)
   urlWithApiPostfix.pathname += '/api'
