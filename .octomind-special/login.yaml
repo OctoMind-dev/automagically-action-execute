@@ -1,5 +1,5 @@
 tagNames: []
-id: 561beba1-bfaa-487f-a671-95d9a1ed483b
+id: c7cec532-a120-42f3-9714-54aaa621c74b
 description: Login
 elements:
   - interaction:
@@ -16,7 +16,7 @@ elements:
     ignoreFailure: false
   - interaction:
       action: ENTER_TEXT
-      calledWith: asdasd
+      calledWith: password
     selectors:
       - selectorType: CSS
         selector: input[type="password"]
@@ -33,33 +33,10 @@ elements:
       expectation: VISIBLE
     selectors:
       - selectorType: TEXT
-        selector: '"Pls halp"- a@a.com- a@a.com2'
+        selector: "- a@a.com"
+        options:
+          exact: true
     ignoreFailure: false
 runStatus: ON
-type: LOGIN
-prompt: >-
-  # INTENT
-
-  To verify that a user can successfully log in with valid credentials and that
-  user-specific content is displayed upon login.
-
-
-  # INSTRUCTIONS
-
-  * Navigate to the login page to access the application.
-
-  * Enter 'a@a.com' into the email input field on the login form.
-
-  * Enter 'asdasd' into the password input field.
-
-  * Click the LOGIN button to submit the login form and sign in.
-
-  * Check that the text '"Pls halp"- a@a.com- a@a.com2' is visible on the page.
-
-
-  # OUTCOME
-
-  After logging in with the provided credentials, the user should see the text
-  '"Pls halp"- a@a.com- a@a.com2' displayed on the page, confirming successful
-  authentication and the presence of user-specific content.
+prompt: ""
 version: "1"

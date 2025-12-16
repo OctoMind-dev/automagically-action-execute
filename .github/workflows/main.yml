@@ -128,7 +128,7 @@ jobs:
         uses: ./
         with:
           url: 'https://storage.googleapis.com/mocktopus/index.html'
-          testTargetId: 'c77ae34c-05c7-4b58-b1a4-ff2dcb46d50f'
+          testTargetId: '0c051842-2098-4717-851e-9a93082627cf'
           token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
           ymlDirectory: ".octomind-special"
-      
+
