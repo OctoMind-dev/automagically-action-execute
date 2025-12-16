@@ -6,6 +6,10 @@ import * as core from '@actions/core'
 import * as github from '@actions/github'
 import {setTimeout} from 'node:timers'
 import {createClientFromUrlAndApiKey} from '@octomind/octomind/client'
+import {push} from '@octomind/octomind/push'
+import {TestReport} from './types'
+import * as fs from 'node:fs'
+import * as path from 'node:path'
 
 const TIME_BETWEEN_POLLS_MILLISECONDS = 5_000
 const MAXIMUM_POLL_TIME_MILLISECONDS = 2 * 60 * 60 * 1000
@@ -27,6 +31,39 @@ const multilineMappingToObject = (
     // then we join with ':' to make it a string again and preserve colons in the value
     .map(parts => [parts[0], [parts.slice(1).join(':')]])
   return Object.fromEntries(keySplitOff)
+}
+
+export const pushIfYmlsExist = async ({
+  sourceDir,
+  client,
+  testTargetId
+}: {
+  sourceDir: string
+  client: ReturnType<typeof createClientFromUrlAndApiKey>
+  testTargetId: string
+}): Promise<{versionIds: string[]} | undefined> => {
+  const directoryExists = fs.existsSync(sourceDir)
+  const hasYmls =
+    directoryExists &&
+    fs.readdirSync(sourceDir).some(file => file.endsWith('.yaml'))
+
+  if (hasYmls) {
+    return push({
+      sourceDir,
+      client,
+      testTargetId,
+      onError: error => {
+        if (error) {
+          core.setFailed(
+            `error occurred when trying to push local ymls ${error}`
+          )
+          process.exit(1)
+        }
+      }
+    })
+  }
+
+  return undefined
 }
 
 export const executeAutomagically = async ({
@@ -87,6 +124,11 @@ export const executeAutomagically = async ({
   const variablesToOverwriteObject =
     multilineMappingToObject(variablesToOverwrite)
   const tags = core.getMultilineInput('tags')
+  const ymlSourceDirectory = core.getInput('ymlDirectory')
+  const ymlDirectoryWithFallback =
+    ymlSourceDirectory.length > 0
+      ? ymlSourceDirectory
+      : path.join(process.cwd(), '.octomind')
 
   const urlWithApiPostfix = new URL(automagicallyUrl)
   urlWithApiPostfix.pathname += '/api'
@@ -97,6 +139,12 @@ export const executeAutomagically = async ({
   })
 
   try {
+    const pushed = await pushIfYmlsExist({
+      client,
+      testTargetId,
+      sourceDir: ymlDirectoryWithFallback
+    })
+
     const executeResponse = await client.POST('/apiKey/v3/execute', {
       body: {
         url,
@@ -109,7 +157,8 @@ export const executeAutomagically = async ({
         context: {
           source: 'github',
           ...context
-        }
+        },
+        testCaseVersionIds: pushed?.versionIds
       }
     })
 
@@ -131,7 +180,8 @@ export const executeAutomagically = async ({
       .write()
 
     if (blocking) {
-      let currentStatus = executeResponse.data.testReport.status
+      let currentStatus: TestReport['status'] | undefined =
+        executeResponse.data.testReport.status
       const start = Date.now()
       let now = start
 

@@ -9,8 +9,13 @@ import {
   createMockTestReport,
   createMockTestReportResponse
 } from './mocks'
+import * as fs from 'node:fs'
+import {push} from '@octomind/octomind/push'
+import * as path from 'node:path'
 
+vi.mock('fs')
 vi.mock('@octomind/octomind/client')
+vi.mock('@octomind/octomind/push')
 vi.mock('@actions/core')
 vi.mock('@actions/github', () => ({
   default: vi.fn(),
@@ -45,6 +50,7 @@ describe(executeAutomagically.name, () => {
     vi.mocked(mockedClient.GET).mockResolvedValue(mock())
 
     vi.mocked(core).getInput.mockImplementation(() => '')
+    vi.mocked(fs).existsSync.mockReturnValue(false)
   })
 
   it('includes environment name if defined', async () => {
@@ -217,5 +223,65 @@ describe(executeAutomagically.name, () => {
     })
 
     expect(core.setFailed).toHaveBeenCalled()
+  })
+
+  it('pushes if yml files exist', async () => {
+    vi.mocked(fs).existsSync.mockReturnValue(true)
+    // @ts-expect-error overloaded method
+    vi.mocked(fs).readdirSync.mockReturnValue(['a.yaml'])
+
+    vi.mocked(core).getBooleanInput.mockReturnValue(true)
+    // execute
+    vi.mocked(mockedClient.POST).mockResolvedValueOnce(
+      createMockExecuteResponse({testReport: {status: 'WAITING'}}) as never
+    )
+
+    vi.mocked(mockedClient.GET).mockResolvedValue(
+      createMockTestReportResponse({status: 'PASSED'})
+    )
+
+    await executeAutomagically({
+      pollingIntervalInMilliseconds: 1,
+      maximumPollingTimeInMilliseconds: 5
+    })
+
+    expect(push).toHaveBeenCalledWith(expect.objectContaining({
+      sourceDir: path.join(process.cwd(), '.octomind')
+    }))
+  })
+
+  it('pushes different source directory if yml files exist and config provided', async () => {
+    vi.mocked(fs).existsSync.mockReturnValue(true)
+    // @ts-expect-error overloaded method
+    vi.mocked(fs).readdirSync.mockReturnValue(['a.yaml'])
+
+    const mockedDirectory = '/some/other/directory'
+    vi.mocked(core).getInput.mockImplementation((name) => {
+      if (name === 'ymlDirectory') {
+        return mockedDirectory
+      }
+      return ""
+    })
+
+    vi.mocked(core).getBooleanInput.mockReturnValue(true)
+    // execute
+    vi.mocked(mockedClient.POST).mockResolvedValueOnce(
+      createMockExecuteResponse({testReport: {status: 'WAITING'}}) as never
+    )
+
+    vi.mocked(mockedClient.GET).mockResolvedValue(
+      createMockTestReportResponse({status: 'PASSED'})
+    )
+
+    await executeAutomagically({
+      pollingIntervalInMilliseconds: 1,
+      maximumPollingTimeInMilliseconds: 5
+    })
+
+    expect(push).toHaveBeenCalledWith(
+      expect.objectContaining({
+        sourceDir: mockedDirectory,
+      })
+    )
   })
 })
