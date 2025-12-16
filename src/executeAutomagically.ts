@@ -88,8 +88,11 @@ export const executeAutomagically = async ({
     multilineMappingToObject(variablesToOverwrite)
   const tags = core.getMultilineInput('tags')
 
+  const urlWithApiPostfix = new URL(automagicallyUrl)
+  urlWithApiPostfix.pathname += '/api'
+
   const client = createClientFromUrlAndApiKey({
-    baseUrl: automagicallyUrl,
+    baseUrl: urlWithApiPostfix.href,
     apiKey: token
   })
 
@@ -110,7 +113,7 @@ export const executeAutomagically = async ({
       }
     })
 
-    console.log({ executeResponse})
+    console.log({executeResponse})
 
     if (
       !executeResponse.data?.testReportUrl ||
