@@ -1,0 +1,42 @@
+tagNames: []
+id: c7cec532-a120-42f3-9714-54aaa621c74b
+description: Login
+elements:
+  - interaction:
+      action: GO_TO
+      calledWith: $OCTO_URL
+    selectors: []
+    ignoreFailure: true
+  - interaction:
+      action: ENTER_TEXT
+      calledWith: a@a.com
+    selectors:
+      - selectorType: CSS
+        selector: input[type="email"]
+    ignoreFailure: false
+  - interaction:
+      action: ENTER_TEXT
+      calledWith: password
+    selectors:
+      - selectorType: CSS
+        selector: input[type="password"]
+    ignoreFailure: false
+  - interaction:
+      action: CLICK
+    selectors:
+      - selectorType: ROLE
+        selector: button
+        options:
+          name: LOGIN
+    ignoreFailure: false
+  - assertion:
+      expectation: VISIBLE
+    selectors:
+      - selectorType: TEXT
+        selector: "- a@a.com"
+        options:
+          exact: true
+    ignoreFailure: false
+runStatus: ON
+prompt: ""
+version: "1"

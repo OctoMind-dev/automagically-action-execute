@@ -121,4 +121,14 @@ jobs:
           tags: |-
             critical
             login
-      
+            
+
+      - name: Execute Automagically with ymls
+        id: automagically-tags-yml
+        uses: ./
+        with:
+          url: 'https://storage.googleapis.com/mocktopus/index.html'
+          testTargetId: '0c051842-2098-4717-851e-9a93082627cf'
+          token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
+          ymlDirectory: ".octomind-special"
+
