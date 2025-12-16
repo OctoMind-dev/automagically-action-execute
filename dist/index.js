@@ -31040,8 +31040,10 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
     const variablesToOverwrite = core.getMultilineInput('variablesToOverwrite');
     const variablesToOverwriteObject = multilineMappingToObject(variablesToOverwrite);
     const tags = core.getMultilineInput('tags');
+    const urlWithApiPostfix = new URL(automagicallyUrl);
+    urlWithApiPostfix.pathname += '/api';
     const client = (0,tools_client.createClientFromUrlAndApiKey)({
-        baseUrl: automagicallyUrl,
+        baseUrl: urlWithApiPostfix.href,
         apiKey: token
     });
     try {
@@ -31060,6 +31062,7 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
                 }
             }
         });
+        console.log({ executeResponse });
         if (!executeResponse.data?.testReportUrl ||
             !executeResponse.data?.testReport ||
             !executeResponse.data.testReport.id) {
