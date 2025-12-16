@@ -31062,7 +31062,6 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
                 }
             }
         });
-        console.log({ executeResponse });
         if (!executeResponse.data?.testReportUrl ||
             !executeResponse.data?.testReport ||
             !executeResponse.data.testReport.id) {
