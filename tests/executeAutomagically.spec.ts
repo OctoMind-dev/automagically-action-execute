@@ -3,7 +3,7 @@ import {beforeEach, describe, expect, it, vi} from 'vitest'
 import core from '@actions/core'
 import github from '@actions/github'
 import {createClientFromUrlAndApiKey} from '@octomind/octomind/client'
-import {DeepMockProxy, mockDeep} from 'vitest-mock-extended'
+import {DeepMockProxy, mock, mockDeep} from 'vitest-mock-extended'
 import {
   createMockExecuteResponse,
   createMockTestReport,
@@ -41,13 +41,21 @@ describe(executeAutomagically.name, () => {
     vi.mocked(core.getMultilineInput).mockReturnValue([])
     mockedClient = mockDeep()
     vi.mocked(createClientFromUrlAndApiKey).mockReturnValue(mockedClient)
-    mockedClient.POST.mockResolvedValue({data: {}})
-    mockedClient.GET.mockResolvedValue({data: {}})
+    vi.mocked(mockedClient.POST).mockResolvedValue(mock())
+    vi.mocked(mockedClient.GET).mockResolvedValue(mock())
+
+    vi.mocked(core).getInput.mockImplementation(() => '')
   })
 
   it('includes environment name if defined', async () => {
     const environmentName = 'staging'
-    vi.mocked(core).getInput.mockReturnValue(environmentName)
+
+    vi.mocked(core).getInput.mockImplementation(name => {
+      if (name === 'environmentName') {
+        return environmentName
+      }
+      return ''
+    })
 
     await executeAutomagically()
 
@@ -62,7 +70,12 @@ describe(executeAutomagically.name, () => {
 
   it('includes breakpoint name if defined', async () => {
     const breakpointName = 'MOBILE'
-    vi.mocked(core).getInput.mockReturnValue(breakpointName)
+    vi.mocked(core).getInput.mockImplementation(name => {
+      if (name === 'breakpoint') {
+        return breakpointName
+      }
+      return ''
+    })
 
     await executeAutomagically()
 
@@ -77,7 +90,12 @@ describe(executeAutomagically.name, () => {
 
   it('includes browser name if defined', async () => {
     const browserName = 'FIREFOX'
-    vi.mocked(core).getInput.mockReturnValue(browserName)
+    vi.mocked(core).getInput.mockImplementation(name => {
+      if (name === 'browser') {
+        return browserName
+      }
+      return ''
+    })
 
     await executeAutomagically()
 
@@ -122,22 +140,20 @@ describe(executeAutomagically.name, () => {
     vi.mocked(core).getBooleanInput.mockReturnValue(true)
 
     // execute
-    mockedClient.POST.mockResolvedValueOnce(
-      createMockExecuteResponse({
-        testReport: createMockTestReport({status: 'WAITING'})
-      })
+    vi.mocked(mockedClient.POST).mockResolvedValueOnce(
+      createMockExecuteResponse({testReport: {status: 'WAITING'}}) as never
     )
     // poll 1
-    mockedClient.GET.mockResolvedValueOnce(
-      createMockExecuteResponse({status: 'WAITING'})
+    vi.mocked(mockedClient.GET).mockResolvedValueOnce(
+      createMockTestReportResponse({status: 'WAITING'}) as never
     )
     // poll 2
-    mockedClient.GET.mockResolvedValueOnce(
-      createMockTestReportResponse({status: 'WAITING'})
+    vi.mocked(mockedClient.GET).mockResolvedValueOnce(
+      createMockTestReportResponse({status: 'WAITING'}) as never
     )
     // poll 3
-    mockedClient.GET.mockResolvedValueOnce(
-      createMockTestReportResponse({status: 'PASSED'})
+    vi.mocked(mockedClient.GET).mockResolvedValueOnce(
+      createMockTestReportResponse({status: 'PASSED'}) as never
     )
 
     await executeAutomagically({pollingIntervalInMilliseconds: 1})
@@ -147,7 +163,7 @@ describe(executeAutomagically.name, () => {
   })
 
   it('sets to failed if a request throws', async () => {
-    mockedClient.POST.mockRejectedValue(new Error('not successful'))
+    vi.mocked(mockedClient.POST).mockRejectedValue(new Error('not successful'))
 
     await executeAutomagically()
 
@@ -157,12 +173,12 @@ describe(executeAutomagically.name, () => {
   it('sets to failed if a polling request throws', async () => {
     vi.mocked(core).getBooleanInput.mockReturnValue(true)
     // execute
-    mockedClient.POST.mockResolvedValueOnce(
+    vi.mocked(mockedClient.POST).mockResolvedValueOnce(
       createMockExecuteResponse({
         testReport: createMockTestReport({status: 'WAITING'})
-      })
+      }) as never
     )
-    mockedClient.GET.mockRejectedValue(new Error('not successful'))
+    vi.mocked(mockedClient.GET).mockRejectedValue(new Error('not successful'))
     await executeAutomagically({pollingIntervalInMilliseconds: 1})
 
     expect(core.setFailed).toHaveBeenCalled()
@@ -171,12 +187,12 @@ describe(executeAutomagically.name, () => {
   it('sets to failed if polling returns FAILED', async () => {
     vi.mocked(core).getBooleanInput.mockReturnValue(true)
     // execute
-    mockedClient.POST.mockResolvedValueOnce(
+    vi.mocked(mockedClient.POST).mockResolvedValueOnce(
       createMockExecuteResponse({
         testReport: createMockTestReport({status: 'WAITING'})
-      })
+      }) as never
     )
-    mockedClient.GET.mockResolvedValueOnce(
+    vi.mocked(mockedClient.GET).mockResolvedValueOnce(
       createMockTestReportResponse({status: 'FAILED'})
     )
 
@@ -188,12 +204,10 @@ describe(executeAutomagically.name, () => {
   it('sets to failed if polling never stops', async () => {
     vi.mocked(core).getBooleanInput.mockReturnValue(true)
     // execute
-    mockedClient.POST.mockResolvedValueOnce(
-      createMockExecuteResponse({
-        testReport: createMockTestReport({status: 'WAITING'})
-      })
+    vi.mocked(mockedClient.POST).mockResolvedValueOnce(
+      createMockExecuteResponse({testReport: {status: 'WAITING'}}) as never
     )
-    mockedClient.GET.mockResolvedValue(
+    vi.mocked(mockedClient.GET).mockResolvedValue(
       createMockTestReportResponse({status: 'WAITING'})
     )
 

@@ -1,4 +1,6 @@
 import {ExecuteResponse, TestReport, TestReportResponse} from '../src/types'
+import {mock} from 'vitest-mock-extended'
+import {Mock} from 'vitest'
 
 export const createMockTestReport = (
   overrides?: Partial<TestReport>
@@ -18,13 +20,14 @@ export const createMockTestReport = (
   ...overrides
 })
 
-export const createMockExecuteResponse = (
-  overrides?: Partial<ExecuteResponse>
-): ExecuteResponse => ({
+export const createMockExecuteResponse = (overrides?: {
+  testReport?: Partial<TestReport>
+}): ExecuteResponse & {response: Mock; error: undefined} => ({
+  response: mock(),
+  error: undefined,
   data: {
     testReportUrl: 'https://testReport.com',
-    testReport: createMockTestReport(),
-    ...overrides
+    testReport: createMockTestReport(overrides?.testReport)
   }
 })
 
