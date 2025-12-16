@@ -8116,6 +8116,157 @@ var request = withDefaults(import_endpoint.endpoint, {
 
 /***/ }),
 
+/***/ 5050:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getConfigPath = getConfigPath;
+exports.resetConfig = resetConfig;
+exports.loadConfig = loadConfig;
+exports.saveConfig = saveConfig;
+const fs_1 = __nccwpck_require__(9896);
+const promises_1 = __importDefault(__nccwpck_require__(1943));
+const os_1 = __nccwpck_require__(857);
+const path_1 = __nccwpck_require__(6928);
+const CONFIG_DIR = ".config";
+async function getConfigPath(ensureDir) {
+    const configFilePath = process.env.OCTOMIND_CONFIG_FILE || "octomind.json";
+    const homeDir = (0, os_1.homedir)();
+    const configDir = (0, path_1.join)(homeDir, CONFIG_DIR);
+    const configPath = (0, path_1.join)(configDir, configFilePath);
+    if (ensureDir && !(0, fs_1.existsSync)(configDir)) {
+        await promises_1.default.mkdir(configDir, { recursive: true });
+    }
+    return configPath;
+}
+let configLoaded = false;
+let config = {};
+function resetConfig() {
+    configLoaded = false;
+    config = {};
+}
+async function loadConfig(force) {
+    if (configLoaded && !force) {
+        return config;
+    }
+    try {
+        const configPath = await getConfigPath();
+        const data = await promises_1.default.readFile(configPath, "utf8");
+        config = JSON.parse(data);
+        configLoaded = true;
+        return config;
+    }
+    catch (error) {
+        // only exit on overwrite attempt
+        if (force) {
+            console.error("❌ Error parsing configuration:", error.message);
+            process.exit(1);
+        }
+        return {};
+    }
+}
+async function saveConfig(newConfig) {
+    try {
+        const configPath = await getConfigPath(true);
+        await promises_1.default.writeFile(configPath, JSON.stringify(newConfig, null, 2), "utf8");
+        console.log(`✅ Configuration saved to ${configPath}`);
+        configLoaded = false;
+    }
+    catch (error) {
+        console.error("❌ Error saving configuration:", error.message);
+        process.exit(1);
+    }
+}
+
+
+/***/ }),
+
+/***/ 8023:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.logJson = exports.handleError = exports.client = exports.createClientFromUrlAndApiKey = exports.BASE_URL = void 0;
+const openapi_fetch_1 = __importDefault(__nccwpck_require__(3007));
+const config_1 = __nccwpck_require__(5050);
+const version_1 = __nccwpck_require__(950);
+exports.BASE_URL = process.env.OCTOMIND_API_URL || "https://app.octomind.dev/api";
+const client = (0, openapi_fetch_1.default)({ baseUrl: exports.BASE_URL });
+exports.client = client;
+const createClientFromUrlAndApiKey = ({ baseUrl, apiKey, }) => {
+    const customClient = (0, openapi_fetch_1.default)({ baseUrl });
+    customClient.use(createAuthMiddleware({
+        getApiKey: () => ({
+            apiKey,
+        }),
+    }));
+    return customClient;
+};
+exports.createClientFromUrlAndApiKey = createClientFromUrlAndApiKey;
+const createAuthMiddleware = ({ getApiKey, }) => {
+    return {
+        async onRequest({ request }) {
+            const { apiKey } = await getApiKey();
+            if (!apiKey) {
+                throw new Error("API key is required. Please configure it first by running 'octomind init'");
+            }
+            request.headers.set("x-api-key", apiKey);
+            request.headers.set("user-agent", `octomind-cli/${version_1.version}`);
+            return request;
+        },
+        async onResponse({ response }) {
+            const { body, ...resOptions } = response;
+            if (!response.ok) {
+                const res = new Response(body, resOptions);
+                const errorBody = await res.text();
+                return new Response(`${response.status}, ${response.statusText}: ${errorBody ? errorBody : ""}`, { ...resOptions, status: response.status });
+            }
+            return response;
+        },
+        onError({ error }) {
+            console.error(error);
+            process.exit(1);
+        },
+    };
+};
+client.use(createAuthMiddleware({ getApiKey: config_1.loadConfig }));
+const handleError = (error) => {
+    if (error) {
+        console.error(error);
+        if (typeof error === "string" && error.startsWith("403")) {
+            console.error("You are not authorized. Check your API key or do a 'octomind init' to set it up.");
+        }
+        process.exit(1);
+    }
+};
+exports.handleError = handleError;
+const logJson = (result) => {
+    console.log(JSON.stringify(result, null, 2));
+};
+exports.logJson = logJson;
+
+
+/***/ }),
+
+/***/ 950:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.version = void 0;
+// Generated by genversion.
+exports.version = "3.3.2";
+
+
+/***/ }),
+
 /***/ 3128:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
@@ -30813,157 +30964,6 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
-/***/ 8641:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
-
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getConfigPath = getConfigPath;
-exports.resetConfig = resetConfig;
-exports.loadConfig = loadConfig;
-exports.saveConfig = saveConfig;
-const fs_1 = __nccwpck_require__(9896);
-const promises_1 = __importDefault(__nccwpck_require__(1943));
-const os_1 = __nccwpck_require__(857);
-const path_1 = __nccwpck_require__(6928);
-const CONFIG_DIR = ".config";
-async function getConfigPath(ensureDir) {
-    const configFilePath = process.env.OCTOMIND_CONFIG_FILE || "octomind.json";
-    const homeDir = (0, os_1.homedir)();
-    const configDir = (0, path_1.join)(homeDir, CONFIG_DIR);
-    const configPath = (0, path_1.join)(configDir, configFilePath);
-    if (ensureDir && !(0, fs_1.existsSync)(configDir)) {
-        await promises_1.default.mkdir(configDir, { recursive: true });
-    }
-    return configPath;
-}
-let configLoaded = false;
-let config = {};
-function resetConfig() {
-    configLoaded = false;
-    config = {};
-}
-async function loadConfig(force) {
-    if (configLoaded && !force) {
-        return config;
-    }
-    try {
-        const configPath = await getConfigPath();
-        const data = await promises_1.default.readFile(configPath, "utf8");
-        config = JSON.parse(data);
-        configLoaded = true;
-        return config;
-    }
-    catch (error) {
-        // only exit on overwrite attempt
-        if (force) {
-            console.error("❌ Error parsing configuration:", error.message);
-            process.exit(1);
-        }
-        return {};
-    }
-}
-async function saveConfig(newConfig) {
-    try {
-        const configPath = await getConfigPath(true);
-        await promises_1.default.writeFile(configPath, JSON.stringify(newConfig, null, 2), "utf8");
-        console.log(`✅ Configuration saved to ${configPath}`);
-        configLoaded = false;
-    }
-    catch (error) {
-        console.error("❌ Error saving configuration:", error.message);
-        process.exit(1);
-    }
-}
-
-
-/***/ }),
-
-/***/ 8512:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
-
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.logJson = exports.handleError = exports.client = exports.createClientFromUrlAndApiKey = exports.BASE_URL = void 0;
-const openapi_fetch_1 = __importDefault(__nccwpck_require__(3716));
-const config_1 = __nccwpck_require__(8641);
-const version_1 = __nccwpck_require__(8259);
-exports.BASE_URL = process.env.OCTOMIND_API_URL || "https://app.octomind.dev/api";
-const client = (0, openapi_fetch_1.default)({ baseUrl: exports.BASE_URL });
-exports.client = client;
-const createClientFromUrlAndApiKey = ({ baseUrl, apiKey, }) => {
-    const customClient = (0, openapi_fetch_1.default)({ baseUrl });
-    customClient.use(createAuthMiddleware({
-        getApiKey: () => ({
-            apiKey,
-        }),
-    }));
-    return customClient;
-};
-exports.createClientFromUrlAndApiKey = createClientFromUrlAndApiKey;
-const createAuthMiddleware = ({ getApiKey, }) => {
-    return {
-        async onRequest({ request }) {
-            const { apiKey } = await getApiKey();
-            if (!apiKey) {
-                throw new Error("API key is required. Please configure it first by running 'octomind init'");
-            }
-            request.headers.set("x-api-key", apiKey);
-            request.headers.set("user-agent", `octomind-cli/${version_1.version}`);
-            return request;
-        },
-        async onResponse({ response }) {
-            const { body, ...resOptions } = response;
-            if (!response.ok) {
-                const res = new Response(body, resOptions);
-                const errorBody = await res.text();
-                return new Response(`${response.status}, ${response.statusText}: ${errorBody ? errorBody : ""}`, { ...resOptions, status: response.status });
-            }
-            return response;
-        },
-        onError({ error }) {
-            console.error(error);
-            process.exit(1);
-        },
-    };
-};
-client.use(createAuthMiddleware({ getApiKey: config_1.loadConfig }));
-const handleError = (error) => {
-    if (error) {
-        console.error(error);
-        if (typeof error === "string" && error.startsWith("403")) {
-            console.error("You are not authorized. Check your API key or do a 'octomind init' to set it up.");
-        }
-        process.exit(1);
-    }
-};
-exports.handleError = handleError;
-const logJson = (result) => {
-    console.log(JSON.stringify(result, null, 2));
-};
-exports.logJson = logJson;
-
-
-/***/ }),
-
-/***/ 8259:
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.version = void 0;
-// Generated by genversion.
-exports.version = "3.3.1";
-
-
-/***/ }),
-
 /***/ 8184:
 /***/ ((__unused_webpack_module, __webpack_exports__, __nccwpck_require__) => {
 
@@ -30979,8 +30979,8 @@ var core = __nccwpck_require__(1635);
 var github = __nccwpck_require__(4903);
 ;// CONCATENATED MODULE: external "node:timers"
 const external_node_timers_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:timers");
-// EXTERNAL MODULE: ../cli/dist/tools/client.js
-var tools_client = __nccwpck_require__(8512);
+// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@3.3.2/node_modules/@octomind/octomind/dist/tools/client.js
+var tools_client = __nccwpck_require__(8023);
 ;// CONCATENATED MODULE: ./src/executeAutomagically.ts
 // this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
 // eslint-disable-next-line import/no-namespace
@@ -32962,7 +32962,7 @@ module.exports = parseParams
 
 /***/ }),
 
-/***/ 3716:
+/***/ 3007:
 /***/ ((__unused_webpack_module, exports) => {
 
 
