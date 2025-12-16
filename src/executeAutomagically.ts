@@ -113,8 +113,6 @@ export const executeAutomagically = async ({
       }
     })
 
-    console.log({executeResponse})
-
     if (
       !executeResponse.data?.testReportUrl ||
       !executeResponse.data?.testReport ||
