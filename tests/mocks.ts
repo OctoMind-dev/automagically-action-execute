@@ -2,9 +2,19 @@ import {ExecuteResponse, TestReport, TestReportResponse} from '../src/types'
 
 export const createMockTestReport = (
   overrides?: Partial<TestReport>
-): TestReport => ({
+): Exclude<TestReport, undefined> => ({
   id: 'someId',
   status: 'PASSED',
+  testTargetId: 'id',
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+  executionUrl: 'https://execution.url',
+  context: {
+    source: 'manual'
+  },
+  breakpoint: 'DESKTOP',
+  browser: 'CHROMIUM',
+  testResults: [],
   ...overrides
 })
 

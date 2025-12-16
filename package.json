@@ -19,8 +19,7 @@
   "dependencies": {
     "@actions/core": "^2.0.1",
     "@actions/github": "^6.0.1",
-    "@octomind/cli": "1.0.2",
-    "@octomind/octomind": "link:/Users/ddraper/dev/cli",
+    "@octomind/octomind": "link:../cli",
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {
