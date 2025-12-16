@@ -7,10 +7,12 @@
     "strict": true,
     "noImplicitAny": true,
     "noEmit": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "lib": []
   },
   "include": [
-    "src"
+    "src",
+    "tests",
   ],
   "exclude": [
     "node_modules",

@@ -17,7 +17,7 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Corepack enable
         shell: bash
@@ -44,6 +44,9 @@ jobs:
 
       - name: lint
         run: pnpm run lint
+
+      - name: typecheck
+        run: pnpm run typecheck
 
       - name: test
         run: pnpm run test

@@ -25,6 +25,7 @@ inputs:
     description: "Optional, breakpoint to execute your tests against, available are DESKTOP, MOBILE, TABLET"
     required: false
     default: "DESKTOP"
+
   browser:
     description: "Optional, browser to execute your tests with, available are CHROMIUM, FIREFOX, SAFARI"
     required: false

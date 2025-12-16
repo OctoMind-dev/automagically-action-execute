@@ -1,10 +1,16 @@
 import {executeAutomagically} from '../src/executeAutomagically'
 import {beforeEach, describe, expect, it, vi} from 'vitest'
-import {fetchJson} from '../src/fetchJson'
 import core from '@actions/core'
 import github from '@actions/github'
+import {createClientFromUrlAndApiKey} from '@octomind/octomind/client'
+import {DeepMockProxy, mock, mockDeep} from 'vitest-mock-extended'
+import {
+  createMockExecuteResponse,
+  createMockTestReport,
+  createMockTestReportResponse
+} from './mocks'
 
-vi.mock('../src/fetchJson')
+vi.mock('@octomind/octomind/client')
 vi.mock('@actions/core')
 vi.mock('@actions/github', () => ({
   default: vi.fn(),
@@ -20,6 +26,10 @@ vi.mock('@actions/github', () => ({
 }))
 
 describe(executeAutomagically.name, () => {
+  let mockedClient: DeepMockProxy<
+    ReturnType<typeof createClientFromUrlAndApiKey>
+  >
+
   beforeEach(() => {
     vi.mocked(core).getInput.mockReturnValue('some input')
     vi.mocked(core).getBooleanInput.mockReturnValue(false)
@@ -29,77 +39,72 @@ describe(executeAutomagically.name, () => {
     vi.mocked(core.summary.write).mockResolvedValue(core.summary)
 
     vi.mocked(core.getMultilineInput).mockReturnValue([])
+    mockedClient = mockDeep()
+    vi.mocked(createClientFromUrlAndApiKey).mockReturnValue(mockedClient)
+    vi.mocked(mockedClient.POST).mockResolvedValue(mock())
+    vi.mocked(mockedClient.GET).mockResolvedValue(mock())
+
+    vi.mocked(core).getInput.mockImplementation(() => '')
   })
 
   it('includes environment name if defined', async () => {
     const environmentName = 'staging'
-    vi.mocked(core).getInput.mockReturnValue(environmentName)
+
+    vi.mocked(core).getInput.mockImplementation(name => {
+      if (name === 'environmentName') {
+        return environmentName
+      }
+      return ''
+    })
 
     await executeAutomagically()
 
-    expect(fetchJson).toHaveBeenCalledWith(
-      expect.objectContaining({
-        method: 'POST'
-      })
-    )
-
-    const sentBody = JSON.parse(
-      vi.mocked(fetchJson).mock.calls[0][0].body as string
-    )
-
-    expect(sentBody).toEqual(
-      expect.objectContaining({
+    expect(mockedClient.POST).toHaveBeenCalledWith('/apiKey/v3/execute', {
+      body: expect.objectContaining({
         environmentName
       })
-    )
+    })
+
     expect(core.getInput).toHaveBeenCalledWith('environmentName')
   })
 
   it('includes breakpoint name if defined', async () => {
     const breakpointName = 'MOBILE'
-    vi.mocked(core).getInput.mockReturnValue(breakpointName)
+    vi.mocked(core).getInput.mockImplementation(name => {
+      if (name === 'breakpoint') {
+        return breakpointName
+      }
+      return ''
+    })
 
     await executeAutomagically()
 
-    expect(fetchJson).toHaveBeenCalledWith(
-      expect.objectContaining({
-        method: 'POST'
-      })
-    )
-
-    const sentBody = JSON.parse(
-      vi.mocked(fetchJson).mock.calls[0][0].body as string
-    )
-
-    expect(sentBody).toEqual(
-      expect.objectContaining({
+    expect(mockedClient.POST).toHaveBeenCalledWith('/apiKey/v3/execute', {
+      body: expect.objectContaining({
         breakpoint: breakpointName
       })
-    )
+    })
+
     expect(core.getInput).toHaveBeenCalledWith('breakpoint')
   })
 
   it('includes browser name if defined', async () => {
     const browserName = 'FIREFOX'
-    vi.mocked(core).getInput.mockReturnValue(browserName)
+    vi.mocked(core).getInput.mockImplementation(name => {
+      if (name === 'browser') {
+        return browserName
+      }
+      return ''
+    })
 
     await executeAutomagically()
 
-    expect(fetchJson).toHaveBeenCalledWith(
-      expect.objectContaining({
-        method: 'POST'
-      })
-    )
-
-    const sentBody = JSON.parse(
-      vi.mocked(fetchJson).mock.calls[0][0].body as string
-    )
-
-    expect(sentBody).toEqual(
-      expect.objectContaining({
+    expect(mockedClient.POST).toHaveBeenCalledWith('/apiKey/v3/execute', {
+      body: expect.objectContaining({
         browser: browserName
       })
-    )
+    })
+
     expect(core.getInput).toHaveBeenCalledWith('browser')
   })
 
@@ -109,72 +114,56 @@ describe(executeAutomagically.name, () => {
 
     await executeAutomagically()
 
-    expect(fetchJson).toHaveBeenCalledWith(
-      expect.objectContaining({
-        method: 'POST'
-      })
-    )
-
-    const sentBody = JSON.parse(
-      vi.mocked(fetchJson).mock.calls[0][0].body as string
-    )
-
-    expect(sentBody).toEqual(
-      expect.objectContaining({
+    expect(mockedClient.POST).toHaveBeenCalledWith('/apiKey/v3/execute', {
+      body: expect.objectContaining({
         variablesToOverwrite: {
           key1: ['value1'],
           key2: ['value:2']
         }
       })
-    )
+    })
+
     expect(core.getMultilineInput).toHaveBeenCalledWith('variablesToOverwrite')
   })
 
   it("executes and DOESN'T wait if it's not blocking", async () => {
     await executeAutomagically()
 
-    expect(fetchJson).toHaveBeenCalledWith(
-      expect.objectContaining({
-        method: 'POST'
-      })
+    expect(mockedClient.POST).toHaveBeenCalledWith(
+      '/apiKey/v3/execute',
+      expect.anything()
     )
-    expect(fetchJson).toHaveBeenCalledTimes(1)
+    expect(mockedClient.GET).not.toHaveBeenCalled()
   })
 
   it('executes and waits until passing while blocking', async () => {
     vi.mocked(core).getBooleanInput.mockReturnValue(true)
 
     // execute
-    vi.mocked(fetchJson).mockResolvedValueOnce({
-      testReport: {
-        status: 'WAITING'
-      }
-    })
+    vi.mocked(mockedClient.POST).mockResolvedValueOnce(
+      createMockExecuteResponse({testReport: {status: 'WAITING'}}) as never
+    )
     // poll 1
-    vi.mocked(fetchJson).mockResolvedValueOnce({
-      status: 'WAITING'
-    })
+    vi.mocked(mockedClient.GET).mockResolvedValueOnce(
+      createMockTestReportResponse({status: 'WAITING'}) as never
+    )
     // poll 2
-    vi.mocked(fetchJson).mockResolvedValueOnce({
-      status: 'WAITING'
-    })
+    vi.mocked(mockedClient.GET).mockResolvedValueOnce(
+      createMockTestReportResponse({status: 'WAITING'}) as never
+    )
     // poll 3
-    vi.mocked(fetchJson).mockResolvedValueOnce({
-      status: 'PASSED'
-    })
+    vi.mocked(mockedClient.GET).mockResolvedValueOnce(
+      createMockTestReportResponse({status: 'PASSED'}) as never
+    )
 
     await executeAutomagically({pollingIntervalInMilliseconds: 1})
 
-    expect(fetchJson).toHaveBeenCalledWith(
-      expect.objectContaining({
-        method: 'POST'
-      })
-    )
-    expect(fetchJson).toHaveBeenCalledTimes(4)
+    expect(mockedClient.POST).toHaveBeenCalledTimes(1)
+    expect(mockedClient.GET).toHaveBeenCalledTimes(3)
   })
 
   it('sets to failed if a request throws', async () => {
-    vi.mocked(fetchJson).mockRejectedValue(new Error('not successful'))
+    vi.mocked(mockedClient.POST).mockRejectedValue(new Error('not successful'))
 
     await executeAutomagically()
 
@@ -184,13 +173,12 @@ describe(executeAutomagically.name, () => {
   it('sets to failed if a polling request throws', async () => {
     vi.mocked(core).getBooleanInput.mockReturnValue(true)
     // execute
-    vi.mocked(fetchJson).mockResolvedValueOnce({
-      testReport: {
-        status: 'WAITING'
-      }
-    })
-    vi.mocked(fetchJson).mockRejectedValue(new Error('not successful'))
-
+    vi.mocked(mockedClient.POST).mockResolvedValueOnce(
+      createMockExecuteResponse({
+        testReport: createMockTestReport({status: 'WAITING'})
+      }) as never
+    )
+    vi.mocked(mockedClient.GET).mockRejectedValue(new Error('not successful'))
     await executeAutomagically({pollingIntervalInMilliseconds: 1})
 
     expect(core.setFailed).toHaveBeenCalled()
@@ -199,14 +187,14 @@ describe(executeAutomagically.name, () => {
   it('sets to failed if polling returns FAILED', async () => {
     vi.mocked(core).getBooleanInput.mockReturnValue(true)
     // execute
-    vi.mocked(fetchJson).mockResolvedValueOnce({
-      testReport: {
-        status: 'WAITING'
-      }
-    })
-    vi.mocked(fetchJson).mockResolvedValueOnce({
-      status: 'FAILED'
-    })
+    vi.mocked(mockedClient.POST).mockResolvedValueOnce(
+      createMockExecuteResponse({
+        testReport: createMockTestReport({status: 'WAITING'})
+      }) as never
+    )
+    vi.mocked(mockedClient.GET).mockResolvedValueOnce(
+      createMockTestReportResponse({status: 'FAILED'})
+    )
 
     await executeAutomagically({pollingIntervalInMilliseconds: 1})
 
@@ -216,14 +204,12 @@ describe(executeAutomagically.name, () => {
   it('sets to failed if polling never stops', async () => {
     vi.mocked(core).getBooleanInput.mockReturnValue(true)
     // execute
-    vi.mocked(fetchJson).mockResolvedValueOnce({
-      testReport: {
-        status: 'WAITING'
-      }
-    })
-    vi.mocked(fetchJson).mockResolvedValue({
-      status: 'WAITING'
-    })
+    vi.mocked(mockedClient.POST).mockResolvedValueOnce(
+      createMockExecuteResponse({testReport: {status: 'WAITING'}}) as never
+    )
+    vi.mocked(mockedClient.GET).mockResolvedValue(
+      createMockTestReportResponse({status: 'WAITING'})
+    )
 
     await executeAutomagically({
       pollingIntervalInMilliseconds: 1,
