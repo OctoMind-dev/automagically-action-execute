@@ -39221,7 +39221,9 @@ const pushIfYmlsExist = async ({ sourceDir, client, testTargetId }) => {
             client,
             testTargetId,
             // https://docs.github.com/en/actions/reference/workflows-and-actions/variables
-            branchName: `refs/heads/${process.env.GITHUB_HEAD_REF}`,
+            branchName: process.env.GITHUB_HEAD_REF
+                ? `refs/heads/${process.env.GITHUB_HEAD_REF}`
+                : undefined,
             onError: error => {
                 if (error) {
                     core.setFailed(`error occurred when trying to push local ymls ${error}`);
