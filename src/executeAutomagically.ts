@@ -52,6 +52,8 @@ export const pushIfYmlsExist = async ({
       sourceDir,
       client,
       testTargetId,
+      // https://docs.github.com/en/actions/reference/workflows-and-actions/variables
+      branchName: `refs/heads/${process.env.GITHUB_HEAD_REF}`,
       onError: error => {
         if (error) {
           core.setFailed(

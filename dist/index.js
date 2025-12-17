@@ -8255,7 +8255,7 @@ var request = withDefaults(import_endpoint.endpoint, {
 
 /***/ }),
 
-/***/ 3962:
+/***/ 8798:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -8324,7 +8324,7 @@ async function saveConfig(newConfig) {
 
 /***/ }),
 
-/***/ 2881:
+/***/ 7213:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -9857,7 +9857,7 @@ exports.createDiscoveryResponse = zod.object({
 
 /***/ }),
 
-/***/ 9959:
+/***/ 2307:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -9867,8 +9867,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.logJson = exports.handleError = exports.client = exports.createClientFromUrlAndApiKey = exports.BASE_URL = void 0;
 const openapi_fetch_1 = __importDefault(__nccwpck_require__(3007));
-const config_1 = __nccwpck_require__(3962);
-const version_1 = __nccwpck_require__(8118);
+const config_1 = __nccwpck_require__(8798);
+const version_1 = __nccwpck_require__(9538);
 exports.BASE_URL = process.env.OCTOMIND_API_URL || "https://app.octomind.dev/api";
 const client = (0, openapi_fetch_1.default)({ baseUrl: exports.BASE_URL });
 exports.client = client;
@@ -9927,7 +9927,7 @@ exports.logJson = logJson;
 
 /***/ }),
 
-/***/ 3444:
+/***/ 5048:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -9977,7 +9977,7 @@ exports.checkForConsistency = checkForConsistency;
 
 /***/ }),
 
-/***/ 4520:
+/***/ 4372:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -10020,10 +10020,15 @@ const parseGitRemote = async () => {
 exports.parseGitRemote = parseGitRemote;
 const getDefaultBranch = async (allowedMethod = "symbolicRef+origin") => {
     if (allowedMethod === "symbolicRef+origin") {
-        const symbolicRef = (await (0, simple_git_1.simpleGit)().raw("symbolic-ref", "refs/remotes/origin/HEAD")).trim();
-        const symbolicRefBranch = symbolicRef.replace("refs/remotes/origin/", "refs/heads/");
-        if (symbolicRefBranch) {
-            return symbolicRefBranch;
+        try {
+            const symbolicRef = (await (0, simple_git_1.simpleGit)().raw("symbolic-ref", "refs/remotes/origin/HEAD")).trim();
+            const symbolicRefBranch = symbolicRef.replace("refs/remotes/origin/", "refs/heads/");
+            if (symbolicRefBranch) {
+                return symbolicRefBranch;
+            }
+        }
+        catch (e) {
+            console.warn("could not identify symbolic ref, falling back to origin parsing", e);
         }
     }
     const origin = await (0, simple_git_1.simpleGit)().remote(["show", "origin"]);
@@ -10054,7 +10059,8 @@ const getGitContext = async () => {
         };
         return ctx;
     }
-    catch {
+    catch (e) {
+        console.warn("could not identify git context, falling back to undefined", e);
         return undefined;
     }
 };
@@ -10063,21 +10069,22 @@ exports.getGitContext = getGitContext;
 
 /***/ }),
 
-/***/ 4854:
+/***/ 4882:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 var __webpack_unused_export__;
 
 __webpack_unused_export__ = ({ value: true });
 exports.V = void 0;
-const consistency_1 = __nccwpck_require__(3444);
-const git_1 = __nccwpck_require__(4520);
-const yml_1 = __nccwpck_require__(942);
+const consistency_1 = __nccwpck_require__(5048);
+const git_1 = __nccwpck_require__(4372);
+const yml_1 = __nccwpck_require__(4394);
 const push = async (options) => {
     const testCases = (0, yml_1.readTestCasesFromDir)(options.sourceDir);
     (0, consistency_1.checkForConsistency)(testCases);
     const context = await (0, git_1.getGitContext)();
-    const isDefaultBranch = context?.defaultBranch === context?.ref;
+    const refName = options.branchName ?? context?.ref;
+    const isDefaultBranch = !!context && context.defaultBranch === refName;
     const body = {
         testCases,
     };
@@ -10117,7 +10124,7 @@ const draftPush = async (body, options) => {
 
 /***/ }),
 
-/***/ 942:
+/***/ 4394:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -10129,7 +10136,7 @@ exports.cleanupFilesystem = exports.readTestCasesFromDir = exports.buildFilename
 const fs_1 = __importDefault(__nccwpck_require__(9896));
 const path_1 = __importDefault(__nccwpck_require__(6928));
 const yaml_1 = __importDefault(__nccwpck_require__(6159));
-const octomindExternalAPI_1 = __nccwpck_require__(2881);
+const octomindExternalAPI_1 = __nccwpck_require__(7213);
 const removeDiacritics = (str) => {
     // diacritics lead to issues in the file system afterward, cf. https://www.reddit.com/r/MacOS/comments/jhjv41/psa_beware_of_umlauts_and_other_accented/
     return str.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
@@ -10289,14 +10296,14 @@ exports.cleanupFilesystem = cleanupFilesystem;
 
 /***/ }),
 
-/***/ 8118:
+/***/ 9538:
 /***/ ((__unused_webpack_module, exports) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.version = void 0;
 // Generated by genversion.
-exports.version = "3.4.1";
+exports.version = "3.5.0";
 
 
 /***/ }),
@@ -39170,10 +39177,10 @@ var core = __nccwpck_require__(1635);
 var github = __nccwpck_require__(4903);
 ;// CONCATENATED MODULE: external "node:timers"
 const external_node_timers_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:timers");
-// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@3.4.1/node_modules/@octomind/octomind/dist/tools/client.js
-var tools_client = __nccwpck_require__(9959);
-// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@3.4.1/node_modules/@octomind/octomind/dist/tools/sync/push.js
-var push = __nccwpck_require__(4854);
+// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@3.5.0/node_modules/@octomind/octomind/dist/tools/client.js
+var tools_client = __nccwpck_require__(2307);
+// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@3.5.0/node_modules/@octomind/octomind/dist/tools/sync/push.js
+var push = __nccwpck_require__(4882);
 ;// CONCATENATED MODULE: external "node:fs"
 const external_node_fs_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:fs");
 // EXTERNAL MODULE: external "node:path"
@@ -39213,6 +39220,8 @@ const pushIfYmlsExist = async ({ sourceDir, client, testTargetId }) => {
             sourceDir,
             client,
             testTargetId,
+            // https://docs.github.com/en/actions/reference/workflows-and-actions/variables
+            branchName: `refs/heads/${process.env.GITHUB_HEAD_REF}`,
             onError: error => {
                 if (error) {
                     core.setFailed(`error occurred when trying to push local ymls ${error}`);

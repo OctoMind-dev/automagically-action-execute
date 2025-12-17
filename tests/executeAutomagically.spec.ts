@@ -247,7 +247,8 @@ describe(executeAutomagically.name, () => {
 
     expect(push).toHaveBeenCalledWith(
       expect.objectContaining({
-        sourceDir: join(process.cwd(), '.octomind')
+        sourceDir: join(process.cwd(), '.octomind'),
+        branchName: `refs/heads/${process.env.GITHUB_HEAD_REF}`
       })
     )
   })
