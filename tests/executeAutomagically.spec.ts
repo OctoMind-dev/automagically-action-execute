@@ -51,6 +51,7 @@ describe(executeAutomagically.name, () => {
 
     vi.mocked(core).getInput.mockImplementation(() => '')
     vi.mocked(fs).existsSync.mockReturnValue(false)
+    process.env.GITHUB_HEAD_REF = ''
   })
 
   it('includes environment name if defined', async () => {
@@ -247,7 +248,37 @@ describe(executeAutomagically.name, () => {
 
     expect(push).toHaveBeenCalledWith(
       expect.objectContaining({
-        sourceDir: join(process.cwd(), '.octomind')
+        sourceDir: join(process.cwd(), '.octomind'),
+        branchName: undefined
+      })
+    )
+  })
+
+  it('pushes with branch name if env variable is defined', async () => {
+    vi.mocked(fs).existsSync.mockReturnValue(true)
+    // @ts-expect-error overloaded method
+    vi.mocked(fs).readdirSync.mockReturnValue(['a.yaml'])
+
+    vi.mocked(core).getBooleanInput.mockReturnValue(true)
+    // execute
+    vi.mocked(mockedClient.POST).mockResolvedValueOnce(
+      createMockExecuteResponse({testReport: {status: 'WAITING'}}) as never
+    )
+
+    vi.mocked(mockedClient.GET).mockResolvedValue(
+      createMockTestReportResponse({status: 'PASSED'})
+    )
+    process.env.GITHUB_HEAD_REF = 'some-branch'
+
+    await executeAutomagically({
+      pollingIntervalInMilliseconds: 1,
+      maximumPollingTimeInMilliseconds: 5
+    })
+
+    expect(push).toHaveBeenCalledWith(
+      expect.objectContaining({
+        sourceDir: join(process.cwd(), '.octomind'),
+        branchName: `refs/heads/${process.env.GITHUB_HEAD_REF}`
       })
     )
   })
