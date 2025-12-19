@@ -15,8 +15,8 @@ importers:
         specifier: 6.0.1
         version: 6.0.1
       '@octomind/octomind':
-        specifier: 3.7.0
-        version: 3.7.0
+        specifier: 3.7.1
+        version: 3.7.1
     devDependencies:
       '@types/node':
         specifier: 25.0.3
@@ -544,8 +544,8 @@ packages:
   '@octokit/types@13.10.0':
     resolution: {integrity: sha512-ifLaO34EbbPj0Xgro4G5lP5asESjwHracYJvVaPIyXMuiuXLlhic3S47cBdTb+jfODkTE5YtGCLt3Ay3+J97sA==}
 
-  '@octomind/octomind@3.7.0':
-    resolution: {integrity: sha512-imvGGNAQnqvSwQg123OFkZcWADaXxxKWaJohwrG32pYti5duXcUKTe88omWUQVDf6JP7HN8fFOyyjitYFCty5w==}
+  '@octomind/octomind@3.7.1':
+    resolution: {integrity: sha512-lAJw1SyGI9hX/YvOqljxvFHEBZHq78cJcWjlWQRVhCMvHsNDWyIZDBUh+khoDqiIQtF5a6tSR1t8CjVZoHvZtw==}
     engines: {node: '>=20.0.0'}
     hasBin: true
 
@@ -2842,7 +2842,7 @@ snapshots:
     dependencies:
       '@octokit/openapi-types': 24.2.0
 
-  '@octomind/octomind@3.7.0':
+  '@octomind/octomind@3.7.1':
     dependencies:
       '@playwright/test': 1.56.1
       '@types/shell-quote': 1.7.5
