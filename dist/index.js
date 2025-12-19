@@ -8255,7 +8255,7 @@ var request = withDefaults(import_endpoint.endpoint, {
 
 /***/ }),
 
-/***/ 2917:
+/***/ 8147:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -8324,7 +8324,7 @@ async function saveConfig(newConfig) {
 
 /***/ }),
 
-/***/ 0:
+/***/ 6038:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -8363,7 +8363,7 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getNotificationsParams = exports.getTestReportsResponse = exports.getTestReportsResponseDataItemTestResultsItemBrowserDefault = exports.getTestReportsResponseDataItemTestResultsItemBreakpointDefault = exports.getTestReportsResponseDataItemBrowserDefault = exports.getTestReportsResponseDataItemBreakpointDefault = exports.getTestReportsQueryParams = exports.getTestReportsParams = exports.getTestReportResponse = exports.getTestReportResponseTestResultsItemBrowserDefault = exports.getTestReportResponseTestResultsItemBreakpointDefault = exports.getTestReportResponseBrowserDefault = exports.getTestReportResponseBreakpointDefault = exports.getTestReportParams = exports.deleteEnvironmentParams = exports.updateEnvironmentResponse = exports.updateEnvironmentBody = exports.updateEnvironmentParams = exports.getEnvironmentsResponse = exports.getEnvironmentsResponseItem = exports.getEnvironmentsParams = exports.createEnvironmentBody = exports.createEnvironmentParams = exports.getTestTargetConfigQueryParams = exports.getTestTargetConfigParams = exports.createBatchGenerationResponse = exports.createBatchGenerationBody = exports.createBatchGenerationParams = exports.executeTestsResponse = exports.executeTestsResponseTestReportTestResultsItemBrowserDefault = exports.executeTestsResponseTestReportTestResultsItemBreakpointDefault = exports.executeTestsResponseTestReportBrowserDefault = exports.executeTestsResponseTestReportBreakpointDefault = exports.executeTestsBody = exports.executeTestsBodyBrowserDefault = exports.executeTestsBodyBreakpointDefault = exports.executeTestsBodyTagsDefault = exports.executeTestsBodyEnvironmentNameDefault = exports.deleteTestTargetParams = exports.updateTestTargetResponse = exports.updateTestTargetBody = exports.updateTestTargetBodyTimeoutPerStepMax = exports.updateTestTargetBodyTimeoutPerStepMin = exports.updateTestTargetParams = exports.getTestTargetResponse = exports.getTestTargetParams = exports.createTestTargetResponse = exports.createTestTargetBody = exports.getTestTargetsResponse = exports.getTestTargetsResponseItem = void 0;
-exports.createDiscoveryResponse = exports.createDiscoveryBody = exports.createDiscoveryParams = exports.pushTestTargetDraftResponse = exports.pushTestTargetDraftBody = exports.pushTestTargetDraftBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = exports.pushTestTargetDraftBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = exports.pushTestTargetDraftParams = exports.pushTestTargetResponse = exports.pushTestTargetBody = exports.pushTestTargetBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = exports.pushTestTargetBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = exports.pushTestTargetParams = exports.getTestTargetPullDataResponse = exports.getTestTargetPullDataResponseTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = exports.getTestTargetPullDataResponseTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = exports.getTestTargetPullDataParams = exports.getTestCaseCodeResponse = exports.getTestCaseCodeQueryParams = exports.getTestCaseCodeParams = exports.updateTestCaseElementResponse = exports.updateTestCaseElementBody = exports.updateTestCaseElementParams = exports.deleteTestCaseResponse = exports.deleteTestCaseParams = exports.patchTestCaseResponse = exports.patchTestCaseBody = exports.patchTestCaseParams = exports.getTestCaseResponse = exports.getTestCaseParams = exports.getTestCasesResponse = exports.getTestCasesResponseItem = exports.getTestCasesQueryParams = exports.getTestCasesParams = exports.unregisterPrivateLocationResponse = exports.unregisterPrivateLocationBody = exports.registerPrivateLocationResponse = exports.registerPrivateLocationBody = exports.getPrivateLocationsResponse = exports.getPrivateLocationsResponseItem = exports.getNotificationsResponse = exports.getNotificationsResponseItem = void 0;
+exports.createDiscoveryResponse = exports.createDiscoveryBody = exports.createDiscoveryParams = exports.pushTestTargetDraftResponse = exports.pushTestTargetDraftBody = exports.pushTestTargetDraftBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = exports.pushTestTargetDraftBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = exports.pushTestTargetDraftParams = exports.pushTestTargetResponse = exports.pushTestTargetBody = exports.pushTestTargetBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = exports.pushTestTargetBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = exports.pushTestTargetParams = exports.getTestTargetCodeBody = exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = exports.getTestTargetCodeParams = exports.getTestTargetPullDataResponse = exports.getTestTargetPullDataResponseTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = exports.getTestTargetPullDataResponseTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = exports.getTestTargetPullDataParams = exports.getTestCaseCodeResponse = exports.getTestCaseCodeQueryParams = exports.getTestCaseCodeParams = exports.updateTestCaseElementResponse = exports.updateTestCaseElementBody = exports.updateTestCaseElementParams = exports.deleteTestCaseResponse = exports.deleteTestCaseParams = exports.patchTestCaseResponse = exports.patchTestCaseBody = exports.patchTestCaseParams = exports.getTestCaseResponse = exports.getTestCaseParams = exports.getTestCasesResponse = exports.getTestCasesResponseItem = exports.getTestCasesQueryParams = exports.getTestCasesParams = exports.unregisterPrivateLocationResponse = exports.unregisterPrivateLocationBody = exports.registerPrivateLocationResponse = exports.registerPrivateLocationBody = exports.getPrivateLocationsResponse = exports.getPrivateLocationsResponseItem = exports.getNotificationsResponse = exports.getNotificationsResponseItem = void 0;
 /**
  * Generated by orval v7.17.0 🍺
  * Do not edit manually.
@@ -8539,21 +8539,22 @@ exports.executeTestsBody = zod.object({
     "variablesToOverwrite": zod.record(zod.string(), zod.array(zod.string())).optional().describe('The variables to overwrite exclusively for this test run.'),
     "tags": zod.array(zod.string()).default(exports.executeTestsBodyTagsDefault).describe('The tags to filter the test cases by.'),
     "breakpoint": zod.enum(['MOBILE', 'TABLET', 'DESKTOP']).default(exports.executeTestsBodyBreakpointDefault).describe('The breakpoint to run the test cases against.'),
-    "browser": zod.enum(['CHROMIUM', 'FIREFOX', 'SAFARI']).default(exports.executeTestsBodyBrowserDefault).describe('The browser to run the test cases against.')
+    "browser": zod.enum(['CHROMIUM', 'FIREFOX', 'SAFARI']).default(exports.executeTestsBodyBrowserDefault).describe('The browser to run the test cases against.'),
+    "testCaseVersionIds": zod.array(zod.uuid()).optional()
 });
 exports.executeTestsResponseTestReportBreakpointDefault = "DESKTOP";
 exports.executeTestsResponseTestReportBrowserDefault = "CHROMIUM";
 exports.executeTestsResponseTestReportTestResultsItemBreakpointDefault = "DESKTOP";
 exports.executeTestsResponseTestReportTestResultsItemBrowserDefault = "CHROMIUM";
 exports.executeTestsResponse = zod.object({
-    "testReportUrl": zod.url().optional().describe('The URL where the test report can be accessed.'),
+    "testReportUrl": zod.url().describe('The URL where the test report can be accessed.'),
     "testReport": zod.object({
-        "id": zod.uuid().optional().describe('Unique identifier for the test report.'),
-        "testTargetId": zod.uuid().optional().describe('The unique identifier of the test target.'),
-        "createdAt": zod.iso.datetime({}).optional().describe('The timestamp when the test report was created.'),
-        "updatedAt": zod.iso.datetime({}).optional().describe('The timestamp when the test report was last updated.'),
-        "executionUrl": zod.url().optional().describe('The URL where the test execution was performed.'),
-        "status": zod.enum(['WAITING', 'PASSED', 'FAILED']).optional().describe('The status of the test report, will be WAITING as long as any result is running, FAILED if the report is done but has any failed result and PASSED if all test results are done and successful'),
+        "id": zod.uuid().describe('Unique identifier for the test report.'),
+        "testTargetId": zod.uuid().describe('The unique identifier of the test target.'),
+        "createdAt": zod.iso.datetime({}).describe('The timestamp when the test report was created.'),
+        "updatedAt": zod.iso.datetime({}).describe('The timestamp when the test report was last updated.'),
+        "executionUrl": zod.url().describe('The URL where the test execution was performed.'),
+        "status": zod.enum(['WAITING', 'PASSED', 'FAILED']).describe('The status of the test report, will be WAITING as long as any result is running, FAILED if the report is done but has any failed result and PASSED if all test results are done and successful'),
         "context": zod.union([zod.object({
                 "source": zod.enum(['github']).optional(),
                 "issueNumber": zod.number().nullish(),
@@ -8611,7 +8612,7 @@ exports.executeTestsResponse = zod.object({
                         "type": zod.enum(['USER']).optional(),
                         "userId": zod.string().optional()
                     })]).optional()
-            })]).optional(),
+            })]),
         "breakpoint": zod.enum(['MOBILE', 'TABLET', 'DESKTOP']).default(exports.executeTestsResponseTestReportBreakpointDefault).describe('The breakpoint to run the test cases against.'),
         "browser": zod.enum(['CHROMIUM', 'FIREFOX', 'SAFARI']).default(exports.executeTestsResponseTestReportBrowserDefault).describe('The browser to run the test cases against.'),
         "testResults": zod.array(zod.object({
@@ -8626,7 +8627,7 @@ exports.executeTestsResponse = zod.object({
             "breakpoint": zod.enum(['MOBILE', 'TABLET', 'DESKTOP']).default(exports.executeTestsResponseTestReportTestResultsItemBreakpointDefault).describe('The breakpoint to run the test cases against.'),
             "browser": zod.enum(['CHROMIUM', 'FIREFOX', 'SAFARI']).default(exports.executeTestsResponseTestReportTestResultsItemBrowserDefault).describe('The browser to run the test cases against.')
         })).optional()
-    }).optional()
+    })
 });
 /**
  * Creates a batch generation for the given test target.
@@ -8843,12 +8844,12 @@ exports.getTestReportResponseBrowserDefault = "CHROMIUM";
 exports.getTestReportResponseTestResultsItemBreakpointDefault = "DESKTOP";
 exports.getTestReportResponseTestResultsItemBrowserDefault = "CHROMIUM";
 exports.getTestReportResponse = zod.object({
-    "id": zod.uuid().optional().describe('Unique identifier for the test report.'),
-    "testTargetId": zod.uuid().optional().describe('The unique identifier of the test target.'),
-    "createdAt": zod.iso.datetime({}).optional().describe('The timestamp when the test report was created.'),
-    "updatedAt": zod.iso.datetime({}).optional().describe('The timestamp when the test report was last updated.'),
-    "executionUrl": zod.url().optional().describe('The URL where the test execution was performed.'),
-    "status": zod.enum(['WAITING', 'PASSED', 'FAILED']).optional().describe('The status of the test report, will be WAITING as long as any result is running, FAILED if the report is done but has any failed result and PASSED if all test results are done and successful'),
+    "id": zod.uuid().describe('Unique identifier for the test report.'),
+    "testTargetId": zod.uuid().describe('The unique identifier of the test target.'),
+    "createdAt": zod.iso.datetime({}).describe('The timestamp when the test report was created.'),
+    "updatedAt": zod.iso.datetime({}).describe('The timestamp when the test report was last updated.'),
+    "executionUrl": zod.url().describe('The URL where the test execution was performed.'),
+    "status": zod.enum(['WAITING', 'PASSED', 'FAILED']).describe('The status of the test report, will be WAITING as long as any result is running, FAILED if the report is done but has any failed result and PASSED if all test results are done and successful'),
     "context": zod.union([zod.object({
             "source": zod.enum(['github']).optional(),
             "issueNumber": zod.number().nullish(),
@@ -8906,7 +8907,7 @@ exports.getTestReportResponse = zod.object({
                     "type": zod.enum(['USER']).optional(),
                     "userId": zod.string().optional()
                 })]).optional()
-        })]).optional(),
+        })]),
     "breakpoint": zod.enum(['MOBILE', 'TABLET', 'DESKTOP']).default(exports.getTestReportResponseBreakpointDefault).describe('The breakpoint to run the test cases against.'),
     "browser": zod.enum(['CHROMIUM', 'FIREFOX', 'SAFARI']).default(exports.getTestReportResponseBrowserDefault).describe('The browser to run the test cases against.'),
     "testResults": zod.array(zod.object({
@@ -8945,12 +8946,12 @@ exports.getTestReportsResponseDataItemTestResultsItemBreakpointDefault = "DESKTO
 exports.getTestReportsResponseDataItemTestResultsItemBrowserDefault = "CHROMIUM";
 exports.getTestReportsResponse = zod.object({
     "data": zod.array(zod.object({
-        "id": zod.uuid().optional().describe('Unique identifier for the test report.'),
-        "testTargetId": zod.uuid().optional().describe('The unique identifier of the test target.'),
-        "createdAt": zod.iso.datetime({}).optional().describe('The timestamp when the test report was created.'),
-        "updatedAt": zod.iso.datetime({}).optional().describe('The timestamp when the test report was last updated.'),
-        "executionUrl": zod.url().optional().describe('The URL where the test execution was performed.'),
-        "status": zod.enum(['WAITING', 'PASSED', 'FAILED']).optional().describe('The status of the test report, will be WAITING as long as any result is running, FAILED if the report is done but has any failed result and PASSED if all test results are done and successful'),
+        "id": zod.uuid().describe('Unique identifier for the test report.'),
+        "testTargetId": zod.uuid().describe('The unique identifier of the test target.'),
+        "createdAt": zod.iso.datetime({}).describe('The timestamp when the test report was created.'),
+        "updatedAt": zod.iso.datetime({}).describe('The timestamp when the test report was last updated.'),
+        "executionUrl": zod.url().describe('The URL where the test execution was performed.'),
+        "status": zod.enum(['WAITING', 'PASSED', 'FAILED']).describe('The status of the test report, will be WAITING as long as any result is running, FAILED if the report is done but has any failed result and PASSED if all test results are done and successful'),
         "context": zod.union([zod.object({
                 "source": zod.enum(['github']).optional(),
                 "issueNumber": zod.number().nullish(),
@@ -9008,7 +9009,7 @@ exports.getTestReportsResponse = zod.object({
                         "type": zod.enum(['USER']).optional(),
                         "userId": zod.string().optional()
                     })]).optional()
-            })]).optional(),
+            })]),
         "breakpoint": zod.enum(['MOBILE', 'TABLET', 'DESKTOP']).default(exports.getTestReportsResponseDataItemBreakpointDefault).describe('The breakpoint to run the test cases against.'),
         "browser": zod.enum(['CHROMIUM', 'FIREFOX', 'SAFARI']).default(exports.getTestReportsResponseDataItemBrowserDefault).describe('The browser to run the test cases against.'),
         "testResults": zod.array(zod.object({
@@ -9351,7 +9352,8 @@ exports.getTestTargetPullDataResponse = zod.object({
         "version": zod.enum(['1']),
         "id": zod.uuid(),
         "type": zod.enum(['LOGIN', 'COOKIE_BANNER', 'LINK', 'TEARDOWN']).optional(),
-        "tagNames": zod.array(zod.string()),
+        "tagNames": zod.array(zod.string()).optional(),
+        "excludedEnvironmentNames": zod.array(zod.string()).optional(),
         "runStatus": zod.enum(['OFF', 'ON']),
         "dependencyId": zod.uuid().optional(),
         "teardownId": zod.uuid().optional(),
@@ -9501,6 +9503,172 @@ exports.getTestTargetPullDataResponse = zod.object({
     }))
 }).describe('schema for import and export of test cases');
 /**
+ * Retrieve the typescript code for a set of test cases in a zip file.
+ * @summary Retrieve the typescript code in a zip file for a set of yaml based test cases. This code can then be executed by playwright.
+ */
+exports.getTestTargetCodeParams = zod.object({
+    "testTargetId": zod.uuid().describe('The ID of the test target')
+});
+exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = "sandbox";
+exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = new RegExp('^[^ @]*$');
+exports.getTestTargetCodeBody = zod.object({
+    "executionUrl": zod.url(),
+    "environmentId": zod.uuid().optional(),
+    "testCases": zod.array(zod.object({
+        "version": zod.enum(['1']),
+        "id": zod.uuid(),
+        "type": zod.enum(['LOGIN', 'COOKIE_BANNER', 'LINK', 'TEARDOWN']).optional(),
+        "tagNames": zod.array(zod.string()).optional(),
+        "excludedEnvironmentNames": zod.array(zod.string()).optional(),
+        "runStatus": zod.enum(['OFF', 'ON']),
+        "dependencyId": zod.uuid().optional(),
+        "teardownId": zod.uuid().optional(),
+        "elements": zod.array(zod.object({
+            "interaction": zod.union([zod.object({
+                    "action": zod.enum(['CLICK']),
+                    "calledWith": zod.object({
+                        "button": zod.enum(['right', 'left', 'middle']).optional(),
+                        "double": zod.boolean().optional(),
+                        "force": zod.boolean().optional()
+                    }).nullish()
+                }), zod.object({
+                    "action": zod.enum(['ENTER_TEXT']),
+                    "calledWith": zod.string()
+                }), zod.object({
+                    "action": zod.enum(['SELECT_OPTION']),
+                    "calledWith": zod.union([zod.union([zod.union([zod.string(), zod.array(zod.string())]), zod.object({
+                                "value": zod.string().optional(),
+                                "label": zod.string().optional(),
+                                "index": zod.number().optional()
+                            })]), zod.array(zod.object({
+                            "value": zod.string().optional(),
+                            "label": zod.string().optional(),
+                            "index": zod.number().optional()
+                        }))]).nullable()
+                }), zod.object({
+                    "action": zod.enum(['GO_TO']),
+                    "calledWith": zod.string()
+                }), zod.object({
+                    "action": zod.enum(['KEY_PRESS']),
+                    "calledWith": zod.string()
+                }), zod.object({
+                    "action": zod.enum(['HOVER']),
+                    "calledWith": zod.unknown().nullish()
+                }), zod.object({
+                    "action": zod.enum(['UPLOAD']),
+                    "calledWith": zod.string()
+                }), zod.object({
+                    "action": zod.enum(['DOWNLOAD']),
+                    "calledWith": zod.union([zod.string(), zod.unknown()])
+                }), zod.object({
+                    "action": zod.enum(['DRAG_AND_DROP']),
+                    "calledWith": zod.tuple([zod.string(),
+                        zod.union([zod.string(), zod.unknown()])])
+                }), zod.object({
+                    "action": zod.enum(['TYPE_TEXT']),
+                    "calledWith": zod.object({
+                        "text": zod.string(),
+                        "delay": zod.number().optional()
+                    })
+                }), zod.object({
+                    "action": zod.enum(['EXTRACT']),
+                    "calledWith": zod.union([zod.object({
+                            "variableName": zod.string(),
+                            "type": zod.enum(['TEXT'])
+                        }), zod.object({
+                            "variableName": zod.string(),
+                            "type": zod.enum(['ATTRIBUTE']),
+                            "attributeName": zod.string()
+                        })])
+                }), zod.object({
+                    "action": zod.enum(['JAVASCRIPT']),
+                    "calledWith": zod.object({
+                        "code": zod.string(),
+                        "execType": zod.enum(['browser', 'sandbox']).default(exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault)
+                    })
+                }), zod.object({
+                    "action": zod.enum(['OPEN_EMAIL']),
+                    "calledWith": zod.object({
+                        "subjectContaining": zod.string().nullable(),
+                        "subAddress": zod.string().regex(exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp).nullable()
+                    }).nullish()
+                }), zod.object({
+                    "action": zod.enum(['CLOSE_PAGE']),
+                    "calledWith": zod.enum(['null']).nullable()
+                }), zod.object({
+                    "action": zod.enum(['WAIT_FOR']),
+                    "calledWith": zod.union([zod.object({
+                            "type": zod.enum(['load', 'domContentLoaded', 'networkIdle', 'nuxtHydration', 'nuxtDelayHydration', 'webComponentsHydration', 'preactHydration', 'qwikHydration'])
+                        }), zod.object({
+                            "type": zod.enum(['fixedTime']),
+                            "timeMilliseconds": zod.number().optional()
+                        }), zod.object({
+                            "type": zod.enum(['code']),
+                            "code": zod.string().optional()
+                        })]).nullish()
+                }), zod.object({
+                    "action": zod.enum(['SCROLL']),
+                    "calledWith": zod.object({
+                        "x": zod.number().optional(),
+                        "y": zod.number().optional()
+                    }).nullish()
+                })]).optional(),
+            "assertion": zod.union([zod.object({
+                    "expectation": zod.enum(['VISIBLE']),
+                    "calledWith": zod.unknown().nullish()
+                }), zod.object({
+                    "expectation": zod.enum(['NOT_VISIBLE']),
+                    "calledWith": zod.unknown().nullish()
+                }), zod.object({
+                    "expectation": zod.enum(['RESPONSE_OK']),
+                    "calledWith": zod.string()
+                }), zod.object({
+                    "expectation": zod.enum(['DISABLED']),
+                    "calledWith": zod.unknown().nullish()
+                }), zod.object({
+                    "expectation": zod.enum(['TO_HAVE_VALUE']),
+                    "calledWith": zod.union([zod.string(), zod.unknown()])
+                }), zod.object({
+                    "expectation": zod.enum(['TO_BE_CHECKED']),
+                    "calledWith": zod.unknown().nullish()
+                }), zod.object({
+                    "expectation": zod.enum(['NOT_TO_BE_CHECKED']),
+                    "calledWith": zod.unknown().nullish()
+                }), zod.object({
+                    "expectation": zod.enum(['TO_CONTAIN_TEXT']),
+                    "calledWith": zod.union([zod.string(), zod.unknown()])
+                }), zod.object({
+                    "expectation": zod.enum(['TO_HAVE_STYLE']),
+                    "calledWith": zod.tuple([zod.string(),
+                        zod.union([zod.string(), zod.unknown()])])
+                })]).optional(),
+            "ignoreFailure": zod.boolean().optional(),
+            "selectors": zod.array(zod.object({
+                "selectorType": zod.enum(['FRAME', 'CSS', 'TEXT', 'ROLE', 'ALT_TEXT', 'LABEL', 'TEST_ID', 'TITLE', 'PLACEHOLDER', 'FILTER', 'FIRST', 'LAST', 'NTH']),
+                "selector": zod.union([zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.enum(['alert', 'alertdialog', 'application', 'article', 'banner', 'blockquote', 'button', 'caption', 'cell', 'checkbox', 'code', 'columnheader', 'combobox', 'complementary', 'contentinfo', 'definition', 'deletion', 'dialog', 'directory', 'document', 'emphasis', 'feed', 'figure', 'form', 'generic', 'grid', 'gridcell', 'group', 'heading', 'img', 'insertion', 'link', 'list', 'listbox', 'listitem', 'log', 'main', 'marquee', 'math', 'meter', 'menu', 'menubar', 'menuitem', 'menuitemcheckbox', 'menuitemradio', 'navigation', 'none', 'note', 'option', 'paragraph', 'presentation', 'progressbar', 'radio', 'radiogroup', 'region', 'row', 'rowgroup', 'rowheader', 'scrollbar', 'search', 'searchbox', 'separator', 'slider', 'spinbutton', 'status', 'strong', 'subscript', 'superscript', 'switch', 'tab', 'table', 'tablist', 'tabpanel', 'term', 'textbox', 'time', 'timer', 'toolbar', 'tooltip', 'tree', 'treegrid', 'treeitem']), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.string(), zod.string(), zod.string()]).nullish(),
+                "options": zod.object({
+                    "name": zod.union([zod.string(), zod.unknown()]).optional(),
+                    "exact": zod.boolean().optional(),
+                    "checked": zod.boolean().optional(),
+                    "disabled": zod.boolean().optional(),
+                    "expanded": zod.boolean().optional(),
+                    "includeHidden": zod.boolean().optional(),
+                    "level": zod.number().optional(),
+                    "pressed": zod.boolean().optional(),
+                    "selected": zod.boolean().optional(),
+                    "hasText": zod.union([zod.string(), zod.unknown()]).optional(),
+                    "hasNotText": zod.union([zod.string(), zod.unknown()]).optional()
+                }).nullish()
+            }))
+        })),
+        "description": zod.string(),
+        "entryPointUrlPath": zod.string().optional(),
+        "folderName": zod.string().optional(),
+        "externalId": zod.string().optional(),
+        "prompt": zod.string()
+    }))
+}).describe('schema for export of test cases as code');
+/**
  * Push all test cases from a local representation to a test target.
  * @summary Pushes all test cases with the specified schema to the test target. There is also a "opposite" endpoint to pull the files back to the local machine.
  */
@@ -9514,7 +9682,8 @@ exports.pushTestTargetBody = zod.object({
         "version": zod.enum(['1']),
         "id": zod.uuid(),
         "type": zod.enum(['LOGIN', 'COOKIE_BANNER', 'LINK', 'TEARDOWN']).optional(),
-        "tagNames": zod.array(zod.string()),
+        "tagNames": zod.array(zod.string()).optional(),
+        "excludedEnvironmentNames": zod.array(zod.string()).optional(),
         "runStatus": zod.enum(['OFF', 'ON']),
         "dependencyId": zod.uuid().optional(),
         "teardownId": zod.uuid().optional(),
@@ -9664,7 +9833,8 @@ exports.pushTestTargetBody = zod.object({
     }))
 }).describe('schema for import and export of test cases');
 exports.pushTestTargetResponse = zod.object({
-    "success": zod.boolean().optional()
+    "success": zod.boolean(),
+    "versionIds": zod.array(zod.uuid()).describe('List of test case IDs that were pushed to the test target')
 });
 /**
  * Push all test cases from a local representation to a test target as a draft.
@@ -9680,7 +9850,8 @@ exports.pushTestTargetDraftBody = zod.object({
         "version": zod.enum(['1']),
         "id": zod.uuid(),
         "type": zod.enum(['LOGIN', 'COOKIE_BANNER', 'LINK', 'TEARDOWN']).optional(),
-        "tagNames": zod.array(zod.string()),
+        "tagNames": zod.array(zod.string()).optional(),
+        "excludedEnvironmentNames": zod.array(zod.string()).optional(),
         "runStatus": zod.enum(['OFF', 'ON']),
         "dependencyId": zod.uuid().optional(),
         "teardownId": zod.uuid().optional(),
@@ -9830,7 +10001,8 @@ exports.pushTestTargetDraftBody = zod.object({
     }))
 }).describe('schema for import and export of test cases');
 exports.pushTestTargetDraftResponse = zod.object({
-    "success": zod.boolean().optional()
+    "success": zod.boolean(),
+    "versionIds": zod.array(zod.uuid()).describe('List of test case IDs that were pushed to the test target')
 });
 /**
  * Create a new test case discovery with a given name and prompt
@@ -9857,7 +10029,7 @@ exports.createDiscoveryResponse = zod.object({
 
 /***/ }),
 
-/***/ 6143:
+/***/ 6750:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -9867,8 +10039,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.logJson = exports.handleError = exports.client = exports.createClientFromUrlAndApiKey = exports.BASE_URL = void 0;
 const openapi_fetch_1 = __importDefault(__nccwpck_require__(3007));
-const config_1 = __nccwpck_require__(2917);
-const version_1 = __nccwpck_require__(8575);
+const config_1 = __nccwpck_require__(8147);
+const version_1 = __nccwpck_require__(7185);
 exports.BASE_URL = process.env.OCTOMIND_API_URL || "https://app.octomind.dev/api";
 const client = (0, openapi_fetch_1.default)({ baseUrl: exports.BASE_URL });
 exports.client = client;
@@ -9927,7 +10099,7 @@ exports.logJson = logJson;
 
 /***/ }),
 
-/***/ 4407:
+/***/ 3565:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -9977,7 +10149,7 @@ exports.checkForConsistency = checkForConsistency;
 
 /***/ }),
 
-/***/ 2011:
+/***/ 8057:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -10075,16 +10247,16 @@ exports.getGitContext = getGitContext;
 
 /***/ }),
 
-/***/ 8231:
+/***/ 5529:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 var __webpack_unused_export__;
 
 __webpack_unused_export__ = ({ value: true });
 exports.V = void 0;
-const consistency_1 = __nccwpck_require__(4407);
-const git_1 = __nccwpck_require__(2011);
-const yml_1 = __nccwpck_require__(1993);
+const consistency_1 = __nccwpck_require__(3565);
+const git_1 = __nccwpck_require__(8057);
+const yml_1 = __nccwpck_require__(8907);
 const push = async (options) => {
     const testCases = (0, yml_1.readTestCasesFromDir)(options.sourceDir);
     (0, consistency_1.checkForConsistency)(testCases);
@@ -10130,7 +10302,7 @@ const draftPush = async (body, options) => {
 
 /***/ }),
 
-/***/ 1993:
+/***/ 8907:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -10142,7 +10314,7 @@ exports.cleanupFilesystem = exports.readTestCasesFromDir = exports.buildFilename
 const fs_1 = __importDefault(__nccwpck_require__(9896));
 const path_1 = __importDefault(__nccwpck_require__(6928));
 const yaml_1 = __importDefault(__nccwpck_require__(6159));
-const octomindExternalAPI_1 = __nccwpck_require__(0);
+const octomindExternalAPI_1 = __nccwpck_require__(6038);
 const removeDiacritics = (str) => {
     // diacritics lead to issues in the file system afterward, cf. https://www.reddit.com/r/MacOS/comments/jhjv41/psa_beware_of_umlauts_and_other_accented/
     return str.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
@@ -10179,7 +10351,7 @@ const writeYaml = (data, destination) => {
         const folderName = (0, exports.buildFolderName)(testCase, data.testCases, destination);
         const testCaseFilename = (0, exports.buildFilename)(testCase, folderName);
         fs_1.default.mkdirSync(folderName, { recursive: true });
-        fs_1.default.writeFileSync(path_1.default.join(folderName, testCaseFilename), yaml_1.default.stringify(testCase));
+        fs_1.default.writeFileSync(path_1.default.join(folderName, testCaseFilename), `# yaml-language-server: $schema=https://app.octomind.dev/schemas/SyncTestCaseSchema.json\n${yaml_1.default.stringify(testCase)}`);
     }
 };
 exports.writeYaml = writeYaml;
@@ -10240,6 +10412,7 @@ const collectYamlFiles = (startDir) => {
             entries = fs_1.default.readdirSync(current, { withFileTypes: true });
         }
         catch {
+            current = stack.pop();
             continue;
         }
         for (const entry of entries) {
@@ -10302,14 +10475,14 @@ exports.cleanupFilesystem = cleanupFilesystem;
 
 /***/ }),
 
-/***/ 8575:
+/***/ 7185:
 /***/ ((__unused_webpack_module, exports) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.version = void 0;
 // Generated by genversion.
-exports.version = "3.5.1";
+exports.version = "3.7.1";
 
 
 /***/ }),
@@ -39183,10 +39356,10 @@ var core = __nccwpck_require__(1635);
 var github = __nccwpck_require__(4903);
 ;// CONCATENATED MODULE: external "node:timers"
 const external_node_timers_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:timers");
-// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@3.5.1/node_modules/@octomind/octomind/dist/tools/client.js
-var tools_client = __nccwpck_require__(6143);
-// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@3.5.1/node_modules/@octomind/octomind/dist/tools/sync/push.js
-var push = __nccwpck_require__(8231);
+// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@3.7.1/node_modules/@octomind/octomind/dist/tools/client.js
+var tools_client = __nccwpck_require__(6750);
+// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@3.7.1/node_modules/@octomind/octomind/dist/tools/sync/push.js
+var push = __nccwpck_require__(5529);
 ;// CONCATENATED MODULE: external "node:fs"
 const external_node_fs_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:fs");
 // EXTERNAL MODULE: external "node:path"
