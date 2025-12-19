@@ -35,7 +35,7 @@
     "rimraf": "6.1.2",
     "typescript": "5.7.3",
     "vite": "7.3.0",
-    "vite-tsconfig-paths": "6.0.2",
+    "vite-tsconfig-paths": "6.0.3",
     "vitest": "4.0.16",
     "vitest-mock-extended": "3.1.0"
   }
