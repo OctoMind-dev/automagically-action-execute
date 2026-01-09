@@ -19,7 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "@actions/core": "2.0.2",
-    "@actions/github": "6.0.1",
+    "@actions/github": "7.0.0",
     "@octomind/octomind": "3.7.1"
   },
   "devDependencies": {
