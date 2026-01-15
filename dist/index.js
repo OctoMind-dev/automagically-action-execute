@@ -7543,7 +7543,7 @@ var request = withDefaults(import_endpoint.endpoint, {
 
 /***/ }),
 
-/***/ 8147:
+/***/ 31:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -7612,7 +7612,7 @@ async function saveConfig(newConfig) {
 
 /***/ }),
 
-/***/ 6038:
+/***/ 5994:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -7651,15 +7651,15 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getNotificationsParams = exports.getTestReportsResponse = exports.getTestReportsResponseDataItemTestResultsItemBrowserDefault = exports.getTestReportsResponseDataItemTestResultsItemBreakpointDefault = exports.getTestReportsResponseDataItemBrowserDefault = exports.getTestReportsResponseDataItemBreakpointDefault = exports.getTestReportsQueryParams = exports.getTestReportsParams = exports.getTestReportResponse = exports.getTestReportResponseTestResultsItemBrowserDefault = exports.getTestReportResponseTestResultsItemBreakpointDefault = exports.getTestReportResponseBrowserDefault = exports.getTestReportResponseBreakpointDefault = exports.getTestReportParams = exports.deleteEnvironmentParams = exports.updateEnvironmentResponse = exports.updateEnvironmentBody = exports.updateEnvironmentParams = exports.getEnvironmentsResponse = exports.getEnvironmentsResponseItem = exports.getEnvironmentsParams = exports.createEnvironmentBody = exports.createEnvironmentParams = exports.getTestTargetConfigQueryParams = exports.getTestTargetConfigParams = exports.createBatchGenerationResponse = exports.createBatchGenerationBody = exports.createBatchGenerationParams = exports.executeTestsResponse = exports.executeTestsResponseTestReportTestResultsItemBrowserDefault = exports.executeTestsResponseTestReportTestResultsItemBreakpointDefault = exports.executeTestsResponseTestReportBrowserDefault = exports.executeTestsResponseTestReportBreakpointDefault = exports.executeTestsBody = exports.executeTestsBodyBrowserDefault = exports.executeTestsBodyBreakpointDefault = exports.executeTestsBodyTagsDefault = exports.executeTestsBodyEnvironmentNameDefault = exports.deleteTestTargetParams = exports.updateTestTargetResponse = exports.updateTestTargetBody = exports.updateTestTargetBodyTimeoutPerStepMax = exports.updateTestTargetBodyTimeoutPerStepMin = exports.updateTestTargetParams = exports.getTestTargetResponse = exports.getTestTargetParams = exports.createTestTargetResponse = exports.createTestTargetBody = exports.getTestTargetsResponse = exports.getTestTargetsResponseItem = void 0;
-exports.createDiscoveryResponse = exports.createDiscoveryBody = exports.createDiscoveryParams = exports.pushTestTargetDraftResponse = exports.pushTestTargetDraftBody = exports.pushTestTargetDraftBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = exports.pushTestTargetDraftBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = exports.pushTestTargetDraftParams = exports.pushTestTargetResponse = exports.pushTestTargetBody = exports.pushTestTargetBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = exports.pushTestTargetBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = exports.pushTestTargetParams = exports.getTestTargetCodeBody = exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = exports.getTestTargetCodeParams = exports.getTestTargetPullDataResponse = exports.getTestTargetPullDataResponseTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = exports.getTestTargetPullDataResponseTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = exports.getTestTargetPullDataParams = exports.getTestCaseCodeResponse = exports.getTestCaseCodeQueryParams = exports.getTestCaseCodeParams = exports.updateTestCaseElementResponse = exports.updateTestCaseElementBody = exports.updateTestCaseElementParams = exports.deleteTestCaseResponse = exports.deleteTestCaseParams = exports.patchTestCaseResponse = exports.patchTestCaseBody = exports.patchTestCaseParams = exports.getTestCaseResponse = exports.getTestCaseParams = exports.getTestCasesResponse = exports.getTestCasesResponseItem = exports.getTestCasesQueryParams = exports.getTestCasesParams = exports.unregisterPrivateLocationResponse = exports.unregisterPrivateLocationBody = exports.registerPrivateLocationResponse = exports.registerPrivateLocationBody = exports.getPrivateLocationsResponse = exports.getPrivateLocationsResponseItem = exports.getNotificationsResponse = exports.getNotificationsResponseItem = void 0;
+exports.createDiscoveryResponse = exports.createDiscoveryBody = exports.createDiscoveryParams = exports.getTestCaseVersionResponse = exports.getTestCaseVersionResponseElementsItemInteractionCalledWithSubAddressRegExp = exports.getTestCaseVersionResponseElementsItemInteractionCalledWithExecTypeDefault = exports.getTestCaseVersionParams = exports.pushTestTargetDraftResponse = exports.pushTestTargetDraftBody = exports.pushTestTargetDraftBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = exports.pushTestTargetDraftBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = exports.pushTestTargetDraftParams = exports.pushTestTargetResponse = exports.pushTestTargetBody = exports.pushTestTargetBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = exports.pushTestTargetBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = exports.pushTestTargetParams = exports.getTestTargetCodeBody = exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = exports.getTestTargetCodeParams = exports.getTestTargetPullDataResponse = exports.getTestTargetPullDataResponseTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = exports.getTestTargetPullDataResponseTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = exports.getTestTargetPullDataParams = exports.getTestCaseCodeResponse = exports.getTestCaseCodeQueryParams = exports.getTestCaseCodeParams = exports.updateTestCaseElementResponse = exports.updateTestCaseElementBody = exports.updateTestCaseElementParams = exports.deleteTestCaseResponse = exports.deleteTestCaseParams = exports.patchTestCaseResponse = exports.patchTestCaseBody = exports.patchTestCaseParams = exports.getTestCaseResponse = exports.getTestCaseParams = exports.getTestCasesResponse = exports.getTestCasesResponseItem = exports.getTestCasesQueryParams = exports.getTestCasesParams = exports.unregisterPrivateLocationResponse = exports.unregisterPrivateLocationBody = exports.registerPrivateLocationResponse = exports.registerPrivateLocationBody = exports.getPrivateLocationsResponse = exports.getPrivateLocationsResponseItem = exports.getNotificationsResponse = exports.getNotificationsResponseItem = void 0;
 /**
- * Generated by orval v7.17.0 🍺
+ * Generated by orval v7.18.0 🍺
  * Do not edit manually.
  * Octomind external API
  * Octomind API that allows you to execute test cases, fetch reports and register private location workers by providing a URL and an ID.
  * OpenAPI spec version: 1.0.0
  */
-const zod = __importStar(__nccwpck_require__(8661));
+const zod = __importStar(__nccwpck_require__(4466));
 /**
  * Gets a list of test targets.
  * @summary Retrieve all test targets
@@ -7906,7 +7906,7 @@ exports.executeTestsResponse = zod.object({
         "testResults": zod.array(zod.object({
             "id": zod.uuid().optional().describe('Unique identifier for the test result.'),
             "testTargetId": zod.uuid().optional().describe('Unique identifier of the test report this result belongs to.'),
-            "testCaseId": zod.uuid().optional().describe('Unique identifier of the test case this result belongs to.'),
+            "testCaseVersionId": zod.uuid().optional().describe('Unique identifier of the test case version this result belongs to.'),
             "createdAt": zod.iso.datetime({}).optional().describe('The timestamp when the test result was created.'),
             "updatedAt": zod.iso.datetime({}).optional().describe('The timestamp when the test result was last updated.'),
             "status": zod.enum(['WAITING', 'PASSED', 'FAILED', 'ERROR']).optional().describe('The status of the specific test result, will be WAITING as long as the result is running, FAILED if the execution failed, PASSED if it succeeded, and ERROR if an internal error occurred.'),
@@ -8037,7 +8037,7 @@ exports.getEnvironmentsParams = zod.object({
 });
 exports.getEnvironmentsResponseItem = zod.object({
     "id": zod.uuid(),
-    "name": zod.enum(['DEFAULT', 'ADDITIONAL']),
+    "name": zod.string(),
     "testTargetId": zod.uuid(),
     "updatedAt": zod.iso.datetime({}).optional(),
     "type": zod.enum(['DEFAULT', 'ADDITIONAL']),
@@ -8087,7 +8087,7 @@ exports.updateEnvironmentBody = zod.object({
 });
 exports.updateEnvironmentResponse = zod.object({
     "id": zod.uuid(),
-    "name": zod.enum(['DEFAULT', 'ADDITIONAL']),
+    "name": zod.string(),
     "testTargetId": zod.uuid(),
     "updatedAt": zod.iso.datetime({}).optional(),
     "type": zod.enum(['DEFAULT', 'ADDITIONAL']),
@@ -8201,7 +8201,7 @@ exports.getTestReportResponse = zod.object({
     "testResults": zod.array(zod.object({
         "id": zod.uuid().optional().describe('Unique identifier for the test result.'),
         "testTargetId": zod.uuid().optional().describe('Unique identifier of the test report this result belongs to.'),
-        "testCaseId": zod.uuid().optional().describe('Unique identifier of the test case this result belongs to.'),
+        "testCaseVersionId": zod.uuid().optional().describe('Unique identifier of the test case version this result belongs to.'),
         "createdAt": zod.iso.datetime({}).optional().describe('The timestamp when the test result was created.'),
         "updatedAt": zod.iso.datetime({}).optional().describe('The timestamp when the test result was last updated.'),
         "status": zod.enum(['WAITING', 'PASSED', 'FAILED', 'ERROR']).optional().describe('The status of the specific test result, will be WAITING as long as the result is running, FAILED if the execution failed, PASSED if it succeeded, and ERROR if an internal error occurred.'),
@@ -8303,7 +8303,7 @@ exports.getTestReportsResponse = zod.object({
         "testResults": zod.array(zod.object({
             "id": zod.uuid().optional().describe('Unique identifier for the test result.'),
             "testTargetId": zod.uuid().optional().describe('Unique identifier of the test report this result belongs to.'),
-            "testCaseId": zod.uuid().optional().describe('Unique identifier of the test case this result belongs to.'),
+            "testCaseVersionId": zod.uuid().optional().describe('Unique identifier of the test case version this result belongs to.'),
             "createdAt": zod.iso.datetime({}).optional().describe('The timestamp when the test result was created.'),
             "updatedAt": zod.iso.datetime({}).optional().describe('The timestamp when the test result was last updated.'),
             "status": zod.enum(['WAITING', 'PASSED', 'FAILED', 'ERROR']).optional().describe('The status of the specific test result, will be WAITING as long as the result is running, FAILED if the execution failed, PASSED if it succeeded, and ERROR if an internal error occurred.'),
@@ -8378,7 +8378,7 @@ exports.getTestCasesParams = zod.object({
     "testTargetId": zod.uuid().describe('The ID of the test target')
 });
 exports.getTestCasesQueryParams = zod.object({
-    "filter": zod.string().optional().describe('JSON string containing filter criteria for test cases. The filter supports the following fields:\n- id: Filter by test case ID\n- testTargetId: Filter by test target ID\n- description: Filter by test case description\n- status: Filter by test case status (ENABLED, DISABLED, DRAFT, OUTDATED, DELETED, PROVISIONAL)\n- runStatus: Filter by run status (ON, OFF)\n- folderId: Filter by folder ID\n- externalId: Filter by external ID\n- AND: Logical AND operator for combining multiple conditions\n- OR: Logical OR operator for combining multiple conditions\n- NOT: Logical NOT operator for negating conditions\n')
+    "filter": zod.string().optional().describe('JSON string containing filter criteria for test cases. The filter supports the following fields:\n- testTargetId: Filter by test target ID\n- description: Filter by test case description\n- status: Filter by test case status (ENABLED, DISABLED, DRAFT, OUTDATED, DELETED, PROVISIONAL)\n- runStatus: Filter by run status (ON, OFF)\n- folderId: Filter by folder ID\n- externalId: Filter by external ID\n- AND: Logical AND operator for combining multiple conditions\n- OR: Logical OR operator for combining multiple conditions\n- NOT: Logical NOT operator for negating conditions\n')
 });
 exports.getTestCasesResponseItem = zod.object({
     "version": zod.enum(['1']).optional().describe('The version of the test case response.'),
@@ -8787,12 +8787,13 @@ exports.getTestTargetPullDataResponse = zod.object({
         "entryPointUrlPath": zod.string().optional(),
         "folderName": zod.string().optional(),
         "externalId": zod.string().optional(),
-        "prompt": zod.string()
+        "prompt": zod.string(),
+        "localEditingStatus": zod.enum(['IN_PROGRESS', 'DONE', 'CANCELLED']).optional()
     }))
 }).describe('schema for import and export of test cases');
 /**
- * Retrieve the typescript code for a set of test cases in a zip file.
- * @summary Retrieve the typescript code in a zip file for a set of yaml based test cases. This code can then be executed by playwright.
+ * Retrieve the typescript code in a zip file for a set of yaml based test cases. This code can then be executed by playwright.
+ * @summary Get TestSuite code
  */
 exports.getTestTargetCodeParams = zod.object({
     "testTargetId": zod.uuid().describe('The ID of the test target')
@@ -8953,12 +8954,13 @@ exports.getTestTargetCodeBody = zod.object({
         "entryPointUrlPath": zod.string().optional(),
         "folderName": zod.string().optional(),
         "externalId": zod.string().optional(),
-        "prompt": zod.string()
+        "prompt": zod.string(),
+        "localEditingStatus": zod.enum(['IN_PROGRESS', 'DONE', 'CANCELLED']).optional()
     }))
 }).describe('schema for export of test cases as code');
 /**
- * Push all test cases from a local representation to a test target.
- * @summary Pushes all test cases with the specified schema to the test target. There is also a "opposite" endpoint to pull the files back to the local machine.
+ * Pushes all test cases with the specified schema to the test target. There is also a "opposite" endpoint to pull the files back to the local machine.
+ * @summary Push test target
  */
 exports.pushTestTargetParams = zod.object({
     "testTargetId": zod.uuid().describe('The ID of the test target')
@@ -9117,16 +9119,17 @@ exports.pushTestTargetBody = zod.object({
         "entryPointUrlPath": zod.string().optional(),
         "folderName": zod.string().optional(),
         "externalId": zod.string().optional(),
-        "prompt": zod.string()
+        "prompt": zod.string(),
+        "localEditingStatus": zod.enum(['IN_PROGRESS', 'DONE', 'CANCELLED']).optional()
     }))
 }).describe('schema for import and export of test cases');
 exports.pushTestTargetResponse = zod.object({
     "success": zod.boolean(),
-    "versionIds": zod.array(zod.uuid()).describe('List of test case IDs that were pushed to the test target')
+    "versionIds": zod.array(zod.uuid())
 });
 /**
  * Push all test cases from a local representation to a test target as a draft.
- * @summary Pushes all test cases with the specified schema to the test target as a draft. Useful to execute test cases in the cloud on a branch.
+ * @summary Push draft test target
  */
 exports.pushTestTargetDraftParams = zod.object({
     "testTargetId": zod.uuid().describe('The ID of the test target')
@@ -9285,13 +9288,186 @@ exports.pushTestTargetDraftBody = zod.object({
         "entryPointUrlPath": zod.string().optional(),
         "folderName": zod.string().optional(),
         "externalId": zod.string().optional(),
-        "prompt": zod.string()
+        "prompt": zod.string(),
+        "localEditingStatus": zod.enum(['IN_PROGRESS', 'DONE', 'CANCELLED']).optional()
     }))
 }).describe('schema for import and export of test cases');
 exports.pushTestTargetDraftResponse = zod.object({
     "success": zod.boolean(),
-    "versionIds": zod.array(zod.uuid()).describe('List of test case IDs that were pushed to the test target')
+    "versionIds": zod.array(zod.uuid()).describe('List of test case IDs that were pushed to the test target'),
+    "syncDataByStableId": zod.record(zod.string(), zod.object({
+        "versionId": zod.uuid().describe('The version ID of the pushed test case'),
+        "testResultId": zod.uuid().optional().describe('The test result ID if a test result was cloned from the predecessor')
+    })).describe('Sync data per stable id that were pushed to the test target')
 });
+/**
+ * Get detailed information about a specific version of a test case, including its local editing status.
+ * @summary Retrieve a specific test case version
+ */
+exports.getTestCaseVersionParams = zod.object({
+    "testTargetId": zod.uuid().describe('The ID of the test target'),
+    "testCaseId": zod.uuid().describe('The ID of the test case'),
+    "versionId": zod.uuid().describe('The version ID of the test case')
+});
+exports.getTestCaseVersionResponseElementsItemInteractionCalledWithExecTypeDefault = "sandbox";
+exports.getTestCaseVersionResponseElementsItemInteractionCalledWithSubAddressRegExp = new RegExp('^[^ @]*$');
+exports.getTestCaseVersionResponse = zod.object({
+    "version": zod.enum(['1']),
+    "id": zod.uuid(),
+    "type": zod.enum(['LOGIN', 'COOKIE_BANNER', 'LINK', 'TEARDOWN']).optional(),
+    "tagNames": zod.array(zod.string()).optional(),
+    "excludedEnvironmentNames": zod.array(zod.string()).optional(),
+    "runStatus": zod.enum(['OFF', 'ON']),
+    "dependencyId": zod.uuid().optional(),
+    "teardownId": zod.uuid().optional(),
+    "elements": zod.array(zod.object({
+        "interaction": zod.union([zod.object({
+                "action": zod.enum(['CLICK']),
+                "calledWith": zod.object({
+                    "button": zod.enum(['right', 'left', 'middle']).optional(),
+                    "double": zod.boolean().optional(),
+                    "force": zod.boolean().optional()
+                }).nullish()
+            }), zod.object({
+                "action": zod.enum(['ENTER_TEXT']),
+                "calledWith": zod.string()
+            }), zod.object({
+                "action": zod.enum(['SELECT_OPTION']),
+                "calledWith": zod.union([zod.union([zod.union([zod.string(), zod.array(zod.string())]), zod.object({
+                            "value": zod.string().optional(),
+                            "label": zod.string().optional(),
+                            "index": zod.number().optional()
+                        })]), zod.array(zod.object({
+                        "value": zod.string().optional(),
+                        "label": zod.string().optional(),
+                        "index": zod.number().optional()
+                    }))]).nullable()
+            }), zod.object({
+                "action": zod.enum(['GO_TO']),
+                "calledWith": zod.string()
+            }), zod.object({
+                "action": zod.enum(['KEY_PRESS']),
+                "calledWith": zod.string()
+            }), zod.object({
+                "action": zod.enum(['HOVER']),
+                "calledWith": zod.unknown().nullish()
+            }), zod.object({
+                "action": zod.enum(['UPLOAD']),
+                "calledWith": zod.string()
+            }), zod.object({
+                "action": zod.enum(['DOWNLOAD']),
+                "calledWith": zod.union([zod.string(), zod.unknown()])
+            }), zod.object({
+                "action": zod.enum(['DRAG_AND_DROP']),
+                "calledWith": zod.tuple([zod.string(),
+                    zod.union([zod.string(), zod.unknown()])])
+            }), zod.object({
+                "action": zod.enum(['TYPE_TEXT']),
+                "calledWith": zod.object({
+                    "text": zod.string(),
+                    "delay": zod.number().optional()
+                })
+            }), zod.object({
+                "action": zod.enum(['EXTRACT']),
+                "calledWith": zod.union([zod.object({
+                        "variableName": zod.string(),
+                        "type": zod.enum(['TEXT'])
+                    }), zod.object({
+                        "variableName": zod.string(),
+                        "type": zod.enum(['ATTRIBUTE']),
+                        "attributeName": zod.string()
+                    })])
+            }), zod.object({
+                "action": zod.enum(['JAVASCRIPT']),
+                "calledWith": zod.object({
+                    "code": zod.string(),
+                    "execType": zod.enum(['browser', 'sandbox']).default(exports.getTestCaseVersionResponseElementsItemInteractionCalledWithExecTypeDefault)
+                })
+            }), zod.object({
+                "action": zod.enum(['OPEN_EMAIL']),
+                "calledWith": zod.object({
+                    "subjectContaining": zod.string().nullable(),
+                    "subAddress": zod.string().regex(exports.getTestCaseVersionResponseElementsItemInteractionCalledWithSubAddressRegExp).nullable()
+                }).nullish()
+            }), zod.object({
+                "action": zod.enum(['CLOSE_PAGE']),
+                "calledWith": zod.enum(['null']).nullable()
+            }), zod.object({
+                "action": zod.enum(['WAIT_FOR']),
+                "calledWith": zod.union([zod.object({
+                        "type": zod.enum(['load', 'domContentLoaded', 'networkIdle', 'nuxtHydration', 'nuxtDelayHydration', 'webComponentsHydration', 'preactHydration', 'qwikHydration'])
+                    }), zod.object({
+                        "type": zod.enum(['fixedTime']),
+                        "timeMilliseconds": zod.number().optional()
+                    }), zod.object({
+                        "type": zod.enum(['code']),
+                        "code": zod.string().optional()
+                    })]).nullish()
+            }), zod.object({
+                "action": zod.enum(['SCROLL']),
+                "calledWith": zod.object({
+                    "x": zod.number().optional(),
+                    "y": zod.number().optional()
+                }).nullish()
+            })]).optional(),
+        "assertion": zod.union([zod.object({
+                "expectation": zod.enum(['VISIBLE']),
+                "calledWith": zod.unknown().nullish()
+            }), zod.object({
+                "expectation": zod.enum(['NOT_VISIBLE']),
+                "calledWith": zod.unknown().nullish()
+            }), zod.object({
+                "expectation": zod.enum(['RESPONSE_OK']),
+                "calledWith": zod.string()
+            }), zod.object({
+                "expectation": zod.enum(['DISABLED']),
+                "calledWith": zod.unknown().nullish()
+            }), zod.object({
+                "expectation": zod.enum(['TO_HAVE_VALUE']),
+                "calledWith": zod.union([zod.string(), zod.unknown()])
+            }), zod.object({
+                "expectation": zod.enum(['TO_BE_CHECKED']),
+                "calledWith": zod.unknown().nullish()
+            }), zod.object({
+                "expectation": zod.enum(['NOT_TO_BE_CHECKED']),
+                "calledWith": zod.unknown().nullish()
+            }), zod.object({
+                "expectation": zod.enum(['TO_CONTAIN_TEXT']),
+                "calledWith": zod.union([zod.string(), zod.unknown()])
+            }), zod.object({
+                "expectation": zod.enum(['TO_HAVE_STYLE']),
+                "calledWith": zod.tuple([zod.string(),
+                    zod.union([zod.string(), zod.unknown()])])
+            })]).optional(),
+        "ignoreFailure": zod.boolean().optional(),
+        "selectors": zod.array(zod.object({
+            "selectorType": zod.enum(['FRAME', 'CSS', 'TEXT', 'ROLE', 'ALT_TEXT', 'LABEL', 'TEST_ID', 'TITLE', 'PLACEHOLDER', 'FILTER', 'FIRST', 'LAST', 'NTH']),
+            "selector": zod.union([zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.enum(['alert', 'alertdialog', 'application', 'article', 'banner', 'blockquote', 'button', 'caption', 'cell', 'checkbox', 'code', 'columnheader', 'combobox', 'complementary', 'contentinfo', 'definition', 'deletion', 'dialog', 'directory', 'document', 'emphasis', 'feed', 'figure', 'form', 'generic', 'grid', 'gridcell', 'group', 'heading', 'img', 'insertion', 'link', 'list', 'listbox', 'listitem', 'log', 'main', 'marquee', 'math', 'meter', 'menu', 'menubar', 'menuitem', 'menuitemcheckbox', 'menuitemradio', 'navigation', 'none', 'note', 'option', 'paragraph', 'presentation', 'progressbar', 'radio', 'radiogroup', 'region', 'row', 'rowgroup', 'rowheader', 'scrollbar', 'search', 'searchbox', 'separator', 'slider', 'spinbutton', 'status', 'strong', 'subscript', 'superscript', 'switch', 'tab', 'table', 'tablist', 'tabpanel', 'term', 'textbox', 'time', 'timer', 'toolbar', 'tooltip', 'tree', 'treegrid', 'treeitem']), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.string(), zod.string(), zod.string()]).nullish(),
+            "options": zod.object({
+                "name": zod.union([zod.string(), zod.unknown()]).optional(),
+                "exact": zod.boolean().optional(),
+                "checked": zod.boolean().optional(),
+                "disabled": zod.boolean().optional(),
+                "expanded": zod.boolean().optional(),
+                "includeHidden": zod.boolean().optional(),
+                "level": zod.number().optional(),
+                "pressed": zod.boolean().optional(),
+                "selected": zod.boolean().optional(),
+                "hasText": zod.union([zod.string(), zod.unknown()]).optional(),
+                "hasNotText": zod.union([zod.string(), zod.unknown()]).optional()
+            }).nullish()
+        }))
+    })),
+    "description": zod.string(),
+    "entryPointUrlPath": zod.string().optional(),
+    "folderName": zod.string().optional(),
+    "externalId": zod.string().optional(),
+    "prompt": zod.string(),
+    "localEditingStatus": zod.enum(['IN_PROGRESS', 'DONE', 'CANCELLED']).optional()
+}).and(zod.object({
+    "versionId": zod.uuid().describe('The version ID of this test case'),
+    "localEditingStatus": zod.enum(['IN_PROGRESS', 'DONE', 'CANCELLED']).optional().describe('The local editing status of this test case version')
+}));
 /**
  * Create a new test case discovery with a given name and prompt
  * @summary Create a discovery
@@ -9317,7 +9493,7 @@ exports.createDiscoveryResponse = zod.object({
 
 /***/ }),
 
-/***/ 6750:
+/***/ 4482:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -9327,8 +9503,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.logJson = exports.handleError = exports.client = exports.createClientFromUrlAndApiKey = exports.BASE_URL = void 0;
 const openapi_fetch_1 = __importDefault(__nccwpck_require__(3007));
-const config_1 = __nccwpck_require__(8147);
-const version_1 = __nccwpck_require__(7185);
+const config_1 = __nccwpck_require__(31);
+const version_1 = __nccwpck_require__(8213);
 exports.BASE_URL = process.env.OCTOMIND_API_URL || "https://app.octomind.dev/api";
 const client = (0, openapi_fetch_1.default)({ baseUrl: exports.BASE_URL });
 exports.client = client;
@@ -9387,7 +9563,7 @@ exports.logJson = logJson;
 
 /***/ }),
 
-/***/ 3565:
+/***/ 105:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -9437,7 +9613,7 @@ exports.checkForConsistency = checkForConsistency;
 
 /***/ }),
 
-/***/ 8057:
+/***/ 9789:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -9535,18 +9711,18 @@ exports.getGitContext = getGitContext;
 
 /***/ }),
 
-/***/ 5529:
+/***/ 9805:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 var __webpack_unused_export__;
 
 __webpack_unused_export__ = ({ value: true });
-exports.V = void 0;
-const consistency_1 = __nccwpck_require__(3565);
-const git_1 = __nccwpck_require__(8057);
-const yml_1 = __nccwpck_require__(8907);
+exports.cr = exports.VC = void 0;
+const consistency_1 = __nccwpck_require__(105);
+const git_1 = __nccwpck_require__(9789);
+const yaml_1 = __nccwpck_require__(2426);
 const push = async (options) => {
-    const testCases = (0, yml_1.readTestCasesFromDir)(options.sourceDir);
+    const testCases = (0, yaml_1.readTestCasesFromDir)(options.sourceDir);
     (0, consistency_1.checkForConsistency)(testCases);
     const context = await (0, git_1.getGitContext)();
     const refName = options.branchName ?? context?.ref;
@@ -9558,10 +9734,10 @@ const push = async (options) => {
         return defaultPush(body, options);
     }
     else {
-        return draftPush(body, options);
+        return (0, exports.cr)(body, options);
     }
 };
-exports.V = push;
+exports.VC = push;
 const defaultPush = async (body, options) => {
     const { data, error } = await options.client.POST("/apiKey/beta/test-targets/{testTargetId}/push", {
         params: {
@@ -9586,11 +9762,12 @@ const draftPush = async (body, options) => {
     options.onError(error);
     return data;
 };
+exports.cr = draftPush;
 
 
 /***/ }),
 
-/***/ 8907:
+/***/ 2426:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -9598,11 +9775,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.cleanupFilesystem = exports.readTestCasesFromDir = exports.buildFilename = exports.buildFolderName = exports.writeYaml = void 0;
+exports.cleanupFilesystem = exports.readTestCasesFromDir = exports.buildFilename = exports.buildFolderName = exports.writeYaml = exports.writeSingleTestCaseYaml = void 0;
 const fs_1 = __importDefault(__nccwpck_require__(9896));
+const promises_1 = __importDefault(__nccwpck_require__(1943));
 const path_1 = __importDefault(__nccwpck_require__(6928));
 const yaml_1 = __importDefault(__nccwpck_require__(6159));
-const octomindExternalAPI_1 = __nccwpck_require__(6038);
+const octomindExternalAPI_1 = __nccwpck_require__(5994);
+const syncTestCaseSchema = octomindExternalAPI_1.pushTestTargetBody.shape.testCases.element;
 const removeDiacritics = (str) => {
     // diacritics lead to issues in the file system afterward, cf. https://www.reddit.com/r/MacOS/comments/jhjv41/psa_beware_of_umlauts_and_other_accented/
     return str.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
@@ -9630,7 +9809,11 @@ const toFileSystemCompatibleCamelCase = (description) => {
     }
     return camelCased;
 };
-const writeYaml = (data, destination) => {
+const writeSingleTestCaseYaml = async (filePath, testCase) => {
+    return promises_1.default.writeFile(filePath, `# yaml-language-server: $schema=https://app.octomind.dev/schemas/SyncTestCaseSchema.json\n${yaml_1.default.stringify(testCase)}`);
+};
+exports.writeSingleTestCaseYaml = writeSingleTestCaseYaml;
+const writeYaml = async (data, destination) => {
     (0, exports.cleanupFilesystem)({
         newTestCases: data.testCases,
         destination,
@@ -9639,7 +9822,7 @@ const writeYaml = (data, destination) => {
         const folderName = (0, exports.buildFolderName)(testCase, data.testCases, destination);
         const testCaseFilename = (0, exports.buildFilename)(testCase, folderName);
         fs_1.default.mkdirSync(folderName, { recursive: true });
-        fs_1.default.writeFileSync(path_1.default.join(folderName, testCaseFilename), `# yaml-language-server: $schema=https://app.octomind.dev/schemas/SyncTestCaseSchema.json\n${yaml_1.default.stringify(testCase)}`);
+        await (0, exports.writeSingleTestCaseYaml)(path_1.default.join(folderName, testCaseFilename), testCase);
     }
 };
 exports.writeYaml = writeYaml;
@@ -9726,31 +9909,41 @@ const readTestCasesFromDir = (startDir) => {
     for (const file of yamlFiles) {
         try {
             const content = fs_1.default.readFileSync(file, "utf8");
-            const parsed = yaml_1.default.parse(content);
-            testCases.push(parsed);
+            const raw = yaml_1.default.parse(content);
+            const result = syncTestCaseSchema.safeParse(raw);
+            if (result.success) {
+                testCases.push(result.data);
+            }
+            else {
+                console.warn(`Failed to read test case from ${file}: ${result.error.message}`);
+            }
         }
         catch {
             console.error(`Failed to read test case from ${file}`);
         }
     }
-    const result = octomindExternalAPI_1.pushTestTargetBody.safeParse({ testCases });
-    if (!result.success) {
-        throw new Error(`Failed to parse test cases from ${startDir}: ${result.error.message}`);
-    }
     return testCases;
 };
 exports.readTestCasesFromDir = readTestCasesFromDir;
 const cleanupFilesystem = ({ newTestCases, destination, }) => {
-    const rootFolderPath = destination ?? "./";
+    const rootFolderPath = destination ?? process.cwd();
     const existingtestCases = (0, exports.readTestCasesFromDir)(rootFolderPath);
     const existingTestCasesById = new Map(existingtestCases.map((tc) => [tc.id, tc]));
+    // There is generally a bigger issue here:
+    // We need a better check what changed locally.
+    // Imagine you rename a test case remotely, and then you locally change steps in child test case.
+    // Then you pull, and you local changes will just be deleted.
+    // Same applies for changing the dependency, as it will be in a different folder. We also don't clean up these folders properly.
     for (const testCase of newTestCases) {
         const existingTestCase = existingTestCasesById.get(testCase.id);
         if (existingTestCase) {
             const existingTestCasePath = (0, exports.buildFilename)(existingTestCase, rootFolderPath);
             const oldFolderPath = path_1.default.join(rootFolderPath, existingTestCasePath.replace(/\.yaml$/, ""));
+            const oldFilePath = path_1.default.join(rootFolderPath, existingTestCasePath);
             if (existingTestCase.description !== testCase.description) {
-                fs_1.default.unlinkSync(path_1.default.join(rootFolderPath, existingTestCasePath));
+                if (fs_1.default.existsSync(oldFilePath)) {
+                    fs_1.default.unlinkSync(oldFilePath);
+                }
                 if (fs_1.default.existsSync(oldFolderPath)) {
                     fs_1.default.rmSync(oldFolderPath, { recursive: true, force: true });
                 }
@@ -9763,14 +9956,14 @@ exports.cleanupFilesystem = cleanupFilesystem;
 
 /***/ }),
 
-/***/ 7185:
+/***/ 8213:
 /***/ ((__unused_webpack_module, exports) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.version = void 0;
 // Generated by genversion.
-exports.version = "3.7.1";
+exports.version = "4.1.0";
 
 
 /***/ }),
@@ -38644,10 +38837,10 @@ var core = __nccwpck_require__(9550);
 var github = __nccwpck_require__(8087);
 ;// CONCATENATED MODULE: external "node:timers"
 const external_node_timers_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:timers");
-// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@3.7.1/node_modules/@octomind/octomind/dist/tools/client.js
-var tools_client = __nccwpck_require__(6750);
-// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@3.7.1/node_modules/@octomind/octomind/dist/tools/sync/push.js
-var push = __nccwpck_require__(5529);
+// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@4.1.0_typescript@5.7.3_vitest@4.0.17_@types+node@25.0.3_tsx@4.21.0_yaml@2.8.2_/node_modules/@octomind/octomind/dist/tools/client.js
+var tools_client = __nccwpck_require__(4482);
+// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@4.1.0_typescript@5.7.3_vitest@4.0.17_@types+node@25.0.3_tsx@4.21.0_yaml@2.8.2_/node_modules/@octomind/octomind/dist/tools/sync/push.js
+var push = __nccwpck_require__(9805);
 ;// CONCATENATED MODULE: external "node:fs"
 const external_node_fs_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:fs");
 // EXTERNAL MODULE: external "node:path"
@@ -38683,7 +38876,7 @@ const pushIfYmlsExist = async ({ sourceDir, client, testTargetId }) => {
     const hasYmls = directoryExists &&
         (0,external_node_fs_namespaceObject.readdirSync)(sourceDir).some(file => file.endsWith('.yaml'));
     if (hasYmls) {
-        return (0,push/* push */.V)({
+        return (0,push/* push */.VC)({
             sourceDir,
             client,
             testTargetId,
@@ -49764,7 +49957,7 @@ exports.wrapAsPathBasedClient = wrapAsPathBasedClient;
 
 /***/ }),
 
-/***/ 8661:
+/***/ 4466:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -49796,21 +49989,21 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.z = void 0;
-const z = __importStar(__nccwpck_require__(6722));
+const z = __importStar(__nccwpck_require__(2521));
 exports.z = z;
-__exportStar(__nccwpck_require__(6722), exports);
+__exportStar(__nccwpck_require__(2521), exports);
 exports["default"] = z;
 
 
 /***/ }),
 
-/***/ 3832:
+/***/ 6327:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.slugify = exports.toUpperCase = exports.toLowerCase = exports.trim = exports.normalize = exports.overwrite = exports.mime = exports.property = exports.endsWith = exports.startsWith = exports.includes = exports.uppercase = exports.lowercase = exports.regex = exports.length = exports.minLength = exports.maxLength = exports.size = exports.minSize = exports.maxSize = exports.multipleOf = exports.nonnegative = exports.nonpositive = exports.negative = exports.positive = exports.gte = exports.gt = exports.lte = exports.lt = void 0;
-var index_js_1 = __nccwpck_require__(1880);
+var index_js_1 = __nccwpck_require__(4723);
 Object.defineProperty(exports, "lt", ({ enumerable: true, get: function () { return index_js_1._lt; } }));
 Object.defineProperty(exports, "lte", ({ enumerable: true, get: function () { return index_js_1._lte; } }));
 Object.defineProperty(exports, "gt", ({ enumerable: true, get: function () { return index_js_1._gt; } }));
@@ -49844,7 +50037,7 @@ Object.defineProperty(exports, "slugify", ({ enumerable: true, get: function () 
 
 /***/ }),
 
-/***/ 6068:
+/***/ 3787:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -49877,8 +50070,8 @@ exports.number = number;
 exports.boolean = boolean;
 exports.bigint = bigint;
 exports.date = date;
-const core = __importStar(__nccwpck_require__(1880));
-const schemas = __importStar(__nccwpck_require__(4865));
+const core = __importStar(__nccwpck_require__(4723));
+const schemas = __importStar(__nccwpck_require__(692));
 function string(params) {
     return core._coercedString(schemas.ZodString, params);
 }
@@ -49898,7 +50091,7 @@ function date(params) {
 
 /***/ }),
 
-/***/ 9713:
+/***/ 7722:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -49930,7 +50123,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ZodFirstPartyTypeKind = exports.config = exports.$brand = exports.ZodIssueCode = void 0;
 exports.setErrorMap = setErrorMap;
 exports.getErrorMap = getErrorMap;
-const core = __importStar(__nccwpck_require__(1880));
+const core = __importStar(__nccwpck_require__(4723));
 /** @deprecated Use the raw string literal codes instead, e.g. "invalid_type". */
 exports.ZodIssueCode = {
     invalid_type: "invalid_type",
@@ -49945,7 +50138,7 @@ exports.ZodIssueCode = {
     invalid_value: "invalid_value",
     custom: "custom",
 };
-var index_js_1 = __nccwpck_require__(1880);
+var index_js_1 = __nccwpck_require__(4723);
 Object.defineProperty(exports, "$brand", ({ enumerable: true, get: function () { return index_js_1.$brand; } }));
 Object.defineProperty(exports, "config", ({ enumerable: true, get: function () { return index_js_1.config; } }));
 /** @deprecated Use `z.config(params)` instead. */
@@ -49966,7 +50159,7 @@ var ZodFirstPartyTypeKind;
 
 /***/ }),
 
-/***/ 6742:
+/***/ 8153:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -49995,9 +50188,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ZodRealError = exports.ZodError = void 0;
-const core = __importStar(__nccwpck_require__(1880));
-const index_js_1 = __nccwpck_require__(1880);
-const util = __importStar(__nccwpck_require__(6528));
+const core = __importStar(__nccwpck_require__(4723));
+const index_js_1 = __nccwpck_require__(4723);
+const util = __importStar(__nccwpck_require__(9693));
 const initializer = (inst, issues) => {
     index_js_1.$ZodError.init(inst, issues);
     inst.name = "ZodError";
@@ -50047,7 +50240,7 @@ exports.ZodRealError = core.$constructor("ZodError", initializer, {
 
 /***/ }),
 
-/***/ 6722:
+/***/ 2521:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -50082,17 +50275,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.coerce = exports.iso = exports.ZodISODuration = exports.ZodISOTime = exports.ZodISODate = exports.ZodISODateTime = exports.locales = exports.fromJSONSchema = exports.toJSONSchema = exports.NEVER = exports.util = exports.TimePrecision = exports.flattenError = exports.formatError = exports.prettifyError = exports.treeifyError = exports.regexes = exports.clone = exports.$brand = exports.$input = exports.$output = exports.config = exports.registry = exports.globalRegistry = exports.core = void 0;
-exports.core = __importStar(__nccwpck_require__(1880));
-__exportStar(__nccwpck_require__(4865), exports);
-__exportStar(__nccwpck_require__(3832), exports);
-__exportStar(__nccwpck_require__(6742), exports);
-__exportStar(__nccwpck_require__(6272), exports);
-__exportStar(__nccwpck_require__(9713), exports);
+exports.core = __importStar(__nccwpck_require__(4723));
+__exportStar(__nccwpck_require__(692), exports);
+__exportStar(__nccwpck_require__(6327), exports);
+__exportStar(__nccwpck_require__(8153), exports);
+__exportStar(__nccwpck_require__(5001), exports);
+__exportStar(__nccwpck_require__(7722), exports);
 // zod-specified
-const index_js_1 = __nccwpck_require__(1880);
-const en_js_1 = __importDefault(__nccwpck_require__(6121));
+const index_js_1 = __nccwpck_require__(4723);
+const en_js_1 = __importDefault(__nccwpck_require__(8826));
 (0, index_js_1.config)((0, en_js_1.default)());
-var index_js_2 = __nccwpck_require__(1880);
+var index_js_2 = __nccwpck_require__(4723);
 Object.defineProperty(exports, "globalRegistry", ({ enumerable: true, get: function () { return index_js_2.globalRegistry; } }));
 Object.defineProperty(exports, "registry", ({ enumerable: true, get: function () { return index_js_2.registry; } }));
 Object.defineProperty(exports, "config", ({ enumerable: true, get: function () { return index_js_2.config; } }));
@@ -50108,26 +50301,26 @@ Object.defineProperty(exports, "flattenError", ({ enumerable: true, get: functio
 Object.defineProperty(exports, "TimePrecision", ({ enumerable: true, get: function () { return index_js_2.TimePrecision; } }));
 Object.defineProperty(exports, "util", ({ enumerable: true, get: function () { return index_js_2.util; } }));
 Object.defineProperty(exports, "NEVER", ({ enumerable: true, get: function () { return index_js_2.NEVER; } }));
-var json_schema_processors_js_1 = __nccwpck_require__(5196);
+var json_schema_processors_js_1 = __nccwpck_require__(5745);
 Object.defineProperty(exports, "toJSONSchema", ({ enumerable: true, get: function () { return json_schema_processors_js_1.toJSONSchema; } }));
-var from_json_schema_js_1 = __nccwpck_require__(4862);
+var from_json_schema_js_1 = __nccwpck_require__(6517);
 Object.defineProperty(exports, "fromJSONSchema", ({ enumerable: true, get: function () { return from_json_schema_js_1.fromJSONSchema; } }));
-exports.locales = __importStar(__nccwpck_require__(7740));
+exports.locales = __importStar(__nccwpck_require__(7269));
 // iso
 // must be exported from top-level
 // https://github.com/colinhacks/zod/issues/4491
-var iso_js_1 = __nccwpck_require__(6510);
+var iso_js_1 = __nccwpck_require__(4915);
 Object.defineProperty(exports, "ZodISODateTime", ({ enumerable: true, get: function () { return iso_js_1.ZodISODateTime; } }));
 Object.defineProperty(exports, "ZodISODate", ({ enumerable: true, get: function () { return iso_js_1.ZodISODate; } }));
 Object.defineProperty(exports, "ZodISOTime", ({ enumerable: true, get: function () { return iso_js_1.ZodISOTime; } }));
 Object.defineProperty(exports, "ZodISODuration", ({ enumerable: true, get: function () { return iso_js_1.ZodISODuration; } }));
-exports.iso = __importStar(__nccwpck_require__(6510));
-exports.coerce = __importStar(__nccwpck_require__(6068));
+exports.iso = __importStar(__nccwpck_require__(4915));
+exports.coerce = __importStar(__nccwpck_require__(3787));
 
 
 /***/ }),
 
-/***/ 4862:
+/***/ 6517:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -50156,15 +50349,88 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.fromJSONSchema = fromJSONSchema;
-const _checks = __importStar(__nccwpck_require__(3832));
-const _iso = __importStar(__nccwpck_require__(6510));
-const _schemas = __importStar(__nccwpck_require__(4865));
+const registries_js_1 = __nccwpck_require__(1104);
+const _checks = __importStar(__nccwpck_require__(6327));
+const _iso = __importStar(__nccwpck_require__(4915));
+const _schemas = __importStar(__nccwpck_require__(692));
 // Local z object to avoid circular dependency with ../index.js
 const z = {
     ..._schemas,
     ..._checks,
     iso: _iso,
 };
+// Keys that are recognized and handled by the conversion logic
+const RECOGNIZED_KEYS = new Set([
+    // Schema identification
+    "$schema",
+    "$ref",
+    "$defs",
+    "definitions",
+    // Core schema keywords
+    "$id",
+    "id",
+    "$comment",
+    "$anchor",
+    "$vocabulary",
+    "$dynamicRef",
+    "$dynamicAnchor",
+    // Type
+    "type",
+    "enum",
+    "const",
+    // Composition
+    "anyOf",
+    "oneOf",
+    "allOf",
+    "not",
+    // Object
+    "properties",
+    "required",
+    "additionalProperties",
+    "patternProperties",
+    "propertyNames",
+    "minProperties",
+    "maxProperties",
+    // Array
+    "items",
+    "prefixItems",
+    "additionalItems",
+    "minItems",
+    "maxItems",
+    "uniqueItems",
+    "contains",
+    "minContains",
+    "maxContains",
+    // String
+    "minLength",
+    "maxLength",
+    "pattern",
+    "format",
+    // Number
+    "minimum",
+    "maximum",
+    "exclusiveMinimum",
+    "exclusiveMaximum",
+    "multipleOf",
+    // Already handled metadata
+    "description",
+    "default",
+    // Content
+    "contentEncoding",
+    "contentMediaType",
+    "contentSchema",
+    // Unsupported (error-throwing)
+    "unevaluatedItems",
+    "unevaluatedProperties",
+    "if",
+    "then",
+    "else",
+    "dependentSchemas",
+    "dependentRequired",
+    // OpenAPI
+    "nullable",
+    "readOnly",
+]);
 function detectVersion(schema, defaultTarget) {
     const $schema = schema.$schema;
     if ($schema === "https://json-schema.org/draft/2020-12/schema") {
@@ -50621,6 +50887,31 @@ function convertSchema(schema, ctx) {
     if (schema.readOnly === true) {
         baseSchema = z.readonly(baseSchema);
     }
+    // Collect metadata: core schema keywords and unrecognized keys
+    const extraMeta = {};
+    // Core schema keywords that should be captured as metadata
+    const coreMetadataKeys = ["$id", "id", "$comment", "$anchor", "$vocabulary", "$dynamicRef", "$dynamicAnchor"];
+    for (const key of coreMetadataKeys) {
+        if (key in schema) {
+            extraMeta[key] = schema[key];
+        }
+    }
+    // Content keywords - store as metadata
+    const contentMetadataKeys = ["contentEncoding", "contentMediaType", "contentSchema"];
+    for (const key of contentMetadataKeys) {
+        if (key in schema) {
+            extraMeta[key] = schema[key];
+        }
+    }
+    // Unrecognized keys (custom metadata)
+    for (const key of Object.keys(schema)) {
+        if (!RECOGNIZED_KEYS.has(key)) {
+            extraMeta[key] = schema[key];
+        }
+    }
+    if (Object.keys(extraMeta).length > 0) {
+        ctx.registry.add(baseSchema, extraMeta);
+    }
     return baseSchema;
 }
 /**
@@ -50638,6 +50929,7 @@ function fromJSONSchema(schema, params) {
         refs: new Map(),
         processing: new Set(),
         rootSchema: schema,
+        registry: params?.registry ?? registries_js_1.globalRegistry,
     };
     return convertSchema(schema, ctx);
 }
@@ -50645,7 +50937,7 @@ function fromJSONSchema(schema, params) {
 
 /***/ }),
 
-/***/ 6510:
+/***/ 4915:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -50678,8 +50970,8 @@ exports.datetime = datetime;
 exports.date = date;
 exports.time = time;
 exports.duration = duration;
-const core = __importStar(__nccwpck_require__(1880));
-const schemas = __importStar(__nccwpck_require__(4865));
+const core = __importStar(__nccwpck_require__(4723));
+const schemas = __importStar(__nccwpck_require__(692));
 exports.ZodISODateTime = core.$constructor("ZodISODateTime", (inst, def) => {
     core.$ZodISODateTime.init(inst, def);
     schemas.ZodStringFormat.init(inst, def);
@@ -50712,7 +51004,7 @@ function duration(params) {
 
 /***/ }),
 
-/***/ 6272:
+/***/ 5001:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -50741,8 +51033,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.safeDecodeAsync = exports.safeEncodeAsync = exports.safeDecode = exports.safeEncode = exports.decodeAsync = exports.encodeAsync = exports.decode = exports.encode = exports.safeParseAsync = exports.safeParse = exports.parseAsync = exports.parse = void 0;
-const core = __importStar(__nccwpck_require__(1880));
-const errors_js_1 = __nccwpck_require__(6742);
+const core = __importStar(__nccwpck_require__(4723));
+const errors_js_1 = __nccwpck_require__(8153);
 exports.parse = core._parse(errors_js_1.ZodRealError);
 exports.parseAsync = core._parseAsync(errors_js_1.ZodRealError);
 exports.safeParse = core._safeParse(errors_js_1.ZodRealError);
@@ -50760,7 +51052,7 @@ exports.safeDecodeAsync = core._safeDecodeAsync(errors_js_1.ZodRealError);
 
 /***/ }),
 
-/***/ 4865:
+/***/ 692:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -50789,7 +51081,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ZodLiteral = exports.ZodEnum = exports.ZodSet = exports.ZodMap = exports.ZodRecord = exports.ZodTuple = exports.ZodIntersection = exports.ZodDiscriminatedUnion = exports.ZodXor = exports.ZodUnion = exports.ZodObject = exports.ZodArray = exports.ZodDate = exports.ZodVoid = exports.ZodNever = exports.ZodUnknown = exports.ZodAny = exports.ZodNull = exports.ZodUndefined = exports.ZodSymbol = exports.ZodBigIntFormat = exports.ZodBigInt = exports.ZodBoolean = exports.ZodNumberFormat = exports.ZodNumber = exports.ZodCustomStringFormat = exports.ZodJWT = exports.ZodE164 = exports.ZodBase64URL = exports.ZodBase64 = exports.ZodCIDRv6 = exports.ZodCIDRv4 = exports.ZodIPv6 = exports.ZodMAC = exports.ZodIPv4 = exports.ZodKSUID = exports.ZodXID = exports.ZodULID = exports.ZodCUID2 = exports.ZodCUID = exports.ZodNanoID = exports.ZodEmoji = exports.ZodURL = exports.ZodUUID = exports.ZodGUID = exports.ZodEmail = exports.ZodStringFormat = exports.ZodString = exports._ZodString = exports.ZodType = void 0;
-exports.stringbool = exports.meta = exports.describe = exports.ZodCustom = exports.ZodFunction = exports.ZodPromise = exports.ZodLazy = exports.ZodTemplateLiteral = exports.ZodReadonly = exports.ZodCodec = exports.ZodPipe = exports.ZodNaN = exports.ZodCatch = exports.ZodSuccess = exports.ZodNonOptional = exports.ZodPrefault = exports.ZodDefault = exports.ZodNullable = exports.ZodOptional = exports.ZodTransform = exports.ZodFile = void 0;
+exports.stringbool = exports.meta = exports.describe = exports.ZodCustom = exports.ZodFunction = exports.ZodPromise = exports.ZodLazy = exports.ZodTemplateLiteral = exports.ZodReadonly = exports.ZodCodec = exports.ZodPipe = exports.ZodNaN = exports.ZodCatch = exports.ZodSuccess = exports.ZodNonOptional = exports.ZodPrefault = exports.ZodDefault = exports.ZodNullable = exports.ZodExactOptional = exports.ZodOptional = exports.ZodTransform = exports.ZodFile = void 0;
 exports.string = string;
 exports.email = email;
 exports.guid = guid;
@@ -50858,6 +51150,7 @@ exports.literal = literal;
 exports.file = file;
 exports.transform = transform;
 exports.optional = optional;
+exports.exactOptional = exactOptional;
 exports.nullable = nullable;
 exports.nullish = nullish;
 exports._default = _default;
@@ -50883,13 +51176,13 @@ exports.superRefine = superRefine;
 exports["instanceof"] = _instanceof;
 exports.json = json;
 exports.preprocess = preprocess;
-const core = __importStar(__nccwpck_require__(1880));
-const index_js_1 = __nccwpck_require__(1880);
-const processors = __importStar(__nccwpck_require__(5196));
-const to_json_schema_js_1 = __nccwpck_require__(8162);
-const checks = __importStar(__nccwpck_require__(3832));
-const iso = __importStar(__nccwpck_require__(6510));
-const parse = __importStar(__nccwpck_require__(6272));
+const core = __importStar(__nccwpck_require__(4723));
+const index_js_1 = __nccwpck_require__(4723);
+const processors = __importStar(__nccwpck_require__(5745));
+const to_json_schema_js_1 = __nccwpck_require__(4387);
+const checks = __importStar(__nccwpck_require__(6327));
+const iso = __importStar(__nccwpck_require__(4915));
+const parse = __importStar(__nccwpck_require__(5001));
 exports.ZodType = core.$constructor("ZodType", (inst, def) => {
     core.$ZodType.init(inst, def);
     Object.assign(inst["~standard"], {
@@ -50909,8 +51202,11 @@ exports.ZodType = core.$constructor("ZodType", (inst, def) => {
                 ...(def.checks ?? []),
                 ...checks.map((ch) => typeof ch === "function" ? { _zod: { check: ch, def: { check: "custom" }, onattach: [] } } : ch),
             ],
-        }));
+        }), {
+            parent: true,
+        });
     };
+    inst.with = inst.check;
     inst.clone = (def, params) => core.clone(inst, def, params);
     inst.brand = () => inst;
     inst.register = ((reg, meta) => {
@@ -50938,6 +51234,7 @@ exports.ZodType = core.$constructor("ZodType", (inst, def) => {
     inst.overwrite = (fn) => inst.check(checks.overwrite(fn));
     // wrappers
     inst.optional = () => optional(inst);
+    inst.exactOptional = () => exactOptional(inst);
     inst.nullable = () => nullable(inst);
     inst.nullish = () => optional(nullable(inst));
     inst.nonoptional = (params) => nonoptional(inst, params);
@@ -50974,6 +51271,7 @@ exports.ZodType = core.$constructor("ZodType", (inst, def) => {
     // helpers
     inst.isOptional = () => inst.safeParse(undefined).success;
     inst.isNullable = () => inst.safeParse(null).success;
+    inst.apply = (fn) => fn(inst);
     return inst;
 });
 /** @internal */
@@ -51591,6 +51889,10 @@ exports.ZodMap = core.$constructor("ZodMap", (inst, def) => {
     inst._zod.processJSONSchema = (ctx, json, params) => processors.mapProcessor(inst, ctx, json, params);
     inst.keyType = def.keyType;
     inst.valueType = def.valueType;
+    inst.min = (...args) => inst.check(core._minSize(...args));
+    inst.nonempty = (params) => inst.check(core._minSize(1, params));
+    inst.max = (...args) => inst.check(core._maxSize(...args));
+    inst.size = (...args) => inst.check(core._size(...args));
 });
 function map(keyType, valueType, params) {
     return new exports.ZodMap({
@@ -51759,6 +52061,18 @@ exports.ZodOptional = core.$constructor("ZodOptional", (inst, def) => {
 });
 function optional(innerType) {
     return new exports.ZodOptional({
+        type: "optional",
+        innerType: innerType,
+    });
+}
+exports.ZodExactOptional = core.$constructor("ZodExactOptional", (inst, def) => {
+    core.$ZodExactOptional.init(inst, def);
+    exports.ZodType.init(inst, def);
+    inst._zod.processJSONSchema = (ctx, json, params) => processors.optionalProcessor(inst, ctx, json, params);
+    inst.unwrap = () => inst._zod.def.innerType;
+});
+function exactOptional(innerType) {
+    return new exports.ZodExactOptional({
         type: "optional",
         innerType: innerType,
     });
@@ -51972,9 +52286,7 @@ function superRefine(fn) {
 // Re-export describe and meta from core
 exports.describe = core.describe;
 exports.meta = core.meta;
-function _instanceof(cls, params = {
-    error: `Input not instance of ${cls.name}`,
-}) {
+function _instanceof(cls, params = {}) {
     const inst = new exports.ZodCustom({
         type: "custom",
         check: "custom",
@@ -51983,6 +52295,18 @@ function _instanceof(cls, params = {
         ...index_js_1.util.normalizeParams(params),
     });
     inst._zod.bag.Class = cls;
+    // Override check to emit invalid_type instead of custom
+    inst._zod.check = (payload) => {
+        if (!(payload.value instanceof cls)) {
+            payload.issues.push({
+                code: "invalid_type",
+                expected: cls.name,
+                input: payload.value,
+                inst,
+                path: [...(inst._zod.def.path ?? [])],
+            });
+        }
+    };
     return inst;
 }
 // stringbool
@@ -52007,7 +52331,7 @@ function preprocess(fn, schema) {
 
 /***/ }),
 
-/***/ 1556:
+/***/ 7499:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -52156,16 +52480,18 @@ exports.describe = describe;
 exports.meta = meta;
 exports._stringbool = _stringbool;
 exports._stringFormat = _stringFormat;
-const checks = __importStar(__nccwpck_require__(3919));
-const registries = __importStar(__nccwpck_require__(1393));
-const schemas = __importStar(__nccwpck_require__(7164));
-const util = __importStar(__nccwpck_require__(6528));
+const checks = __importStar(__nccwpck_require__(1182));
+const registries = __importStar(__nccwpck_require__(1104));
+const schemas = __importStar(__nccwpck_require__(9759));
+const util = __importStar(__nccwpck_require__(9693));
+// @__NO_SIDE_EFFECTS__
 function _string(Class, params) {
     return new Class({
         type: "string",
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _coercedString(Class, params) {
     return new Class({
         type: "string",
@@ -52173,6 +52499,7 @@ function _coercedString(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _email(Class, params) {
     return new Class({
         type: "string",
@@ -52182,6 +52509,7 @@ function _email(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _guid(Class, params) {
     return new Class({
         type: "string",
@@ -52191,6 +52519,7 @@ function _guid(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _uuid(Class, params) {
     return new Class({
         type: "string",
@@ -52200,6 +52529,7 @@ function _uuid(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _uuidv4(Class, params) {
     return new Class({
         type: "string",
@@ -52210,6 +52540,7 @@ function _uuidv4(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _uuidv6(Class, params) {
     return new Class({
         type: "string",
@@ -52220,6 +52551,7 @@ function _uuidv6(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _uuidv7(Class, params) {
     return new Class({
         type: "string",
@@ -52230,6 +52562,7 @@ function _uuidv7(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _url(Class, params) {
     return new Class({
         type: "string",
@@ -52239,6 +52572,7 @@ function _url(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _emoji(Class, params) {
     return new Class({
         type: "string",
@@ -52248,6 +52582,7 @@ function _emoji(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _nanoid(Class, params) {
     return new Class({
         type: "string",
@@ -52257,6 +52592,7 @@ function _nanoid(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _cuid(Class, params) {
     return new Class({
         type: "string",
@@ -52266,6 +52602,7 @@ function _cuid(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _cuid2(Class, params) {
     return new Class({
         type: "string",
@@ -52275,6 +52612,7 @@ function _cuid2(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _ulid(Class, params) {
     return new Class({
         type: "string",
@@ -52284,6 +52622,7 @@ function _ulid(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _xid(Class, params) {
     return new Class({
         type: "string",
@@ -52293,6 +52632,7 @@ function _xid(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _ksuid(Class, params) {
     return new Class({
         type: "string",
@@ -52302,6 +52642,7 @@ function _ksuid(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _ipv4(Class, params) {
     return new Class({
         type: "string",
@@ -52311,6 +52652,7 @@ function _ipv4(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _ipv6(Class, params) {
     return new Class({
         type: "string",
@@ -52320,6 +52662,7 @@ function _ipv6(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _mac(Class, params) {
     return new Class({
         type: "string",
@@ -52329,6 +52672,7 @@ function _mac(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _cidrv4(Class, params) {
     return new Class({
         type: "string",
@@ -52338,6 +52682,7 @@ function _cidrv4(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _cidrv6(Class, params) {
     return new Class({
         type: "string",
@@ -52347,6 +52692,7 @@ function _cidrv6(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _base64(Class, params) {
     return new Class({
         type: "string",
@@ -52356,6 +52702,7 @@ function _base64(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _base64url(Class, params) {
     return new Class({
         type: "string",
@@ -52365,6 +52712,7 @@ function _base64url(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _e164(Class, params) {
     return new Class({
         type: "string",
@@ -52374,6 +52722,7 @@ function _e164(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _jwt(Class, params) {
     return new Class({
         type: "string",
@@ -52390,6 +52739,7 @@ exports.TimePrecision = {
     Millisecond: 3,
     Microsecond: 6,
 };
+// @__NO_SIDE_EFFECTS__
 function _isoDateTime(Class, params) {
     return new Class({
         type: "string",
@@ -52401,6 +52751,7 @@ function _isoDateTime(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _isoDate(Class, params) {
     return new Class({
         type: "string",
@@ -52409,6 +52760,7 @@ function _isoDate(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _isoTime(Class, params) {
     return new Class({
         type: "string",
@@ -52418,6 +52770,7 @@ function _isoTime(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _isoDuration(Class, params) {
     return new Class({
         type: "string",
@@ -52426,6 +52779,7 @@ function _isoDuration(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _number(Class, params) {
     return new Class({
         type: "number",
@@ -52433,6 +52787,7 @@ function _number(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _coercedNumber(Class, params) {
     return new Class({
         type: "number",
@@ -52441,6 +52796,7 @@ function _coercedNumber(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _int(Class, params) {
     return new Class({
         type: "number",
@@ -52450,6 +52806,7 @@ function _int(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _float32(Class, params) {
     return new Class({
         type: "number",
@@ -52459,6 +52816,7 @@ function _float32(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _float64(Class, params) {
     return new Class({
         type: "number",
@@ -52468,6 +52826,7 @@ function _float64(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _int32(Class, params) {
     return new Class({
         type: "number",
@@ -52477,6 +52836,7 @@ function _int32(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _uint32(Class, params) {
     return new Class({
         type: "number",
@@ -52486,12 +52846,14 @@ function _uint32(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _boolean(Class, params) {
     return new Class({
         type: "boolean",
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _coercedBoolean(Class, params) {
     return new Class({
         type: "boolean",
@@ -52499,12 +52861,14 @@ function _coercedBoolean(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _bigint(Class, params) {
     return new Class({
         type: "bigint",
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _coercedBigint(Class, params) {
     return new Class({
         type: "bigint",
@@ -52512,6 +52876,7 @@ function _coercedBigint(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _int64(Class, params) {
     return new Class({
         type: "bigint",
@@ -52521,6 +52886,7 @@ function _int64(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _uint64(Class, params) {
     return new Class({
         type: "bigint",
@@ -52530,52 +52896,61 @@ function _uint64(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _symbol(Class, params) {
     return new Class({
         type: "symbol",
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _undefined(Class, params) {
     return new Class({
         type: "undefined",
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _null(Class, params) {
     return new Class({
         type: "null",
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _any(Class) {
     return new Class({
         type: "any",
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _unknown(Class) {
     return new Class({
         type: "unknown",
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _never(Class, params) {
     return new Class({
         type: "never",
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _void(Class, params) {
     return new Class({
         type: "void",
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _date(Class, params) {
     return new Class({
         type: "date",
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _coercedDate(Class, params) {
     return new Class({
         type: "date",
@@ -52583,12 +52958,14 @@ function _coercedDate(Class, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _nan(Class, params) {
     return new Class({
         type: "nan",
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _lt(value, params) {
     return new checks.$ZodCheckLessThan({
         check: "less_than",
@@ -52597,6 +52974,7 @@ function _lt(value, params) {
         inclusive: false,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _lte(value, params) {
     return new checks.$ZodCheckLessThan({
         check: "less_than",
@@ -52605,6 +52983,7 @@ function _lte(value, params) {
         inclusive: true,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _gt(value, params) {
     return new checks.$ZodCheckGreaterThan({
         check: "greater_than",
@@ -52613,6 +52992,7 @@ function _gt(value, params) {
         inclusive: false,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _gte(value, params) {
     return new checks.$ZodCheckGreaterThan({
         check: "greater_than",
@@ -52621,21 +53001,26 @@ function _gte(value, params) {
         inclusive: true,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _positive(params) {
     return _gt(0, params);
 }
 // negative
+// @__NO_SIDE_EFFECTS__
 function _negative(params) {
     return _lt(0, params);
 }
 // nonpositive
+// @__NO_SIDE_EFFECTS__
 function _nonpositive(params) {
     return _lte(0, params);
 }
 // nonnegative
+// @__NO_SIDE_EFFECTS__
 function _nonnegative(params) {
     return _gte(0, params);
 }
+// @__NO_SIDE_EFFECTS__
 function _multipleOf(value, params) {
     return new checks.$ZodCheckMultipleOf({
         check: "multiple_of",
@@ -52643,6 +53028,7 @@ function _multipleOf(value, params) {
         value,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _maxSize(maximum, params) {
     return new checks.$ZodCheckMaxSize({
         check: "max_size",
@@ -52650,6 +53036,7 @@ function _maxSize(maximum, params) {
         maximum,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _minSize(minimum, params) {
     return new checks.$ZodCheckMinSize({
         check: "min_size",
@@ -52657,6 +53044,7 @@ function _minSize(minimum, params) {
         minimum,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _size(size, params) {
     return new checks.$ZodCheckSizeEquals({
         check: "size_equals",
@@ -52664,6 +53052,7 @@ function _size(size, params) {
         size,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _maxLength(maximum, params) {
     const ch = new checks.$ZodCheckMaxLength({
         check: "max_length",
@@ -52672,6 +53061,7 @@ function _maxLength(maximum, params) {
     });
     return ch;
 }
+// @__NO_SIDE_EFFECTS__
 function _minLength(minimum, params) {
     return new checks.$ZodCheckMinLength({
         check: "min_length",
@@ -52679,6 +53069,7 @@ function _minLength(minimum, params) {
         minimum,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _length(length, params) {
     return new checks.$ZodCheckLengthEquals({
         check: "length_equals",
@@ -52686,6 +53077,7 @@ function _length(length, params) {
         length,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _regex(pattern, params) {
     return new checks.$ZodCheckRegex({
         check: "string_format",
@@ -52694,6 +53086,7 @@ function _regex(pattern, params) {
         pattern,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _lowercase(params) {
     return new checks.$ZodCheckLowerCase({
         check: "string_format",
@@ -52701,6 +53094,7 @@ function _lowercase(params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _uppercase(params) {
     return new checks.$ZodCheckUpperCase({
         check: "string_format",
@@ -52708,6 +53102,7 @@ function _uppercase(params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _includes(includes, params) {
     return new checks.$ZodCheckIncludes({
         check: "string_format",
@@ -52716,6 +53111,7 @@ function _includes(includes, params) {
         includes,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _startsWith(prefix, params) {
     return new checks.$ZodCheckStartsWith({
         check: "string_format",
@@ -52724,6 +53120,7 @@ function _startsWith(prefix, params) {
         prefix,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _endsWith(suffix, params) {
     return new checks.$ZodCheckEndsWith({
         check: "string_format",
@@ -52732,6 +53129,7 @@ function _endsWith(suffix, params) {
         suffix,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _property(property, schema, params) {
     return new checks.$ZodCheckProperty({
         check: "property",
@@ -52740,6 +53138,7 @@ function _property(property, schema, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _mime(types, params) {
     return new checks.$ZodCheckMimeType({
         check: "mime_type",
@@ -52747,6 +53146,7 @@ function _mime(types, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _overwrite(tx) {
     return new checks.$ZodCheckOverwrite({
         check: "overwrite",
@@ -52754,25 +53154,31 @@ function _overwrite(tx) {
     });
 }
 // normalize
+// @__NO_SIDE_EFFECTS__
 function _normalize(form) {
     return _overwrite((input) => input.normalize(form));
 }
 // trim
+// @__NO_SIDE_EFFECTS__
 function _trim() {
     return _overwrite((input) => input.trim());
 }
 // toLowerCase
+// @__NO_SIDE_EFFECTS__
 function _toLowerCase() {
     return _overwrite((input) => input.toLowerCase());
 }
 // toUpperCase
+// @__NO_SIDE_EFFECTS__
 function _toUpperCase() {
     return _overwrite((input) => input.toUpperCase());
 }
 // slugify
+// @__NO_SIDE_EFFECTS__
 function _slugify() {
     return _overwrite((input) => util.slugify(input));
 }
+// @__NO_SIDE_EFFECTS__
 function _array(Class, element, params) {
     return new Class({
         type: "array",
@@ -52783,6 +53189,7 @@ function _array(Class, element, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _union(Class, options, params) {
     return new Class({
         type: "union",
@@ -52798,6 +53205,7 @@ function _xor(Class, options, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _discriminatedUnion(Class, discriminator, options, params) {
     return new Class({
         type: "union",
@@ -52806,6 +53214,7 @@ function _discriminatedUnion(Class, discriminator, options, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _intersection(Class, left, right) {
     return new Class({
         type: "intersection",
@@ -52818,6 +53227,7 @@ function _intersection(Class, left, right) {
 //   items: [],
 //   params?: string | $ZodTupleParams
 // ): schemas.$ZodTuple<[], null>;
+// @__NO_SIDE_EFFECTS__
 function _tuple(Class, items, _paramsOrRest, _params) {
     const hasRest = _paramsOrRest instanceof schemas.$ZodType;
     const params = hasRest ? _params : _paramsOrRest;
@@ -52829,6 +53239,7 @@ function _tuple(Class, items, _paramsOrRest, _params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _record(Class, keyType, valueType, params) {
     return new Class({
         type: "record",
@@ -52837,6 +53248,7 @@ function _record(Class, keyType, valueType, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _map(Class, keyType, valueType, params) {
     return new Class({
         type: "map",
@@ -52845,6 +53257,7 @@ function _map(Class, keyType, valueType, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _set(Class, valueType, params) {
     return new Class({
         type: "set",
@@ -52852,6 +53265,7 @@ function _set(Class, valueType, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _enum(Class, values, params) {
     const entries = Array.isArray(values) ? Object.fromEntries(values.map((v) => [v, v])) : values;
     // if (Array.isArray(values)) {
@@ -52871,6 +53285,7 @@ function _enum(Class, values, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 /** @deprecated This API has been merged into `z.enum()`. Use `z.enum()` instead.
  *
  * ```ts
@@ -52885,6 +53300,7 @@ function _nativeEnum(Class, entries, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _literal(Class, value, params) {
     return new Class({
         type: "literal",
@@ -52892,30 +53308,35 @@ function _literal(Class, value, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _file(Class, params) {
     return new Class({
         type: "file",
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _transform(Class, fn) {
     return new Class({
         type: "transform",
         transform: fn,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _optional(Class, innerType) {
     return new Class({
         type: "optional",
         innerType,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _nullable(Class, innerType) {
     return new Class({
         type: "nullable",
         innerType,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _default(Class, innerType, defaultValue) {
     return new Class({
         type: "default",
@@ -52925,6 +53346,7 @@ function _default(Class, innerType, defaultValue) {
         },
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _nonoptional(Class, innerType, params) {
     return new Class({
         type: "nonoptional",
@@ -52932,12 +53354,14 @@ function _nonoptional(Class, innerType, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _success(Class, innerType) {
     return new Class({
         type: "success",
         innerType,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _catch(Class, innerType, catchValue) {
     return new Class({
         type: "catch",
@@ -52945,6 +53369,7 @@ function _catch(Class, innerType, catchValue) {
         catchValue: (typeof catchValue === "function" ? catchValue : () => catchValue),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _pipe(Class, in_, out) {
     return new Class({
         type: "pipe",
@@ -52952,12 +53377,14 @@ function _pipe(Class, in_, out) {
         out,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _readonly(Class, innerType) {
     return new Class({
         type: "readonly",
         innerType,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _templateLiteral(Class, parts, params) {
     return new Class({
         type: "template_literal",
@@ -52965,18 +53392,21 @@ function _templateLiteral(Class, parts, params) {
         ...util.normalizeParams(params),
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _lazy(Class, getter) {
     return new Class({
         type: "lazy",
         getter,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _promise(Class, innerType) {
     return new Class({
         type: "promise",
         innerType,
     });
 }
+// @__NO_SIDE_EFFECTS__
 function _custom(Class, fn, _params) {
     const norm = util.normalizeParams(_params);
     norm.abort ?? (norm.abort = true); // default to abort:false
@@ -52989,6 +53419,7 @@ function _custom(Class, fn, _params) {
     return schema;
 }
 // same as _custom but defaults to abort:false
+// @__NO_SIDE_EFFECTS__
 function _refine(Class, fn, _params) {
     const schema = new Class({
         type: "custom",
@@ -52998,6 +53429,7 @@ function _refine(Class, fn, _params) {
     });
     return schema;
 }
+// @__NO_SIDE_EFFECTS__
 function _superRefine(fn) {
     const ch = _check((payload) => {
         payload.addIssue = (issue) => {
@@ -53020,6 +53452,7 @@ function _superRefine(fn) {
     });
     return ch;
 }
+// @__NO_SIDE_EFFECTS__
 function _check(fn, params) {
     const ch = new checks.$ZodCheck({
         check: "custom",
@@ -53028,6 +53461,7 @@ function _check(fn, params) {
     ch._zod.check = fn;
     return ch;
 }
+// @__NO_SIDE_EFFECTS__
 function describe(description) {
     const ch = new checks.$ZodCheck({ check: "describe" });
     ch._zod.onattach = [
@@ -53039,6 +53473,7 @@ function describe(description) {
     ch._zod.check = () => { }; // no-op check
     return ch;
 }
+// @__NO_SIDE_EFFECTS__
 function meta(metadata) {
     const ch = new checks.$ZodCheck({ check: "meta" });
     ch._zod.onattach = [
@@ -53050,6 +53485,7 @@ function meta(metadata) {
     ch._zod.check = () => { }; // no-op check
     return ch;
 }
+// @__NO_SIDE_EFFECTS__
 function _stringbool(Classes, _params) {
     const params = util.normalizeParams(_params);
     let truthyArray = params.truthy ?? ["true", "1", "yes", "on", "y", "enabled"];
@@ -53103,6 +53539,7 @@ function _stringbool(Classes, _params) {
     });
     return codec;
 }
+// @__NO_SIDE_EFFECTS__
 function _stringFormat(Class, format, fnOrRegex, _params = {}) {
     const params = util.normalizeParams(_params);
     const def = {
@@ -53123,7 +53560,7 @@ function _stringFormat(Class, format, fnOrRegex, _params = {}) {
 
 /***/ }),
 
-/***/ 3919:
+/***/ 1182:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -53153,9 +53590,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.$ZodCheckOverwrite = exports.$ZodCheckMimeType = exports.$ZodCheckProperty = exports.$ZodCheckEndsWith = exports.$ZodCheckStartsWith = exports.$ZodCheckIncludes = exports.$ZodCheckUpperCase = exports.$ZodCheckLowerCase = exports.$ZodCheckRegex = exports.$ZodCheckStringFormat = exports.$ZodCheckLengthEquals = exports.$ZodCheckMinLength = exports.$ZodCheckMaxLength = exports.$ZodCheckSizeEquals = exports.$ZodCheckMinSize = exports.$ZodCheckMaxSize = exports.$ZodCheckBigIntFormat = exports.$ZodCheckNumberFormat = exports.$ZodCheckMultipleOf = exports.$ZodCheckGreaterThan = exports.$ZodCheckLessThan = exports.$ZodCheck = void 0;
-const core = __importStar(__nccwpck_require__(7777));
-const regexes = __importStar(__nccwpck_require__(3921));
-const util = __importStar(__nccwpck_require__(6528));
+const core = __importStar(__nccwpck_require__(7880));
+const regexes = __importStar(__nccwpck_require__(9070));
+const util = __importStar(__nccwpck_require__(9693));
 exports.$ZodCheck = core.$constructor("$ZodCheck", (inst, def) => {
     var _a;
     inst._zod ?? (inst._zod = {});
@@ -53187,7 +53624,7 @@ exports.$ZodCheckLessThan = core.$constructor("$ZodCheckLessThan", (inst, def) =
         payload.issues.push({
             origin,
             code: "too_big",
-            maximum: def.value,
+            maximum: typeof def.value === "object" ? def.value.getTime() : def.value,
             input: payload.value,
             inclusive: def.inclusive,
             inst,
@@ -53215,7 +53652,7 @@ exports.$ZodCheckGreaterThan = core.$constructor("$ZodCheckGreaterThan", (inst, 
         payload.issues.push({
             origin,
             code: "too_small",
-            minimum: def.value,
+            minimum: typeof def.value === "object" ? def.value.getTime() : def.value,
             input: payload.value,
             inclusive: def.inclusive,
             inst,
@@ -53303,6 +53740,7 @@ exports.$ZodCheckNumberFormat = core.$constructor("$ZodCheckNumberFormat", (inst
                         note: "Integers must be within the safe integer range.",
                         inst,
                         origin,
+                        inclusive: true,
                         continue: !def.abort,
                     });
                 }
@@ -53315,6 +53753,7 @@ exports.$ZodCheckNumberFormat = core.$constructor("$ZodCheckNumberFormat", (inst
                         note: "Integers must be within the safe integer range.",
                         inst,
                         origin,
+                        inclusive: true,
                         continue: !def.abort,
                     });
                 }
@@ -53338,7 +53777,9 @@ exports.$ZodCheckNumberFormat = core.$constructor("$ZodCheckNumberFormat", (inst
                 input,
                 code: "too_big",
                 maximum,
+                inclusive: true,
                 inst,
+                continue: !def.abort,
             });
         }
     };
@@ -53371,7 +53812,9 @@ exports.$ZodCheckBigIntFormat = core.$constructor("$ZodCheckBigIntFormat", (inst
                 input,
                 code: "too_big",
                 maximum,
+                inclusive: true,
                 inst,
+                continue: !def.abort,
             });
         }
     };
@@ -53725,7 +54168,7 @@ exports.$ZodCheckOverwrite = core.$constructor("$ZodCheckOverwrite", (inst, def)
 
 /***/ }),
 
-/***/ 7777:
+/***/ 7880:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -53815,7 +54258,7 @@ function config(newConfig) {
 
 /***/ }),
 
-/***/ 2446:
+/***/ 5837:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -53861,7 +54304,7 @@ exports.Doc = Doc;
 
 /***/ }),
 
-/***/ 4545:
+/***/ 5880:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -53895,8 +54338,8 @@ exports.formatError = formatError;
 exports.treeifyError = treeifyError;
 exports.toDotPath = toDotPath;
 exports.prettifyError = prettifyError;
-const core_js_1 = __nccwpck_require__(7777);
-const util = __importStar(__nccwpck_require__(6528));
+const core_js_1 = __nccwpck_require__(7880);
+const util = __importStar(__nccwpck_require__(9693));
 const initializer = (inst, def) => {
     inst.name = "$ZodError";
     Object.defineProperty(inst, "_zod", {
@@ -54081,7 +54524,7 @@ function prettifyError(error) {
 
 /***/ }),
 
-/***/ 1880:
+/***/ 4723:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -54113,36 +54556,36 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.JSONSchema = exports.JSONSchemaGenerator = exports.toJSONSchema = exports.locales = exports.regexes = exports.util = void 0;
-__exportStar(__nccwpck_require__(7777), exports);
-__exportStar(__nccwpck_require__(305), exports);
-__exportStar(__nccwpck_require__(4545), exports);
-__exportStar(__nccwpck_require__(7164), exports);
-__exportStar(__nccwpck_require__(3919), exports);
-__exportStar(__nccwpck_require__(1088), exports);
-exports.util = __importStar(__nccwpck_require__(6528));
-exports.regexes = __importStar(__nccwpck_require__(3921));
-exports.locales = __importStar(__nccwpck_require__(7740));
-__exportStar(__nccwpck_require__(1393), exports);
-__exportStar(__nccwpck_require__(2446), exports);
-__exportStar(__nccwpck_require__(1556), exports);
-__exportStar(__nccwpck_require__(8162), exports);
-var json_schema_processors_js_1 = __nccwpck_require__(5196);
+__exportStar(__nccwpck_require__(7880), exports);
+__exportStar(__nccwpck_require__(5026), exports);
+__exportStar(__nccwpck_require__(5880), exports);
+__exportStar(__nccwpck_require__(9759), exports);
+__exportStar(__nccwpck_require__(1182), exports);
+__exportStar(__nccwpck_require__(4310), exports);
+exports.util = __importStar(__nccwpck_require__(9693));
+exports.regexes = __importStar(__nccwpck_require__(9070));
+exports.locales = __importStar(__nccwpck_require__(7269));
+__exportStar(__nccwpck_require__(1104), exports);
+__exportStar(__nccwpck_require__(5837), exports);
+__exportStar(__nccwpck_require__(7499), exports);
+__exportStar(__nccwpck_require__(4387), exports);
+var json_schema_processors_js_1 = __nccwpck_require__(5745);
 Object.defineProperty(exports, "toJSONSchema", ({ enumerable: true, get: function () { return json_schema_processors_js_1.toJSONSchema; } }));
-var json_schema_generator_js_1 = __nccwpck_require__(8846);
+var json_schema_generator_js_1 = __nccwpck_require__(4977);
 Object.defineProperty(exports, "JSONSchemaGenerator", ({ enumerable: true, get: function () { return json_schema_generator_js_1.JSONSchemaGenerator; } }));
-exports.JSONSchema = __importStar(__nccwpck_require__(838));
+exports.JSONSchema = __importStar(__nccwpck_require__(597));
 
 
 /***/ }),
 
-/***/ 8846:
+/***/ 4977:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.JSONSchemaGenerator = void 0;
-const json_schema_processors_js_1 = __nccwpck_require__(5196);
-const to_json_schema_js_1 = __nccwpck_require__(8162);
+const json_schema_processors_js_1 = __nccwpck_require__(5745);
+const to_json_schema_js_1 = __nccwpck_require__(4387);
 /**
  * Legacy class-based interface for JSON Schema generation.
  * This class wraps the new functional implementation to provide backward compatibility.
@@ -54241,15 +54684,15 @@ exports.JSONSchemaGenerator = JSONSchemaGenerator;
 
 /***/ }),
 
-/***/ 5196:
+/***/ 5745:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.allProcessors = exports.lazyProcessor = exports.optionalProcessor = exports.promiseProcessor = exports.readonlyProcessor = exports.pipeProcessor = exports.catchProcessor = exports.prefaultProcessor = exports.defaultProcessor = exports.nonoptionalProcessor = exports.nullableProcessor = exports.recordProcessor = exports.tupleProcessor = exports.intersectionProcessor = exports.unionProcessor = exports.objectProcessor = exports.arrayProcessor = exports.setProcessor = exports.mapProcessor = exports.transformProcessor = exports.functionProcessor = exports.customProcessor = exports.successProcessor = exports.fileProcessor = exports.templateLiteralProcessor = exports.nanProcessor = exports.literalProcessor = exports.enumProcessor = exports.dateProcessor = exports.unknownProcessor = exports.anyProcessor = exports.neverProcessor = exports.voidProcessor = exports.undefinedProcessor = exports.nullProcessor = exports.symbolProcessor = exports.bigintProcessor = exports.booleanProcessor = exports.numberProcessor = exports.stringProcessor = void 0;
 exports.toJSONSchema = toJSONSchema;
-const to_json_schema_js_1 = __nccwpck_require__(8162);
-const util_js_1 = __nccwpck_require__(6528);
+const to_json_schema_js_1 = __nccwpck_require__(4387);
+const util_js_1 = __nccwpck_require__(9693);
 const formatMap = {
     guid: "uuid",
     url: "uri",
@@ -54272,6 +54715,11 @@ const stringProcessor = (schema, ctx, _json, _params) => {
         json.format = formatMap[format] ?? format;
         if (json.format === "")
             delete json.format; // empty format is not valid
+        // JSON Schema format: "time" requires a full time with offset or Z
+        // z.iso.time() does not include timezone information, so format: "time" should never be used
+        if (format === "time") {
+            delete json.format;
+        }
     }
     if (contentEncoding)
         json.contentEncoding = contentEncoding;
@@ -54490,10 +54938,8 @@ const fileProcessor = (schema, _ctx, json, _params) => {
             Object.assign(_json, file);
         }
         else {
-            _json.anyOf = mime.map((m) => {
-                const mFile = { ...file, contentMediaType: m };
-                return mFile;
-            });
+            Object.assign(_json, file); // shared props at root
+            _json.anyOf = mime.map((m) => ({ contentMediaType: m })); // only contentMediaType differs
         }
     }
     else {
@@ -54679,16 +55125,44 @@ const recordProcessor = (schema, ctx, _json, params) => {
     const json = _json;
     const def = schema._zod.def;
     json.type = "object";
-    if (ctx.target === "draft-07" || ctx.target === "draft-2020-12") {
-        json.propertyNames = (0, to_json_schema_js_1.process)(def.keyType, ctx, {
+    // For looseRecord with regex patterns, use patternProperties
+    // This correctly represents "only validate keys matching the pattern" semantics
+    // and composes well with allOf (intersections)
+    const keyType = def.keyType;
+    const keyBag = keyType._zod.bag;
+    const patterns = keyBag?.patterns;
+    if (def.mode === "loose" && patterns && patterns.size > 0) {
+        // Use patternProperties for looseRecord with regex patterns
+        const valueSchema = (0, to_json_schema_js_1.process)(def.valueType, ctx, {
             ...params,
-            path: [...params.path, "propertyNames"],
+            path: [...params.path, "patternProperties", "*"],
+        });
+        json.patternProperties = {};
+        for (const pattern of patterns) {
+            json.patternProperties[pattern.source] = valueSchema;
+        }
+    }
+    else {
+        // Default behavior: use propertyNames + additionalProperties
+        if (ctx.target === "draft-07" || ctx.target === "draft-2020-12") {
+            json.propertyNames = (0, to_json_schema_js_1.process)(def.keyType, ctx, {
+                ...params,
+                path: [...params.path, "propertyNames"],
+            });
+        }
+        json.additionalProperties = (0, to_json_schema_js_1.process)(def.valueType, ctx, {
+            ...params,
+            path: [...params.path, "additionalProperties"],
         });
     }
-    json.additionalProperties = (0, to_json_schema_js_1.process)(def.valueType, ctx, {
-        ...params,
-        path: [...params.path, "additionalProperties"],
-    });
+    // Add required for keys with discrete values (enum, literal, etc.)
+    const keyValues = keyType._zod.values;
+    if (keyValues) {
+        const validKeyValues = [...keyValues].filter((v) => typeof v === "string" || typeof v === "number");
+        if (validKeyValues.length > 0) {
+            json.required = validKeyValues;
+        }
+    }
 };
 exports.recordProcessor = recordProcessor;
 const nullableProcessor = (schema, ctx, json, params) => {
@@ -54865,7 +55339,7 @@ function toJSONSchema(input, params) {
 
 /***/ }),
 
-/***/ 838:
+/***/ 597:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -54874,7 +55348,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 /***/ }),
 
-/***/ 305:
+/***/ 5026:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -54903,9 +55377,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.safeDecodeAsync = exports._safeDecodeAsync = exports.safeEncodeAsync = exports._safeEncodeAsync = exports.safeDecode = exports._safeDecode = exports.safeEncode = exports._safeEncode = exports.decodeAsync = exports._decodeAsync = exports.encodeAsync = exports._encodeAsync = exports.decode = exports._decode = exports.encode = exports._encode = exports.safeParseAsync = exports._safeParseAsync = exports.safeParse = exports._safeParse = exports.parseAsync = exports._parseAsync = exports.parse = exports._parse = void 0;
-const core = __importStar(__nccwpck_require__(7777));
-const errors = __importStar(__nccwpck_require__(4545));
-const util = __importStar(__nccwpck_require__(6528));
+const core = __importStar(__nccwpck_require__(7880));
+const errors = __importStar(__nccwpck_require__(5880));
+const util = __importStar(__nccwpck_require__(9693));
 const _parse = (_Err) => (schema, value, _ctx, _params) => {
     const ctx = _ctx ? Object.assign(_ctx, { async: false }) : { async: false };
     const result = schema._zod.run({ value, issues: [] }, ctx);
@@ -55012,7 +55486,7 @@ exports.safeDecodeAsync = (0, exports._safeDecodeAsync)(errors.$ZodRealError);
 
 /***/ }),
 
-/***/ 3921:
+/***/ 9070:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -55045,7 +55519,7 @@ exports.sha512_base64url = exports.sha512_base64 = exports.sha512_hex = exports.
 exports.emoji = emoji;
 exports.time = time;
 exports.datetime = datetime;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 exports.cuid = /^[cC][^\s-]{8,}$/;
 exports.cuid2 = /^[0-9a-z]+$/;
 exports.ulid = /^[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}$/;
@@ -55102,7 +55576,8 @@ exports.base64url = /^[A-Za-z0-9_-]*$/;
 exports.hostname = /^(?=.{1,253}\.?$)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[-0-9a-zA-Z]{0,61}[0-9a-zA-Z])?)*\.?$/;
 exports.domain = /^([a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$/;
 // https://blog.stevenlevithan.com/archives/validate-phone-number#r4-3 (regex sans spaces)
-exports.e164 = /^\+(?:[0-9]){6,14}[0-9]$/;
+// E.164: leading digit must be 1-9; total digits (excluding '+') between 7-15
+exports.e164 = /^\+[1-9]\d{6,14}$/;
 // const dateSource = `((\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-((0[13578]|1[02])-(0[1-9]|[12]\\d|3[01])|(0[469]|11)-(0[1-9]|[12]\\d|30)|(02)-(0[1-9]|1\\d|2[0-8])))`;
 const dateSource = `(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))`;
 exports.date = new RegExp(`^${dateSource}$`);
@@ -55139,7 +55614,7 @@ const string = (params) => {
 exports.string = string;
 exports.bigint = /^-?\d+n?$/;
 exports.integer = /^-?\d+$/;
-exports.number = /^-?\d+(?:\.\d+)?/;
+exports.number = /^-?\d+(?:\.\d+)?$/;
 exports.boolean = /^(?:true|false)$/i;
 const _null = /^null$/i;
 exports["null"] = _null;
@@ -55184,7 +55659,7 @@ exports.sha512_base64url = fixedBase64url(86);
 
 /***/ }),
 
-/***/ 1393:
+/***/ 1104:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -55203,9 +55678,6 @@ class $ZodRegistry {
         const meta = _meta[0];
         this._map.set(schema, meta);
         if (meta && typeof meta === "object" && "id" in meta) {
-            if (this._idmap.has(meta.id)) {
-                throw new Error(`ID ${meta.id} already exists in the registry`);
-            }
             this._idmap.set(meta.id, schema);
         }
         return this;
@@ -55250,7 +55722,7 @@ exports.globalRegistry = globalThis.__zod_globalRegistry;
 
 /***/ }),
 
-/***/ 7164:
+/***/ 9759:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -55279,17 +55751,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.$ZodTuple = exports.$ZodIntersection = exports.$ZodDiscriminatedUnion = exports.$ZodXor = exports.$ZodUnion = exports.$ZodObjectJIT = exports.$ZodObject = exports.$ZodArray = exports.$ZodDate = exports.$ZodVoid = exports.$ZodNever = exports.$ZodUnknown = exports.$ZodAny = exports.$ZodNull = exports.$ZodUndefined = exports.$ZodSymbol = exports.$ZodBigIntFormat = exports.$ZodBigInt = exports.$ZodBoolean = exports.$ZodNumberFormat = exports.$ZodNumber = exports.$ZodCustomStringFormat = exports.$ZodJWT = exports.$ZodE164 = exports.$ZodBase64URL = exports.$ZodBase64 = exports.$ZodCIDRv6 = exports.$ZodCIDRv4 = exports.$ZodMAC = exports.$ZodIPv6 = exports.$ZodIPv4 = exports.$ZodISODuration = exports.$ZodISOTime = exports.$ZodISODate = exports.$ZodISODateTime = exports.$ZodKSUID = exports.$ZodXID = exports.$ZodULID = exports.$ZodCUID2 = exports.$ZodCUID = exports.$ZodNanoID = exports.$ZodEmoji = exports.$ZodURL = exports.$ZodEmail = exports.$ZodUUID = exports.$ZodGUID = exports.$ZodStringFormat = exports.$ZodString = exports.clone = exports.$ZodType = void 0;
-exports.$ZodCustom = exports.$ZodLazy = exports.$ZodPromise = exports.$ZodFunction = exports.$ZodTemplateLiteral = exports.$ZodReadonly = exports.$ZodCodec = exports.$ZodPipe = exports.$ZodNaN = exports.$ZodCatch = exports.$ZodSuccess = exports.$ZodNonOptional = exports.$ZodPrefault = exports.$ZodDefault = exports.$ZodNullable = exports.$ZodOptional = exports.$ZodTransform = exports.$ZodFile = exports.$ZodLiteral = exports.$ZodEnum = exports.$ZodSet = exports.$ZodMap = exports.$ZodRecord = void 0;
+exports.$ZodCustom = exports.$ZodLazy = exports.$ZodPromise = exports.$ZodFunction = exports.$ZodTemplateLiteral = exports.$ZodReadonly = exports.$ZodCodec = exports.$ZodPipe = exports.$ZodNaN = exports.$ZodCatch = exports.$ZodSuccess = exports.$ZodNonOptional = exports.$ZodPrefault = exports.$ZodDefault = exports.$ZodNullable = exports.$ZodExactOptional = exports.$ZodOptional = exports.$ZodTransform = exports.$ZodFile = exports.$ZodLiteral = exports.$ZodEnum = exports.$ZodSet = exports.$ZodMap = exports.$ZodRecord = void 0;
 exports.isValidBase64 = isValidBase64;
 exports.isValidBase64URL = isValidBase64URL;
 exports.isValidJWT = isValidJWT;
-const checks = __importStar(__nccwpck_require__(3919));
-const core = __importStar(__nccwpck_require__(7777));
-const doc_js_1 = __nccwpck_require__(2446);
-const parse_js_1 = __nccwpck_require__(305);
-const regexes = __importStar(__nccwpck_require__(3921));
-const util = __importStar(__nccwpck_require__(6528));
-const versions_js_1 = __nccwpck_require__(1088);
+const checks = __importStar(__nccwpck_require__(1182));
+const core = __importStar(__nccwpck_require__(7880));
+const doc_js_1 = __nccwpck_require__(5837);
+const parse_js_1 = __nccwpck_require__(5026);
+const regexes = __importStar(__nccwpck_require__(9070));
+const util = __importStar(__nccwpck_require__(9693));
+const versions_js_1 = __nccwpck_require__(4310);
 exports.$ZodType = core.$constructor("$ZodType", (inst, def) => {
     var _a;
     inst ?? (inst = {});
@@ -55397,7 +55869,8 @@ exports.$ZodType = core.$constructor("$ZodType", (inst, def) => {
             return runChecks(result, checks, ctx);
         };
     }
-    inst["~standard"] = {
+    // Lazy initialize ~standard to avoid creating objects for every schema
+    util.defineLazy(inst, "~standard", () => ({
         validate: (value) => {
             try {
                 const r = (0, parse_js_1.safeParse)(inst, value);
@@ -55409,9 +55882,9 @@ exports.$ZodType = core.$constructor("$ZodType", (inst, def) => {
         },
         vendor: "zod",
         version: 1,
-    };
+    }));
 });
-var util_js_1 = __nccwpck_require__(6528);
+var util_js_1 = __nccwpck_require__(9693);
 Object.defineProperty(exports, "clone", ({ enumerable: true, get: function () { return util_js_1.clone; } }));
 exports.$ZodString = core.$constructor("$ZodString", (inst, def) => {
     exports.$ZodType.init(inst, def);
@@ -55973,8 +56446,12 @@ exports.$ZodArray = core.$constructor("$ZodArray", (inst, def) => {
         return payload; //handleArrayResultsAsync(parseResults, final);
     };
 });
-function handlePropertyResult(result, final, key, input) {
+function handlePropertyResult(result, final, key, input, isOptionalOut) {
     if (result.issues.length) {
+        // For optional-out schemas, ignore errors on absent keys
+        if (isOptionalOut && !(key in input)) {
+            return;
+        }
         final.issues.push(...util.prefixIssues(key, result.issues));
     }
     if (result.value === undefined) {
@@ -56008,6 +56485,7 @@ function handleCatchall(proms, input, payload, ctx, def, inst) {
     const keySet = def.keySet;
     const _catchall = def.catchall._zod;
     const t = _catchall.def.type;
+    const isOptionalOut = _catchall.optout === "optional";
     for (const key in input) {
         if (keySet.has(key))
             continue;
@@ -56017,10 +56495,10 @@ function handleCatchall(proms, input, payload, ctx, def, inst) {
         }
         const r = _catchall.run({ value: input[key], issues: [] }, ctx);
         if (r instanceof Promise) {
-            proms.push(r.then((r) => handlePropertyResult(r, payload, key, input)));
+            proms.push(r.then((r) => handlePropertyResult(r, payload, key, input, isOptionalOut)));
         }
         else {
-            handlePropertyResult(r, payload, key, input);
+            handlePropertyResult(r, payload, key, input, isOptionalOut);
         }
     }
     if (unrecognized.length) {
@@ -56088,12 +56566,13 @@ exports.$ZodObject = core.$constructor("$ZodObject", (inst, def) => {
         const shape = value.shape;
         for (const key of value.keys) {
             const el = shape[key];
+            const isOptionalOut = el._zod.optout === "optional";
             const r = el._zod.run({ value: input[key], issues: [] }, ctx);
             if (r instanceof Promise) {
-                proms.push(r.then((r) => handlePropertyResult(r, payload, key, input)));
+                proms.push(r.then((r) => handlePropertyResult(r, payload, key, input, isOptionalOut)));
             }
             else {
-                handlePropertyResult(r, payload, key, input);
+                handlePropertyResult(r, payload, key, input, isOptionalOut);
             }
         }
         if (!catchall) {
@@ -56125,15 +56604,20 @@ exports.$ZodObjectJIT = core.$constructor("$ZodObjectJIT", (inst, def) => {
         for (const key of normalized.keys) {
             const id = ids[key];
             const k = util.esc(key);
+            const schema = shape[key];
+            const isOptionalOut = schema?._zod?.optout === "optional";
             doc.write(`const ${id} = ${parseStr(key)};`);
-            doc.write(`
+            if (isOptionalOut) {
+                // For optional-out schemas, ignore errors on absent keys
+                doc.write(`
         if (${id}.issues.length) {
-          payload.issues = payload.issues.concat(${id}.issues.map(iss => ({
-            ...iss,
-            path: iss.path ? [${k}, ...iss.path] : [${k}]
-          })));
+          if (${k} in input) {
+            payload.issues = payload.issues.concat(${id}.issues.map(iss => ({
+              ...iss,
+              path: iss.path ? [${k}, ...iss.path] : [${k}]
+            })));
+          }
         }
-        
         
         if (${id}.value === undefined) {
           if (${k} in input) {
@@ -56144,6 +56628,26 @@ exports.$ZodObjectJIT = core.$constructor("$ZodObjectJIT", (inst, def) => {
         }
         
       `);
+            }
+            else {
+                doc.write(`
+        if (${id}.issues.length) {
+          payload.issues = payload.issues.concat(${id}.issues.map(iss => ({
+            ...iss,
+            path: iss.path ? [${k}, ...iss.path] : [${k}]
+          })));
+        }
+        
+        if (${id}.value === undefined) {
+          if (${k} in input) {
+            newResult[${k}] = undefined;
+          }
+        } else {
+          newResult[${k}] = ${id}.value;
+        }
+        
+      `);
+            }
         }
         doc.write(`payload.value = newResult;`);
         doc.write(`return payload;`);
@@ -56437,11 +56941,38 @@ function mergeValues(a, b) {
     return { valid: false, mergeErrorPath: [] };
 }
 function handleIntersectionResults(result, left, right) {
-    if (left.issues.length) {
-        result.issues.push(...left.issues);
+    // Track which side(s) report each key as unrecognized
+    const unrecKeys = new Map();
+    let unrecIssue;
+    for (const iss of left.issues) {
+        if (iss.code === "unrecognized_keys") {
+            unrecIssue ?? (unrecIssue = iss);
+            for (const k of iss.keys) {
+                if (!unrecKeys.has(k))
+                    unrecKeys.set(k, {});
+                unrecKeys.get(k).l = true;
+            }
+        }
+        else {
+            result.issues.push(iss);
+        }
     }
-    if (right.issues.length) {
-        result.issues.push(...right.issues);
+    for (const iss of right.issues) {
+        if (iss.code === "unrecognized_keys") {
+            for (const k of iss.keys) {
+                if (!unrecKeys.has(k))
+                    unrecKeys.set(k, {});
+                unrecKeys.get(k).r = true;
+            }
+        }
+        else {
+            result.issues.push(iss);
+        }
+    }
+    // Report only keys unrecognized by BOTH sides
+    const bothKeys = [...unrecKeys].filter(([, f]) => f.l && f.r).map(([k]) => k);
+    if (bothKeys.length && unrecIssue) {
+        result.issues.push({ ...unrecIssue, keys: bothKeys });
     }
     if (util.aborted(result))
         return result;
@@ -56475,7 +57006,9 @@ exports.$ZodTuple = core.$constructor("$ZodTuple", (inst, def) => {
             const tooSmall = input.length < optStart - 1;
             if (tooBig || tooSmall) {
                 payload.issues.push({
-                    ...(tooBig ? { code: "too_big", maximum: items.length } : { code: "too_small", minimum: items.length }),
+                    ...(tooBig
+                        ? { code: "too_big", maximum: items.length, inclusive: true }
+                        : { code: "too_small", minimum: items.length }),
                     input,
                     inst,
                     origin: "array",
@@ -56586,9 +57119,23 @@ exports.$ZodRecord = core.$constructor("$ZodRecord", (inst, def) => {
             for (const key of Reflect.ownKeys(input)) {
                 if (key === "__proto__")
                     continue;
-                const keyResult = def.keyType._zod.run({ value: key, issues: [] }, ctx);
+                let keyResult = def.keyType._zod.run({ value: key, issues: [] }, ctx);
                 if (keyResult instanceof Promise) {
                     throw new Error("Async schemas not supported in object keys currently");
+                }
+                // Numeric string fallback: if key failed with "expected number", retry with Number(key)
+                const checkNumericKey = typeof key === "string" &&
+                    regexes.number.test(key) &&
+                    keyResult.issues.length &&
+                    keyResult.issues.some((iss) => iss.code === "invalid_type" && iss.expected === "number");
+                if (checkNumericKey) {
+                    const retryResult = def.keyType._zod.run({ value: Number(key), issues: [] }, ctx);
+                    if (retryResult instanceof Promise) {
+                        throw new Error("Async schemas not supported in object keys currently");
+                    }
+                    if (retryResult.issues.length === 0) {
+                        keyResult = retryResult;
+                    }
                 }
                 if (keyResult.issues.length) {
                     if (def.mode === "loose") {
@@ -56840,6 +57387,17 @@ exports.$ZodOptional = core.$constructor("$ZodOptional", (inst, def) => {
         if (payload.value === undefined) {
             return payload;
         }
+        return def.innerType._zod.run(payload, ctx);
+    };
+});
+exports.$ZodExactOptional = core.$constructor("$ZodExactOptional", (inst, def) => {
+    // Call parent init - inherits optin/optout = "optional"
+    exports.$ZodOptional.init(inst, def);
+    // Override values/pattern to NOT add undefined
+    util.defineLazy(inst._zod, "values", () => def.innerType._zod.values);
+    util.defineLazy(inst._zod, "pattern", () => def.innerType._zod.pattern);
+    // Override parse to just delegate (no undefined handling)
+    inst._zod.parse = (payload, ctx) => {
         return def.innerType._zod.run(payload, ctx);
     };
 });
@@ -57139,7 +57697,7 @@ exports.$ZodTemplateLiteral = core.$constructor("$ZodTemplateLiteral", (inst, de
             payload.issues.push({
                 input: payload.value,
                 inst,
-                expected: "template_literal",
+                expected: "string",
                 code: "invalid_type",
             });
             return payload;
@@ -57297,7 +57855,7 @@ function handleRefineResult(result, payload, input, inst) {
 
 /***/ }),
 
-/***/ 8162:
+/***/ 4387:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 
@@ -57307,7 +57865,7 @@ exports.initializeContext = initializeContext;
 exports.process = process;
 exports.extractDefs = extractDefs;
 exports.finalize = finalize;
-const registries_js_1 = __nccwpck_require__(1393);
+const registries_js_1 = __nccwpck_require__(1104);
 // function initializeContext<T extends schemas.$ZodType>(inputs: JSONSchemaGeneratorParams<T>): ToJSONSchemaContext<T> {
 //   return {
 //     processor: inputs.processor,
@@ -57365,14 +57923,7 @@ function process(schema, ctx, _params = { path: [], schemaPath: [] }) {
             schemaPath: [..._params.schemaPath, schema],
             path: _params.path,
         };
-        const parent = schema._zod.parent;
-        if (parent) {
-            // schema was cloned from another schema
-            result.ref = parent;
-            process(parent, ctx, params);
-            ctx.seen.get(parent).isParent = true;
-        }
-        else if (schema._zod.processJSONSchema) {
+        if (schema._zod.processJSONSchema) {
             schema._zod.processJSONSchema(ctx, result.schema, params);
         }
         else {
@@ -57382,6 +57933,14 @@ function process(schema, ctx, _params = { path: [], schemaPath: [] }) {
                 throw new Error(`[toJSONSchema]: Non-representable type encountered: ${def.type}`);
             }
             processor(schema, ctx, _json, params);
+        }
+        const parent = schema._zod.parent;
+        if (parent) {
+            // Also set ref if processor didn't (for inheritance)
+            if (!result.ref)
+                result.ref = parent;
+            process(parent, ctx, params);
+            ctx.seen.get(parent).isParent = true;
         }
     }
     // metadata
@@ -57408,6 +57967,18 @@ function extractDefs(ctx, schema
     const root = ctx.seen.get(schema);
     if (!root)
         throw new Error("Unprocessed schema. This is a bug in Zod.");
+    // Track ids to detect duplicates across different schemas
+    const idToSchema = new Map();
+    for (const entry of ctx.seen.entries()) {
+        const id = ctx.metadataRegistry.get(entry[0])?.id;
+        if (id) {
+            const existing = idToSchema.get(id);
+            if (existing && existing !== entry[0]) {
+                throw new Error(`Duplicate schema id "${id}" detected during JSON Schema conversion. Two different schemas cannot share the same id when converted together.`);
+            }
+            idToSchema.set(id, entry[0]);
+        }
+    }
     // returns a ref to the schema
     // defId will be empty if the ref points to an external schema (or #)
     const makeURI = (entry) => {
@@ -57509,43 +58080,84 @@ function extractDefs(ctx, schema
     }
 }
 function finalize(ctx, schema) {
-    //
-    // iterate over seen map;
     const root = ctx.seen.get(schema);
     if (!root)
         throw new Error("Unprocessed schema. This is a bug in Zod.");
-    // flatten _refs
+    // flatten refs - inherit properties from parent schemas
     const flattenRef = (zodSchema) => {
         const seen = ctx.seen.get(zodSchema);
+        // already processed
+        if (seen.ref === null)
+            return;
         const schema = seen.def ?? seen.schema;
         const _cached = { ...schema };
-        // already seen
-        if (seen.ref === null) {
-            return;
-        }
-        // flatten ref if defined
         const ref = seen.ref;
-        seen.ref = null; // prevent recursion
+        seen.ref = null; // prevent infinite recursion
         if (ref) {
             flattenRef(ref);
+            const refSeen = ctx.seen.get(ref);
+            const refSchema = refSeen.schema;
             // merge referenced schema into current
-            const refSchema = ctx.seen.get(ref).schema;
             if (refSchema.$ref && (ctx.target === "draft-07" || ctx.target === "draft-04" || ctx.target === "openapi-3.0")) {
+                // older drafts can't combine $ref with other properties
                 schema.allOf = schema.allOf ?? [];
                 schema.allOf.push(refSchema);
             }
             else {
                 Object.assign(schema, refSchema);
-                Object.assign(schema, _cached); // prevent overwriting any fields in the original schema
+            }
+            // restore child's own properties (child wins)
+            Object.assign(schema, _cached);
+            const isParentRef = zodSchema._zod.parent === ref;
+            // For parent chain, child is a refinement - remove parent-only properties
+            if (isParentRef) {
+                for (const key in schema) {
+                    if (key === "$ref" || key === "allOf")
+                        continue;
+                    if (!(key in _cached)) {
+                        delete schema[key];
+                    }
+                }
+            }
+            // When ref was extracted to $defs, remove properties that match the definition
+            if (refSchema.$ref) {
+                for (const key in schema) {
+                    if (key === "$ref" || key === "allOf")
+                        continue;
+                    if (key in refSeen.def && JSON.stringify(schema[key]) === JSON.stringify(refSeen.def[key])) {
+                        delete schema[key];
+                    }
+                }
+            }
+        }
+        // If parent was extracted (has $ref), propagate $ref to this schema
+        // This handles cases like: readonly().meta({id}).describe()
+        // where processor sets ref to innerType but parent should be referenced
+        const parent = zodSchema._zod.parent;
+        if (parent && parent !== ref) {
+            // Ensure parent is processed first so its def has inherited properties
+            flattenRef(parent);
+            const parentSeen = ctx.seen.get(parent);
+            if (parentSeen?.schema.$ref) {
+                schema.$ref = parentSeen.schema.$ref;
+                // De-duplicate with parent's definition
+                if (parentSeen.def) {
+                    for (const key in schema) {
+                        if (key === "$ref" || key === "allOf")
+                            continue;
+                        if (key in parentSeen.def && JSON.stringify(schema[key]) === JSON.stringify(parentSeen.def[key])) {
+                            delete schema[key];
+                        }
+                    }
+                }
             }
         }
         // execute overrides
-        if (!seen.isParent)
-            ctx.override({
-                zodSchema: zodSchema,
-                jsonSchema: schema,
-                path: seen.path ?? [],
-            });
+        ctx.override({
+            zodSchema: zodSchema,
+            jsonSchema: schema,
+            path: seen.path ?? [],
+        });
     };
     for (const entry of [...ctx.seen.entries()].reverse()) {
         flattenRef(entry[0]);
@@ -57603,8 +58215,8 @@ function finalize(ctx, schema) {
             value: {
                 ...schema["~standard"],
                 jsonSchema: {
-                    input: (0, exports.createStandardJSONSchemaMethod)(schema, "input"),
-                    output: (0, exports.createStandardJSONSchemaMethod)(schema, "output"),
+                    input: (0, exports.createStandardJSONSchemaMethod)(schema, "input", ctx.processors),
+                    output: (0, exports.createStandardJSONSchemaMethod)(schema, "output", ctx.processors),
                 },
             },
             enumerable: false,
@@ -57684,9 +58296,9 @@ const createToJSONSchemaMethod = (schema, processors = {}) => (params) => {
     return finalize(ctx, schema);
 };
 exports.createToJSONSchemaMethod = createToJSONSchemaMethod;
-const createStandardJSONSchemaMethod = (schema, io) => (params) => {
+const createStandardJSONSchemaMethod = (schema, io, processors = {}) => (params) => {
     const { libraryOptions, target } = params ?? {};
-    const ctx = initializeContext({ ...(libraryOptions ?? {}), target, io, processors: {} });
+    const ctx = initializeContext({ ...(libraryOptions ?? {}), target, io, processors });
     process(schema, ctx);
     extractDefs(ctx, schema);
     return finalize(ctx, schema);
@@ -57696,7 +58308,7 @@ exports.createStandardJSONSchemaMethod = createStandardJSONSchemaMethod;
 
 /***/ }),
 
-/***/ 6528:
+/***/ 9693:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -57747,6 +58359,7 @@ exports.unwrapMessage = unwrapMessage;
 exports.finalizeIssue = finalizeIssue;
 exports.getSizableOrigin = getSizableOrigin;
 exports.getLengthableOrigin = getLengthableOrigin;
+exports.parsedType = parsedType;
 exports.issue = issue;
 exports.cleanEnum = cleanEnum;
 exports.base64ToUint8Array = base64ToUint8Array;
@@ -58085,6 +58698,11 @@ exports.BIGINT_FORMAT_RANGES = {
 };
 function pick(schema, mask) {
     const currDef = schema._zod.def;
+    const checks = currDef.checks;
+    const hasChecks = checks && checks.length > 0;
+    if (hasChecks) {
+        throw new Error(".pick() cannot be used on object schemas containing refinements");
+    }
     const def = mergeDefs(schema._zod.def, {
         get shape() {
             const newShape = {};
@@ -58105,6 +58723,11 @@ function pick(schema, mask) {
 }
 function omit(schema, mask) {
     const currDef = schema._zod.def;
+    const checks = currDef.checks;
+    const hasChecks = checks && checks.length > 0;
+    if (hasChecks) {
+        throw new Error(".omit() cannot be used on object schemas containing refinements");
+    }
     const def = mergeDefs(schema._zod.def, {
         get shape() {
             const newShape = { ...schema._zod.def.shape };
@@ -58130,7 +58753,14 @@ function extend(schema, shape) {
     const checks = schema._zod.def.checks;
     const hasChecks = checks && checks.length > 0;
     if (hasChecks) {
-        throw new Error("Object schemas containing refinements cannot be extended. Use `.safeExtend()` instead.");
+        // Only throw if new shape overlaps with existing shape
+        // Use getOwnPropertyDescriptor to check key existence without accessing values
+        const existingShape = schema._zod.def.shape;
+        for (const key in shape) {
+            if (Object.getOwnPropertyDescriptor(existingShape, key) !== undefined) {
+                throw new Error("Cannot overwrite keys on object schemas containing refinements. Use `.safeExtend()` instead.");
+            }
+        }
     }
     const def = mergeDefs(schema._zod.def, {
         get shape() {
@@ -58138,7 +58768,6 @@ function extend(schema, shape) {
             assignProp(this, "shape", _shape); // self-caching
             return _shape;
         },
-        checks: [],
     });
     return clone(schema, def);
 }
@@ -58146,15 +58775,13 @@ function safeExtend(schema, shape) {
     if (!isPlainObject(shape)) {
         throw new Error("Invalid input to safeExtend: expected a plain object");
     }
-    const def = {
-        ...schema._zod.def,
+    const def = mergeDefs(schema._zod.def, {
         get shape() {
             const _shape = { ...schema._zod.def.shape, ...shape };
             assignProp(this, "shape", _shape); // self-caching
             return _shape;
         },
-        checks: schema._zod.def.checks,
-    };
+    });
     return clone(schema, def);
 }
 function merge(a, b) {
@@ -58172,6 +58799,12 @@ function merge(a, b) {
     return clone(a, def);
 }
 function partial(Class, schema, mask) {
+    const currDef = schema._zod.def;
+    const checks = currDef.checks;
+    const hasChecks = checks && checks.length > 0;
+    if (hasChecks) {
+        throw new Error(".partial() cannot be used on object schemas containing refinements");
+    }
     const def = mergeDefs(schema._zod.def, {
         get shape() {
             const oldShape = schema._zod.def.shape;
@@ -58241,7 +58874,6 @@ function required(Class, schema, mask) {
             assignProp(this, "shape", shape); // self-caching
             return shape;
         },
-        checks: [],
     });
     return clone(schema, def);
 }
@@ -58302,6 +58934,27 @@ function getLengthableOrigin(input) {
     if (typeof input === "string")
         return "string";
     return "unknown";
+}
+function parsedType(data) {
+    const t = typeof data;
+    switch (t) {
+        case "number": {
+            return Number.isNaN(data) ? "nan" : "number";
+        }
+        case "object": {
+            if (data === null) {
+                return "null";
+            }
+            if (Array.isArray(data)) {
+                return "array";
+            }
+            const obj = data;
+            if (obj && Object.getPrototypeOf(obj) !== Object.prototype && "constructor" in obj && obj.constructor) {
+                return obj.constructor.name;
+            }
+        }
+    }
+    return t;
 }
 function issue(...args) {
     const [iss, input, inst] = args;
@@ -58372,7 +59025,7 @@ exports.Class = Class;
 
 /***/ }),
 
-/***/ 1088:
+/***/ 4310:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -58380,14 +59033,14 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.version = void 0;
 exports.version = {
     major: 4,
-    minor: 2,
-    patch: 1,
+    minor: 3,
+    patch: 5,
 };
 
 
 /***/ }),
 
-/***/ 4873:
+/***/ 2810:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -58416,7 +59069,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "حرف", verb: "أن يحوي" },
@@ -58427,27 +59080,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "number";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "array";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "مدخل",
         email: "بريد إلكتروني",
         url: "رابط",
@@ -58477,10 +59110,20 @@ const error = () => {
         jwt: "JWT",
         template_literal: "مدخل",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `مدخلات غير مقبولة: يفترض إدخال ${issue.expected}، ولكن تم إدخال ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `مدخلات غير مقبولة: يفترض إدخال instanceof ${issue.expected}، ولكن تم إدخال ${received}`;
+                }
+                return `مدخلات غير مقبولة: يفترض إدخال ${expected}، ولكن تم إدخال ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `مدخلات غير مقبولة: يفترض إدخال ${util.stringifyPrimitive(issue.values[0])}`;
@@ -58510,7 +59153,7 @@ const error = () => {
                     return `نَص غير مقبول: يجب أن يتضمَّن "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `نَص غير مقبول: يجب أن يطابق النمط ${_issue.pattern}`;
-                return `${Nouns[_issue.format] ?? issue.format} غير مقبول`;
+                return `${FormatDictionary[_issue.format] ?? issue.format} غير مقبول`;
             }
             case "not_multiple_of":
                 return `رقم غير مقبول: يجب أن يكون من مضاعفات ${issue.divisor}`;
@@ -58537,7 +59180,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 9905:
+/***/ 5522:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -58566,7 +59209,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "simvol", verb: "olmalıdır" },
@@ -58577,27 +59220,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "number";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "array";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "input",
         email: "email address",
         url: "URL",
@@ -58627,10 +59250,20 @@ const error = () => {
         jwt: "JWT",
         template_literal: "input",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Yanlış dəyər: gözlənilən ${issue.expected}, daxil olan ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Yanlış dəyər: gözlənilən instanceof ${issue.expected}, daxil olan ${received}`;
+                }
+                return `Yanlış dəyər: gözlənilən ${expected}, daxil olan ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Yanlış dəyər: gözlənilən ${util.stringifyPrimitive(issue.values[0])}`;
@@ -58659,7 +59292,7 @@ const error = () => {
                     return `Yanlış mətn: "${_issue.includes}" daxil olmalıdır`;
                 if (_issue.format === "regex")
                     return `Yanlış mətn: ${_issue.pattern} şablonuna uyğun olmalıdır`;
-                return `Yanlış ${Nouns[_issue.format] ?? issue.format}`;
+                return `Yanlış ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Yanlış ədəd: ${issue.divisor} ilə bölünə bilən olmalıdır`;
@@ -58686,7 +59319,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 483:
+/***/ 3404:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -58715,7 +59348,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 function getBelarusianPlural(count, one, few, many) {
     const absCount = Math.abs(count);
     const lastDigit = absCount % 10;
@@ -58769,27 +59402,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "лік";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "масіў";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "увод",
         email: "email адрас",
         url: "URL",
@@ -58819,10 +59432,22 @@ const error = () => {
         jwt: "JWT",
         template_literal: "увод",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "лік",
+        array: "масіў",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Няправільны ўвод: чакаўся ${issue.expected}, атрымана ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Няправільны ўвод: чакаўся instanceof ${issue.expected}, атрымана ${received}`;
+                }
+                return `Няправільны ўвод: чакаўся ${expected}, атрымана ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Няправільны ўвод: чакалася ${util.stringifyPrimitive(issue.values[0])}`;
@@ -58857,7 +59482,7 @@ const error = () => {
                     return `Няправільны радок: павінен змяшчаць "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Няправільны радок: павінен адпавядаць шаблону ${_issue.pattern}`;
-                return `Няправільны ${Nouns[_issue.format] ?? issue.format}`;
+                return `Няправільны ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Няправільны лік: павінен быць кратным ${issue.divisor}`;
@@ -58884,8 +59509,8 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 6105:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+/***/ 4478:
+/***/ (function(module, exports, __nccwpck_require__) {
 
 
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
@@ -58912,30 +59537,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.parsedType = void 0;
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
-const parsedType = (data) => {
-    const t = typeof data;
-    switch (t) {
-        case "number": {
-            return Number.isNaN(data) ? "NaN" : "число";
-        }
-        case "object": {
-            if (Array.isArray(data)) {
-                return "масив";
-            }
-            if (data === null) {
-                return "null";
-            }
-            if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                return data.constructor.name;
-            }
-        }
-    }
-    return t;
-};
-exports.parsedType = parsedType;
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "символа", verb: "да съдържа" },
@@ -58946,7 +59549,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const Nouns = {
+    const FormatDictionary = {
         regex: "вход",
         email: "имейл адрес",
         url: "URL",
@@ -58976,10 +59579,22 @@ const error = () => {
         jwt: "JWT",
         template_literal: "вход",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "число",
+        array: "масив",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Невалиден вход: очакван ${issue.expected}, получен ${(0, exports.parsedType)(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Невалиден вход: очакван instanceof ${issue.expected}, получен ${received}`;
+                }
+                return `Невалиден вход: очакван ${expected}, получен ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Невалиден вход: очакван ${util.stringifyPrimitive(issue.values[0])}`;
@@ -59021,7 +59636,7 @@ const error = () => {
                     invalid_adj = "Невалидно";
                 if (_issue.format === "duration")
                     invalid_adj = "Невалидна";
-                return `${invalid_adj} ${Nouns[_issue.format] ?? issue.format}`;
+                return `${invalid_adj} ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Невалидно число: трябва да бъде кратно на ${issue.divisor}`;
@@ -59043,11 +59658,12 @@ function default_1() {
         localeError: error(),
     };
 }
+module.exports = exports.default;
 
 
 /***/ }),
 
-/***/ 8968:
+/***/ 7143:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -59076,7 +59692,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "caràcters", verb: "contenir" },
@@ -59087,27 +59703,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "number";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "array";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "entrada",
         email: "adreça electrònica",
         url: "URL",
@@ -59137,11 +59733,20 @@ const error = () => {
         jwt: "JWT",
         template_literal: "entrada",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Tipus invàlid: s'esperava ${issue.expected}, s'ha rebut ${parsedType(issue.input)}`;
-            // return `Tipus invàlid: s'esperava ${issue.expected}, s'ha rebut ${util.getParsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Tipus invàlid: s'esperava instanceof ${issue.expected}, s'ha rebut ${received}`;
+                }
+                return `Tipus invàlid: s'esperava ${expected}, s'ha rebut ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Valor invàlid: s'esperava ${util.stringifyPrimitive(issue.values[0])}`;
@@ -59172,7 +59777,7 @@ const error = () => {
                     return `Format invàlid: ha d'incloure "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Format invàlid: ha de coincidir amb el patró ${_issue.pattern}`;
-                return `Format invàlid per a ${Nouns[_issue.format] ?? issue.format}`;
+                return `Format invàlid per a ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Número invàlid: ha de ser múltiple de ${issue.divisor}`;
@@ -59199,7 +59804,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 8922:
+/***/ 4781:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -59228,7 +59833,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "znaků", verb: "mít" },
@@ -59239,45 +59844,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "číslo";
-            }
-            case "string": {
-                return "řetězec";
-            }
-            case "boolean": {
-                return "boolean";
-            }
-            case "bigint": {
-                return "bigint";
-            }
-            case "function": {
-                return "funkce";
-            }
-            case "symbol": {
-                return "symbol";
-            }
-            case "undefined": {
-                return "undefined";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "pole";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "regulární výraz",
         email: "e-mailová adresa",
         url: "URL",
@@ -59307,10 +59874,24 @@ const error = () => {
         jwt: "JWT",
         template_literal: "vstup",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "číslo",
+        string: "řetězec",
+        function: "funkce",
+        array: "pole",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Neplatný vstup: očekáváno ${issue.expected}, obdrženo ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Neplatný vstup: očekáváno instanceof ${issue.expected}, obdrženo ${received}`;
+                }
+                return `Neplatný vstup: očekáváno ${expected}, obdrženo ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Neplatný vstup: očekáváno ${util.stringifyPrimitive(issue.values[0])}`;
@@ -59341,7 +59922,7 @@ const error = () => {
                     return `Neplatný řetězec: musí obsahovat "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Neplatný řetězec: musí odpovídat vzoru ${_issue.pattern}`;
-                return `Neplatný formát ${Nouns[_issue.format] ?? issue.format}`;
+                return `Neplatný formát ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Neplatné číslo: musí být násobkem ${issue.divisor}`;
@@ -59368,7 +59949,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 8349:
+/***/ 3294:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -59397,7 +59978,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "tegn", verb: "havde" },
@@ -59405,43 +59986,10 @@ const error = () => {
         array: { unit: "elementer", verb: "indeholdt" },
         set: { unit: "elementer", verb: "indeholdt" },
     };
-    const TypeNames = {
-        string: "streng",
-        number: "tal",
-        boolean: "boolean",
-        array: "liste",
-        object: "objekt",
-        set: "sæt",
-        file: "fil",
-    };
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    function getTypeName(type) {
-        return TypeNames[type] ?? type;
-    }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "tal";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "liste";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-                return "objekt";
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "input",
         email: "e-mailadresse",
         url: "URL",
@@ -59471,10 +60019,27 @@ const error = () => {
         jwt: "JWT",
         template_literal: "input",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        string: "streng",
+        number: "tal",
+        boolean: "boolean",
+        array: "liste",
+        object: "objekt",
+        set: "sæt",
+        file: "fil",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Ugyldigt input: forventede ${getTypeName(issue.expected)}, fik ${getTypeName(parsedType(issue.input))}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Ugyldigt input: forventede instanceof ${issue.expected}, fik ${received}`;
+                }
+                return `Ugyldigt input: forventede ${expected}, fik ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Ugyldig værdi: forventede ${util.stringifyPrimitive(issue.values[0])}`;
@@ -59482,7 +60047,7 @@ const error = () => {
             case "too_big": {
                 const adj = issue.inclusive ? "<=" : "<";
                 const sizing = getSizing(issue.origin);
-                const origin = getTypeName(issue.origin);
+                const origin = TypeDictionary[issue.origin] ?? issue.origin;
                 if (sizing)
                     return `For stor: forventede ${origin ?? "value"} ${sizing.verb} ${adj} ${issue.maximum.toString()} ${sizing.unit ?? "elementer"}`;
                 return `For stor: forventede ${origin ?? "value"} havde ${adj} ${issue.maximum.toString()}`;
@@ -59490,7 +60055,7 @@ const error = () => {
             case "too_small": {
                 const adj = issue.inclusive ? ">=" : ">";
                 const sizing = getSizing(issue.origin);
-                const origin = getTypeName(issue.origin);
+                const origin = TypeDictionary[issue.origin] ?? issue.origin;
                 if (sizing) {
                     return `For lille: forventede ${origin} ${sizing.verb} ${adj} ${issue.minimum.toString()} ${sizing.unit}`;
                 }
@@ -59506,7 +60071,7 @@ const error = () => {
                     return `Ugyldig streng: skal indeholde "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Ugyldig streng: skal matche mønsteret ${_issue.pattern}`;
-                return `Ugyldig ${Nouns[_issue.format] ?? issue.format}`;
+                return `Ugyldig ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Ugyldigt tal: skal være deleligt med ${issue.divisor}`;
@@ -59533,7 +60098,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 9601:
+/***/ 306:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -59562,7 +60127,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "Zeichen", verb: "zu haben" },
@@ -59573,27 +60138,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "Zahl";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "Array";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "Eingabe",
         email: "E-Mail-Adresse",
         url: "URL",
@@ -59623,10 +60168,22 @@ const error = () => {
         jwt: "JWT",
         template_literal: "Eingabe",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "Zahl",
+        array: "Array",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Ungültige Eingabe: erwartet ${issue.expected}, erhalten ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Ungültige Eingabe: erwartet instanceof ${issue.expected}, erhalten ${received}`;
+                }
+                return `Ungültige Eingabe: erwartet ${expected}, erhalten ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Ungültige Eingabe: erwartet ${util.stringifyPrimitive(issue.values[0])}`;
@@ -59656,7 +60213,7 @@ const error = () => {
                     return `Ungültiger String: muss "${_issue.includes}" enthalten`;
                 if (_issue.format === "regex")
                     return `Ungültiger String: muss dem Muster ${_issue.pattern} entsprechen`;
-                return `Ungültig: ${Nouns[_issue.format] ?? issue.format}`;
+                return `Ungültig: ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Ungültige Zahl: muss ein Vielfaches von ${issue.divisor} sein`;
@@ -59683,8 +60240,8 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 6121:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+/***/ 8826:
+/***/ (function(module, exports, __nccwpck_require__) {
 
 
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
@@ -59711,41 +60268,20 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.parsedType = void 0;
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
-const parsedType = (data) => {
-    const t = typeof data;
-    switch (t) {
-        case "number": {
-            return Number.isNaN(data) ? "NaN" : "number";
-        }
-        case "object": {
-            if (Array.isArray(data)) {
-                return "array";
-            }
-            if (data === null) {
-                return "null";
-            }
-            if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                return data.constructor.name;
-            }
-        }
-    }
-    return t;
-};
-exports.parsedType = parsedType;
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "characters", verb: "to have" },
         file: { unit: "bytes", verb: "to have" },
         array: { unit: "items", verb: "to have" },
         set: { unit: "items", verb: "to have" },
+        map: { unit: "entries", verb: "to have" },
     };
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const Nouns = {
+    const FormatDictionary = {
         regex: "input",
         email: "email address",
         url: "URL",
@@ -59776,10 +60312,20 @@ const error = () => {
         jwt: "JWT",
         template_literal: "input",
     };
+    // type names: missing keys = do not translate (use raw value via ?? fallback)
+    const TypeDictionary = {
+        // Compatibility: "nan" -> "NaN" for display
+        nan: "NaN",
+        // All other type names omitted - they fall back to raw values via ?? operator
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Invalid input: expected ${issue.expected}, received ${(0, exports.parsedType)(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                return `Invalid input: expected ${expected}, received ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Invalid input: expected ${util.stringifyPrimitive(issue.values[0])}`;
@@ -59810,7 +60356,7 @@ const error = () => {
                     return `Invalid string: must include "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Invalid string: must match pattern ${_issue.pattern}`;
-                return `Invalid ${Nouns[_issue.format] ?? issue.format}`;
+                return `Invalid ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Invalid number: must be a multiple of ${issue.divisor}`;
@@ -59832,12 +60378,13 @@ function default_1() {
         localeError: error(),
     };
 }
+module.exports = exports.default;
 
 
 /***/ }),
 
-/***/ 4096:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+/***/ 9771:
+/***/ (function(module, exports, __nccwpck_require__) {
 
 
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
@@ -59864,30 +60411,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.parsedType = void 0;
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
-const parsedType = (data) => {
-    const t = typeof data;
-    switch (t) {
-        case "number": {
-            return Number.isNaN(data) ? "NaN" : "nombro";
-        }
-        case "object": {
-            if (Array.isArray(data)) {
-                return "tabelo";
-            }
-            if (data === null) {
-                return "senvalora";
-            }
-            if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                return data.constructor.name;
-            }
-        }
-    }
-    return t;
-};
-exports.parsedType = parsedType;
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "karaktrojn", verb: "havi" },
@@ -59898,7 +60423,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const Nouns = {
+    const FormatDictionary = {
         regex: "enigo",
         email: "retadreso",
         url: "URL",
@@ -59928,10 +60453,23 @@ const error = () => {
         jwt: "JWT",
         template_literal: "enigo",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "nombro",
+        array: "tabelo",
+        null: "senvalora",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Nevalida enigo: atendiĝis ${issue.expected}, riceviĝis ${(0, exports.parsedType)(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Nevalida enigo: atendiĝis instanceof ${issue.expected}, riceviĝis ${received}`;
+                }
+                return `Nevalida enigo: atendiĝis ${expected}, riceviĝis ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Nevalida enigo: atendiĝis ${util.stringifyPrimitive(issue.values[0])}`;
@@ -59961,7 +60499,7 @@ const error = () => {
                     return `Nevalida karaktraro: devas inkluzivi "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Nevalida karaktraro: devas kongrui kun la modelo ${_issue.pattern}`;
-                return `Nevalida ${Nouns[_issue.format] ?? issue.format}`;
+                return `Nevalida ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Nevalida nombro: devas esti oblo de ${issue.divisor}`;
@@ -59983,11 +60521,12 @@ function default_1() {
         localeError: error(),
     };
 }
+module.exports = exports.default;
 
 
 /***/ }),
 
-/***/ 3284:
+/***/ 9583:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -60016,7 +60555,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "caracteres", verb: "tener" },
@@ -60024,60 +60563,10 @@ const error = () => {
         array: { unit: "elementos", verb: "tener" },
         set: { unit: "elementos", verb: "tener" },
     };
-    const TypeNames = {
-        string: "texto",
-        number: "número",
-        boolean: "booleano",
-        array: "arreglo",
-        object: "objeto",
-        set: "conjunto",
-        file: "archivo",
-        date: "fecha",
-        bigint: "número grande",
-        symbol: "símbolo",
-        undefined: "indefinido",
-        null: "nulo",
-        function: "función",
-        map: "mapa",
-        record: "registro",
-        tuple: "tupla",
-        enum: "enumeración",
-        union: "unión",
-        literal: "literal",
-        promise: "promesa",
-        void: "vacío",
-        never: "nunca",
-        unknown: "desconocido",
-        any: "cualquiera",
-    };
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    function getTypeName(type) {
-        return TypeNames[type] ?? type;
-    }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "number";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "array";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype) {
-                    return data.constructor.name;
-                }
-                return "object";
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "entrada",
         email: "dirección de correo electrónico",
         url: "URL",
@@ -60107,11 +60596,44 @@ const error = () => {
         jwt: "JWT",
         template_literal: "entrada",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        string: "texto",
+        number: "número",
+        boolean: "booleano",
+        array: "arreglo",
+        object: "objeto",
+        set: "conjunto",
+        file: "archivo",
+        date: "fecha",
+        bigint: "número grande",
+        symbol: "símbolo",
+        undefined: "indefinido",
+        null: "nulo",
+        function: "función",
+        map: "mapa",
+        record: "registro",
+        tuple: "tupla",
+        enum: "enumeración",
+        union: "unión",
+        literal: "literal",
+        promise: "promesa",
+        void: "vacío",
+        never: "nunca",
+        unknown: "desconocido",
+        any: "cualquiera",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Entrada inválida: se esperaba ${getTypeName(issue.expected)}, recibido ${getTypeName(parsedType(issue.input))}`;
-            // return `Entrada inválida: se esperaba ${issue.expected}, recibido ${util.getParsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Entrada inválida: se esperaba instanceof ${issue.expected}, recibido ${received}`;
+                }
+                return `Entrada inválida: se esperaba ${expected}, recibido ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Entrada inválida: se esperaba ${util.stringifyPrimitive(issue.values[0])}`;
@@ -60119,7 +60641,7 @@ const error = () => {
             case "too_big": {
                 const adj = issue.inclusive ? "<=" : "<";
                 const sizing = getSizing(issue.origin);
-                const origin = getTypeName(issue.origin);
+                const origin = TypeDictionary[issue.origin] ?? issue.origin;
                 if (sizing)
                     return `Demasiado grande: se esperaba que ${origin ?? "valor"} tuviera ${adj}${issue.maximum.toString()} ${sizing.unit ?? "elementos"}`;
                 return `Demasiado grande: se esperaba que ${origin ?? "valor"} fuera ${adj}${issue.maximum.toString()}`;
@@ -60127,7 +60649,7 @@ const error = () => {
             case "too_small": {
                 const adj = issue.inclusive ? ">=" : ">";
                 const sizing = getSizing(issue.origin);
-                const origin = getTypeName(issue.origin);
+                const origin = TypeDictionary[issue.origin] ?? issue.origin;
                 if (sizing) {
                     return `Demasiado pequeño: se esperaba que ${origin} tuviera ${adj}${issue.minimum.toString()} ${sizing.unit}`;
                 }
@@ -60143,18 +60665,18 @@ const error = () => {
                     return `Cadena inválida: debe incluir "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Cadena inválida: debe coincidir con el patrón ${_issue.pattern}`;
-                return `Inválido ${Nouns[_issue.format] ?? issue.format}`;
+                return `Inválido ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Número inválido: debe ser múltiplo de ${issue.divisor}`;
             case "unrecognized_keys":
                 return `Llave${issue.keys.length > 1 ? "s" : ""} desconocida${issue.keys.length > 1 ? "s" : ""}: ${util.joinValues(issue.keys, ", ")}`;
             case "invalid_key":
-                return `Llave inválida en ${getTypeName(issue.origin)}`;
+                return `Llave inválida en ${TypeDictionary[issue.origin] ?? issue.origin}`;
             case "invalid_union":
                 return "Entrada inválida";
             case "invalid_element":
-                return `Valor inválido en ${getTypeName(issue.origin)}`;
+                return `Valor inválido en ${TypeDictionary[issue.origin] ?? issue.origin}`;
             default:
                 return `Entrada inválida`;
         }
@@ -60170,7 +60692,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 3651:
+/***/ 3124:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -60199,7 +60721,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "کاراکتر", verb: "داشته باشد" },
@@ -60210,27 +60732,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "عدد";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "آرایه";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "ورودی",
         email: "آدرس ایمیل",
         url: "URL",
@@ -60260,10 +60762,22 @@ const error = () => {
         jwt: "JWT",
         template_literal: "ورودی",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "عدد",
+        array: "آرایه",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `ورودی نامعتبر: می‌بایست ${issue.expected} می‌بود، ${parsedType(issue.input)} دریافت شد`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `ورودی نامعتبر: می‌بایست instanceof ${issue.expected} می‌بود، ${received} دریافت شد`;
+                }
+                return `ورودی نامعتبر: می‌بایست ${expected} می‌بود، ${received} دریافت شد`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1) {
                     return `ورودی نامعتبر: می‌بایست ${util.stringifyPrimitive(issue.values[0])} می‌بود`;
@@ -60299,7 +60813,7 @@ const error = () => {
                 if (_issue.format === "regex") {
                     return `رشته نامعتبر: باید با الگوی ${_issue.pattern} مطابقت داشته باشد`;
                 }
-                return `${Nouns[_issue.format] ?? issue.format} نامعتبر`;
+                return `${FormatDictionary[_issue.format] ?? issue.format} نامعتبر`;
             }
             case "not_multiple_of":
                 return `عدد نامعتبر: باید مضرب ${issue.divisor} باشد`;
@@ -60326,7 +60840,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 5243:
+/***/ 3692:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -60355,7 +60869,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "merkkiä", subject: "merkkijonon" },
@@ -60370,27 +60884,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "number";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "array";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "säännöllinen lauseke",
         email: "sähköpostiosoite",
         url: "URL-osoite",
@@ -60420,10 +60914,20 @@ const error = () => {
         jwt: "JWT",
         template_literal: "templaattimerkkijono",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Virheellinen tyyppi: odotettiin ${issue.expected}, oli ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Virheellinen tyyppi: odotettiin instanceof ${issue.expected}, oli ${received}`;
+                }
+                return `Virheellinen tyyppi: odotettiin ${expected}, oli ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Virheellinen syöte: täytyy olla ${util.stringifyPrimitive(issue.values[0])}`;
@@ -60455,7 +60959,7 @@ const error = () => {
                 if (_issue.format === "regex") {
                     return `Virheellinen syöte: täytyy vastata säännöllistä lauseketta ${_issue.pattern}`;
                 }
-                return `Virheellinen ${Nouns[_issue.format] ?? issue.format}`;
+                return `Virheellinen ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Virheellinen luku: täytyy olla luvun ${issue.divisor} monikerta`;
@@ -60482,7 +60986,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 6845:
+/***/ 7896:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -60511,7 +61015,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "caractères", verb: "avoir" },
@@ -60522,27 +61026,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "number";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "array";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "entrée",
         email: "adresse courriel",
         url: "URL",
@@ -60572,10 +61056,20 @@ const error = () => {
         jwt: "JWT",
         template_literal: "entrée",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Entrée invalide : attendu ${issue.expected}, reçu ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Entrée invalide : attendu instanceof ${issue.expected}, reçu ${received}`;
+                }
+                return `Entrée invalide : attendu ${expected}, reçu ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Entrée invalide : attendu ${util.stringifyPrimitive(issue.values[0])}`;
@@ -60606,7 +61100,7 @@ const error = () => {
                     return `Chaîne invalide : doit inclure "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Chaîne invalide : doit correspondre au motif ${_issue.pattern}`;
-                return `${Nouns[_issue.format] ?? issue.format} invalide`;
+                return `${FormatDictionary[_issue.format] ?? issue.format} invalide`;
             }
             case "not_multiple_of":
                 return `Nombre invalide : doit être un multiple de ${issue.divisor}`;
@@ -60633,7 +61127,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 6720:
+/***/ 5815:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -60662,7 +61156,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "caractères", verb: "avoir" },
@@ -60673,27 +61167,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "nombre";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "tableau";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "entrée",
         email: "adresse e-mail",
         url: "URL",
@@ -60723,10 +61197,22 @@ const error = () => {
         jwt: "JWT",
         template_literal: "entrée",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "nombre",
+        array: "tableau",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Entrée invalide : ${issue.expected} attendu, ${parsedType(issue.input)} reçu`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Entrée invalide : instanceof ${issue.expected} attendu, ${received} reçu`;
+                }
+                return `Entrée invalide : ${expected} attendu, ${received} reçu`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Entrée invalide : ${util.stringifyPrimitive(issue.values[0])} attendu`;
@@ -60756,7 +61242,7 @@ const error = () => {
                     return `Chaîne invalide : doit inclure "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Chaîne invalide : doit correspondre au modèle ${_issue.pattern}`;
-                return `${Nouns[_issue.format] ?? issue.format} invalide`;
+                return `${FormatDictionary[_issue.format] ?? issue.format} invalide`;
             }
             case "not_multiple_of":
                 return `Nombre invalide : doit être un multiple de ${issue.divisor}`;
@@ -60783,7 +61269,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 3597:
+/***/ 3470:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -60812,7 +61298,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     // Hebrew labels + grammatical gender
     const TypeNames = {
@@ -60863,27 +61349,7 @@ const error = () => {
             return null;
         return Sizable[origin] ?? null;
     };
-    // Robust type parser for "received" — returns a key we understand or a constructor name
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number":
-                return Number.isNaN(data) ? "NaN" : "number";
-            case "object": {
-                if (Array.isArray(data))
-                    return "array";
-                if (data === null)
-                    return "null";
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name; // keep as-is (e.g., "Date")
-                }
-                return "object";
-            }
-            default:
-                return t;
-        }
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: { label: "קלט", gender: "m" },
         email: { label: "כתובת אימייל", gender: "f" },
         url: { label: "כתובת רשת", gender: "f" },
@@ -60915,15 +61381,21 @@ const error = () => {
         starts_with: { label: "קלט", gender: "m" },
         uppercase: { label: "קלט", gender: "m" },
     };
+    const TypeDictionary = {
+        nan: "NaN",
+    };
     return (issue) => {
         switch (issue.code) {
             case "invalid_type": {
                 // Expected type: show without definite article for clearer Hebrew
                 const expectedKey = issue.expected;
-                const expected = typeLabel(expectedKey);
+                const expected = TypeDictionary[expectedKey ?? ""] ?? typeLabel(expectedKey);
                 // Received: show localized label if known, otherwise constructor/raw
-                const receivedKey = parsedType(issue.input);
-                const received = TypeNames[receivedKey]?.label ?? receivedKey;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? TypeNames[receivedType]?.label ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `קלט לא תקין: צריך להיות instanceof ${issue.expected}, התקבל ${received}`;
+                }
                 return `קלט לא תקין: צריך להיות ${expected}, התקבל ${received}`;
             }
             case "invalid_value": {
@@ -61011,7 +61483,7 @@ const error = () => {
                 if (_issue.format === "regex")
                     return `המחרוזת חייבת להתאים לתבנית ${_issue.pattern}`;
                 // Handle gender agreement for formats
-                const nounEntry = Nouns[_issue.format];
+                const nounEntry = FormatDictionary[_issue.format];
                 const noun = nounEntry?.label ?? _issue.format;
                 const gender = nounEntry?.gender ?? "m";
                 const adjective = gender === "f" ? "תקינה" : "תקין";
@@ -61045,7 +61517,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 2781:
+/***/ 2430:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -61074,7 +61546,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "karakter", verb: "legyen" },
@@ -61085,27 +61557,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "szám";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "tömb";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "bemenet",
         email: "email cím",
         url: "URL",
@@ -61135,11 +61587,22 @@ const error = () => {
         jwt: "JWT",
         template_literal: "bemenet",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "szám",
+        array: "tömb",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Érvénytelen bemenet: a várt érték ${issue.expected}, a kapott érték ${parsedType(issue.input)}`;
-            // return `Invalid input: expected ${issue.expected}, received ${util.getParsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Érvénytelen bemenet: a várt érték instanceof ${issue.expected}, a kapott érték ${received}`;
+                }
+                return `Érvénytelen bemenet: a várt érték ${expected}, a kapott érték ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Érvénytelen bemenet: a várt érték ${util.stringifyPrimitive(issue.values[0])}`;
@@ -61169,7 +61632,7 @@ const error = () => {
                     return `Érvénytelen string: "${_issue.includes}" értéket kell tartalmaznia`;
                 if (_issue.format === "regex")
                     return `Érvénytelen string: ${_issue.pattern} mintának kell megfelelnie`;
-                return `Érvénytelen ${Nouns[_issue.format] ?? issue.format}`;
+                return `Érvénytelen ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Érvénytelen szám: ${issue.divisor} többszörösének kell lennie`;
@@ -61196,7 +61659,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 6695:
+/***/ 2474:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -61225,7 +61688,188 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
+function getArmenianPlural(count, one, many) {
+    return Math.abs(count) === 1 ? one : many;
+}
+function withDefiniteArticle(word) {
+    if (!word)
+        return "";
+    const vowels = ["ա", "ե", "ը", "ի", "ո", "ու", "օ"];
+    const lastChar = word[word.length - 1];
+    return word + (vowels.includes(lastChar) ? "ն" : "ը");
+}
+const error = () => {
+    const Sizable = {
+        string: {
+            unit: {
+                one: "նշան",
+                many: "նշաններ",
+            },
+            verb: "ունենալ",
+        },
+        file: {
+            unit: {
+                one: "բայթ",
+                many: "բայթեր",
+            },
+            verb: "ունենալ",
+        },
+        array: {
+            unit: {
+                one: "տարր",
+                many: "տարրեր",
+            },
+            verb: "ունենալ",
+        },
+        set: {
+            unit: {
+                one: "տարր",
+                many: "տարրեր",
+            },
+            verb: "ունենալ",
+        },
+    };
+    function getSizing(origin) {
+        return Sizable[origin] ?? null;
+    }
+    const FormatDictionary = {
+        regex: "մուտք",
+        email: "էլ. հասցե",
+        url: "URL",
+        emoji: "էմոջի",
+        uuid: "UUID",
+        uuidv4: "UUIDv4",
+        uuidv6: "UUIDv6",
+        nanoid: "nanoid",
+        guid: "GUID",
+        cuid: "cuid",
+        cuid2: "cuid2",
+        ulid: "ULID",
+        xid: "XID",
+        ksuid: "KSUID",
+        datetime: "ISO ամսաթիվ և ժամ",
+        date: "ISO ամսաթիվ",
+        time: "ISO ժամ",
+        duration: "ISO տևողություն",
+        ipv4: "IPv4 հասցե",
+        ipv6: "IPv6 հասցե",
+        cidrv4: "IPv4 միջակայք",
+        cidrv6: "IPv6 միջակայք",
+        base64: "base64 ձևաչափով տող",
+        base64url: "base64url ձևաչափով տող",
+        json_string: "JSON տող",
+        e164: "E.164 համար",
+        jwt: "JWT",
+        template_literal: "մուտք",
+    };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "թիվ",
+        array: "զանգված",
+    };
+    return (issue) => {
+        switch (issue.code) {
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Սխալ մուտքագրում․ սպասվում էր instanceof ${issue.expected}, ստացվել է ${received}`;
+                }
+                return `Սխալ մուտքագրում․ սպասվում էր ${expected}, ստացվել է ${received}`;
+            }
+            case "invalid_value":
+                if (issue.values.length === 1)
+                    return `Սխալ մուտքագրում․ սպասվում էր ${util.stringifyPrimitive(issue.values[1])}`;
+                return `Սխալ տարբերակ․ սպասվում էր հետևյալներից մեկը՝ ${util.joinValues(issue.values, "|")}`;
+            case "too_big": {
+                const adj = issue.inclusive ? "<=" : "<";
+                const sizing = getSizing(issue.origin);
+                if (sizing) {
+                    const maxValue = Number(issue.maximum);
+                    const unit = getArmenianPlural(maxValue, sizing.unit.one, sizing.unit.many);
+                    return `Չափազանց մեծ արժեք․ սպասվում է, որ ${withDefiniteArticle(issue.origin ?? "արժեք")} կունենա ${adj}${issue.maximum.toString()} ${unit}`;
+                }
+                return `Չափազանց մեծ արժեք․ սպասվում է, որ ${withDefiniteArticle(issue.origin ?? "արժեք")} լինի ${adj}${issue.maximum.toString()}`;
+            }
+            case "too_small": {
+                const adj = issue.inclusive ? ">=" : ">";
+                const sizing = getSizing(issue.origin);
+                if (sizing) {
+                    const minValue = Number(issue.minimum);
+                    const unit = getArmenianPlural(minValue, sizing.unit.one, sizing.unit.many);
+                    return `Չափազանց փոքր արժեք․ սպասվում է, որ ${withDefiniteArticle(issue.origin)} կունենա ${adj}${issue.minimum.toString()} ${unit}`;
+                }
+                return `Չափազանց փոքր արժեք․ սպասվում է, որ ${withDefiniteArticle(issue.origin)} լինի ${adj}${issue.minimum.toString()}`;
+            }
+            case "invalid_format": {
+                const _issue = issue;
+                if (_issue.format === "starts_with")
+                    return `Սխալ տող․ պետք է սկսվի "${_issue.prefix}"-ով`;
+                if (_issue.format === "ends_with")
+                    return `Սխալ տող․ պետք է ավարտվի "${_issue.suffix}"-ով`;
+                if (_issue.format === "includes")
+                    return `Սխալ տող․ պետք է պարունակի "${_issue.includes}"`;
+                if (_issue.format === "regex")
+                    return `Սխալ տող․ պետք է համապատասխանի ${_issue.pattern} ձևաչափին`;
+                return `Սխալ ${FormatDictionary[_issue.format] ?? issue.format}`;
+            }
+            case "not_multiple_of":
+                return `Սխալ թիվ․ պետք է բազմապատիկ լինի ${issue.divisor}-ի`;
+            case "unrecognized_keys":
+                return `Չճանաչված բանալի${issue.keys.length > 1 ? "ներ" : ""}. ${util.joinValues(issue.keys, ", ")}`;
+            case "invalid_key":
+                return `Սխալ բանալի ${withDefiniteArticle(issue.origin)}-ում`;
+            case "invalid_union":
+                return "Սխալ մուտքագրում";
+            case "invalid_element":
+                return `Սխալ արժեք ${withDefiniteArticle(issue.origin)}-ում`;
+            default:
+                return `Սխալ մուտքագրում`;
+        }
+    };
+};
+function default_1() {
+    return {
+        localeError: error(),
+    };
+}
+module.exports = exports.default;
+
+
+/***/ }),
+
+/***/ 7292:
+/***/ (function(module, exports, __nccwpck_require__) {
+
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports["default"] = default_1;
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "karakter", verb: "memiliki" },
@@ -61236,27 +61880,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "number";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "array";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "input",
         email: "alamat email",
         url: "URL",
@@ -61286,10 +61910,20 @@ const error = () => {
         jwt: "JWT",
         template_literal: "input",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Input tidak valid: diharapkan ${issue.expected}, diterima ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Input tidak valid: diharapkan instanceof ${issue.expected}, diterima ${received}`;
+                }
+                return `Input tidak valid: diharapkan ${expected}, diterima ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Input tidak valid: diharapkan ${util.stringifyPrimitive(issue.values[0])}`;
@@ -61319,7 +61953,7 @@ const error = () => {
                     return `String tidak valid: harus menyertakan "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `String tidak valid: harus sesuai pola ${_issue.pattern}`;
-                return `${Nouns[_issue.format] ?? issue.format} tidak valid`;
+                return `${FormatDictionary[_issue.format] ?? issue.format} tidak valid`;
             }
             case "not_multiple_of":
                 return `Angka tidak valid: harus kelipatan dari ${issue.divisor}`;
@@ -61346,7 +61980,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 7740:
+/***/ 7269:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -61354,107 +61988,111 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.yo = exports.zhTW = exports.zhCN = exports.vi = exports.ur = exports.uk = exports.ua = exports.tr = exports.th = exports.ta = exports.sv = exports.sl = exports.ru = exports.pt = exports.pl = exports.ps = exports.ota = exports.no = exports.nl = exports.ms = exports.mk = exports.lt = exports.ko = exports.km = exports.kh = exports.ka = exports.ja = exports.it = exports.is = exports.id = exports.hu = exports.he = exports.frCA = exports.fr = exports.fi = exports.fa = exports.es = exports.eo = exports.en = exports.de = exports.da = exports.cs = exports.ca = exports.bg = exports.be = exports.az = exports.ar = void 0;
-var ar_js_1 = __nccwpck_require__(4873);
+exports.yo = exports.zhTW = exports.zhCN = exports.vi = exports.uz = exports.ur = exports.uk = exports.ua = exports.tr = exports.th = exports.ta = exports.sv = exports.sl = exports.ru = exports.pt = exports.pl = exports.ps = exports.ota = exports.no = exports.nl = exports.ms = exports.mk = exports.lt = exports.ko = exports.km = exports.kh = exports.ka = exports.ja = exports.it = exports.is = exports.id = exports.hy = exports.hu = exports.he = exports.frCA = exports.fr = exports.fi = exports.fa = exports.es = exports.eo = exports.en = exports.de = exports.da = exports.cs = exports.ca = exports.bg = exports.be = exports.az = exports.ar = void 0;
+var ar_js_1 = __nccwpck_require__(2810);
 Object.defineProperty(exports, "ar", ({ enumerable: true, get: function () { return __importDefault(ar_js_1).default; } }));
-var az_js_1 = __nccwpck_require__(9905);
+var az_js_1 = __nccwpck_require__(5522);
 Object.defineProperty(exports, "az", ({ enumerable: true, get: function () { return __importDefault(az_js_1).default; } }));
-var be_js_1 = __nccwpck_require__(483);
+var be_js_1 = __nccwpck_require__(3404);
 Object.defineProperty(exports, "be", ({ enumerable: true, get: function () { return __importDefault(be_js_1).default; } }));
-var bg_js_1 = __nccwpck_require__(6105);
+var bg_js_1 = __nccwpck_require__(4478);
 Object.defineProperty(exports, "bg", ({ enumerable: true, get: function () { return __importDefault(bg_js_1).default; } }));
-var ca_js_1 = __nccwpck_require__(8968);
+var ca_js_1 = __nccwpck_require__(7143);
 Object.defineProperty(exports, "ca", ({ enumerable: true, get: function () { return __importDefault(ca_js_1).default; } }));
-var cs_js_1 = __nccwpck_require__(8922);
+var cs_js_1 = __nccwpck_require__(4781);
 Object.defineProperty(exports, "cs", ({ enumerable: true, get: function () { return __importDefault(cs_js_1).default; } }));
-var da_js_1 = __nccwpck_require__(8349);
+var da_js_1 = __nccwpck_require__(3294);
 Object.defineProperty(exports, "da", ({ enumerable: true, get: function () { return __importDefault(da_js_1).default; } }));
-var de_js_1 = __nccwpck_require__(9601);
+var de_js_1 = __nccwpck_require__(306);
 Object.defineProperty(exports, "de", ({ enumerable: true, get: function () { return __importDefault(de_js_1).default; } }));
-var en_js_1 = __nccwpck_require__(6121);
+var en_js_1 = __nccwpck_require__(8826);
 Object.defineProperty(exports, "en", ({ enumerable: true, get: function () { return __importDefault(en_js_1).default; } }));
-var eo_js_1 = __nccwpck_require__(4096);
+var eo_js_1 = __nccwpck_require__(9771);
 Object.defineProperty(exports, "eo", ({ enumerable: true, get: function () { return __importDefault(eo_js_1).default; } }));
-var es_js_1 = __nccwpck_require__(3284);
+var es_js_1 = __nccwpck_require__(9583);
 Object.defineProperty(exports, "es", ({ enumerable: true, get: function () { return __importDefault(es_js_1).default; } }));
-var fa_js_1 = __nccwpck_require__(3651);
+var fa_js_1 = __nccwpck_require__(3124);
 Object.defineProperty(exports, "fa", ({ enumerable: true, get: function () { return __importDefault(fa_js_1).default; } }));
-var fi_js_1 = __nccwpck_require__(5243);
+var fi_js_1 = __nccwpck_require__(3692);
 Object.defineProperty(exports, "fi", ({ enumerable: true, get: function () { return __importDefault(fi_js_1).default; } }));
-var fr_js_1 = __nccwpck_require__(6720);
+var fr_js_1 = __nccwpck_require__(5815);
 Object.defineProperty(exports, "fr", ({ enumerable: true, get: function () { return __importDefault(fr_js_1).default; } }));
-var fr_CA_js_1 = __nccwpck_require__(6845);
+var fr_CA_js_1 = __nccwpck_require__(7896);
 Object.defineProperty(exports, "frCA", ({ enumerable: true, get: function () { return __importDefault(fr_CA_js_1).default; } }));
-var he_js_1 = __nccwpck_require__(3597);
+var he_js_1 = __nccwpck_require__(3470);
 Object.defineProperty(exports, "he", ({ enumerable: true, get: function () { return __importDefault(he_js_1).default; } }));
-var hu_js_1 = __nccwpck_require__(2781);
+var hu_js_1 = __nccwpck_require__(2430);
 Object.defineProperty(exports, "hu", ({ enumerable: true, get: function () { return __importDefault(hu_js_1).default; } }));
-var id_js_1 = __nccwpck_require__(6695);
+var hy_js_1 = __nccwpck_require__(2474);
+Object.defineProperty(exports, "hy", ({ enumerable: true, get: function () { return __importDefault(hy_js_1).default; } }));
+var id_js_1 = __nccwpck_require__(7292);
 Object.defineProperty(exports, "id", ({ enumerable: true, get: function () { return __importDefault(id_js_1).default; } }));
-var is_js_1 = __nccwpck_require__(1096);
+var is_js_1 = __nccwpck_require__(6739);
 Object.defineProperty(exports, "is", ({ enumerable: true, get: function () { return __importDefault(is_js_1).default; } }));
-var it_js_1 = __nccwpck_require__(1319);
+var it_js_1 = __nccwpck_require__(5436);
 Object.defineProperty(exports, "it", ({ enumerable: true, get: function () { return __importDefault(it_js_1).default; } }));
-var ja_js_1 = __nccwpck_require__(5079);
+var ja_js_1 = __nccwpck_require__(3560);
 Object.defineProperty(exports, "ja", ({ enumerable: true, get: function () { return __importDefault(ja_js_1).default; } }));
-var ka_js_1 = __nccwpck_require__(6848);
+var ka_js_1 = __nccwpck_require__(1151);
 Object.defineProperty(exports, "ka", ({ enumerable: true, get: function () { return __importDefault(ka_js_1).default; } }));
-var kh_js_1 = __nccwpck_require__(3297);
+var kh_js_1 = __nccwpck_require__(6166);
 Object.defineProperty(exports, "kh", ({ enumerable: true, get: function () { return __importDefault(kh_js_1).default; } }));
-var km_js_1 = __nccwpck_require__(212);
+var km_js_1 = __nccwpck_require__(9883);
 Object.defineProperty(exports, "km", ({ enumerable: true, get: function () { return __importDefault(km_js_1).default; } }));
-var ko_js_1 = __nccwpck_require__(9750);
+var ko_js_1 = __nccwpck_require__(9713);
 Object.defineProperty(exports, "ko", ({ enumerable: true, get: function () { return __importDefault(ko_js_1).default; } }));
-var lt_js_1 = __nccwpck_require__(4432);
+var lt_js_1 = __nccwpck_require__(9579);
 Object.defineProperty(exports, "lt", ({ enumerable: true, get: function () { return __importDefault(lt_js_1).default; } }));
-var mk_js_1 = __nccwpck_require__(4884);
+var mk_js_1 = __nccwpck_require__(4847);
 Object.defineProperty(exports, "mk", ({ enumerable: true, get: function () { return __importDefault(mk_js_1).default; } }));
-var ms_js_1 = __nccwpck_require__(6652);
+var ms_js_1 = __nccwpck_require__(2423);
 Object.defineProperty(exports, "ms", ({ enumerable: true, get: function () { return __importDefault(ms_js_1).default; } }));
-var nl_js_1 = __nccwpck_require__(5310);
+var nl_js_1 = __nccwpck_require__(2977);
 Object.defineProperty(exports, "nl", ({ enumerable: true, get: function () { return __importDefault(nl_js_1).default; } }));
-var no_js_1 = __nccwpck_require__(6789);
+var no_js_1 = __nccwpck_require__(5226);
 Object.defineProperty(exports, "no", ({ enumerable: true, get: function () { return __importDefault(no_js_1).default; } }));
-var ota_js_1 = __nccwpck_require__(4538);
+var ota_js_1 = __nccwpck_require__(8947);
 Object.defineProperty(exports, "ota", ({ enumerable: true, get: function () { return __importDefault(ota_js_1).default; } }));
-var ps_js_1 = __nccwpck_require__(9523);
+var ps_js_1 = __nccwpck_require__(424);
 Object.defineProperty(exports, "ps", ({ enumerable: true, get: function () { return __importDefault(ps_js_1).default; } }));
-var pl_js_1 = __nccwpck_require__(6452);
+var pl_js_1 = __nccwpck_require__(5727);
 Object.defineProperty(exports, "pl", ({ enumerable: true, get: function () { return __importDefault(pl_js_1).default; } }));
-var pt_js_1 = __nccwpck_require__(8220);
+var pt_js_1 = __nccwpck_require__(6823);
 Object.defineProperty(exports, "pt", ({ enumerable: true, get: function () { return __importDefault(pt_js_1).default; } }));
-var ru_js_1 = __nccwpck_require__(995);
+var ru_js_1 = __nccwpck_require__(9196);
 Object.defineProperty(exports, "ru", ({ enumerable: true, get: function () { return __importDefault(ru_js_1).default; } }));
-var sl_js_1 = __nccwpck_require__(3029);
+var sl_js_1 = __nccwpck_require__(6946);
 Object.defineProperty(exports, "sl", ({ enumerable: true, get: function () { return __importDefault(sl_js_1).default; } }));
-var sv_js_1 = __nccwpck_require__(3223);
+var sv_js_1 = __nccwpck_require__(2888);
 Object.defineProperty(exports, "sv", ({ enumerable: true, get: function () { return __importDefault(sv_js_1).default; } }));
-var ta_js_1 = __nccwpck_require__(3821);
+var ta_js_1 = __nccwpck_require__(9854);
 Object.defineProperty(exports, "ta", ({ enumerable: true, get: function () { return __importDefault(ta_js_1).default; } }));
-var th_js_1 = __nccwpck_require__(2924);
+var th_js_1 = __nccwpck_require__(6839);
 Object.defineProperty(exports, "th", ({ enumerable: true, get: function () { return __importDefault(th_js_1).default; } }));
-var tr_js_1 = __nccwpck_require__(8822);
+var tr_js_1 = __nccwpck_require__(9650);
 Object.defineProperty(exports, "tr", ({ enumerable: true, get: function () { return __importDefault(tr_js_1).default; } }));
-var ua_js_1 = __nccwpck_require__(6406);
+var ua_js_1 = __nccwpck_require__(8709);
 Object.defineProperty(exports, "ua", ({ enumerable: true, get: function () { return __importDefault(ua_js_1).default; } }));
-var uk_js_1 = __nccwpck_require__(5116);
+var uk_js_1 = __nccwpck_require__(2983);
 Object.defineProperty(exports, "uk", ({ enumerable: true, get: function () { return __importDefault(uk_js_1).default; } }));
-var ur_js_1 = __nccwpck_require__(1405);
+var ur_js_1 = __nccwpck_require__(6190);
 Object.defineProperty(exports, "ur", ({ enumerable: true, get: function () { return __importDefault(ur_js_1).default; } }));
-var vi_js_1 = __nccwpck_require__(9435);
+var uz_js_1 = __nccwpck_require__(9926);
+Object.defineProperty(exports, "uz", ({ enumerable: true, get: function () { return __importDefault(uz_js_1).default; } }));
+var vi_js_1 = __nccwpck_require__(9660);
 Object.defineProperty(exports, "vi", ({ enumerable: true, get: function () { return __importDefault(vi_js_1).default; } }));
-var zh_CN_js_1 = __nccwpck_require__(9788);
+var zh_CN_js_1 = __nccwpck_require__(2213);
 Object.defineProperty(exports, "zhCN", ({ enumerable: true, get: function () { return __importDefault(zh_CN_js_1).default; } }));
-var zh_TW_js_1 = __nccwpck_require__(2836);
+var zh_TW_js_1 = __nccwpck_require__(9981);
 Object.defineProperty(exports, "zhTW", ({ enumerable: true, get: function () { return __importDefault(zh_TW_js_1).default; } }));
-var yo_js_1 = __nccwpck_require__(2412);
+var yo_js_1 = __nccwpck_require__(9895);
 Object.defineProperty(exports, "yo", ({ enumerable: true, get: function () { return __importDefault(yo_js_1).default; } }));
 
 
 /***/ }),
 
-/***/ 1096:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+/***/ 6739:
+/***/ (function(module, exports, __nccwpck_require__) {
 
 
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
@@ -61481,30 +62119,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.parsedType = void 0;
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
-const parsedType = (data) => {
-    const t = typeof data;
-    switch (t) {
-        case "number": {
-            return Number.isNaN(data) ? "NaN" : "númer";
-        }
-        case "object": {
-            if (Array.isArray(data)) {
-                return "fylki";
-            }
-            if (data === null) {
-                return "null";
-            }
-            if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                return data.constructor.name;
-            }
-        }
-    }
-    return t;
-};
-exports.parsedType = parsedType;
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "stafi", verb: "að hafa" },
@@ -61515,7 +62131,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const Nouns = {
+    const FormatDictionary = {
         regex: "gildi",
         email: "netfang",
         url: "vefslóð",
@@ -61545,10 +62161,22 @@ const error = () => {
         jwt: "JWT",
         template_literal: "gildi",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "númer",
+        array: "fylki",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Rangt gildi: Þú slóst inn ${(0, exports.parsedType)(issue.input)} þar sem á að vera ${issue.expected}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Rangt gildi: Þú slóst inn ${received} þar sem á að vera instanceof ${issue.expected}`;
+                }
+                return `Rangt gildi: Þú slóst inn ${received} þar sem á að vera ${expected}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Rangt gildi: gert ráð fyrir ${util.stringifyPrimitive(issue.values[0])}`;
@@ -61579,7 +62207,7 @@ const error = () => {
                     return `Ógildur strengur: verður að innihalda "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Ógildur strengur: verður að fylgja mynstri ${_issue.pattern}`;
-                return `Rangt ${Nouns[_issue.format] ?? issue.format}`;
+                return `Rangt ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Röng tala: verður að vera margfeldi af ${issue.divisor}`;
@@ -61601,11 +62229,12 @@ function default_1() {
         localeError: error(),
     };
 }
+module.exports = exports.default;
 
 
 /***/ }),
 
-/***/ 1319:
+/***/ 5436:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -61634,7 +62263,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "caratteri", verb: "avere" },
@@ -61645,27 +62274,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "numero";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "vettore";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "input",
         email: "indirizzo email",
         url: "URL",
@@ -61695,11 +62304,22 @@ const error = () => {
         jwt: "JWT",
         template_literal: "input",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "numero",
+        array: "vettore",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Input non valido: atteso ${issue.expected}, ricevuto ${parsedType(issue.input)}`;
-            // return `Input non valido: atteso ${issue.expected}, ricevuto ${util.getParsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Input non valido: atteso instanceof ${issue.expected}, ricevuto ${received}`;
+                }
+                return `Input non valido: atteso ${expected}, ricevuto ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Input non valido: atteso ${util.stringifyPrimitive(issue.values[0])}`;
@@ -61729,7 +62349,7 @@ const error = () => {
                     return `Stringa non valida: deve includere "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Stringa non valida: deve corrispondere al pattern ${_issue.pattern}`;
-                return `Invalid ${Nouns[_issue.format] ?? issue.format}`;
+                return `Invalid ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Numero non valido: deve essere un multiplo di ${issue.divisor}`;
@@ -61756,7 +62376,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 5079:
+/***/ 3560:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -61785,7 +62405,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "文字", verb: "である" },
@@ -61796,27 +62416,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "数値";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "配列";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "入力値",
         email: "メールアドレス",
         url: "URL",
@@ -61846,10 +62446,22 @@ const error = () => {
         jwt: "JWT",
         template_literal: "入力値",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "数値",
+        array: "配列",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `無効な入力: ${issue.expected}が期待されましたが、${parsedType(issue.input)}が入力されました`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `無効な入力: instanceof ${issue.expected}が期待されましたが、${received}が入力されました`;
+                }
+                return `無効な入力: ${expected}が期待されましたが、${received}が入力されました`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `無効な入力: ${util.stringifyPrimitive(issue.values[0])}が期待されました`;
@@ -61878,7 +62490,7 @@ const error = () => {
                     return `無効な文字列: "${_issue.includes}"を含む必要があります`;
                 if (_issue.format === "regex")
                     return `無効な文字列: パターン${_issue.pattern}に一致する必要があります`;
-                return `無効な${Nouns[_issue.format] ?? issue.format}`;
+                return `無効な${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `無効な数値: ${issue.divisor}の倍数である必要があります`;
@@ -61905,8 +62517,8 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 6848:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+/***/ 1151:
+/***/ (function(module, exports, __nccwpck_require__) {
 
 
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
@@ -61933,38 +62545,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.parsedType = void 0;
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
-const parsedType = (data) => {
-    const t = typeof data;
-    switch (t) {
-        case "number": {
-            return Number.isNaN(data) ? "NaN" : "რიცხვი";
-        }
-        case "object": {
-            if (Array.isArray(data)) {
-                return "მასივი";
-            }
-            if (data === null) {
-                return "null";
-            }
-            if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                return data.constructor.name;
-            }
-        }
-    }
-    const typeMap = {
-        string: "სტრინგი",
-        boolean: "ბულეანი",
-        undefined: "undefined",
-        bigint: "bigint",
-        symbol: "symbol",
-        function: "ფუნქცია",
-    };
-    return typeMap[t] ?? t;
-};
-exports.parsedType = parsedType;
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "სიმბოლო", verb: "უნდა შეიცავდეს" },
@@ -61975,7 +62557,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const Nouns = {
+    const FormatDictionary = {
         regex: "შეყვანა",
         email: "ელ-ფოსტის მისამართი",
         url: "URL",
@@ -62005,10 +62587,25 @@ const error = () => {
         jwt: "JWT",
         template_literal: "შეყვანა",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "რიცხვი",
+        string: "სტრინგი",
+        boolean: "ბულეანი",
+        function: "ფუნქცია",
+        array: "მასივი",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `არასწორი შეყვანა: მოსალოდნელი ${issue.expected}, მიღებული ${(0, exports.parsedType)(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `არასწორი შეყვანა: მოსალოდნელი instanceof ${issue.expected}, მიღებული ${received}`;
+                }
+                return `არასწორი შეყვანა: მოსალოდნელი ${expected}, მიღებული ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `არასწორი შეყვანა: მოსალოდნელი ${util.stringifyPrimitive(issue.values[0])}`;
@@ -62039,7 +62636,7 @@ const error = () => {
                     return `არასწორი სტრინგი: უნდა შეიცავდეს "${_issue.includes}"-ს`;
                 if (_issue.format === "regex")
                     return `არასწორი სტრინგი: უნდა შეესაბამებოდეს შაბლონს ${_issue.pattern}`;
-                return `არასწორი ${Nouns[_issue.format] ?? issue.format}`;
+                return `არასწორი ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `არასწორი რიცხვი: უნდა იყოს ${issue.divisor}-ის ჯერადი`;
@@ -62061,11 +62658,12 @@ function default_1() {
         localeError: error(),
     };
 }
+module.exports = exports.default;
 
 
 /***/ }),
 
-/***/ 3297:
+/***/ 6166:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -62074,7 +62672,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const km_js_1 = __importDefault(__nccwpck_require__(212));
+const km_js_1 = __importDefault(__nccwpck_require__(9883));
 /** @deprecated Use `km` instead. */
 function default_1() {
     return (0, km_js_1.default)();
@@ -62084,7 +62682,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 212:
+/***/ 9883:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -62113,7 +62711,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "តួអក្សរ", verb: "គួរមាន" },
@@ -62124,27 +62722,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "មិនមែនជាលេខ (NaN)" : "លេខ";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "អារេ (Array)";
-                }
-                if (data === null) {
-                    return "គ្មានតម្លៃ (null)";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "ទិន្នន័យបញ្ចូល",
         email: "អាសយដ្ឋានអ៊ីមែល",
         url: "URL",
@@ -62174,10 +62752,23 @@ const error = () => {
         jwt: "JWT",
         template_literal: "ទិន្នន័យបញ្ចូល",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "លេខ",
+        array: "អារេ (Array)",
+        null: "គ្មានតម្លៃ (null)",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `ទិន្នន័យបញ្ចូលមិនត្រឹមត្រូវ៖ ត្រូវការ ${issue.expected} ប៉ុន្តែទទួលបាន ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `ទិន្នន័យបញ្ចូលមិនត្រឹមត្រូវ៖ ត្រូវការ instanceof ${issue.expected} ប៉ុន្តែទទួលបាន ${received}`;
+                }
+                return `ទិន្នន័យបញ្ចូលមិនត្រឹមត្រូវ៖ ត្រូវការ ${expected} ប៉ុន្តែទទួលបាន ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `ទិន្នន័យបញ្ចូលមិនត្រឹមត្រូវ៖ ត្រូវការ ${util.stringifyPrimitive(issue.values[0])}`;
@@ -62208,7 +62799,7 @@ const error = () => {
                     return `ខ្សែអក្សរមិនត្រឹមត្រូវ៖ ត្រូវមាន "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `ខ្សែអក្សរមិនត្រឹមត្រូវ៖ ត្រូវតែផ្គូផ្គងនឹងទម្រង់ដែលបានកំណត់ ${_issue.pattern}`;
-                return `មិនត្រឹមត្រូវ៖ ${Nouns[_issue.format] ?? issue.format}`;
+                return `មិនត្រឹមត្រូវ៖ ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `លេខមិនត្រឹមត្រូវ៖ ត្រូវតែជាពហុគុណនៃ ${issue.divisor}`;
@@ -62235,7 +62826,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 9750:
+/***/ 9713:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -62264,7 +62855,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "문자", verb: "to have" },
@@ -62275,27 +62866,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "number";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "array";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "입력",
         email: "이메일 주소",
         url: "URL",
@@ -62325,10 +62896,20 @@ const error = () => {
         jwt: "JWT",
         template_literal: "입력",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `잘못된 입력: 예상 타입은 ${issue.expected}, 받은 타입은 ${parsedType(issue.input)}입니다`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `잘못된 입력: 예상 타입은 instanceof ${issue.expected}, 받은 타입은 ${received}입니다`;
+                }
+                return `잘못된 입력: 예상 타입은 ${expected}, 받은 타입은 ${received}입니다`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `잘못된 입력: 값은 ${util.stringifyPrimitive(issue.values[0])} 이어야 합니다`;
@@ -62363,7 +62944,7 @@ const error = () => {
                     return `잘못된 문자열: "${_issue.includes}"을(를) 포함해야 합니다`;
                 if (_issue.format === "regex")
                     return `잘못된 문자열: 정규식 ${_issue.pattern} 패턴과 일치해야 합니다`;
-                return `잘못된 ${Nouns[_issue.format] ?? issue.format}`;
+                return `잘못된 ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `잘못된 숫자: ${issue.divisor}의 배수여야 합니다`;
@@ -62390,8 +62971,8 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 4432:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+/***/ 9579:
+/***/ (function(module, exports, __nccwpck_require__) {
 
 
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
@@ -62418,57 +62999,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.parsedType = void 0;
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
-const parsedType = (data) => {
-    const t = typeof data;
-    return parsedTypeFromType(t, data);
-};
-exports.parsedType = parsedType;
-const parsedTypeFromType = (t, data = undefined) => {
-    switch (t) {
-        case "number": {
-            return Number.isNaN(data) ? "NaN" : "skaičius";
-        }
-        case "bigint": {
-            return "sveikasis skaičius";
-        }
-        case "string": {
-            return "eilutė";
-        }
-        case "boolean": {
-            return "loginė reikšmė";
-        }
-        case "undefined":
-        case "void": {
-            return "neapibrėžta reikšmė";
-        }
-        case "function": {
-            return "funkcija";
-        }
-        case "symbol": {
-            return "simbolis";
-        }
-        case "object": {
-            if (data === undefined)
-                return "nežinomas objektas";
-            if (data === null)
-                return "nulinė reikšmė";
-            if (Array.isArray(data))
-                return "masyvas";
-            if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                return data.constructor.name;
-            }
-            return "objektas";
-        }
-        //Zod types below
-        case "null": {
-            return "nulinė reikšmė";
-        }
-    }
-    return t;
-};
+const util = __importStar(__nccwpck_require__(9693));
 const capitalizeFirstCharacter = (text) => {
     return text.charAt(0).toUpperCase() + text.slice(1);
 };
@@ -62562,7 +63094,7 @@ const error = () => {
             verb: result.verb[targetShouldBe][inclusive ? "inclusive" : "notInclusive"],
         };
     }
-    const Nouns = {
+    const FormatDictionary = {
         regex: "įvestis",
         email: "el. pašto adresas",
         url: "URL",
@@ -62592,16 +63124,36 @@ const error = () => {
         jwt: "JWT",
         template_literal: "įvestis",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "skaičius",
+        bigint: "sveikasis skaičius",
+        string: "eilutė",
+        boolean: "loginė reikšmė",
+        undefined: "neapibrėžta reikšmė",
+        function: "funkcija",
+        symbol: "simbolis",
+        array: "masyvas",
+        object: "objektas",
+        null: "nulinė reikšmė",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Gautas tipas ${(0, exports.parsedType)(issue.input)}, o tikėtasi - ${parsedTypeFromType(issue.expected)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Gautas tipas ${received}, o tikėtasi - instanceof ${issue.expected}`;
+                }
+                return `Gautas tipas ${received}, o tikėtasi - ${expected}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Privalo būti ${util.stringifyPrimitive(issue.values[0])}`;
                 return `Privalo būti vienas iš ${util.joinValues(issue.values, "|")} pasirinkimų`;
             case "too_big": {
-                const origin = parsedTypeFromType(issue.origin);
+                const origin = TypeDictionary[issue.origin] ?? issue.origin;
                 const sizing = getSizing(issue.origin, getUnitTypeFromNumber(Number(issue.maximum)), issue.inclusive ?? false, "smaller");
                 if (sizing?.verb)
                     return `${capitalizeFirstCharacter(origin ?? issue.origin ?? "reikšmė")} ${sizing.verb} ${issue.maximum.toString()} ${sizing.unit ?? "elementų"}`;
@@ -62609,7 +63161,7 @@ const error = () => {
                 return `${capitalizeFirstCharacter(origin ?? issue.origin ?? "reikšmė")} turi būti ${adj} ${issue.maximum.toString()} ${sizing?.unit}`;
             }
             case "too_small": {
-                const origin = parsedTypeFromType(issue.origin);
+                const origin = TypeDictionary[issue.origin] ?? issue.origin;
                 const sizing = getSizing(issue.origin, getUnitTypeFromNumber(Number(issue.minimum)), issue.inclusive ?? false, "bigger");
                 if (sizing?.verb)
                     return `${capitalizeFirstCharacter(origin ?? issue.origin ?? "reikšmė")} ${sizing.verb} ${issue.minimum.toString()} ${sizing.unit ?? "elementų"}`;
@@ -62627,7 +63179,7 @@ const error = () => {
                     return `Eilutė privalo įtraukti "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Eilutė privalo atitikti ${_issue.pattern}`;
-                return `Neteisingas ${Nouns[_issue.format] ?? issue.format}`;
+                return `Neteisingas ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Skaičius privalo būti ${issue.divisor} kartotinis.`;
@@ -62638,7 +63190,7 @@ const error = () => {
             case "invalid_union":
                 return "Klaidinga įvestis";
             case "invalid_element": {
-                const origin = parsedTypeFromType(issue.origin);
+                const origin = TypeDictionary[issue.origin] ?? issue.origin;
                 return `${capitalizeFirstCharacter(origin ?? issue.origin ?? "reikšmė")} turi klaidingą įvestį`;
             }
             default:
@@ -62651,11 +63203,12 @@ function default_1() {
         localeError: error(),
     };
 }
+module.exports = exports.default;
 
 
 /***/ }),
 
-/***/ 4884:
+/***/ 4847:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -62684,7 +63237,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "знаци", verb: "да имаат" },
@@ -62695,27 +63248,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "број";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "низа";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "внес",
         email: "адреса на е-пошта",
         url: "URL",
@@ -62745,11 +63278,22 @@ const error = () => {
         jwt: "JWT",
         template_literal: "внес",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "број",
+        array: "низа",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Грешен внес: се очекува ${issue.expected}, примено ${parsedType(issue.input)}`;
-            // return `Invalid input: expected ${issue.expected}, received ${util.getParsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Грешен внес: се очекува instanceof ${issue.expected}, примено ${received}`;
+                }
+                return `Грешен внес: се очекува ${expected}, примено ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Invalid input: expected ${util.stringifyPrimitive(issue.values[0])}`;
@@ -62780,7 +63324,7 @@ const error = () => {
                     return `Неважечка низа: мора да вклучува "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Неважечка низа: мора да одгоара на патернот ${_issue.pattern}`;
-                return `Invalid ${Nouns[_issue.format] ?? issue.format}`;
+                return `Invalid ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Грешен број: мора да биде делив со ${issue.divisor}`;
@@ -62807,7 +63351,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 6652:
+/***/ 2423:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -62836,7 +63380,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "aksara", verb: "mempunyai" },
@@ -62847,27 +63391,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "nombor";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "array";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "input",
         email: "alamat e-mel",
         url: "URL",
@@ -62897,10 +63421,21 @@ const error = () => {
         jwt: "JWT",
         template_literal: "input",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "nombor",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Input tidak sah: dijangka ${issue.expected}, diterima ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Input tidak sah: dijangka instanceof ${issue.expected}, diterima ${received}`;
+                }
+                return `Input tidak sah: dijangka ${expected}, diterima ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Input tidak sah: dijangka ${util.stringifyPrimitive(issue.values[0])}`;
@@ -62930,7 +63465,7 @@ const error = () => {
                     return `String tidak sah: mesti mengandungi "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `String tidak sah: mesti sepadan dengan corak ${_issue.pattern}`;
-                return `${Nouns[_issue.format] ?? issue.format} tidak sah`;
+                return `${FormatDictionary[_issue.format] ?? issue.format} tidak sah`;
             }
             case "not_multiple_of":
                 return `Nombor tidak sah: perlu gandaan ${issue.divisor}`;
@@ -62957,7 +63492,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 5310:
+/***/ 2977:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -62986,38 +63521,18 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
-        string: { unit: "tekens", verb: "te hebben" },
-        file: { unit: "bytes", verb: "te hebben" },
-        array: { unit: "elementen", verb: "te hebben" },
-        set: { unit: "elementen", verb: "te hebben" },
+        string: { unit: "tekens", verb: "heeft" },
+        file: { unit: "bytes", verb: "heeft" },
+        array: { unit: "elementen", verb: "heeft" },
+        set: { unit: "elementen", verb: "heeft" },
     };
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "getal";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "array";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "invoer",
         email: "emailadres",
         url: "URL",
@@ -63047,10 +63562,21 @@ const error = () => {
         jwt: "JWT",
         template_literal: "invoer",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "getal",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Ongeldige invoer: verwacht ${issue.expected}, ontving ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Ongeldige invoer: verwacht instanceof ${issue.expected}, ontving ${received}`;
+                }
+                return `Ongeldige invoer: verwacht ${expected}, ontving ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Ongeldige invoer: verwacht ${util.stringifyPrimitive(issue.values[0])}`;
@@ -63058,17 +63584,19 @@ const error = () => {
             case "too_big": {
                 const adj = issue.inclusive ? "<=" : "<";
                 const sizing = getSizing(issue.origin);
+                const longName = issue.origin === "date" ? "laat" : issue.origin === "string" ? "lang" : "groot";
                 if (sizing)
-                    return `Te groot: verwacht dat ${issue.origin ?? "waarde"} ${sizing.verb} ${adj}${issue.maximum.toString()} ${sizing.unit ?? "elementen"}`;
-                return `Te groot: verwacht dat ${issue.origin ?? "waarde"} ${adj}${issue.maximum.toString()} is`;
+                    return `Te ${longName}: verwacht dat ${issue.origin ?? "waarde"} ${adj}${issue.maximum.toString()} ${sizing.unit ?? "elementen"} ${sizing.verb}`;
+                return `Te ${longName}: verwacht dat ${issue.origin ?? "waarde"} ${adj}${issue.maximum.toString()} is`;
             }
             case "too_small": {
                 const adj = issue.inclusive ? ">=" : ">";
                 const sizing = getSizing(issue.origin);
+                const shortName = issue.origin === "date" ? "vroeg" : issue.origin === "string" ? "kort" : "klein";
                 if (sizing) {
-                    return `Te klein: verwacht dat ${issue.origin} ${sizing.verb} ${adj}${issue.minimum.toString()} ${sizing.unit}`;
+                    return `Te ${shortName}: verwacht dat ${issue.origin} ${adj}${issue.minimum.toString()} ${sizing.unit} ${sizing.verb}`;
                 }
-                return `Te klein: verwacht dat ${issue.origin} ${adj}${issue.minimum.toString()} is`;
+                return `Te ${shortName}: verwacht dat ${issue.origin} ${adj}${issue.minimum.toString()} is`;
             }
             case "invalid_format": {
                 const _issue = issue;
@@ -63081,7 +63609,7 @@ const error = () => {
                     return `Ongeldige tekst: moet "${_issue.includes}" bevatten`;
                 if (_issue.format === "regex")
                     return `Ongeldige tekst: moet overeenkomen met patroon ${_issue.pattern}`;
-                return `Ongeldig: ${Nouns[_issue.format] ?? issue.format}`;
+                return `Ongeldig: ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Ongeldig getal: moet een veelvoud van ${issue.divisor} zijn`;
@@ -63108,7 +63636,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 6789:
+/***/ 5226:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -63137,7 +63665,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "tegn", verb: "å ha" },
@@ -63148,27 +63676,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "tall";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "liste";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "input",
         email: "e-postadresse",
         url: "URL",
@@ -63198,10 +63706,22 @@ const error = () => {
         jwt: "JWT",
         template_literal: "input",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "tall",
+        array: "liste",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Ugyldig input: forventet ${issue.expected}, fikk ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Ugyldig input: forventet instanceof ${issue.expected}, fikk ${received}`;
+                }
+                return `Ugyldig input: forventet ${expected}, fikk ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Ugyldig verdi: forventet ${util.stringifyPrimitive(issue.values[0])}`;
@@ -63231,7 +63751,7 @@ const error = () => {
                     return `Ugyldig streng: må inneholde "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Ugyldig streng: må matche mønsteret ${_issue.pattern}`;
-                return `Ugyldig ${Nouns[_issue.format] ?? issue.format}`;
+                return `Ugyldig ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Ugyldig tall: må være et multiplum av ${issue.divisor}`;
@@ -63258,7 +63778,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 4538:
+/***/ 8947:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -63287,7 +63807,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "harf", verb: "olmalıdır" },
@@ -63298,27 +63818,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "numara";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "saf";
-                }
-                if (data === null) {
-                    return "gayb";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "giren",
         email: "epostagâh",
         url: "URL",
@@ -63348,11 +63848,23 @@ const error = () => {
         jwt: "JWT",
         template_literal: "giren",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "numara",
+        array: "saf",
+        null: "gayb",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Fâsit giren: umulan ${issue.expected}, alınan ${parsedType(issue.input)}`;
-            // return `Fâsit giren: umulan ${issue.expected}, alınan ${util.getParsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Fâsit giren: umulan instanceof ${issue.expected}, alınan ${received}`;
+                }
+                return `Fâsit giren: umulan ${expected}, alınan ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Fâsit giren: umulan ${util.stringifyPrimitive(issue.values[0])}`;
@@ -63382,7 +63894,7 @@ const error = () => {
                     return `Fâsit metin: "${_issue.includes}" ihtivâ etmeli.`;
                 if (_issue.format === "regex")
                     return `Fâsit metin: ${_issue.pattern} nakşına uymalı.`;
-                return `Fâsit ${Nouns[_issue.format] ?? issue.format}`;
+                return `Fâsit ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Fâsit sayı: ${issue.divisor} katı olmalıydı.`;
@@ -63409,7 +63921,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 6452:
+/***/ 5727:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -63438,7 +63950,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "znaków", verb: "mieć" },
@@ -63449,27 +63961,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "liczba";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "tablica";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "wyrażenie",
         email: "adres email",
         url: "URL",
@@ -63499,10 +63991,22 @@ const error = () => {
         jwt: "JWT",
         template_literal: "wejście",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "liczba",
+        array: "tablica",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Nieprawidłowe dane wejściowe: oczekiwano ${issue.expected}, otrzymano ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Nieprawidłowe dane wejściowe: oczekiwano instanceof ${issue.expected}, otrzymano ${received}`;
+                }
+                return `Nieprawidłowe dane wejściowe: oczekiwano ${expected}, otrzymano ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Nieprawidłowe dane wejściowe: oczekiwano ${util.stringifyPrimitive(issue.values[0])}`;
@@ -63533,7 +64037,7 @@ const error = () => {
                     return `Nieprawidłowy ciąg znaków: musi zawierać "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Nieprawidłowy ciąg znaków: musi odpowiadać wzorcowi ${_issue.pattern}`;
-                return `Nieprawidłow(y/a/e) ${Nouns[_issue.format] ?? issue.format}`;
+                return `Nieprawidłow(y/a/e) ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Nieprawidłowa liczba: musi być wielokrotnością ${issue.divisor}`;
@@ -63560,7 +64064,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 9523:
+/***/ 424:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -63589,7 +64093,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "توکي", verb: "ولري" },
@@ -63600,27 +64104,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "عدد";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "ارې";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "ورودي",
         email: "بریښنالیک",
         url: "یو آر ال",
@@ -63650,10 +64134,22 @@ const error = () => {
         jwt: "JWT",
         template_literal: "ورودي",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "عدد",
+        array: "ارې",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `ناسم ورودي: باید ${issue.expected} وای, مګر ${parsedType(issue.input)} ترلاسه شو`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `ناسم ورودي: باید instanceof ${issue.expected} وای, مګر ${received} ترلاسه شو`;
+                }
+                return `ناسم ورودي: باید ${expected} وای, مګر ${received} ترلاسه شو`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1) {
                     return `ناسم ورودي: باید ${util.stringifyPrimitive(issue.values[0])} وای`;
@@ -63689,7 +64185,7 @@ const error = () => {
                 if (_issue.format === "regex") {
                     return `ناسم متن: باید د ${_issue.pattern} سره مطابقت ولري`;
                 }
-                return `${Nouns[_issue.format] ?? issue.format} ناسم دی`;
+                return `${FormatDictionary[_issue.format] ?? issue.format} ناسم دی`;
             }
             case "not_multiple_of":
                 return `ناسم عدد: باید د ${issue.divisor} مضرب وي`;
@@ -63716,7 +64212,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 8220:
+/***/ 6823:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -63745,7 +64241,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "caracteres", verb: "ter" },
@@ -63756,27 +64252,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "número";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "array";
-                }
-                if (data === null) {
-                    return "nulo";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "padrão",
         email: "endereço de e-mail",
         url: "URL",
@@ -63806,10 +64282,22 @@ const error = () => {
         jwt: "JWT",
         template_literal: "entrada",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "número",
+        null: "nulo",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Tipo inválido: esperado ${issue.expected}, recebido ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Tipo inválido: esperado instanceof ${issue.expected}, recebido ${received}`;
+                }
+                return `Tipo inválido: esperado ${expected}, recebido ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Entrada inválida: esperado ${util.stringifyPrimitive(issue.values[0])}`;
@@ -63839,7 +64327,7 @@ const error = () => {
                     return `Texto inválido: deve incluir "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Texto inválido: deve corresponder ao padrão ${_issue.pattern}`;
-                return `${Nouns[_issue.format] ?? issue.format} inválido`;
+                return `${FormatDictionary[_issue.format] ?? issue.format} inválido`;
             }
             case "not_multiple_of":
                 return `Número inválido: deve ser múltiplo de ${issue.divisor}`;
@@ -63866,7 +64354,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 995:
+/***/ 9196:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -63895,7 +64383,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 function getRussianPlural(count, one, few, many) {
     const absCount = Math.abs(count);
     const lastDigit = absCount % 10;
@@ -63949,27 +64437,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "число";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "массив";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "ввод",
         email: "email адрес",
         url: "URL",
@@ -63999,10 +64467,22 @@ const error = () => {
         jwt: "JWT",
         template_literal: "ввод",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "число",
+        array: "массив",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Неверный ввод: ожидалось ${issue.expected}, получено ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Неверный ввод: ожидалось instanceof ${issue.expected}, получено ${received}`;
+                }
+                return `Неверный ввод: ожидалось ${expected}, получено ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Неверный ввод: ожидалось ${util.stringifyPrimitive(issue.values[0])}`;
@@ -64037,7 +64517,7 @@ const error = () => {
                     return `Неверная строка: должна содержать "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Неверная строка: должна соответствовать шаблону ${_issue.pattern}`;
-                return `Неверный ${Nouns[_issue.format] ?? issue.format}`;
+                return `Неверный ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Неверное число: должно быть кратным ${issue.divisor}`;
@@ -64064,7 +64544,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 3029:
+/***/ 6946:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -64093,7 +64573,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "znakov", verb: "imeti" },
@@ -64104,27 +64584,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "število";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "tabela";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "vnos",
         email: "e-poštni naslov",
         url: "URL",
@@ -64154,10 +64614,22 @@ const error = () => {
         jwt: "JWT",
         template_literal: "vnos",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "število",
+        array: "tabela",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Neveljaven vnos: pričakovano ${issue.expected}, prejeto ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Neveljaven vnos: pričakovano instanceof ${issue.expected}, prejeto ${received}`;
+                }
+                return `Neveljaven vnos: pričakovano ${expected}, prejeto ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Neveljaven vnos: pričakovano ${util.stringifyPrimitive(issue.values[0])}`;
@@ -64188,7 +64660,7 @@ const error = () => {
                     return `Neveljaven niz: mora vsebovati "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Neveljaven niz: mora ustrezati vzorcu ${_issue.pattern}`;
-                return `Neveljaven ${Nouns[_issue.format] ?? issue.format}`;
+                return `Neveljaven ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Neveljavno število: mora biti večkratnik ${issue.divisor}`;
@@ -64215,7 +64687,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 3223:
+/***/ 2888:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -64244,7 +64716,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "tecken", verb: "att ha" },
@@ -64255,27 +64727,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "antal";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "lista";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "reguljärt uttryck",
         email: "e-postadress",
         url: "URL",
@@ -64305,10 +64757,22 @@ const error = () => {
         jwt: "JWT",
         template_literal: "mall-literal",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "antal",
+        array: "lista",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Ogiltig inmatning: förväntat ${issue.expected}, fick ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Ogiltig inmatning: förväntat instanceof ${issue.expected}, fick ${received}`;
+                }
+                return `Ogiltig inmatning: förväntat ${expected}, fick ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Ogiltig inmatning: förväntat ${util.stringifyPrimitive(issue.values[0])}`;
@@ -64340,7 +64804,7 @@ const error = () => {
                     return `Ogiltig sträng: måste innehålla "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Ogiltig sträng: måste matcha mönstret "${_issue.pattern}"`;
-                return `Ogiltig(t) ${Nouns[_issue.format] ?? issue.format}`;
+                return `Ogiltig(t) ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Ogiltigt tal: måste vara en multipel av ${issue.divisor}`;
@@ -64367,7 +64831,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 3821:
+/***/ 9854:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -64396,7 +64860,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "எழுத்துக்கள்", verb: "கொண்டிருக்க வேண்டும்" },
@@ -64407,27 +64871,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "எண் அல்லாதது" : "எண்";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "அணி";
-                }
-                if (data === null) {
-                    return "வெறுமை";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "உள்ளீடு",
         email: "மின்னஞ்சல் முகவரி",
         url: "URL",
@@ -64457,10 +64901,23 @@ const error = () => {
         jwt: "JWT",
         template_literal: "input",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "எண்",
+        array: "அணி",
+        null: "வெறுமை",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `தவறான உள்ளீடு: எதிர்பார்க்கப்பட்டது ${issue.expected}, பெறப்பட்டது ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `தவறான உள்ளீடு: எதிர்பார்க்கப்பட்டது instanceof ${issue.expected}, பெறப்பட்டது ${received}`;
+                }
+                return `தவறான உள்ளீடு: எதிர்பார்க்கப்பட்டது ${expected}, பெறப்பட்டது ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `தவறான உள்ளீடு: எதிர்பார்க்கப்பட்டது ${util.stringifyPrimitive(issue.values[0])}`;
@@ -64491,7 +64948,7 @@ const error = () => {
                     return `தவறான சரம்: "${_issue.includes}" ஐ உள்ளடக்க வேண்டும்`;
                 if (_issue.format === "regex")
                     return `தவறான சரம்: ${_issue.pattern} முறைபாட்டுடன் பொருந்த வேண்டும்`;
-                return `தவறான ${Nouns[_issue.format] ?? issue.format}`;
+                return `தவறான ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `தவறான எண்: ${issue.divisor} இன் பலமாக இருக்க வேண்டும்`;
@@ -64518,7 +64975,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 2924:
+/***/ 6839:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -64547,7 +65004,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "ตัวอักษร", verb: "ควรมี" },
@@ -64558,27 +65015,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "ไม่ใช่ตัวเลข (NaN)" : "ตัวเลข";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "อาร์เรย์ (Array)";
-                }
-                if (data === null) {
-                    return "ไม่มีค่า (null)";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "ข้อมูลที่ป้อน",
         email: "ที่อยู่อีเมล",
         url: "URL",
@@ -64608,10 +65045,23 @@ const error = () => {
         jwt: "โทเคน JWT",
         template_literal: "ข้อมูลที่ป้อน",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "ตัวเลข",
+        array: "อาร์เรย์ (Array)",
+        null: "ไม่มีค่า (null)",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `ประเภทข้อมูลไม่ถูกต้อง: ควรเป็น ${issue.expected} แต่ได้รับ ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `ประเภทข้อมูลไม่ถูกต้อง: ควรเป็น instanceof ${issue.expected} แต่ได้รับ ${received}`;
+                }
+                return `ประเภทข้อมูลไม่ถูกต้อง: ควรเป็น ${expected} แต่ได้รับ ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `ค่าไม่ถูกต้อง: ควรเป็น ${util.stringifyPrimitive(issue.values[0])}`;
@@ -64642,7 +65092,7 @@ const error = () => {
                     return `รูปแบบไม่ถูกต้อง: ข้อความต้องมี "${_issue.includes}" อยู่ในข้อความ`;
                 if (_issue.format === "regex")
                     return `รูปแบบไม่ถูกต้อง: ต้องตรงกับรูปแบบที่กำหนด ${_issue.pattern}`;
-                return `รูปแบบไม่ถูกต้อง: ${Nouns[_issue.format] ?? issue.format}`;
+                return `รูปแบบไม่ถูกต้อง: ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `ตัวเลขไม่ถูกต้อง: ต้องเป็นจำนวนที่หารด้วย ${issue.divisor} ได้ลงตัว`;
@@ -64669,8 +65119,8 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 8822:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+/***/ 9650:
+/***/ (function(module, exports, __nccwpck_require__) {
 
 
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
@@ -64697,30 +65147,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.parsedType = void 0;
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
-const parsedType = (data) => {
-    const t = typeof data;
-    switch (t) {
-        case "number": {
-            return Number.isNaN(data) ? "NaN" : "number";
-        }
-        case "object": {
-            if (Array.isArray(data)) {
-                return "array";
-            }
-            if (data === null) {
-                return "null";
-            }
-            if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                return data.constructor.name;
-            }
-        }
-    }
-    return t;
-};
-exports.parsedType = parsedType;
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "karakter", verb: "olmalı" },
@@ -64731,7 +65159,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const Nouns = {
+    const FormatDictionary = {
         regex: "girdi",
         email: "e-posta adresi",
         url: "URL",
@@ -64761,10 +65189,20 @@ const error = () => {
         jwt: "JWT",
         template_literal: "Şablon dizesi",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Geçersiz değer: beklenen ${issue.expected}, alınan ${(0, exports.parsedType)(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Geçersiz değer: beklenen instanceof ${issue.expected}, alınan ${received}`;
+                }
+                return `Geçersiz değer: beklenen ${expected}, alınan ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Geçersiz değer: beklenen ${util.stringifyPrimitive(issue.values[0])}`;
@@ -64793,7 +65231,7 @@ const error = () => {
                     return `Geçersiz metin: "${_issue.includes}" içermeli`;
                 if (_issue.format === "regex")
                     return `Geçersiz metin: ${_issue.pattern} desenine uymalı`;
-                return `Geçersiz ${Nouns[_issue.format] ?? issue.format}`;
+                return `Geçersiz ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Geçersiz sayı: ${issue.divisor} ile tam bölünebilmeli`;
@@ -64815,11 +65253,12 @@ function default_1() {
         localeError: error(),
     };
 }
+module.exports = exports.default;
 
 
 /***/ }),
 
-/***/ 6406:
+/***/ 8709:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -64828,7 +65267,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const uk_js_1 = __importDefault(__nccwpck_require__(5116));
+const uk_js_1 = __importDefault(__nccwpck_require__(2983));
 /** @deprecated Use `uk` instead. */
 function default_1() {
     return (0, uk_js_1.default)();
@@ -64838,7 +65277,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 5116:
+/***/ 2983:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -64867,7 +65306,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "символів", verb: "матиме" },
@@ -64878,27 +65317,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "число";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "масив";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "вхідні дані",
         email: "адреса електронної пошти",
         url: "URL",
@@ -64928,11 +65347,22 @@ const error = () => {
         jwt: "JWT",
         template_literal: "вхідні дані",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "число",
+        array: "масив",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Неправильні вхідні дані: очікується ${issue.expected}, отримано ${parsedType(issue.input)}`;
-            // return `Неправильні вхідні дані: очікується ${issue.expected}, отримано ${util.getParsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Неправильні вхідні дані: очікується instanceof ${issue.expected}, отримано ${received}`;
+                }
+                return `Неправильні вхідні дані: очікується ${expected}, отримано ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Неправильні вхідні дані: очікується ${util.stringifyPrimitive(issue.values[0])}`;
@@ -64962,7 +65392,7 @@ const error = () => {
                     return `Неправильний рядок: повинен містити "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Неправильний рядок: повинен відповідати шаблону ${_issue.pattern}`;
-                return `Неправильний ${Nouns[_issue.format] ?? issue.format}`;
+                return `Неправильний ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Неправильне число: повинно бути кратним ${issue.divisor}`;
@@ -64989,7 +65419,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 1405:
+/***/ 6190:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -65018,7 +65448,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "حروف", verb: "ہونا" },
@@ -65029,27 +65459,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "نمبر";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "آرے";
-                }
-                if (data === null) {
-                    return "نل";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "ان پٹ",
         email: "ای میل ایڈریس",
         url: "یو آر ایل",
@@ -65079,10 +65489,23 @@ const error = () => {
         jwt: "جے ڈبلیو ٹی",
         template_literal: "ان پٹ",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "نمبر",
+        array: "آرے",
+        null: "نل",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `غلط ان پٹ: ${issue.expected} متوقع تھا، ${parsedType(issue.input)} موصول ہوا`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `غلط ان پٹ: instanceof ${issue.expected} متوقع تھا، ${received} موصول ہوا`;
+                }
+                return `غلط ان پٹ: ${expected} متوقع تھا، ${received} موصول ہوا`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `غلط ان پٹ: ${util.stringifyPrimitive(issue.values[0])} متوقع تھا`;
@@ -65113,7 +65536,7 @@ const error = () => {
                     return `غلط سٹرنگ: "${_issue.includes}" شامل ہونا چاہیے`;
                 if (_issue.format === "regex")
                     return `غلط سٹرنگ: پیٹرن ${_issue.pattern} سے میچ ہونا چاہیے`;
-                return `غلط ${Nouns[_issue.format] ?? issue.format}`;
+                return `غلط ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `غلط نمبر: ${issue.divisor} کا مضاعف ہونا چاہیے`;
@@ -65140,7 +65563,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 9435:
+/***/ 9926:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -65169,7 +65592,150 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
+const error = () => {
+    const Sizable = {
+        string: { unit: "belgi", verb: "bo‘lishi kerak" },
+        file: { unit: "bayt", verb: "bo‘lishi kerak" },
+        array: { unit: "element", verb: "bo‘lishi kerak" },
+        set: { unit: "element", verb: "bo‘lishi kerak" },
+    };
+    function getSizing(origin) {
+        return Sizable[origin] ?? null;
+    }
+    const FormatDictionary = {
+        regex: "kirish",
+        email: "elektron pochta manzili",
+        url: "URL",
+        emoji: "emoji",
+        uuid: "UUID",
+        uuidv4: "UUIDv4",
+        uuidv6: "UUIDv6",
+        nanoid: "nanoid",
+        guid: "GUID",
+        cuid: "cuid",
+        cuid2: "cuid2",
+        ulid: "ULID",
+        xid: "XID",
+        ksuid: "KSUID",
+        datetime: "ISO sana va vaqti",
+        date: "ISO sana",
+        time: "ISO vaqt",
+        duration: "ISO davomiylik",
+        ipv4: "IPv4 manzil",
+        ipv6: "IPv6 manzil",
+        mac: "MAC manzil",
+        cidrv4: "IPv4 diapazon",
+        cidrv6: "IPv6 diapazon",
+        base64: "base64 kodlangan satr",
+        base64url: "base64url kodlangan satr",
+        json_string: "JSON satr",
+        e164: "E.164 raqam",
+        jwt: "JWT",
+        template_literal: "kirish",
+    };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "raqam",
+        array: "massiv",
+    };
+    return (issue) => {
+        switch (issue.code) {
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Noto‘g‘ri kirish: kutilgan instanceof ${issue.expected}, qabul qilingan ${received}`;
+                }
+                return `Noto‘g‘ri kirish: kutilgan ${expected}, qabul qilingan ${received}`;
+            }
+            case "invalid_value":
+                if (issue.values.length === 1)
+                    return `Noto‘g‘ri kirish: kutilgan ${util.stringifyPrimitive(issue.values[0])}`;
+                return `Noto‘g‘ri variant: quyidagilardan biri kutilgan ${util.joinValues(issue.values, "|")}`;
+            case "too_big": {
+                const adj = issue.inclusive ? "<=" : "<";
+                const sizing = getSizing(issue.origin);
+                if (sizing)
+                    return `Juda katta: kutilgan ${issue.origin ?? "qiymat"} ${adj}${issue.maximum.toString()} ${sizing.unit} ${sizing.verb}`;
+                return `Juda katta: kutilgan ${issue.origin ?? "qiymat"} ${adj}${issue.maximum.toString()}`;
+            }
+            case "too_small": {
+                const adj = issue.inclusive ? ">=" : ">";
+                const sizing = getSizing(issue.origin);
+                if (sizing) {
+                    return `Juda kichik: kutilgan ${issue.origin} ${adj}${issue.minimum.toString()} ${sizing.unit} ${sizing.verb}`;
+                }
+                return `Juda kichik: kutilgan ${issue.origin} ${adj}${issue.minimum.toString()}`;
+            }
+            case "invalid_format": {
+                const _issue = issue;
+                if (_issue.format === "starts_with")
+                    return `Noto‘g‘ri satr: "${_issue.prefix}" bilan boshlanishi kerak`;
+                if (_issue.format === "ends_with")
+                    return `Noto‘g‘ri satr: "${_issue.suffix}" bilan tugashi kerak`;
+                if (_issue.format === "includes")
+                    return `Noto‘g‘ri satr: "${_issue.includes}" ni o‘z ichiga olishi kerak`;
+                if (_issue.format === "regex")
+                    return `Noto‘g‘ri satr: ${_issue.pattern} shabloniga mos kelishi kerak`;
+                return `Noto‘g‘ri ${FormatDictionary[_issue.format] ?? issue.format}`;
+            }
+            case "not_multiple_of":
+                return `Noto‘g‘ri raqam: ${issue.divisor} ning karralisi bo‘lishi kerak`;
+            case "unrecognized_keys":
+                return `Noma’lum kalit${issue.keys.length > 1 ? "lar" : ""}: ${util.joinValues(issue.keys, ", ")}`;
+            case "invalid_key":
+                return `${issue.origin} dagi kalit noto‘g‘ri`;
+            case "invalid_union":
+                return "Noto‘g‘ri kirish";
+            case "invalid_element":
+                return `${issue.origin} da noto‘g‘ri qiymat`;
+            default:
+                return `Noto‘g‘ri kirish`;
+        }
+    };
+};
+function default_1() {
+    return {
+        localeError: error(),
+    };
+}
+module.exports = exports.default;
+
+
+/***/ }),
+
+/***/ 9660:
+/***/ (function(module, exports, __nccwpck_require__) {
+
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports["default"] = default_1;
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "ký tự", verb: "có" },
@@ -65180,27 +65746,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "số";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "mảng";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "đầu vào",
         email: "địa chỉ email",
         url: "URL",
@@ -65230,10 +65776,22 @@ const error = () => {
         jwt: "JWT",
         template_literal: "đầu vào",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "số",
+        array: "mảng",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Đầu vào không hợp lệ: mong đợi ${issue.expected}, nhận được ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Đầu vào không hợp lệ: mong đợi instanceof ${issue.expected}, nhận được ${received}`;
+                }
+                return `Đầu vào không hợp lệ: mong đợi ${expected}, nhận được ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Đầu vào không hợp lệ: mong đợi ${util.stringifyPrimitive(issue.values[0])}`;
@@ -65263,7 +65821,7 @@ const error = () => {
                     return `Chuỗi không hợp lệ: phải bao gồm "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Chuỗi không hợp lệ: phải khớp với mẫu ${_issue.pattern}`;
-                return `${Nouns[_issue.format] ?? issue.format} không hợp lệ`;
+                return `${FormatDictionary[_issue.format] ?? issue.format} không hợp lệ`;
             }
             case "not_multiple_of":
                 return `Số không hợp lệ: phải là bội số của ${issue.divisor}`;
@@ -65290,7 +65848,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 2412:
+/***/ 9895:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -65319,7 +65877,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "àmi", verb: "ní" },
@@ -65330,27 +65888,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "nọ́mbà";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "akopọ";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "ẹ̀rọ ìbáwọlé",
         email: "àdírẹ́sì ìmẹ́lì",
         url: "URL",
@@ -65380,10 +65918,22 @@ const error = () => {
         jwt: "JWT",
         template_literal: "ẹ̀rọ ìbáwọlé",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "nọ́mbà",
+        array: "akopọ",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `Ìbáwọlé aṣìṣe: a ní láti fi ${issue.expected}, àmọ̀ a rí ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `Ìbáwọlé aṣìṣe: a ní láti fi instanceof ${issue.expected}, àmọ̀ a rí ${received}`;
+                }
+                return `Ìbáwọlé aṣìṣe: a ní láti fi ${expected}, àmọ̀ a rí ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `Ìbáwọlé aṣìṣe: a ní láti fi ${util.stringifyPrimitive(issue.values[0])}`;
@@ -65412,7 +65962,7 @@ const error = () => {
                     return `Ọ̀rọ̀ aṣìṣe: gbọ́dọ̀ ní "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `Ọ̀rọ̀ aṣìṣe: gbọ́dọ̀ bá àpẹẹrẹ mu ${_issue.pattern}`;
-                return `Aṣìṣe: ${Nouns[_issue.format] ?? issue.format}`;
+                return `Aṣìṣe: ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `Nọ́mbà aṣìṣe: gbọ́dọ̀ jẹ́ èyà pípín ti ${issue.divisor}`;
@@ -65439,7 +65989,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 9788:
+/***/ 2213:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -65468,7 +66018,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "字符", verb: "包含" },
@@ -65479,27 +66029,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "非数字(NaN)" : "数字";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "数组";
-                }
-                if (data === null) {
-                    return "空值(null)";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "输入",
         email: "电子邮件",
         url: "URL",
@@ -65529,10 +66059,23 @@ const error = () => {
         jwt: "JWT",
         template_literal: "输入",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+        number: "数字",
+        array: "数组",
+        null: "空值(null)",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `无效输入：期望 ${issue.expected}，实际接收 ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `无效输入：期望 instanceof ${issue.expected}，实际接收 ${received}`;
+                }
+                return `无效输入：期望 ${expected}，实际接收 ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `无效输入：期望 ${util.stringifyPrimitive(issue.values[0])}`;
@@ -65562,7 +66105,7 @@ const error = () => {
                     return `无效字符串：必须包含 "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `无效字符串：必须满足正则表达式 ${_issue.pattern}`;
-                return `无效${Nouns[_issue.format] ?? issue.format}`;
+                return `无效${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `无效数字：必须是 ${issue.divisor} 的倍数`;
@@ -65589,7 +66132,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 2836:
+/***/ 9981:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -65618,7 +66161,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(6528));
+const util = __importStar(__nccwpck_require__(9693));
 const error = () => {
     const Sizable = {
         string: { unit: "字元", verb: "擁有" },
@@ -65629,27 +66172,7 @@ const error = () => {
     function getSizing(origin) {
         return Sizable[origin] ?? null;
     }
-    const parsedType = (data) => {
-        const t = typeof data;
-        switch (t) {
-            case "number": {
-                return Number.isNaN(data) ? "NaN" : "number";
-            }
-            case "object": {
-                if (Array.isArray(data)) {
-                    return "array";
-                }
-                if (data === null) {
-                    return "null";
-                }
-                if (Object.getPrototypeOf(data) !== Object.prototype && data.constructor) {
-                    return data.constructor.name;
-                }
-            }
-        }
-        return t;
-    };
-    const Nouns = {
+    const FormatDictionary = {
         regex: "輸入",
         email: "郵件地址",
         url: "URL",
@@ -65679,10 +66202,20 @@ const error = () => {
         jwt: "JWT",
         template_literal: "輸入",
     };
+    const TypeDictionary = {
+        nan: "NaN",
+    };
     return (issue) => {
         switch (issue.code) {
-            case "invalid_type":
-                return `無效的輸入值：預期為 ${issue.expected}，但收到 ${parsedType(issue.input)}`;
+            case "invalid_type": {
+                const expected = TypeDictionary[issue.expected] ?? issue.expected;
+                const receivedType = util.parsedType(issue.input);
+                const received = TypeDictionary[receivedType] ?? receivedType;
+                if (/^[A-Z]/.test(issue.expected)) {
+                    return `無效的輸入值：預期為 instanceof ${issue.expected}，但收到 ${received}`;
+                }
+                return `無效的輸入值：預期為 ${expected}，但收到 ${received}`;
+            }
             case "invalid_value":
                 if (issue.values.length === 1)
                     return `無效的輸入值：預期為 ${util.stringifyPrimitive(issue.values[0])}`;
@@ -65713,7 +66246,7 @@ const error = () => {
                     return `無效的字串：必須包含 "${_issue.includes}"`;
                 if (_issue.format === "regex")
                     return `無效的字串：必須符合格式 ${_issue.pattern}`;
-                return `無效的 ${Nouns[_issue.format] ?? issue.format}`;
+                return `無效的 ${FormatDictionary[_issue.format] ?? issue.format}`;
             }
             case "not_multiple_of":
                 return `無效的數字：必須為 ${issue.divisor} 的倍數`;
