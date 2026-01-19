@@ -20,7 +20,7 @@
   "dependencies": {
     "@actions/core": "2.0.2",
     "@actions/github": "7.0.0",
-    "@octomind/octomind": "4.1.0"
+    "@octomind/octomind": "4.3.0"
   },
   "devDependencies": {
     "@types/node": "25.0.8",
