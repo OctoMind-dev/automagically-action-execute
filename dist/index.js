@@ -4415,6 +4415,7 @@ exports["default"] = deferred;
 /***/ }),
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /***/ 703:
 /***/ ((module) => {
 
@@ -8112,6 +8113,9 @@ var request = withDefaults(import_endpoint.endpoint, {
 =======
 /***/ 2464:
 >>>>>>> 163d79f (Bump @actions/github from 7.0.0 to 9.0.0 (#694))
+=======
+/***/ 4015:
+>>>>>>> c3ae4fc (Bump @types/node from 25.0.8 to 25.0.10 (#685))
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -8181,6 +8185,7 @@ async function saveConfig(newConfig) {
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 4994:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
@@ -8257,6 +8262,9 @@ exports.configureLogger = configureLogger;
 /***/ }),
 
 /***/ 7930:
+=======
+/***/ 154:
+>>>>>>> c3ae4fc (Bump @types/node from 25.0.8 to 25.0.10 (#685))
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -10413,7 +10421,11 @@ exports.CreateDiscoveryResponse = zod.object({
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 4418:
+=======
+/***/ 9890:
+>>>>>>> c3ae4fc (Bump @types/node from 25.0.8 to 25.0.10 (#685))
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -10423,6 +10435,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.logJson = exports.handleError = exports.client = exports.createClientFromUrlAndApiKey = exports.BASE_URL = void 0;
 const openapi_fetch_1 = __importDefault(__nccwpck_require__(3007));
+<<<<<<< HEAD
 const config_1 = __nccwpck_require__(4975);
 const logger_1 = __nccwpck_require__(4994);
 const version_1 = __nccwpck_require__(8117);
@@ -10430,6 +10443,12 @@ exports.BASE_URL = process.env.OCTOMIND_API_URL || "https://app.octomind.dev";
 const client = (0, openapi_fetch_1.default)({
     baseUrl: `${exports.BASE_URL}/api`,
 });
+=======
+const config_1 = __nccwpck_require__(4015);
+const version_1 = __nccwpck_require__(3157);
+exports.BASE_URL = process.env.OCTOMIND_API_URL || "https://app.octomind.dev/api";
+const client = (0, openapi_fetch_1.default)({ baseUrl: exports.BASE_URL });
+>>>>>>> c3ae4fc (Bump @types/node from 25.0.8 to 25.0.10 (#685))
 exports.client = client;
 const createClientFromUrlAndApiKey = ({ baseUrl, apiKey, }) => {
     const customClient = (0, openapi_fetch_1.default)({ baseUrl });
@@ -10486,7 +10505,11 @@ exports.logJson = logJson;
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 4201:
+=======
+/***/ 617:
+>>>>>>> c3ae4fc (Bump @types/node from 25.0.8 to 25.0.10 (#685))
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -10536,7 +10559,11 @@ exports.checkForConsistency = checkForConsistency;
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 2653:
+=======
+/***/ 3325:
+>>>>>>> c3ae4fc (Bump @types/node from 25.0.8 to 25.0.10 (#685))
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -10639,16 +10666,26 @@ exports.getGitContext = getGitContext;
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 8093:
+=======
+/***/ 541:
+>>>>>>> c3ae4fc (Bump @types/node from 25.0.8 to 25.0.10 (#685))
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 var __webpack_unused_export__;
 
 __webpack_unused_export__ = ({ value: true });
 exports.cr = exports.VC = void 0;
+<<<<<<< HEAD
 const consistency_1 = __nccwpck_require__(4201);
 const git_1 = __nccwpck_require__(2653);
 const yaml_1 = __nccwpck_require__(6154);
+=======
+const consistency_1 = __nccwpck_require__(617);
+const git_1 = __nccwpck_require__(3325);
+const yaml_1 = __nccwpck_require__(4954);
+>>>>>>> c3ae4fc (Bump @types/node from 25.0.8 to 25.0.10 (#685))
 const push = async (options) => {
     const testCases = (0, yaml_1.readTestCasesFromDir)(options.sourceDir);
     (0, consistency_1.checkForConsistency)(testCases);
@@ -10703,7 +10740,11 @@ exports.cr = draftPush;
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 6154:
+=======
+/***/ 4954:
+>>>>>>> c3ae4fc (Bump @types/node from 25.0.8 to 25.0.10 (#685))
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -10716,9 +10757,14 @@ const fs_1 = __importDefault(__nccwpck_require__(9896));
 const promises_1 = __importDefault(__nccwpck_require__(1943));
 const path_1 = __importDefault(__nccwpck_require__(6928));
 const yaml_1 = __importDefault(__nccwpck_require__(6159));
+<<<<<<< HEAD
 const logger_1 = __nccwpck_require__(4994);
 const octomindExternalAPI_1 = __nccwpck_require__(7930);
 const syncTestCaseSchema = octomindExternalAPI_1.PushTestTargetBody.shape.testCases.element;
+=======
+const octomindExternalAPI_1 = __nccwpck_require__(154);
+const syncTestCaseSchema = octomindExternalAPI_1.pushTestTargetBody.shape.testCases.element;
+>>>>>>> c3ae4fc (Bump @types/node from 25.0.8 to 25.0.10 (#685))
 const removeDiacritics = (str) => {
     // diacritics lead to issues in the file system afterward, cf. https://www.reddit.com/r/MacOS/comments/jhjv41/psa_beware_of_umlauts_and_other_accented/
     return str.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
@@ -10927,7 +10973,11 @@ exports.cleanupFilesystem = cleanupFilesystem;
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 8117:
+=======
+/***/ 3157:
+>>>>>>> c3ae4fc (Bump @types/node from 25.0.8 to 25.0.10 (#685))
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -70891,7 +70941,29 @@ function getOctokit(token, options, ...additionalPlugins) {
 >>>>>>> 163d79f (Bump @actions/github from 7.0.0 to 9.0.0 (#694))
 ;// CONCATENATED MODULE: external "node:timers"
 const external_node_timers_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:timers");
+<<<<<<< HEAD
 ;// CONCATENATED MODULE: ./src/utils.ts
+=======
+// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@4.1.0_typescript@5.7.3_vitest@4.0.17_@types+node@25.0.10_tsx@4.21.0_yaml@2.8.2_/node_modules/@octomind/octomind/dist/tools/client.js
+var tools_client = __nccwpck_require__(9890);
+// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@4.1.0_typescript@5.7.3_vitest@4.0.17_@types+node@25.0.10_tsx@4.21.0_yaml@2.8.2_/node_modules/@octomind/octomind/dist/tools/sync/push.js
+var push = __nccwpck_require__(541);
+;// CONCATENATED MODULE: external "node:fs"
+const external_node_fs_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:fs");
+// EXTERNAL MODULE: external "node:path"
+var external_node_path_ = __nccwpck_require__(6760);
+;// CONCATENATED MODULE: ./src/executeAutomagically.ts
+// this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
+// eslint-disable-next-line import/no-namespace
+
+// this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
+// eslint-disable-next-line import/no-namespace
+
+
+
+
+
+>>>>>>> c3ae4fc (Bump @types/node from 25.0.8 to 25.0.10 (#685))
 
 const TIME_BETWEEN_POLLS_MILLISECONDS = 5_000;
 const MAXIMUM_POLL_TIME_MILLISECONDS = 2 * 60 * 60 * 1000;
