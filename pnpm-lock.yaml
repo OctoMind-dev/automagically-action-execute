@@ -15,8 +15,8 @@ importers:
         specifier: 9.0.0
         version: 9.0.0
       '@octomind/octomind':
-        specifier: 4.1.0
-        version: 4.1.0(typescript@5.7.3)(vitest@4.0.18(@types/node@25.0.10)(tsx@4.21.0)(yaml@2.8.2))
+        specifier: 4.5.1
+        version: 4.5.1(typescript@5.7.3)(vitest@4.0.18(@types/node@25.0.10)(tsx@4.21.0)(yaml@2.8.2))
     devDependencies:
       '@types/node':
         specifier: 25.0.10
@@ -318,6 +318,9 @@ packages:
   '@kwsites/promise-deferred@1.1.1':
     resolution: {integrity: sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==}
 
+  '@logtape/logtape@2.0.2':
+    resolution: {integrity: sha512-cveUBLbCMFkvkLycP/2vNWvywl47JcJbazHIju94/QNGboZ/jyYAgZIm0ZXezAOx3eIz8OG1EOZ5CuQP3+2FQg==}
+
   '@napi-rs/wasm-runtime@0.2.11':
     resolution: {integrity: sha512-9DPkXtvHydrcOsopiYpUgPHpmj0HWZKMUnL2dZqpvC42lsratuBG06V5ipyno0fUek5VlFsNQ+AcFATSrJXgMA==}
 
@@ -379,28 +382,28 @@ packages:
   '@octokit/types@16.0.0':
     resolution: {integrity: sha512-sKq+9r1Mm4efXW1FCk7hFSeJo4QKreL/tTbR0rz/qx/r1Oa2VV83LTA/H/MuCOX7uCIJmQVRKBcbmWoySjAnSg==}
 
-  '@octomind/octomind@4.1.0':
-    resolution: {integrity: sha512-kg4VYPrhQ+fmFYSsMbdsAS5t8frcHRc7wCTiC5zzGuMmBn8sSIbKWxGfxBFxtvStv+7OelzEPZVRwGLsyPN+Wg==}
+  '@octomind/octomind@4.5.1':
+    resolution: {integrity: sha512-AhDo6pyVYJT83ac52l7r4zdj/8sQndiJo2gRltJphBF30x6BId/cfcU2FTUocsPXgsZqfzedrWHj+GAQUb3Fmw==}
     engines: {node: '>=22.0.0'}
     hasBin: true
 
-  '@otplib/core@13.1.0':
-    resolution: {integrity: sha512-bMCuRi5U4m86JnKiijEPTyM1KQlmanlcg/uleTCo4ewtqsYgnIvdNqIOUA6x1cS4X+U9XalmX6zF1N4ddZBdoA==}
+  '@otplib/core@13.2.1':
+    resolution: {integrity: sha512-IyfHvYNCyipDxhmJdcUUvUeT3Hz84/GgM6G2G6BTEmnAKPzNA7U0kYGkxKZWY9h23W94RJk4qiClJRJN5zKGvg==}
 
-  '@otplib/hotp@13.1.0':
-    resolution: {integrity: sha512-lqeRLsUwpJ5l4RzhgSOw5uNmY19RayIf3SBnghHnP7uPhA0VccgaVzfk7QliiCkClkhyTpx4T+DTrgdnseOXEg==}
+  '@otplib/hotp@13.2.1':
+    resolution: {integrity: sha512-iRKqvj0TnemtXXtEswzBX50Z0yMNa0lH9PSdr5N4CJc1mDEuUmFFZQqnu3PfA3fPd3WeAU+mHgmK/xq18+K1QA==}
 
-  '@otplib/plugin-base32-scure@13.1.0':
-    resolution: {integrity: sha512-bCyIZd9vZ4qoBErW4LzdyI1L3naKLGY1GuxseriN/Pb4gKlOXKpSmP6i/XK6E1CpQ1GtAd7P6TkcP9CyNDIFWg==}
+  '@otplib/plugin-base32-scure@13.2.1':
+    resolution: {integrity: sha512-vnA2qqgJ/FbFbDNGOLAS8dKfCsJFXwFsZKYklE8yl2INkCOUR0vbVdJ2TVmufzC8R1RRZHW+cDR20ACgc9XFYg==}
 
-  '@otplib/plugin-crypto-noble@13.1.0':
-    resolution: {integrity: sha512-/8mIOQSK08gccqpgGK6cW45he0YRL/eSl4QVSfLlaXhtBJZz78UEr/gnzIhIy9ftVgS9jZDsSDMWnozCasQYww==}
+  '@otplib/plugin-crypto-noble@13.2.1':
+    resolution: {integrity: sha512-Dxjmt4L+5eDWJf5EvbcMp+fxcliyKoB9N9sNQq/vuVAUvq+KiqpiiCQZ/wHyrN0ArB0NdevtK1KByyAq080ldg==}
 
-  '@otplib/totp@13.1.0':
-    resolution: {integrity: sha512-mEukKW8gxb8pEGL2VPu5zcOwH3lAXTrC6VLo7uhNpn83q9/BTFqDP8m47eygq7kz1MHSDSdL5xbbHJh8OfXY0g==}
+  '@otplib/totp@13.2.1':
+    resolution: {integrity: sha512-LzDzAAK3w8rspF3urBnWjOlxso1SCGxX9Pnu/iy+HkC0y0HgiLsW7jhkr2hJ3u4cyBdL/tOKUhhELwsjyvunwQ==}
 
-  '@otplib/uri@13.1.0':
-    resolution: {integrity: sha512-uSUzIa5F1TSUsHXSUA8xUkYaeYGXyFDq1mpPzQ2eGa+KzDBgw24GLJini2G/VGNjpNth6Q92GuAbcZQ29U0QUA==}
+  '@otplib/uri@13.2.1':
+    resolution: {integrity: sha512-ssYnfiUrFTs/rPRUW8h59m0MVLYOC+UKk7tVGYgtG15lLaLBrNBQjM2YFanuzn9Jm4iv9JxiNG7TRkwcnyR09A==}
 
   '@pkgr/core@0.2.9':
     resolution: {integrity: sha512-QNqXyfVS2wm9hweSYD2O7F0G06uurj9kZ96TRQE5Y9hU7+tgdZwIkbAKc5Ocy1HxEY2kuDQa6cQ1WRs/O5LFKA==}
@@ -1695,8 +1698,8 @@ packages:
   lodash.upperfirst@4.3.1:
     resolution: {integrity: sha512-sReKOYJIJf74dhJONhU4e0/shzi1trVbSWDOhKYE5XV2O+H7Sb2Dihwuc7xWxVl+DgFPyTqIN3zMfT9cq5iWDg==}
 
-  lodash@4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+  lodash@4.17.23:
+    resolution: {integrity: sha512-LgVTMpQtIopCi79SJeDiP0TfWi5CNEc/L/aRdTh3yIvmZXTnheWpKjSZhnvMl8iXbC1tFg9gdHHDMLoV7CnG+w==}
 
   log-symbols@7.0.1:
     resolution: {integrity: sha512-ja1E3yCr9i/0hmBVaM0bfwDjnGy8I/s6PP4DFp+yP+a+mrHO4Rm7DtmnqROTUkHIkqffC84YY7AeqX6oFk0WFg==}
@@ -1828,16 +1831,16 @@ packages:
     resolution: {integrity: sha512-JjCoypp+jKn1ttEFExxhetCKeJt9zhAgAve5FXHixTvFDW/5aEktX9bufBKLRRMdU7bNtpLfcGu94B3cdEJgjg==}
     engines: {node: '>= 0.8.0'}
 
-  ora@9.0.0:
-    resolution: {integrity: sha512-m0pg2zscbYgWbqRR6ABga5c3sZdEon7bSgjnlXC64kxtxLOyjRcbbUkLj7HFyy/FTD+P2xdBWu8snGhYI0jc4A==}
+  ora@9.1.0:
+    resolution: {integrity: sha512-53uuLsXHOAJl5zLrUrzY9/kE+uIFEx7iaH4g2BIJQK4LZjY4LpCCYZVKDWIkL+F01wAaCg93duQ1whnK/AmY1A==}
     engines: {node: '>=20'}
 
   os-tmpdir@1.0.2:
     resolution: {integrity: sha512-D2FR03Vir7FIu45XBY20mTb+/ZSWB00sjU9jdQXt83gDrI4Ztz5Fs7/yy74g2N5SVQY4xY1qDr4rNddwYRVX0g==}
     engines: {node: '>=0.10.0'}
 
-  otplib@13.1.0:
-    resolution: {integrity: sha512-QQ8tHgo6j1yo4Jpq5yOGmqpyYbgmjGOBoNZKMLTzZ2sdGKJ4GUN/7P557/5Ti9GNUH/WMsnToQ2gqmPtI1hz0Q==}
+  otplib@13.2.1:
+    resolution: {integrity: sha512-Cft9h/m34LtvnoB2TjP1E1E6v0biwcUntl6U4e+HgWrTa0bpwmb+u/D9gLFA+U6/ztlvrult0811Bu30nUVUuA==}
 
   own-keys@1.0.1:
     resolution: {integrity: sha512-qFOyK5PjiWZd+QQIh+1jhdb9LpxTF0qs7Pm8o5QHYZ0M3vKqSqzsZaEB6oWlxZ+q2sJBMI/Ktgd2N5ZwQoRHfg==}
@@ -2461,8 +2464,8 @@ packages:
     resolution: {integrity: sha512-CzhO+pFNo8ajLM2d2IW/R93ipy99LWjtwblvC1RsoSUMZgyLbYFr221TnSNT7GjGdYui6P459mw9JH/g/zW2ug==}
     engines: {node: '>=18'}
 
-  zod@4.3.5:
-    resolution: {integrity: sha512-k7Nwx6vuWx1IJ9Bjuf4Zt1PEllcwe7cls3VNzm4CQ1/hgtFUK2bRNG3rvnpPUhFjmqJKAKtjV576KnUkHocg/g==}
+  zod@4.3.6:
+    resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
 
 snapshots:
 
@@ -2661,6 +2664,8 @@ snapshots:
 
   '@kwsites/promise-deferred@1.1.1': {}
 
+  '@logtape/logtape@2.0.2': {}
+
   '@napi-rs/wasm-runtime@0.2.11':
     dependencies:
       '@emnapi/core': 1.4.3
@@ -2733,16 +2738,17 @@ snapshots:
     dependencies:
       '@octokit/openapi-types': 27.0.0
 
-  '@octomind/octomind@4.1.0(typescript@5.7.3)(vitest@4.0.18(@types/node@25.0.10)(tsx@4.21.0)(yaml@2.8.2))':
+  '@octomind/octomind@4.5.1(typescript@5.7.3)(vitest@4.0.18(@types/node@25.0.10)(tsx@4.21.0)(yaml@2.8.2))':
     dependencies:
+      '@logtape/logtape': 2.0.2
       '@playwright/test': 1.57.0
       '@types/shell-quote': 1.7.5
       commander: 14.0.2
       diff: 8.0.3
       open: 11.0.0
       openapi-fetch: 0.15.0
-      ora: 9.0.0
-      otplib: 13.1.0
+      ora: 9.1.0
+      otplib: 13.2.1
       shell-quote: 1.8.3
       simple-git: 3.30.0
       tabtab: 3.0.2
@@ -2750,38 +2756,38 @@ snapshots:
       vitest-mock-extended: 3.1.0(typescript@5.7.3)(vitest@4.0.18(@types/node@25.0.10)(tsx@4.21.0)(yaml@2.8.2))
       which: 6.0.0
       yaml: 2.8.2
-      zod: 4.3.5
+      zod: 4.3.6
     transitivePeerDependencies:
       - supports-color
       - typescript
       - vitest
 
-  '@otplib/core@13.1.0': {}
+  '@otplib/core@13.2.1': {}
 
-  '@otplib/hotp@13.1.0':
+  '@otplib/hotp@13.2.1':
     dependencies:
-      '@otplib/core': 13.1.0
-      '@otplib/uri': 13.1.0
+      '@otplib/core': 13.2.1
+      '@otplib/uri': 13.2.1
 
-  '@otplib/plugin-base32-scure@13.1.0':
+  '@otplib/plugin-base32-scure@13.2.1':
     dependencies:
-      '@otplib/core': 13.1.0
+      '@otplib/core': 13.2.1
       '@scure/base': 2.0.0
 
-  '@otplib/plugin-crypto-noble@13.1.0':
+  '@otplib/plugin-crypto-noble@13.2.1':
     dependencies:
       '@noble/hashes': 2.0.1
-      '@otplib/core': 13.1.0
+      '@otplib/core': 13.2.1
 
-  '@otplib/totp@13.1.0':
+  '@otplib/totp@13.2.1':
     dependencies:
-      '@otplib/core': 13.1.0
-      '@otplib/hotp': 13.1.0
-      '@otplib/uri': 13.1.0
+      '@otplib/core': 13.2.1
+      '@otplib/hotp': 13.2.1
+      '@otplib/uri': 13.2.1
 
-  '@otplib/uri@13.1.0':
+  '@otplib/uri@13.2.1':
     dependencies:
-      '@otplib/core': 13.1.0
+      '@otplib/core': 13.2.1
 
   '@pkgr/core@0.2.9': {}
 
@@ -3994,7 +4000,7 @@ snapshots:
       cli-width: 2.2.1
       external-editor: 3.1.0
       figures: 2.0.0
-      lodash: 4.17.21
+      lodash: 4.17.23
       mute-stream: 0.0.7
       run-async: 2.4.1
       rxjs: 6.6.7
@@ -4195,7 +4201,7 @@ snapshots:
 
   lodash.upperfirst@4.3.1: {}
 
-  lodash@4.17.21: {}
+  lodash@4.17.23: {}
 
   log-symbols@7.0.1:
     dependencies:
@@ -4326,7 +4332,7 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
-  ora@9.0.0:
+  ora@9.1.0:
     dependencies:
       chalk: 5.6.2
       cli-cursor: 5.0.0
@@ -4336,18 +4342,17 @@ snapshots:
       log-symbols: 7.0.1
       stdin-discarder: 0.2.2
       string-width: 8.1.0
-      strip-ansi: 7.1.2
 
   os-tmpdir@1.0.2: {}
 
-  otplib@13.1.0:
+  otplib@13.2.1:
     dependencies:
-      '@otplib/core': 13.1.0
-      '@otplib/hotp': 13.1.0
-      '@otplib/plugin-base32-scure': 13.1.0
-      '@otplib/plugin-crypto-noble': 13.1.0
-      '@otplib/totp': 13.1.0
-      '@otplib/uri': 13.1.0
+      '@otplib/core': 13.2.1
+      '@otplib/hotp': 13.2.1
+      '@otplib/plugin-base32-scure': 13.2.1
+      '@otplib/plugin-crypto-noble': 13.2.1
+      '@otplib/totp': 13.2.1
+      '@otplib/uri': 13.2.1
 
   own-keys@1.0.1:
     dependencies:
@@ -5031,4 +5036,4 @@ snapshots:
 
   yoctocolors@2.1.2: {}
 
-  zod@4.3.5: {}
+  zod@4.3.6: {}
