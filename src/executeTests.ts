@@ -1,4 +1,4 @@
-import * as core from '@actions/core'
+import {setFailed, setOutput, summary} from '@actions/core'
 import {createClientFromUrlAndApiKey} from '@octomind/octomind/client'
 import {TestReport} from './types'
 import {
@@ -66,14 +66,14 @@ export const executeTests = async ({
     !executeResponse.data?.testReport ||
     !executeResponse.data.testReport.id
   ) {
-    core.setFailed('execute did not return any data')
+    setFailed('execute did not return any data')
     throw new Error('execute did not return any data')
   }
 
   const testReportUrl = executeResponse.data.testReportUrl
 
-  core.setOutput('testReportUrl', testReportUrl)
-  await core.summary
+  setOutput('testReportUrl', testReportUrl)
+  await summary
     .addHeading('🐙 Octomind')
     .addLink('View your Test Report', testReportUrl)
     .write()
@@ -106,7 +106,7 @@ export const executeTests = async ({
     }
 
     if (currentStatus !== 'PASSED') {
-      core.setFailed(
+      setFailed(
         `some test results failed, check your test report at ${testReportUrl} to find out more.`
       )
     }
