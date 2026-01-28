@@ -2,9 +2,6 @@
 
 import {existsSync, readdirSync} from 'node:fs'
 import {setFailed} from '@actions/core'
-// this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
-// eslint-disable-next-line import/no-namespace
-import * as github from '@actions/github'
 import type {createClientFromUrlAndApiKey} from '@octomind/octomind/client'
 import {push} from '@octomind/octomind/push'
 
