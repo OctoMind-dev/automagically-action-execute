@@ -1,7 +1,7 @@
 import {executeAutomagically} from '../src/executeAutomagically'
 import {beforeEach, describe, expect, it, vi} from 'vitest'
 import core from '@actions/core'
-import github from '@actions/github'
+import { context } from '@actions/github'
 import {createClientFromUrlAndApiKey} from '@octomind/octomind/client'
 import {DeepMockProxy, mock, mockDeep} from 'vitest-mock-extended'
 import {
@@ -27,7 +27,7 @@ vi.mock('@actions/github', () => ({
       repo: 'some repo',
       owner: 'some owner'
     }
-  } as typeof github.context
+  } as typeof context
 }))
 
 describe(executeAutomagically.name, () => {
