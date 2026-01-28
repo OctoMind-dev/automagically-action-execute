@@ -123,7 +123,9 @@ describe(executeAutomagically.name, () => {
         return ''
       })
 
-      await executeAutomagically()
+      await expect(executeAutomagically()).rejects.toThrow(
+        'token is set to an empty string'
+      )
 
       expect(core.setFailed).toHaveBeenCalledWith(
         'token is set to an empty string'
@@ -133,11 +135,14 @@ describe(executeAutomagically.name, () => {
     it('fails when testTargetId is empty', async () => {
       vi.mocked(core.getInput).mockImplementation((name: string) => {
         if (name === 'token') return 'test-token'
+        if (name === 'url') return 'https://example.com'
         if (name === 'testTargetId') return ''
         return ''
       })
 
-      await executeAutomagically()
+      await expect(executeAutomagically()).rejects.toThrow(
+        'testTargetId is set to an empty string'
+      )
 
       expect(core.setFailed).toHaveBeenCalledWith(
         'testTargetId is set to an empty string'
@@ -152,7 +157,9 @@ describe(executeAutomagically.name, () => {
         return ''
       })
 
-      await executeAutomagically()
+      await expect(executeAutomagically()).rejects.toThrow(
+        'url is set to an empty string'
+      )
 
       expect(core.setFailed).toHaveBeenCalledWith(
         'url is set to an empty string'
@@ -168,7 +175,9 @@ describe(executeAutomagically.name, () => {
         return ''
       })
 
-      await executeAutomagically()
+      await expect(executeAutomagically()).rejects.toThrow(
+        'url is set to an empty string'
+      )
 
       expect(core.setFailed).toHaveBeenCalledWith(
         'url is set to an empty string'
