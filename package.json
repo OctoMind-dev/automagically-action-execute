@@ -18,7 +18,7 @@
   "author": "OctoMind-dev",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "2.0.2",
+    "@actions/core": "2.0.3",
     "@actions/github": "9.0.0",
     "@octomind/octomind": "4.1.0"
   },
