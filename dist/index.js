@@ -16393,7 +16393,7 @@ module.exports = __nccwpck_require__(4179);
 
 
 
-var net = __nccwpck_require__(9278);
+var net = __nccwpck_require__(6897);
 var tls = __nccwpck_require__(4756);
 var http = __nccwpck_require__(8611);
 var https = __nccwpck_require__(5692);
@@ -19609,7 +19609,7 @@ module.exports = {
 /* global WebAssembly */
 
 const assert = __nccwpck_require__(2613)
-const net = __nccwpck_require__(9278)
+const net = __nccwpck_require__(6897)
 const http = __nccwpck_require__(8611)
 const { pipeline } = __nccwpck_require__(2203)
 const util = __nccwpck_require__(701)
@@ -22763,7 +22763,7 @@ module.exports = {
 
 
 
-const net = __nccwpck_require__(9278)
+const net = __nccwpck_require__(6897)
 const assert = __nccwpck_require__(2613)
 const util = __nccwpck_require__(701)
 const { InvalidArgumentError, ConnectTimeoutError } = __nccwpck_require__(1970)
@@ -23901,7 +23901,7 @@ const assert = __nccwpck_require__(2613)
 const { kDestroyed, kBodyUsed } = __nccwpck_require__(4980)
 const { IncomingMessage } = __nccwpck_require__(8611)
 const stream = __nccwpck_require__(2203)
-const net = __nccwpck_require__(9278)
+const net = __nccwpck_require__(6897)
 const { InvalidArgumentError } = __nccwpck_require__(1970)
 const { Blob } = __nccwpck_require__(181)
 const nodeUtil = __nccwpck_require__(9023)
@@ -38820,7 +38820,7 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
-/***/ 1890:
+/***/ 9278:
 /***/ ((__unused_webpack_module, __webpack_exports__, __nccwpck_require__) => {
 
 
@@ -38829,48 +38829,39 @@ __nccwpck_require__.d(__webpack_exports__, {
   k: () => (/* binding */ executeAutomagically)
 });
 
-// UNUSED EXPORTS: pushIfYmlsExist
-
+// EXTERNAL MODULE: external "node:path"
+var external_node_path_ = __nccwpck_require__(6760);
 // EXTERNAL MODULE: ./node_modules/.pnpm/@actions+core@2.0.2/node_modules/@actions/core/lib/core.js
 var core = __nccwpck_require__(9550);
 // EXTERNAL MODULE: ./node_modules/.pnpm/@actions+github@7.0.0/node_modules/@actions/github/lib/github.js
 var github = __nccwpck_require__(8087);
-;// CONCATENATED MODULE: external "node:timers"
-const external_node_timers_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:timers");
 // EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@4.1.0_typescript@5.7.3_vitest@4.0.17_@types+node@25.0.8_tsx@4.21.0_yaml@2.8.2_/node_modules/@octomind/octomind/dist/tools/client.js
 var tools_client = __nccwpck_require__(2305);
-// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@4.1.0_typescript@5.7.3_vitest@4.0.17_@types+node@25.0.8_tsx@4.21.0_yaml@2.8.2_/node_modules/@octomind/octomind/dist/tools/sync/push.js
-var push = __nccwpck_require__(2824);
-;// CONCATENATED MODULE: external "node:fs"
-const external_node_fs_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:fs");
-// EXTERNAL MODULE: external "node:path"
-var external_node_path_ = __nccwpck_require__(6760);
-;// CONCATENATED MODULE: ./src/executeAutomagically.ts
-// this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
-// eslint-disable-next-line import/no-namespace
-
-// this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
-// eslint-disable-next-line import/no-namespace
-
-
-
-
-
+;// CONCATENATED MODULE: external "node:timers"
+const external_node_timers_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:timers");
+;// CONCATENATED MODULE: ./src/utils.ts
 
 const TIME_BETWEEN_POLLS_MILLISECONDS = 5_000;
 const MAXIMUM_POLL_TIME_MILLISECONDS = 2 * 60 * 60 * 1000;
 const DEFAULT_URL = 'https://app.octomind.dev';
 const sleep = (timeInMilliseconds) => new Promise(resolve => (0,external_node_timers_namespaceObject.setTimeout)(resolve, timeInMilliseconds));
-const getExecuteUrl = (automagicallyUrl) => `${automagicallyUrl}/api/apiKey/v3/execute`;
 const multilineMappingToObject = (input) => {
     const keySplitOff = input
         .filter(mapping => mapping.length > 0)
         .map(mapping => mapping.split(':'))
-        // the api takes an array of values per key, so we just wrap the value in an array
-        // then we join with ':' to make it a string again and preserve colons in the value
         .map(parts => [parts[0], [parts.slice(1).join(':')]]);
     return Object.fromEntries(keySplitOff);
 };
+
+;// CONCATENATED MODULE: external "node:fs"
+const external_node_fs_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:fs");
+// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@4.1.0_typescript@5.7.3_vitest@4.0.17_@types+node@25.0.8_tsx@4.21.0_yaml@2.8.2_/node_modules/@octomind/octomind/dist/tools/sync/push.js
+var push = __nccwpck_require__(2824);
+;// CONCATENATED MODULE: ./src/pushIfYmlsExist.ts
+// this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
+
+
+
 const pushIfYmlsExist = async ({ sourceDir, client, testTargetId }) => {
     const directoryExists = (0,external_node_fs_namespaceObject.existsSync)(sourceDir);
     const hasYmls = directoryExists &&
@@ -38880,13 +38871,12 @@ const pushIfYmlsExist = async ({ sourceDir, client, testTargetId }) => {
             sourceDir,
             client,
             testTargetId,
-            // https://docs.github.com/en/actions/reference/workflows-and-actions/variables
             branchName: process.env.GITHUB_HEAD_REF
                 ? `refs/heads/${process.env.GITHUB_HEAD_REF}`
                 : undefined,
             onError: error => {
                 if (error) {
-                    core.setFailed(`error occurred when trying to push local ymls ${error}`);
+                    (0,core.setFailed)(`error occurred when trying to push local ymls ${error}`);
                     process.exit(1);
                 }
             }
@@ -38894,6 +38884,112 @@ const pushIfYmlsExist = async ({ sourceDir, client, testTargetId }) => {
     }
     return undefined;
 };
+
+;// CONCATENATED MODULE: ./src/executeTests.ts
+
+
+
+const executeTests = async ({ client, testTargetId, url, environmentName, browser, breakpoint, variablesToOverwriteObject, tags, ymlDirectoryWithFallback, context, blocking, pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS, maximumPollingTimeInMilliseconds = MAXIMUM_POLL_TIME_MILLISECONDS }) => {
+    const pushed = await pushIfYmlsExist({
+        client,
+        testTargetId,
+        sourceDir: ymlDirectoryWithFallback
+    });
+    const executeResponse = await client.POST('/apiKey/v3/execute', {
+        body: {
+            url,
+            testTargetId,
+            environmentName,
+            variablesToOverwrite: variablesToOverwriteObject,
+            tags,
+            browser: browser,
+            breakpoint: breakpoint,
+            context: {
+                source: 'github',
+                ...context
+            },
+            testCaseVersionIds: pushed?.versionIds
+        }
+    });
+    if (!executeResponse.data?.testReportUrl ||
+        !executeResponse.data?.testReport ||
+        !executeResponse.data.testReport.id) {
+        (0,core.setFailed)('execute did not return any data');
+        throw new Error('execute did not return any data');
+    }
+    const testReportUrl = executeResponse.data.testReportUrl;
+    (0,core.setOutput)('testReportUrl', testReportUrl);
+    await core.summary
+        .addHeading('🐙 Octomind')
+        .addLink('View your Test Report', testReportUrl)
+        .write();
+    if (blocking) {
+        let currentStatus = executeResponse.data.testReport.status;
+        const start = Date.now();
+        let now = start;
+        while (currentStatus === 'WAITING' &&
+            now - start < maximumPollingTimeInMilliseconds) {
+            const testReport = await client.GET('/apiKey/v3/test-targets/{testTargetId}/test-reports/{testReportId}', {
+                params: {
+                    path: {
+                        testTargetId,
+                        testReportId: executeResponse.data.testReport.id
+                    }
+                }
+            });
+            currentStatus = testReport.data?.status;
+            await sleep(pollingIntervalInMilliseconds);
+            now = Date.now();
+        }
+        if (currentStatus !== 'PASSED') {
+            (0,core.setFailed)(`some test results failed, check your test report at ${testReportUrl} to find out more.`);
+        }
+    }
+};
+
+;// CONCATENATED MODULE: ./src/exploreTestPlan.ts
+
+const exploreTestPlan = async ({ client, testTargetId, url, environmentName, context }) => {
+    (0,core.info)('Test plan exploration triggered');
+    (0,core.info)(`Test target ID: ${testTargetId}`);
+    const exploreResponse = await client.POST('/apiKey/v3/test-targets/{testTargetId}/test-plan/explore', {
+        params: {
+            path: {
+                testTargetId
+            }
+        },
+        body: {
+            url,
+            environmentName,
+            context: {
+                source: 'github',
+                ...context
+            }
+        }
+    });
+    if (!exploreResponse.data) {
+        (0,core.setFailed)('test plan exploration did not return any data');
+        throw new Error('test plan exploration did not return any data');
+    }
+    (0,core.info)('Test plan exploration completed successfully');
+    await core.summary
+        .addHeading('🐙 Octomind - Test Plan Exploration')
+        .addRaw('Test plan exploration completed successfully')
+        .write();
+};
+
+;// CONCATENATED MODULE: ./src/executeAutomagically.ts
+
+// this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
+// eslint-disable-next-line import/no-namespace
+
+// this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
+// eslint-disable-next-line import/no-namespace
+
+
+
+
+
 const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS, maximumPollingTimeInMilliseconds = MAXIMUM_POLL_TIME_MILLISECONDS } = {}) => {
     const urlOverride = core.getInput('automagicallyBaseUrl');
     const automagicallyUrl = urlOverride.length === 0 ? DEFAULT_URL : urlOverride;
@@ -38903,6 +38999,7 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
             'Make sure you run this action in a workflow triggered by pull request ' +
             'if you expect a comment with the test results on your PR');
     }
+    // common parameters
     const context = {
         issueNumber,
         repo: github.context.repo.repo,
@@ -38910,91 +39007,76 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
         ref: github.context.ref,
         sha: github.context.sha
     };
-    core.debug(JSON.stringify({ executeUrl: getExecuteUrl(automagicallyUrl), context }, null, 2));
-    const url = core.getInput('url');
-    if (url.length === 0) {
-        core.setFailed('url is set to an empty string');
-    }
+    core.debug(JSON.stringify({ context }, null, 2));
     const token = core.getInput('token');
     if (token.length === 0) {
         core.setFailed('token is set to an empty string');
+        throw new Error('token is set to an empty string');
     }
+    const url = core.getInput('url');
+    if (url.length === 0) {
+        core.setFailed('url is set to an empty string');
+        throw new Error('url is set to an empty string');
+    }
+    const environmentName = core.getInput('environmentName');
     const testTargetId = core.getInput('testTargetId');
     if (testTargetId.length === 0) {
         core.setFailed('testTargetId is set to an empty string');
+        throw new Error('testTargetId is set to an empty string');
     }
-    const blocking = core.getBooleanInput('blocking');
-    const environmentName = core.getInput('environmentName');
-    const browser = core.getInput('browser');
-    const breakpoint = core.getInput('breakpoint');
-    const variablesToOverwrite = core.getMultilineInput('variablesToOverwrite');
-    const variablesToOverwriteObject = multilineMappingToObject(variablesToOverwrite);
-    const tags = core.getMultilineInput('tags');
-    const ymlSourceDirectory = core.getInput('ymlDirectory');
-    const ymlDirectoryWithFallback = ymlSourceDirectory.length > 0
-        ? ymlSourceDirectory
-        : (0,external_node_path_.join)(process.cwd(), '.octomind');
+    const actionInput = core.getInput('action');
+    let action = 'execute-tests';
+    if (actionInput.length > 0) {
+        if (actionInput === 'execute-tests' ||
+            actionInput === 'explore-test-plan') {
+            action = actionInput;
+        }
+        else {
+            core.warning(`Unknown action "${actionInput}", defaulting to "execute-tests"`);
+        }
+    }
     const urlWithApiPostfix = new URL(automagicallyUrl);
-    urlWithApiPostfix.pathname += '/api';
+    urlWithApiPostfix.pathname = `${urlWithApiPostfix.pathname.replace(/\/$/, '')}/api`;
     const client = (0,tools_client.createClientFromUrlAndApiKey)({
         baseUrl: urlWithApiPostfix.href,
         apiKey: token
     });
     try {
-        const pushed = await pushIfYmlsExist({
-            client,
-            testTargetId,
-            sourceDir: ymlDirectoryWithFallback
-        });
-        const executeResponse = await client.POST('/apiKey/v3/execute', {
-            body: {
-                url,
+        if (action === 'explore-test-plan') {
+            await exploreTestPlan({
+                client,
                 testTargetId,
+                url,
                 environmentName,
-                variablesToOverwrite: variablesToOverwriteObject,
-                tags,
-                browser: browser,
-                breakpoint: breakpoint,
-                context: {
-                    source: 'github',
-                    ...context
-                },
-                testCaseVersionIds: pushed?.versionIds
-            }
-        });
-        if (!executeResponse.data?.testReportUrl ||
-            !executeResponse.data?.testReport ||
-            !executeResponse.data.testReport.id) {
-            core.setFailed('execute did not return any data');
-            throw new Error('execute did not return any data');
+                context
+            });
         }
-        const testReportUrl = executeResponse.data.testReportUrl;
-        core.setOutput('testReportUrl', testReportUrl);
-        await core.summary
-            .addHeading('🐙 Octomind')
-            .addLink('View your Test Report', testReportUrl)
-            .write();
-        if (blocking) {
-            let currentStatus = executeResponse.data.testReport.status;
-            const start = Date.now();
-            let now = start;
-            while (currentStatus === 'WAITING' &&
-                now - start < maximumPollingTimeInMilliseconds) {
-                const testReport = await client.GET('/apiKey/v3/test-targets/{testTargetId}/test-reports/{testReportId}', {
-                    params: {
-                        path: {
-                            testTargetId,
-                            testReportId: executeResponse.data.testReport.id
-                        }
-                    }
-                });
-                currentStatus = testReport.data?.status;
-                await sleep(pollingIntervalInMilliseconds);
-                now = Date.now();
-            }
-            if (currentStatus !== 'PASSED') {
-                core.setFailed(`some test results failed, check your test report at ${testReportUrl} to find out more.`);
-            }
+        else {
+            const blocking = core.getBooleanInput('blocking');
+            const browser = core.getInput('browser');
+            const breakpoint = core.getInput('breakpoint');
+            const variablesToOverwrite = core.getMultilineInput('variablesToOverwrite');
+            const variablesToOverwriteObject = multilineMappingToObject(variablesToOverwrite);
+            const tags = core.getMultilineInput('tags');
+            const ymlSourceDirectory = core.getInput('ymlDirectory');
+            const ymlDirectoryWithFallback = ymlSourceDirectory.length > 0
+                ? ymlSourceDirectory
+                : (0,external_node_path_.join)(process.cwd(), '.octomind');
+            await executeTests({
+                client,
+                testTargetId,
+                url,
+                environmentName,
+                browser,
+                breakpoint,
+                variablesToOverwriteObject,
+                tags,
+                ymlDirectoryWithFallback,
+                context,
+                blocking,
+                pollingIntervalInMilliseconds,
+                maximumPollingTimeInMilliseconds
+            });
         }
     }
     catch (error) {
@@ -39018,7 +39100,7 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
 /***/ ((module, __unused_webpack___webpack_exports__, __nccwpck_require__) => {
 
 __nccwpck_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-/* harmony import */ var _executeAutomagically__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(1890);
+/* harmony import */ var _executeAutomagically__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(9278);
 
 await (0,_executeAutomagically__WEBPACK_IMPORTED_MODULE_0__/* .executeAutomagically */ .k)();
 
@@ -39118,7 +39200,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("https");
 
 /***/ }),
 
-/***/ 9278:
+/***/ 6897:
 /***/ ((module) => {
 
 module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("net");
