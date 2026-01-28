@@ -7,7 +7,6 @@ import { pushIfYmlsExist } from "../src/pushIfYmlsExist";
 import type { GitHubContext } from "../src/utils";
 import {
 	createMockExecuteResponse,
-	createMockTestReport,
 	createMockTestReportResponse,
 } from "./mocks";
 

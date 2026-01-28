@@ -1,7 +1,6 @@
+import { join } from "node:path";
 // this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
 // eslint-disable-next-line import/no-namespace
-
-import { join } from "node:path";
 import * as core from "@actions/core";
 // this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
 // eslint-disable-next-line import/no-namespace
@@ -50,27 +49,38 @@ export const executeAutomagically = async ({
 	const token = core.getInput("token");
 	if (token.length === 0) {
 		core.setFailed("token is set to an empty string");
+		throw new Error("token is set to an empty string");
 	}
 
 	const url = core.getInput("url");
 	if (url.length === 0) {
 		core.setFailed("url is set to an empty string");
+		throw new Error("url is set to an empty string");
 	}
 	const environmentName = core.getInput("environmentName");
 	const testTargetId = core.getInput("testTargetId");
 	if (testTargetId.length === 0) {
 		core.setFailed("testTargetId is set to an empty string");
+		throw new Error("testTargetId is set to an empty string");
 	}
 
 	const actionInput = core.getInput("action");
-	const action: ActionType =
-		actionInput.length === 0 || actionInput === "execute-tests"
-			? "execute-tests"
-			: (actionInput as ActionType);
+	let action: ActionType = "execute-tests";
+	if (actionInput.length > 0) {
+		if (
+			actionInput === "execute-tests" ||
+			actionInput === "explore-test-plan"
+		) {
+			action = actionInput;
+		} else {
+			core.warning(
+				`Unknown action "${actionInput}", defaulting to "execute-tests"`,
+			);
+		}
+	}
 
 	const urlWithApiPostfix = new URL(automagicallyUrl);
-	urlWithApiPostfix.pathname =
-		urlWithApiPostfix.pathname.replace(/\/$/, "") + "/api";
+	urlWithApiPostfix.pathname = `${urlWithApiPostfix.pathname.replace(/\/$/, "")}/api`;
 
 	const client = createClientFromUrlAndApiKey({
 		baseUrl: urlWithApiPostfix.href,
