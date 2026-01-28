@@ -36,6 +36,7 @@ export const executeAutomagically = async ({
 		);
 	}
 
+	// common parameters
 	const context = {
 		issueNumber,
 		repo: github.context.repo.repo,
@@ -51,6 +52,11 @@ export const executeAutomagically = async ({
 		core.setFailed("token is set to an empty string");
 	}
 
+	const url = core.getInput("url");
+	if (url.length === 0) {
+		core.setFailed("url is set to an empty string");
+	}
+	const environmentName = core.getInput("environmentName");
 	const testTargetId = core.getInput("testTargetId");
 	if (testTargetId.length === 0) {
 		core.setFailed("testTargetId is set to an empty string");
@@ -73,13 +79,6 @@ export const executeAutomagically = async ({
 
 	try {
 		if (action === "explore-test-plan") {
-			const url = core.getInput("url");
-			if (url.length === 0) {
-				core.setFailed("url is set to an empty string");
-			}
-
-			const environmentName = core.getInput("environmentName");
-
 			await exploreTestPlan({
 				client,
 				testTargetId,
@@ -88,13 +87,7 @@ export const executeAutomagically = async ({
 				context,
 			});
 		} else {
-			const url = core.getInput("url");
-			if (url.length === 0) {
-				core.setFailed("url is set to an empty string");
-			}
-
 			const blocking = core.getBooleanInput("blocking");
-			const environmentName = core.getInput("environmentName");
 			const browser = core.getInput("browser");
 			const breakpoint = core.getInput("breakpoint");
 			const variablesToOverwrite = core.getMultilineInput(
