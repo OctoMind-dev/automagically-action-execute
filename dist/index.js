@@ -66575,10 +66575,10 @@ var push = __nccwpck_require__(8093);
 
 
 
-const pushIfYmlsExist = async ({ sourceDir, client, testTargetId, }) => {
+const pushIfYmlsExist = async ({ sourceDir, client, testTargetId }) => {
     const directoryExists = (0,external_node_fs_namespaceObject.existsSync)(sourceDir);
     const hasYmls = directoryExists &&
-        (0,external_node_fs_namespaceObject.readdirSync)(sourceDir).some((file) => file.endsWith(".yaml"));
+        (0,external_node_fs_namespaceObject.readdirSync)(sourceDir).some(file => file.endsWith('.yaml'));
     if (hasYmls) {
         return (0,push/* push */.VC)({
             sourceDir,
@@ -66587,12 +66587,12 @@ const pushIfYmlsExist = async ({ sourceDir, client, testTargetId, }) => {
             branchName: process.env.GITHUB_HEAD_REF
                 ? `refs/heads/${process.env.GITHUB_HEAD_REF}`
                 : undefined,
-            onError: (error) => {
+            onError: error => {
                 if (error) {
                     (0,core.setFailed)(`error occurred when trying to push local ymls ${error}`);
                     process.exit(1);
                 }
-            },
+            }
         });
     }
     return undefined;
@@ -66662,28 +66662,28 @@ const executeTests = async ({ client, testTargetId, url, environmentName, browse
 
 ;// CONCATENATED MODULE: ./src/exploreTestPlan.ts
 
-const exploreTestPlan = async ({ client, testTargetId, url, environmentName, context, }) => {
-    (0,core.info)("Test plan exploration triggered");
+const exploreTestPlan = async ({ client, testTargetId, url, environmentName, context }) => {
+    (0,core.info)('Test plan exploration triggered');
     (0,core.info)(`Test target ID: ${testTargetId}`);
-    const exploreResponse = await client.POST("/apiKey/v3/test-plan/explore", {
+    const exploreResponse = await client.POST('/apiKey/v3/test-plan/explore', {
         body: {
             url,
             testTargetId,
             environmentName,
             context: {
-                source: "github",
-                ...context,
-            },
-        },
+                source: 'github',
+                ...context
+            }
+        }
     });
     if (!exploreResponse.data) {
-        (0,core.setFailed)("test plan exploration did not return any data");
-        throw new Error("test plan exploration did not return any data");
+        (0,core.setFailed)('test plan exploration did not return any data');
+        throw new Error('test plan exploration did not return any data');
     }
-    (0,core.info)("Test plan exploration completed successfully");
+    (0,core.info)('Test plan exploration completed successfully');
     await core.summary
-        .addHeading("🐙 Octomind - Test Plan Exploration")
-        .addRaw("Test plan exploration completed successfully")
+        .addHeading('🐙 Octomind - Test Plan Exploration')
+        .addRaw('Test plan exploration completed successfully')
         .write();
 };
 
