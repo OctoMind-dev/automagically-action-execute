@@ -23,7 +23,7 @@
 		"@octomind/octomind": "4.6.0"
 	},
 	"devDependencies": {
-		"@types/node": "25.0.8",
+		"@types/node": "25.1.0",
 		"@typescript-eslint/parser": "8.54.0",
 		"@vercel/ncc": "0.38.4",
 		"eslint": "8.57.1",
