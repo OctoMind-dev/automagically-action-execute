@@ -1,320 +1,263 @@
-import {executeAutomagically} from '../src/executeAutomagically'
-import {beforeEach, describe, expect, it, vi} from 'vitest'
-import core from '@actions/core'
-import { context } from '@actions/github'
-import {createClientFromUrlAndApiKey} from '@octomind/octomind/client'
-import {DeepMockProxy, mock, mockDeep} from 'vitest-mock-extended'
-import {
-  createMockExecuteResponse,
-  createMockTestReport,
-  createMockTestReportResponse
-} from './mocks'
-import {push} from '@octomind/octomind/push'
-import {join} from 'node:path'
-import fs from 'node:fs'
+import core from "@actions/core";
+import type github from "@actions/github";
+import { createClientFromUrlAndApiKey } from "@octomind/octomind/client";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { type DeepMockProxy, mockDeep } from "vitest-mock-extended";
+import { executeAutomagically } from "../src/executeAutomagically";
+import { executeTests } from "../src/executeTests";
+import { exploreTestPlan } from "../src/exploreTestPlan";
 
-vi.mock('fs')
-vi.mock('@octomind/octomind/client')
-vi.mock('@octomind/octomind/push')
-vi.mock('@actions/core')
-vi.mock('@actions/github', () => ({
-  default: vi.fn(),
-  context: {
-    issue: {
-      number: 10
-    },
-    repo: {
-      repo: 'some repo',
-      owner: 'some owner'
-    }
-  } as typeof context
-}))
+vi.mock("@octomind/octomind/client");
+vi.mock("@actions/core");
+vi.mock("../src/executeTests");
+vi.mock("../src/exploreTestPlan");
+vi.mock("@actions/github", () => ({
+	default: vi.fn(),
+	context: {
+		issue: {
+			number: 10,
+		},
+		repo: {
+			repo: "some repo",
+			owner: "some owner",
+		},
+		ref: "refs/heads/main",
+		sha: "abc123",
+	} as typeof github.context,
+}));
 
 describe(executeAutomagically.name, () => {
-  let mockedClient: DeepMockProxy<
-    ReturnType<typeof createClientFromUrlAndApiKey>
-  >
+	let mockedClient: DeepMockProxy<
+		ReturnType<typeof createClientFromUrlAndApiKey>
+	>;
 
-  beforeEach(() => {
-    vi.mocked(core).getInput.mockReturnValue('some input')
-    vi.mocked(core).getBooleanInput.mockReturnValue(false)
+	beforeEach(() => {
+		mockedClient = mockDeep();
+		vi.mocked(createClientFromUrlAndApiKey).mockReturnValue(mockedClient);
 
-    vi.mocked(core.summary.addHeading).mockReturnThis()
-    vi.mocked(core.summary.addLink).mockReturnThis()
-    vi.mocked(core.summary.write).mockResolvedValue(core.summary)
+		vi.mocked(core.getInput).mockImplementation((name: string) => {
+			if (name === "token") return "test-token";
+			if (name === "testTargetId") return "test-target-id";
+			if (name === "url") return "https://example.com";
+			if (name === "environmentName") return "default";
+			if (name === "browser") return "CHROMIUM";
+			if (name === "breakpoint") return "DESKTOP";
+			return "";
+		});
 
-    vi.mocked(core.getMultilineInput).mockReturnValue([])
-    mockedClient = mockDeep()
-    vi.mocked(createClientFromUrlAndApiKey).mockReturnValue(mockedClient)
-    vi.mocked(mockedClient.POST).mockResolvedValue(mock())
-    vi.mocked(mockedClient.GET).mockResolvedValue(mock())
+		vi.mocked(core.getBooleanInput).mockReturnValue(false);
+		vi.mocked(core.getMultilineInput).mockReturnValue([]);
+		vi.mocked(executeTests).mockResolvedValue(undefined);
+		vi.mocked(exploreTestPlan).mockResolvedValue(undefined);
+	});
 
-    vi.mocked(core).getInput.mockImplementation(() => '')
-    vi.mocked(fs).existsSync.mockReturnValue(false)
-    process.env.GITHUB_HEAD_REF = ''
-  })
+	describe("action dispatching", () => {
+		it('dispatches to executeTests when action is "execute-tests"', async () => {
+			vi.mocked(core.getInput).mockImplementation((name: string) => {
+				if (name === "action") return "execute-tests";
+				if (name === "token") return "test-token";
+				if (name === "testTargetId") return "test-target-id";
+				if (name === "url") return "https://example.com";
+				if (name === "environmentName") return "default";
+				if (name === "browser") return "CHROMIUM";
+				if (name === "breakpoint") return "DESKTOP";
+				return "";
+			});
 
-  it('includes environment name if defined', async () => {
-    const environmentName = 'staging'
+			await executeAutomagically();
 
-    vi.mocked(core).getInput.mockImplementation(name => {
-      if (name === 'environmentName') {
-        return environmentName
-      }
-      return ''
-    })
+			expect(executeTests).toHaveBeenCalledWith(
+				expect.objectContaining({
+					client: mockedClient,
+					testTargetId: "test-target-id",
+					url: "https://example.com",
+					environmentName: "default",
+				}),
+			);
+			expect(exploreTestPlan).not.toHaveBeenCalled();
+		});
 
-    await executeAutomagically()
+		it("dispatches to executeTests when action is empty (backwards compatibility)", async () => {
+			await executeAutomagically();
 
-    expect(mockedClient.POST).toHaveBeenCalledWith('/apiKey/v3/execute', {
-      body: expect.objectContaining({
-        environmentName
-      })
-    })
+			expect(executeTests).toHaveBeenCalled();
+			expect(exploreTestPlan).not.toHaveBeenCalled();
+		});
 
-    expect(core.getInput).toHaveBeenCalledWith('environmentName')
-  })
+		it('dispatches to exploreTestPlan when action is "explore-test-plan"', async () => {
+			vi.mocked(core.getInput).mockImplementation((name: string) => {
+				if (name === "action") return "explore-test-plan";
+				if (name === "token") return "test-token";
+				if (name === "testTargetId") return "test-target-id";
+				if (name === "url") return "https://example.com";
+				if (name === "environmentName") return "staging";
+				return "";
+			});
 
-  it('includes breakpoint name if defined', async () => {
-    const breakpointName = 'MOBILE'
-    vi.mocked(core).getInput.mockImplementation(name => {
-      if (name === 'breakpoint') {
-        return breakpointName
-      }
-      return ''
-    })
+			await executeAutomagically();
 
-    await executeAutomagically()
+			expect(exploreTestPlan).toHaveBeenCalledWith({
+				client: mockedClient,
+				testTargetId: "test-target-id",
+				url: "https://example.com",
+				environmentName: "staging",
+				context: {
+					issueNumber: 10,
+					repo: "some repo",
+					owner: "some owner",
+					ref: "refs/heads/main",
+					sha: "abc123",
+				},
+			});
+			expect(executeTests).not.toHaveBeenCalled();
+		});
+	});
 
-    expect(mockedClient.POST).toHaveBeenCalledWith('/apiKey/v3/execute', {
-      body: expect.objectContaining({
-        breakpoint: breakpointName
-      })
-    })
+	describe("input validation", () => {
+		it("fails when token is empty", async () => {
+			vi.mocked(core.getInput).mockImplementation((name: string) => {
+				if (name === "token") return "";
+				if (name === "testTargetId") return "test-target-id";
+				return "";
+			});
 
-    expect(core.getInput).toHaveBeenCalledWith('breakpoint')
-  })
+			await expect(executeAutomagically()).rejects.toThrow(
+				"token is set to an empty string",
+			);
 
-  it('includes browser name if defined', async () => {
-    const browserName = 'FIREFOX'
-    vi.mocked(core).getInput.mockImplementation(name => {
-      if (name === 'browser') {
-        return browserName
-      }
-      return ''
-    })
+			expect(core.setFailed).toHaveBeenCalledWith(
+				"token is set to an empty string",
+			);
+		});
 
-    await executeAutomagically()
+		it("fails when testTargetId is empty", async () => {
+			vi.mocked(core.getInput).mockImplementation((name: string) => {
+				if (name === "token") return "test-token";
+				if (name === "url") return "https://example.com";
+				if (name === "testTargetId") return "";
+				return "";
+			});
 
-    expect(mockedClient.POST).toHaveBeenCalledWith('/apiKey/v3/execute', {
-      body: expect.objectContaining({
-        browser: browserName
-      })
-    })
+			await expect(executeAutomagically()).rejects.toThrow(
+				"testTargetId is set to an empty string",
+			);
 
-    expect(core.getInput).toHaveBeenCalledWith('browser')
-  })
+			expect(core.setFailed).toHaveBeenCalledWith(
+				"testTargetId is set to an empty string",
+			);
+		});
 
-  it('includes variablesToOverwrite name if defined and preserves colons in the values', async () => {
-    const variablesToOverwrite = ['key1:value1', 'key2:value:2']
-    vi.mocked(core).getMultilineInput.mockReturnValue(variablesToOverwrite)
+		it("fails when url is empty for execute-tests action", async () => {
+			vi.mocked(core.getInput).mockImplementation((name: string) => {
+				if (name === "token") return "test-token";
+				if (name === "testTargetId") return "test-target-id";
+				if (name === "url") return "";
+				return "";
+			});
 
-    await executeAutomagically()
+			await expect(executeAutomagically()).rejects.toThrow(
+				"url is set to an empty string",
+			);
 
-    expect(mockedClient.POST).toHaveBeenCalledWith('/apiKey/v3/execute', {
-      body: expect.objectContaining({
-        variablesToOverwrite: {
-          key1: ['value1'],
-          key2: ['value:2']
-        }
-      })
-    })
+			expect(core.setFailed).toHaveBeenCalledWith(
+				"url is set to an empty string",
+			);
+		});
 
-    expect(core.getMultilineInput).toHaveBeenCalledWith('variablesToOverwrite')
-  })
+		it("fails when url is empty for explore-test-plan action", async () => {
+			vi.mocked(core.getInput).mockImplementation((name: string) => {
+				if (name === "action") return "explore-test-plan";
+				if (name === "token") return "test-token";
+				if (name === "testTargetId") return "test-target-id";
+				if (name === "url") return "";
+				return "";
+			});
 
-  it("executes and DOESN'T wait if it's not blocking", async () => {
-    await executeAutomagically()
+			await expect(executeAutomagically()).rejects.toThrow(
+				"url is set to an empty string",
+			);
 
-    expect(mockedClient.POST).toHaveBeenCalledWith(
-      '/apiKey/v3/execute',
-      expect.anything()
-    )
-    expect(mockedClient.GET).not.toHaveBeenCalled()
-  })
+			expect(core.setFailed).toHaveBeenCalledWith(
+				"url is set to an empty string",
+			);
+		});
+	});
 
-  it('executes and waits until passing while blocking', async () => {
-    vi.mocked(core).getBooleanInput.mockReturnValue(true)
+	describe("error handling", () => {
+		it("handles errors from executeTests", async () => {
+			const error = new Error("Test execution failed");
+			vi.mocked(executeTests).mockRejectedValueOnce(error);
 
-    // execute
-    vi.mocked(mockedClient.POST).mockResolvedValueOnce(
-      createMockExecuteResponse({testReport: {status: 'WAITING'}}) as never
-    )
-    // poll 1
-    vi.mocked(mockedClient.GET).mockResolvedValueOnce(
-      createMockTestReportResponse({status: 'WAITING'}) as never
-    )
-    // poll 2
-    vi.mocked(mockedClient.GET).mockResolvedValueOnce(
-      createMockTestReportResponse({status: 'WAITING'}) as never
-    )
-    // poll 3
-    vi.mocked(mockedClient.GET).mockResolvedValueOnce(
-      createMockTestReportResponse({status: 'PASSED'}) as never
-    )
+			await executeAutomagically();
 
-    await executeAutomagically({pollingIntervalInMilliseconds: 1})
+			expect(core.setFailed).toHaveBeenCalledWith(
+				expect.stringContaining("unable to execute automagically"),
+			);
+		});
 
-    expect(mockedClient.POST).toHaveBeenCalledTimes(1)
-    expect(mockedClient.GET).toHaveBeenCalledTimes(3)
-  })
+		it("handles errors from exploreTestPlan", async () => {
+			vi.mocked(core.getInput).mockImplementation((name: string) => {
+				if (name === "action") return "explore-test-plan";
+				if (name === "token") return "test-token";
+				if (name === "testTargetId") return "test-target-id";
+				if (name === "url") return "https://example.com";
+				return "";
+			});
 
-  it('sets to failed if a request throws', async () => {
-    vi.mocked(mockedClient.POST).mockRejectedValue(new Error('not successful'))
+			const error = new Error("Exploration failed");
+			vi.mocked(exploreTestPlan).mockRejectedValueOnce(error);
 
-    await executeAutomagically()
+			await executeAutomagically();
 
-    expect(core.setFailed).toHaveBeenCalled()
-  })
+			expect(core.setFailed).toHaveBeenCalledWith(
+				expect.stringContaining("unable to execute automagically"),
+			);
+		});
+	});
 
-  it('sets to failed if a polling request throws', async () => {
-    vi.mocked(core).getBooleanInput.mockReturnValue(true)
-    // execute
-    vi.mocked(mockedClient.POST).mockResolvedValueOnce(
-      createMockExecuteResponse({
-        testReport: createMockTestReport({status: 'WAITING'})
-      }) as never
-    )
-    vi.mocked(mockedClient.GET).mockRejectedValue(new Error('not successful'))
-    await executeAutomagically({pollingIntervalInMilliseconds: 1})
+	describe("client creation", () => {
+		it("creates client with correct base URL and API key", async () => {
+			await executeAutomagically();
 
-    expect(core.setFailed).toHaveBeenCalled()
-  })
+			expect(createClientFromUrlAndApiKey).toHaveBeenCalledWith({
+				baseUrl: "https://app.octomind.dev/api",
+				apiKey: "test-token",
+			});
+		});
 
-  it('sets to failed if polling returns FAILED', async () => {
-    vi.mocked(core).getBooleanInput.mockReturnValue(true)
-    // execute
-    vi.mocked(mockedClient.POST).mockResolvedValueOnce(
-      createMockExecuteResponse({
-        testReport: createMockTestReport({status: 'WAITING'})
-      }) as never
-    )
-    vi.mocked(mockedClient.GET).mockResolvedValueOnce(
-      createMockTestReportResponse({status: 'FAILED'})
-    )
+		it("uses custom base URL when provided", async () => {
+			vi.mocked(core.getInput).mockImplementation((name: string) => {
+				if (name === "automagicallyBaseUrl") return "https://custom.url";
+				if (name === "token") return "test-token";
+				if (name === "testTargetId") return "test-target-id";
+				if (name === "url") return "https://example.com";
+				return "";
+			});
 
-    await executeAutomagically({pollingIntervalInMilliseconds: 1})
+			await executeAutomagically();
 
-    expect(core.setFailed).toHaveBeenCalled()
-  })
+			expect(createClientFromUrlAndApiKey).toHaveBeenCalledWith({
+				baseUrl: "https://custom.url/api",
+				apiKey: "test-token",
+			});
+		});
+	});
 
-  it('sets to failed if polling never stops', async () => {
-    vi.mocked(core).getBooleanInput.mockReturnValue(true)
-    // execute
-    vi.mocked(mockedClient.POST).mockResolvedValueOnce(
-      createMockExecuteResponse({testReport: {status: 'WAITING'}}) as never
-    )
-    vi.mocked(mockedClient.GET).mockResolvedValue(
-      createMockTestReportResponse({status: 'WAITING'})
-    )
+	describe("context building", () => {
+		it("builds GitHub context correctly", async () => {
+			await executeAutomagically();
 
-    await executeAutomagically({
-      pollingIntervalInMilliseconds: 1,
-      maximumPollingTimeInMilliseconds: 5
-    })
-
-    expect(core.setFailed).toHaveBeenCalled()
-  })
-
-  it('pushes if yml files exist', async () => {
-    vi.mocked(fs).existsSync.mockReturnValue(true)
-    // @ts-expect-error overloaded method
-    vi.mocked(fs).readdirSync.mockReturnValue(['a.yaml'])
-
-    vi.mocked(core).getBooleanInput.mockReturnValue(true)
-    // execute
-    vi.mocked(mockedClient.POST).mockResolvedValueOnce(
-      createMockExecuteResponse({testReport: {status: 'WAITING'}}) as never
-    )
-
-    vi.mocked(mockedClient.GET).mockResolvedValue(
-      createMockTestReportResponse({status: 'PASSED'})
-    )
-
-    await executeAutomagically({
-      pollingIntervalInMilliseconds: 1,
-      maximumPollingTimeInMilliseconds: 5
-    })
-
-    expect(push).toHaveBeenCalledWith(
-      expect.objectContaining({
-        sourceDir: join(process.cwd(), '.octomind'),
-        branchName: undefined
-      })
-    )
-  })
-
-  it('pushes with branch name if env variable is defined', async () => {
-    vi.mocked(fs).existsSync.mockReturnValue(true)
-    // @ts-expect-error overloaded method
-    vi.mocked(fs).readdirSync.mockReturnValue(['a.yaml'])
-
-    vi.mocked(core).getBooleanInput.mockReturnValue(true)
-    // execute
-    vi.mocked(mockedClient.POST).mockResolvedValueOnce(
-      createMockExecuteResponse({testReport: {status: 'WAITING'}}) as never
-    )
-
-    vi.mocked(mockedClient.GET).mockResolvedValue(
-      createMockTestReportResponse({status: 'PASSED'})
-    )
-    process.env.GITHUB_HEAD_REF = 'some-branch'
-
-    await executeAutomagically({
-      pollingIntervalInMilliseconds: 1,
-      maximumPollingTimeInMilliseconds: 5
-    })
-
-    expect(push).toHaveBeenCalledWith(
-      expect.objectContaining({
-        sourceDir: join(process.cwd(), '.octomind'),
-        branchName: `refs/heads/${process.env.GITHUB_HEAD_REF}`
-      })
-    )
-  })
-
-  it('pushes different source directory if yml files exist and config provided', async () => {
-    vi.mocked(fs).existsSync.mockReturnValue(true)
-    // @ts-expect-error overloaded method
-    vi.mocked(fs).readdirSync.mockReturnValue(['a.yaml'])
-
-    const mockedDirectory = '/some/other/directory'
-    vi.mocked(core).getInput.mockImplementation(name => {
-      if (name === 'ymlDirectory') {
-        return mockedDirectory
-      }
-      return ''
-    })
-
-    vi.mocked(core).getBooleanInput.mockReturnValue(true)
-    // execute
-    vi.mocked(mockedClient.POST).mockResolvedValueOnce(
-      createMockExecuteResponse({testReport: {status: 'WAITING'}}) as never
-    )
-
-    vi.mocked(mockedClient.GET).mockResolvedValue(
-      createMockTestReportResponse({status: 'PASSED'})
-    )
-
-    await executeAutomagically({
-      pollingIntervalInMilliseconds: 1,
-      maximumPollingTimeInMilliseconds: 5
-    })
-
-    expect(push).toHaveBeenCalledWith(
-      expect.objectContaining({
-        sourceDir: mockedDirectory
-      })
-    )
-  })
-})
+			expect(executeTests).toHaveBeenCalledWith(
+				expect.objectContaining({
+					context: {
+						issueNumber: 10,
+						repo: "some repo",
+						owner: "some owner",
+						ref: "refs/heads/main",
+						sha: "abc123",
+					},
+				}),
+			);
+		});
+	});
+});

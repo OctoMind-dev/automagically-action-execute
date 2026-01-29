@@ -1,22 +1,22 @@
-name: 'AutomagicallyExecutor'
-description: 'Trigger Automagically given a url and a valid token'
+name: "AutomagicallyExecutor"
+description: "Trigger Automagically given a url and a valid token"
 inputs:
-  url: 
-    description: 'Url of the app to test'
+  url:
+    description: "Url of the app to test"
     required: true
   token:
-    description: 'Your unique identifier'
+    description: "Your unique identifier"
     required: true
   testTargetId:
-    description: 'Your test target id'
+    description: "Your test target id"
     required: true
   automagicallyBaseUrl:
-    description: 'Base URL of the automagically instance, for switching between production and staging. Defaults to Production url'
+    description: "Base URL of the automagically instance, for switching between production and staging. Defaults to Production url"
     required: false
   blocking:
-    description: 'If the pipeline should be blocked until all test results in the test report are passed'
+    description: "If the pipeline should be blocked until all test results in the test report are passed"
     required: false
-    default: false
+    default: "false"
   environmentName:
     description: "Optional, name of the environment you want to execute your tests against"
     required: false
@@ -35,12 +35,19 @@ inputs:
   ymlDirectory:
     description: "Optional, directory where the yml files are located"
     required: false
+  action:
+    description: "Optional, type of action to perform: 'execute-tests' (default) or 'explore-test-plan'"
+    required: false
+    default: "execute-tests"
+  tags:
+    description: "Optional, tags to filter test cases for execution"
+    required: false
 outputs:
   testReportUrl:
-    description: 'Url to resulting test report'
+    description: "Url to resulting test report"
 runs:
-  using: 'node24'
-  main: 'dist/index.js'
+  using: "node24"
+  main: "dist/index.js"
 
 branding:
   icon: check-circle
