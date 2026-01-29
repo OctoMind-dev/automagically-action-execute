@@ -7543,7 +7543,7 @@ var request = withDefaults(import_endpoint.endpoint, {
 
 /***/ }),
 
-/***/ 2464:
+/***/ 4975:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -7559,6 +7559,7 @@ const fs_1 = __nccwpck_require__(9896);
 const promises_1 = __importDefault(__nccwpck_require__(1943));
 const os_1 = __nccwpck_require__(857);
 const path_1 = __nccwpck_require__(6928);
+const logger_1 = __nccwpck_require__(4994);
 const CONFIG_DIR = ".config";
 async function getConfigPath(ensureDir) {
     const configFilePath = process.env.OCTOMIND_CONFIG_FILE || "octomind.json";
@@ -7590,7 +7591,7 @@ async function loadConfig(force) {
     catch (error) {
         // only exit on overwrite attempt
         if (force) {
-            console.error("❌ Error parsing configuration:", error.message);
+            logger_1.logger.error("❌ Error parsing configuration", { error });
             process.exit(1);
         }
         return {};
@@ -7600,11 +7601,11 @@ async function saveConfig(newConfig) {
     try {
         const configPath = await getConfigPath(true);
         await promises_1.default.writeFile(configPath, JSON.stringify(newConfig, null, 2), "utf8");
-        console.log(`✅ Configuration saved to ${configPath}`);
+        logger_1.logger.info(`✅ Configuration saved to ${configPath}`);
         configLoaded = false;
     }
     catch (error) {
-        console.error("❌ Error saving configuration:", error.message);
+        logger_1.logger.error("❌ Error saving configuration", { error });
         process.exit(1);
     }
 }
@@ -7612,7 +7613,82 @@ async function saveConfig(newConfig) {
 
 /***/ }),
 
-/***/ 2359:
+/***/ 4994:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.configureLogger = exports.getLogLevel = exports.logger = void 0;
+const logtape_1 = __nccwpck_require__(9823);
+exports.logger = (0, logtape_1.getLogger)("octomind");
+const validLogLevels = [
+    "trace",
+    "debug",
+    "info",
+    "warning",
+    "error",
+    "fatal",
+];
+const getLogLevel = (level, defaultLevel = "warning") => {
+    if (!level) {
+        return defaultLevel;
+    }
+    const normalizedLevel = level.toLowerCase();
+    if (validLogLevels.includes(normalizedLevel)) {
+        return normalizedLevel;
+    }
+    return defaultLevel;
+};
+exports.getLogLevel = getLogLevel;
+const ansiColors = {
+    red: "\x1B[31m",
+    green: "\x1B[32m",
+    yellow: "\x1B[33m",
+    blue: "\x1B[34m",
+    magenta: "\x1B[35m",
+    cyan: "\x1B[36m",
+    // use native terminal colors
+    none: "",
+};
+const levelColors = {
+    trace: ansiColors.none,
+    debug: ansiColors.none,
+    info: ansiColors.none,
+    warning: ansiColors.yellow,
+    error: ansiColors.red,
+    fatal: ansiColors.red,
+};
+const configureLogger = async () => (0, logtape_1.configure)({
+    sinks: {
+        console: (0, logtape_1.getConsoleSink)({
+            formatter: (0, logtape_1.getTextFormatter)({
+                timestamp: "disabled",
+                level: "full",
+                format: (values) => {
+                    return levelColors[values.level] + values.message;
+                },
+            }),
+        }),
+    },
+    loggers: [
+        {
+            category: ["logtape", "meta"],
+            sinks: ["console"],
+            lowestLevel: "warning",
+        },
+        {
+            category: "octomind",
+            lowestLevel: (0, exports.getLogLevel)(process.env.LOG_LEVEL),
+            sinks: ["console"],
+        },
+    ],
+});
+exports.configureLogger = configureLogger;
+
+
+/***/ }),
+
+/***/ 7930:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -7650,21 +7726,22 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getNotificationsParams = exports.getTestReportsResponse = exports.getTestReportsResponseDataItemTestResultsItemBrowserDefault = exports.getTestReportsResponseDataItemTestResultsItemBreakpointDefault = exports.getTestReportsResponseDataItemBrowserDefault = exports.getTestReportsResponseDataItemBreakpointDefault = exports.getTestReportsQueryParams = exports.getTestReportsParams = exports.getTestReportResponse = exports.getTestReportResponseTestResultsItemBrowserDefault = exports.getTestReportResponseTestResultsItemBreakpointDefault = exports.getTestReportResponseBrowserDefault = exports.getTestReportResponseBreakpointDefault = exports.getTestReportParams = exports.deleteEnvironmentParams = exports.updateEnvironmentResponse = exports.updateEnvironmentBody = exports.updateEnvironmentParams = exports.getEnvironmentsResponse = exports.getEnvironmentsResponseItem = exports.getEnvironmentsParams = exports.createEnvironmentBody = exports.createEnvironmentParams = exports.getTestTargetConfigQueryParams = exports.getTestTargetConfigParams = exports.createBatchGenerationResponse = exports.createBatchGenerationBody = exports.createBatchGenerationParams = exports.executeTestsResponse = exports.executeTestsResponseTestReportTestResultsItemBrowserDefault = exports.executeTestsResponseTestReportTestResultsItemBreakpointDefault = exports.executeTestsResponseTestReportBrowserDefault = exports.executeTestsResponseTestReportBreakpointDefault = exports.executeTestsBody = exports.executeTestsBodyBrowserDefault = exports.executeTestsBodyBreakpointDefault = exports.executeTestsBodyTagsDefault = exports.executeTestsBodyEnvironmentNameDefault = exports.deleteTestTargetParams = exports.updateTestTargetResponse = exports.updateTestTargetBody = exports.updateTestTargetBodyTimeoutPerStepMax = exports.updateTestTargetBodyTimeoutPerStepMin = exports.updateTestTargetParams = exports.getTestTargetResponse = exports.getTestTargetParams = exports.createTestTargetResponse = exports.createTestTargetBody = exports.getTestTargetsResponse = exports.getTestTargetsResponseItem = void 0;
-exports.createDiscoveryResponse = exports.createDiscoveryBody = exports.createDiscoveryParams = exports.getTestCaseVersionResponse = exports.getTestCaseVersionResponseElementsItemInteractionCalledWithSubAddressRegExp = exports.getTestCaseVersionResponseElementsItemInteractionCalledWithExecTypeDefault = exports.getTestCaseVersionParams = exports.pushTestTargetDraftResponse = exports.pushTestTargetDraftBody = exports.pushTestTargetDraftBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = exports.pushTestTargetDraftBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = exports.pushTestTargetDraftParams = exports.pushTestTargetResponse = exports.pushTestTargetBody = exports.pushTestTargetBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = exports.pushTestTargetBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = exports.pushTestTargetParams = exports.getTestTargetCodeBody = exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = exports.getTestTargetCodeParams = exports.getTestTargetPullDataResponse = exports.getTestTargetPullDataResponseTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = exports.getTestTargetPullDataResponseTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = exports.getTestTargetPullDataParams = exports.getTestCaseCodeResponse = exports.getTestCaseCodeQueryParams = exports.getTestCaseCodeParams = exports.updateTestCaseElementResponse = exports.updateTestCaseElementBody = exports.updateTestCaseElementParams = exports.deleteTestCaseResponse = exports.deleteTestCaseParams = exports.patchTestCaseResponse = exports.patchTestCaseBody = exports.patchTestCaseParams = exports.getTestCaseResponse = exports.getTestCaseParams = exports.getTestCasesResponse = exports.getTestCasesResponseItem = exports.getTestCasesQueryParams = exports.getTestCasesParams = exports.unregisterPrivateLocationResponse = exports.unregisterPrivateLocationBody = exports.registerPrivateLocationResponse = exports.registerPrivateLocationBody = exports.getPrivateLocationsResponse = exports.getPrivateLocationsResponseItem = exports.getNotificationsResponse = exports.getNotificationsResponseItem = void 0;
+exports.getTestReportsResponseDataItemTestResultsItemBrowserDefault = exports.getTestReportsResponseDataItemTestResultsItemBreakpointDefault = exports.getTestReportsResponseDataItemBrowserDefault = exports.getTestReportsResponseDataItemBreakpointDefault = exports.GetTestReportsQueryParams = exports.GetTestReportsParams = exports.GetTestReportResponse = exports.getTestReportResponseTestResultsItemBrowserDefault = exports.getTestReportResponseTestResultsItemBreakpointDefault = exports.getTestReportResponseBrowserDefault = exports.getTestReportResponseBreakpointDefault = exports.GetTestReportParams = exports.DeleteEnvironmentParams = exports.UpdateEnvironmentResponse = exports.UpdateEnvironmentBody = exports.UpdateEnvironmentParams = exports.GetEnvironmentsResponse = exports.GetEnvironmentsResponseItem = exports.GetEnvironmentsParams = exports.CreateEnvironmentBody = exports.CreateEnvironmentParams = exports.GetTestTargetConfigQueryParams = exports.GetTestTargetConfigParams = exports.CreateBatchGenerationResponse = exports.CreateBatchGenerationBody = exports.CreateBatchGenerationParams = exports.ExploreTestPlanResponse = exports.ExploreTestPlanBody = exports.ExecuteTestsResponse = exports.executeTestsResponseTestReportTestResultsItemBrowserDefault = exports.executeTestsResponseTestReportTestResultsItemBreakpointDefault = exports.executeTestsResponseTestReportBrowserDefault = exports.executeTestsResponseTestReportBreakpointDefault = exports.ExecuteTestsBody = exports.executeTestsBodyBrowserDefault = exports.executeTestsBodyBreakpointDefault = exports.executeTestsBodyTagsDefault = exports.executeTestsBodyEnvironmentNameDefault = exports.DeleteTestTargetParams = exports.UpdateTestTargetResponse = exports.UpdateTestTargetBody = exports.updateTestTargetBodyTimeoutPerStepMax = exports.updateTestTargetBodyTimeoutPerStepMin = exports.UpdateTestTargetParams = exports.GetTestTargetResponse = exports.GetTestTargetParams = exports.CreateTestTargetResponse = exports.CreateTestTargetBody = exports.GetTestTargetsResponse = exports.GetTestTargetsResponseItem = void 0;
+exports.getTestCaseVersionResponseOneElementsItemInteractionOnetwoCalledWithExecTypeDefault = exports.GetTestCaseVersionParams = exports.PushTestTargetDraftResponse = exports.PushTestTargetDraftBody = exports.pushTestTargetDraftBodyTestCasesItemElementsItemInteractionOnethreeCalledWithSubAddressRegExp = exports.pushTestTargetDraftBodyTestCasesItemElementsItemInteractionOnetwoCalledWithExecTypeDefault = exports.PushTestTargetDraftParams = exports.PushTestTargetResponse = exports.PushTestTargetBody = exports.pushTestTargetBodyTestCasesItemElementsItemInteractionOnethreeCalledWithSubAddressRegExp = exports.pushTestTargetBodyTestCasesItemElementsItemInteractionOnetwoCalledWithExecTypeDefault = exports.PushTestTargetParams = exports.GetTestTargetCodeBody = exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionOnethreeCalledWithSubAddressRegExp = exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionOnetwoCalledWithExecTypeDefault = exports.GetTestTargetCodeParams = exports.GetTestPlanResponse = exports.GetTestPlanParams = exports.GetTestTargetPullDataResponse = exports.getTestTargetPullDataResponseTestCasesItemElementsItemInteractionOnethreeCalledWithSubAddressRegExp = exports.getTestTargetPullDataResponseTestCasesItemElementsItemInteractionOnetwoCalledWithExecTypeDefault = exports.GetTestTargetPullDataQueryParams = exports.GetTestTargetPullDataParams = exports.GetTestCaseCodeResponse = exports.GetTestCaseCodeQueryParams = exports.GetTestCaseCodeParams = exports.UpdateTestCaseElementResponse = exports.UpdateTestCaseElementBody = exports.UpdateTestCaseElementParams = exports.DeleteTestCaseResponse = exports.DeleteTestCaseParams = exports.PatchTestCaseResponse = exports.PatchTestCaseBody = exports.PatchTestCaseParams = exports.GetTestCaseResponse = exports.GetTestCaseParams = exports.GetTestCasesResponse = exports.GetTestCasesResponseItem = exports.GetTestCasesQueryParams = exports.GetTestCasesParams = exports.UnregisterPrivateLocationResponse = exports.UnregisterPrivateLocationBody = exports.RegisterPrivateLocationResponse = exports.RegisterPrivateLocationBody = exports.GetPrivateLocationsResponse = exports.GetPrivateLocationsResponseItem = exports.GetNotificationsResponse = exports.GetNotificationsResponseItem = exports.GetNotificationsParams = exports.GetTestReportsResponse = void 0;
+exports.CreateDiscoveryResponse = exports.CreateDiscoveryBody = exports.CreateDiscoveryParams = exports.GetTestCaseVersionResponse = exports.getTestCaseVersionResponseOneElementsItemInteractionOnethreeCalledWithSubAddressRegExp = void 0;
 /**
- * Generated by orval v7.18.0 🍺
+ * Generated by orval v8.1.0 🍺
  * Do not edit manually.
  * Octomind external API
  * Octomind API that allows you to execute test cases, fetch reports and register private location workers by providing a URL and an ID.
  * OpenAPI spec version: 1.0.0
  */
-const zod = __importStar(__nccwpck_require__(4466));
+const zod = __importStar(__nccwpck_require__(7151));
 /**
  * Gets a list of test targets.
  * @summary Retrieve all test targets
  */
-exports.getTestTargetsResponseItem = zod.object({
+exports.GetTestTargetsResponseItem = zod.object({
     "id": zod.uuid(),
     "app": zod.string().describe('The app name or project name of the test target'),
     "tags": zod.array(zod.string().nullable()).optional(),
@@ -7675,18 +7752,18 @@ exports.getTestTargetsResponseItem = zod.object({
         "email": zod.string().optional().describe('The 2FA email of the environment to test email flows.')
     })).optional().describe('The environments of the test target')
 });
-exports.getTestTargetsResponse = zod.array(exports.getTestTargetsResponseItem);
+exports.GetTestTargetsResponse = zod.array(exports.GetTestTargetsResponseItem);
 /**
  * Creates a new test target.
  * @summary Create a new test target
  */
-exports.createTestTargetBody = zod.object({
+exports.CreateTestTargetBody = zod.object({
     "testTarget": zod.object({
         "app": zod.string().describe('The app name or project name of the test target'),
         "discoveryUrl": zod.url().describe('The discovery URL of the test target. This is the URL that a discovery tool can use to discover the test target.')
     }).optional()
 });
-exports.createTestTargetResponse = zod.object({
+exports.CreateTestTargetResponse = zod.object({
     "id": zod.uuid(),
     "app": zod.string().describe('The app name or project name of the test target'),
     "tags": zod.array(zod.string().nullable()).optional(),
@@ -7701,10 +7778,10 @@ exports.createTestTargetResponse = zod.object({
  * Gets a test target by ID.
  * @summary Retrieve a test target
  */
-exports.getTestTargetParams = zod.object({
+exports.GetTestTargetParams = zod.object({
     "testTargetId": zod.uuid().describe('ID of the test target to fetch')
 });
-exports.getTestTargetResponse = zod.object({
+exports.GetTestTargetResponse = zod.object({
     "id": zod.uuid(),
     "app": zod.string().describe('The app name or project name of the test target'),
     "tags": zod.array(zod.string().nullable()).optional(),
@@ -7719,12 +7796,12 @@ exports.getTestTargetResponse = zod.object({
  * Updates a test target by ID.
  * @summary Update a test target
  */
-exports.updateTestTargetParams = zod.object({
+exports.UpdateTestTargetParams = zod.object({
     "testTargetId": zod.uuid().describe('ID of the test target to update')
 });
 exports.updateTestTargetBodyTimeoutPerStepMin = 5000;
 exports.updateTestTargetBodyTimeoutPerStepMax = 30000;
-exports.updateTestTargetBody = zod.object({
+exports.UpdateTestTargetBody = zod.object({
     "app": zod.string().nullish().describe('The app name or project name of the test target'),
     "testIdAttribute": zod.string().nullish().describe('The attribute name of the test ID'),
     "testRailIntegration": zod.object({
@@ -7735,7 +7812,7 @@ exports.updateTestTargetBody = zod.object({
     }).nullish(),
     "timeoutPerStep": zod.number().min(exports.updateTestTargetBodyTimeoutPerStepMin).max(exports.updateTestTargetBodyTimeoutPerStepMax).optional().describe('The timeout per step in milliseconds')
 });
-exports.updateTestTargetResponse = zod.object({
+exports.UpdateTestTargetResponse = zod.object({
     "id": zod.uuid(),
     "app": zod.string().describe('The app name or project name of the test target'),
     "tags": zod.array(zod.string().nullable()).optional(),
@@ -7750,7 +7827,7 @@ exports.updateTestTargetResponse = zod.object({
  * Deletes a test target by ID.
  * @summary Delete a test target
  */
-exports.deleteTestTargetParams = zod.object({
+exports.DeleteTestTargetParams = zod.object({
     "testTargetId": zod.uuid().describe('ID of the test target to delete')
 });
 /**
@@ -7758,11 +7835,11 @@ exports.deleteTestTargetParams = zod.object({
 
  * @summary Execute tests of the given test target
  */
-exports.executeTestsBodyEnvironmentNameDefault = "default";
+exports.executeTestsBodyEnvironmentNameDefault = `default`;
 exports.executeTestsBodyTagsDefault = [];
-exports.executeTestsBodyBreakpointDefault = "DESKTOP";
-exports.executeTestsBodyBrowserDefault = "CHROMIUM";
-exports.executeTestsBody = zod.object({
+exports.executeTestsBodyBreakpointDefault = `DESKTOP`;
+exports.executeTestsBodyBrowserDefault = `CHROMIUM`;
+exports.ExecuteTestsBody = zod.object({
     "testTargetId": zod.uuid().describe('Unique identifier for the testTarget.'),
     "url": zod.url().describe('The URL of the test target for this run.'),
     "context": zod.union([zod.object({
@@ -7830,11 +7907,11 @@ exports.executeTestsBody = zod.object({
     "browser": zod.enum(['CHROMIUM', 'FIREFOX', 'SAFARI']).default(exports.executeTestsBodyBrowserDefault).describe('The browser to run the test cases against.'),
     "testCaseVersionIds": zod.array(zod.uuid()).optional()
 });
-exports.executeTestsResponseTestReportBreakpointDefault = "DESKTOP";
-exports.executeTestsResponseTestReportBrowserDefault = "CHROMIUM";
-exports.executeTestsResponseTestReportTestResultsItemBreakpointDefault = "DESKTOP";
-exports.executeTestsResponseTestReportTestResultsItemBrowserDefault = "CHROMIUM";
-exports.executeTestsResponse = zod.object({
+exports.executeTestsResponseTestReportBreakpointDefault = `DESKTOP`;
+exports.executeTestsResponseTestReportBrowserDefault = `CHROMIUM`;
+exports.executeTestsResponseTestReportTestResultsItemBreakpointDefault = `DESKTOP`;
+exports.executeTestsResponseTestReportTestResultsItemBrowserDefault = `CHROMIUM`;
+exports.ExecuteTestsResponse = zod.object({
     "testReportUrl": zod.url().describe('The URL where the test report can be accessed.'),
     "testReport": zod.object({
         "id": zod.uuid().describe('Unique identifier for the test report.'),
@@ -7918,13 +7995,91 @@ exports.executeTestsResponse = zod.object({
     })
 });
 /**
+ * This endpoint triggers exploration of test cases from a test plan against a specific URL (e.g., PR deployment).
+It finds the newest matching test plan for the given context, then starts discovery for each test case in the plan.
+
+ * @summary Explore a test plan
+ */
+exports.ExploreTestPlanBody = zod.object({
+    "url": zod.url().describe('The URL where the PR deployment is running'),
+    "testTargetId": zod.uuid().describe('Unique identifier for the test target'),
+    "environmentName": zod.string().optional().describe('The environment name to use for exploration'),
+    "context": zod.union([zod.object({
+            "source": zod.enum(['github']).optional(),
+            "issueNumber": zod.number().nullish(),
+            "ref": zod.string().nullish(),
+            "sha": zod.string().nullish(),
+            "repo": zod.string().optional(),
+            "owner": zod.string().optional(),
+            "triggeredBy": zod.object({
+                "type": zod.enum(['USER']).optional(),
+                "userId": zod.string().optional()
+            }).nullish(),
+            "nodeId": zod.string().nullish()
+        }), zod.object({
+            "source": zod.enum(['azureDevOps']).optional(),
+            "accessToken": zod.string().optional(),
+            "organization": zod.string().optional(),
+            "project": zod.string().optional(),
+            "repositoryId": zod.string().optional(),
+            "sha": zod.string().nullish(),
+            "ref": zod.string().nullish(),
+            "pullRequestId": zod.number().nullish(),
+            "triggeredBy": zod.object({
+                "type": zod.enum(['USER']).optional(),
+                "userId": zod.string().optional()
+            }).nullish(),
+            "threadId": zod.string().nullish()
+        }), zod.object({
+            "source": zod.enum(['discovery']).optional(),
+            "description": zod.string().optional(),
+            "triggeredBy": zod.union([zod.object({
+                    "type": zod.enum(['INITIAL']).optional()
+                }), zod.object({
+                    "type": zod.enum(['USER']).optional(),
+                    "userId": zod.string().optional()
+                })]).optional()
+        }), zod.object({
+            "source": zod.enum(['manual']).optional(),
+            "description": zod.string().optional(),
+            "triggeredBy": zod.object({
+                "type": zod.enum(['USER']).optional(),
+                "userId": zod.string().optional()
+            }).optional()
+        }), zod.object({
+            "source": zod.enum(['scheduled']).optional(),
+            "triggeredBy": zod.object({
+                "type": zod.enum(['USER']).optional(),
+                "userId": zod.string().optional()
+            }).nullish()
+        }), zod.object({
+            "source": zod.enum(['proposal']).optional(),
+            "description": zod.string().optional(),
+            "triggeredBy": zod.union([zod.object({
+                    "type": zod.enum(['INITIAL']).optional()
+                }), zod.object({
+                    "type": zod.enum(['USER']).optional(),
+                    "userId": zod.string().optional()
+                })]).optional()
+        })])
+});
+exports.ExploreTestPlanResponse = zod.object({
+    "message": zod.string().optional().describe('Status message'),
+    "testPlanId": zod.uuid().optional().describe('The ID of the test plan being explored'),
+    "discoveries": zod.array(zod.object({
+        "testCaseId": zod.uuid().optional(),
+        "discoveryId": zod.uuid().optional(),
+        "testCaseName": zod.string().optional()
+    }).describe('List of started discoveries')).optional()
+});
+/**
  * Creates a batch generation for the given test target.
  * @summary Create a batch generation
  */
-exports.createBatchGenerationParams = zod.object({
+exports.CreateBatchGenerationParams = zod.object({
     "testTargetId": zod.uuid().describe('ID of the test target')
 });
-exports.createBatchGenerationBody = zod.object({
+exports.CreateBatchGenerationBody = zod.object({
     "prompt": zod.string().optional().describe('Prompt to generate the test cases in this batch generation'),
     "imageUrls": zod.array(zod.string()).optional().describe('Image URLs to generate the test cases in this batch generation'),
     "entryPointUrlPath": zod.string().nullish().describe('Entry point URL path, where the batch generation will start'),
@@ -7990,17 +8145,17 @@ exports.createBatchGenerationBody = zod.object({
                 })]).optional()
         })]).optional()
 });
-exports.createBatchGenerationResponse = zod.object({
+exports.CreateBatchGenerationResponse = zod.object({
     "batchGenerationId": zod.uuid().optional().describe('Unique identifier for the batch generation')
 });
 /**
  * Get the test target configuration for a specific environment
  * @summary Retrieve test target configuration
  */
-exports.getTestTargetConfigParams = zod.object({
+exports.GetTestTargetConfigParams = zod.object({
     "testTargetId": zod.uuid().describe('The ID of the test target')
 });
-exports.getTestTargetConfigQueryParams = zod.object({
+exports.GetTestTargetConfigQueryParams = zod.object({
     "url": zod.url().describe('The execution URL for the test target'),
     "outputDir": zod.string().describe('The directory where test output will be stored'),
     "headless": zod.string().optional().describe('Whether to run tests in headless mode (true/false)'),
@@ -8010,10 +8165,10 @@ exports.getTestTargetConfigQueryParams = zod.object({
  * Create a custom environment.
  * @summary Create an environment
  */
-exports.createEnvironmentParams = zod.object({
+exports.CreateEnvironmentParams = zod.object({
     "testTargetId": zod.uuid().describe('ID of the test target to which the environment belongs to')
 });
-exports.createEnvironmentBody = zod.object({
+exports.CreateEnvironmentBody = zod.object({
     "name": zod.string().optional(),
     "discoveryUrl": zod.string().optional(),
     "testAccount": zod.object({
@@ -8032,10 +8187,10 @@ exports.createEnvironmentBody = zod.object({
  * get a list of all defined environments.
  * @summary Retrieve environments
  */
-exports.getEnvironmentsParams = zod.object({
+exports.GetEnvironmentsParams = zod.object({
     "testTargetId": zod.uuid().describe('ID of the test target to which the test report belongs to')
 });
-exports.getEnvironmentsResponseItem = zod.object({
+exports.GetEnvironmentsResponseItem = zod.object({
     "id": zod.uuid(),
     "name": zod.string(),
     "testTargetId": zod.uuid(),
@@ -8061,16 +8216,16 @@ exports.getEnvironmentsResponseItem = zod.object({
         "type": zod.string().optional()
     }).optional()
 });
-exports.getEnvironmentsResponse = zod.array(exports.getEnvironmentsResponseItem);
+exports.GetEnvironmentsResponse = zod.array(exports.GetEnvironmentsResponseItem);
 /**
  * Updates an enviroment, all properties can be set separately
  * @summary Update an environment
  */
-exports.updateEnvironmentParams = zod.object({
+exports.UpdateEnvironmentParams = zod.object({
     "testTargetId": zod.uuid().describe('ID of the test target to which the environment belongs to'),
     "environmentId": zod.uuid().describe('ID of the environment to update')
 });
-exports.updateEnvironmentBody = zod.object({
+exports.UpdateEnvironmentBody = zod.object({
     "name": zod.string().nullish(),
     "discoveryUrl": zod.string().nullish(),
     "testAccount": zod.object({
@@ -8085,7 +8240,7 @@ exports.updateEnvironmentBody = zod.object({
     "privateLocationName": zod.string().nullish().describe('name of the private location'),
     "additionalHeaderFields": zod.record(zod.string(), zod.string()).nullish()
 });
-exports.updateEnvironmentResponse = zod.object({
+exports.UpdateEnvironmentResponse = zod.object({
     "id": zod.uuid(),
     "name": zod.string(),
     "testTargetId": zod.uuid(),
@@ -8115,7 +8270,7 @@ exports.updateEnvironmentResponse = zod.object({
  * deletes an enviroment. this operation is not reversable.
  * @summary Delete an environment
  */
-exports.deleteEnvironmentParams = zod.object({
+exports.DeleteEnvironmentParams = zod.object({
     "testTargetId": zod.uuid().describe('ID of the test target to which the test report belongs to'),
     "environmentId": zod.uuid().describe('ID of the environment to update')
 });
@@ -8123,15 +8278,15 @@ exports.deleteEnvironmentParams = zod.object({
  * Poll from within a CI-pipeline to wait for the completion of a report.
  * @summary Retrieve information about a test report
  */
-exports.getTestReportParams = zod.object({
+exports.GetTestReportParams = zod.object({
     "testTargetId": zod.uuid().describe('ID of the test target to which the test report belongs to'),
     "testReportId": zod.uuid().describe('ID of the test report to fetch')
 });
-exports.getTestReportResponseBreakpointDefault = "DESKTOP";
-exports.getTestReportResponseBrowserDefault = "CHROMIUM";
-exports.getTestReportResponseTestResultsItemBreakpointDefault = "DESKTOP";
-exports.getTestReportResponseTestResultsItemBrowserDefault = "CHROMIUM";
-exports.getTestReportResponse = zod.object({
+exports.getTestReportResponseBreakpointDefault = `DESKTOP`;
+exports.getTestReportResponseBrowserDefault = `CHROMIUM`;
+exports.getTestReportResponseTestResultsItemBreakpointDefault = `DESKTOP`;
+exports.getTestReportResponseTestResultsItemBrowserDefault = `CHROMIUM`;
+exports.GetTestReportResponse = zod.object({
     "id": zod.uuid().describe('Unique identifier for the test report.'),
     "testTargetId": zod.uuid().describe('The unique identifier of the test target.'),
     "createdAt": zod.iso.datetime({}).describe('The timestamp when the test report was created.'),
@@ -8215,10 +8370,10 @@ exports.getTestReportResponse = zod.object({
  * Allow fetching the history of test reports for your test target.
  * @summary Retrieve paginated information about test reports
  */
-exports.getTestReportsParams = zod.object({
+exports.GetTestReportsParams = zod.object({
     "testTargetId": zod.uuid().describe('ID of the test target for which to fetch the history for')
 });
-exports.getTestReportsQueryParams = zod.object({
+exports.GetTestReportsQueryParams = zod.object({
     "key": zod.object({
         "createdAt": zod.iso.datetime({}).optional().describe('The timestamp of the key of the next page to fetch - See [Keyset Pagination](https://use-the-index-luke.com/no-offset)')
     }).optional(),
@@ -8228,11 +8383,11 @@ exports.getTestReportsQueryParams = zod.object({
         "value": zod.uuid().optional().describe('The value to compare with to find matches.')
     })).optional()
 });
-exports.getTestReportsResponseDataItemBreakpointDefault = "DESKTOP";
-exports.getTestReportsResponseDataItemBrowserDefault = "CHROMIUM";
-exports.getTestReportsResponseDataItemTestResultsItemBreakpointDefault = "DESKTOP";
-exports.getTestReportsResponseDataItemTestResultsItemBrowserDefault = "CHROMIUM";
-exports.getTestReportsResponse = zod.object({
+exports.getTestReportsResponseDataItemBreakpointDefault = `DESKTOP`;
+exports.getTestReportsResponseDataItemBrowserDefault = `CHROMIUM`;
+exports.getTestReportsResponseDataItemTestResultsItemBreakpointDefault = `DESKTOP`;
+exports.getTestReportsResponseDataItemTestResultsItemBrowserDefault = `CHROMIUM`;
+exports.GetTestReportsResponse = zod.object({
     "data": zod.array(zod.object({
         "id": zod.uuid().describe('Unique identifier for the test report.'),
         "testTargetId": zod.uuid().describe('The unique identifier of the test target.'),
@@ -8322,10 +8477,10 @@ exports.getTestReportsResponse = zod.object({
  * Get a list of notifications for a specific test target.
  * @summary Retrieve notifications
  */
-exports.getNotificationsParams = zod.object({
+exports.GetNotificationsParams = zod.object({
     "testTargetId": zod.uuid().describe('The ID of the test target')
 });
-exports.getNotificationsResponseItem = zod.object({
+exports.GetNotificationsResponseItem = zod.object({
     "id": zod.uuid().describe('Unique identifier for the event.'),
     "testTargetId": zod.uuid().describe('The unique identifier of the test target this event belongs to.'),
     "createdAt": zod.iso.datetime({}).describe('The timestamp when the event was created.'),
@@ -8334,22 +8489,22 @@ exports.getNotificationsResponseItem = zod.object({
     "type": zod.enum(['VALIDATION_PASSED', 'VALIDATION_FAILED', 'DISCOVERY_FINISHED', 'PROPOSAL_SUCCESS', 'PROPOSAL_FAILED', 'REPORT_EXECUTION_FINISHED']).describe('The type of event that occurred.'),
     "ack": zod.enum(['IN_WEB_APP']).nullish().describe('Optional acknowledgment status of the event.')
 });
-exports.getNotificationsResponse = zod.array(exports.getNotificationsResponseItem);
+exports.GetNotificationsResponse = zod.array(exports.GetNotificationsResponseItem);
 /**
  * gets a list of private location workers
  * @summary Retrieve all private locations
  */
-exports.getPrivateLocationsResponseItem = zod.object({
+exports.GetPrivateLocationsResponseItem = zod.object({
     "status": zod.enum(['OFFLINE', 'ONLINE']),
     "address": zod.url(),
     "name": zod.string()
 });
-exports.getPrivateLocationsResponse = zod.array(exports.getPrivateLocationsResponseItem);
+exports.GetPrivateLocationsResponse = zod.array(exports.GetPrivateLocationsResponseItem);
 /**
  * registers a private location worker
  * @summary Register a private location
  */
-exports.registerPrivateLocationBody = zod.object({
+exports.RegisterPrivateLocationBody = zod.object({
     "name": zod.string().optional(),
     "registrationData": zod.object({
         "proxypass": zod.string().optional(),
@@ -8357,30 +8512,30 @@ exports.registerPrivateLocationBody = zod.object({
         "address": zod.string().optional().describe('the address of the remote endpoint. IP and port')
     }).optional()
 });
-exports.registerPrivateLocationResponse = zod.object({
+exports.RegisterPrivateLocationResponse = zod.object({
     "success": zod.boolean().optional().describe('Indicates whether the operation was successful.')
 });
 /**
  * Unregisters a private location worker.
  * @summary Unregister a private location
  */
-exports.unregisterPrivateLocationBody = zod.object({
+exports.UnregisterPrivateLocationBody = zod.object({
     "name": zod.string().optional()
 });
-exports.unregisterPrivateLocationResponse = zod.object({
+exports.UnregisterPrivateLocationResponse = zod.object({
     "success": zod.boolean().optional().describe('Indicates whether the operation was successful.')
 });
 /**
  * Get a list of test cases for a specific test target with optional filtering
  * @summary List test cases
  */
-exports.getTestCasesParams = zod.object({
+exports.GetTestCasesParams = zod.object({
     "testTargetId": zod.uuid().describe('The ID of the test target')
 });
-exports.getTestCasesQueryParams = zod.object({
+exports.GetTestCasesQueryParams = zod.object({
     "filter": zod.string().optional().describe('JSON string containing filter criteria for test cases. The filter supports the following fields:\n- testTargetId: Filter by test target ID\n- description: Filter by test case description\n- status: Filter by test case status (ENABLED, DISABLED, DRAFT, OUTDATED, DELETED, PROVISIONAL)\n- runStatus: Filter by run status (ON, OFF)\n- folderId: Filter by folder ID\n- externalId: Filter by external ID\n- AND: Logical AND operator for combining multiple conditions\n- OR: Logical OR operator for combining multiple conditions\n- NOT: Logical NOT operator for negating conditions\n')
 });
-exports.getTestCasesResponseItem = zod.object({
+exports.GetTestCasesResponseItem = zod.object({
     "version": zod.enum(['1']).optional().describe('The version of the test case response.'),
     "id": zod.uuid().describe('The ID of the test case.'),
     "testTargetId": zod.uuid(),
@@ -8437,16 +8592,16 @@ exports.getTestCasesResponseItem = zod.object({
         "message": zod.string().nullish()
     }).nullish()
 });
-exports.getTestCasesResponse = zod.array(exports.getTestCasesResponseItem);
+exports.GetTestCasesResponse = zod.array(exports.GetTestCasesResponseItem);
 /**
  * Get detailed information about a specific test case
  * @summary Retrieve a test case
  */
-exports.getTestCaseParams = zod.object({
+exports.GetTestCaseParams = zod.object({
     "testTargetId": zod.uuid().describe('The ID of the test target'),
     "testCaseId": zod.uuid().describe('The ID of the test case')
 });
-exports.getTestCaseResponse = zod.object({
+exports.GetTestCaseResponse = zod.object({
     "version": zod.enum(['1']).optional().describe('The version of the test case response.'),
     "id": zod.uuid().describe('The ID of the test case.'),
     "testTargetId": zod.uuid(),
@@ -8507,11 +8662,11 @@ exports.getTestCaseResponse = zod.object({
  * Update specific properties of a test case
  * @summary Update a test case
  */
-exports.patchTestCaseParams = zod.object({
+exports.PatchTestCaseParams = zod.object({
     "testTargetId": zod.uuid().describe('The ID of the test target'),
     "testCaseId": zod.uuid().describe('The ID of the test case to update')
 });
-exports.patchTestCaseBody = zod.object({
+exports.PatchTestCaseBody = zod.object({
     "elements": zod.array(zod.object({
         "id": zod.uuid().optional(),
         "index": zod.number().optional(),
@@ -8548,7 +8703,7 @@ exports.patchTestCaseBody = zod.object({
     "assignedTagNames": zod.array(zod.string()).optional(),
     "externalId": zod.string().nullish()
 });
-exports.patchTestCaseResponse = zod.object({
+exports.PatchTestCaseResponse = zod.object({
     "id": zod.uuid().optional(),
     "testTargetId": zod.uuid().optional(),
     "description": zod.string().optional(),
@@ -8566,26 +8721,26 @@ exports.patchTestCaseResponse = zod.object({
  * Delete a specific test case
  * @summary Delete a test case
  */
-exports.deleteTestCaseParams = zod.object({
+exports.DeleteTestCaseParams = zod.object({
     "testTargetId": zod.uuid().describe('The ID of the test target'),
     "testCaseId": zod.uuid().describe('The ID of the test case')
 });
-exports.deleteTestCaseResponse = zod.object({
+exports.DeleteTestCaseResponse = zod.object({
     "status": zod.enum(['deleted']).describe('Status of the deletion operation')
 });
 /**
  * Update a the locator line of a specific test case element
  * @summary Update a test case element
  */
-exports.updateTestCaseElementParams = zod.object({
+exports.UpdateTestCaseElementParams = zod.object({
     "testTargetId": zod.uuid().describe('The ID of the test target'),
     "testCaseId": zod.uuid().describe('The ID of the test case'),
     "elementId": zod.uuid().describe('The ID of the test case element')
 });
-exports.updateTestCaseElementBody = zod.object({
+exports.UpdateTestCaseElementBody = zod.object({
     "locatorLine": zod.string().describe('The locator line of the test case element')
 });
-exports.updateTestCaseElementResponse = zod.object({
+exports.UpdateTestCaseElementResponse = zod.object({
     "id": zod.uuid().optional(),
     "index": zod.number().optional(),
     "interaction": zod.object({
@@ -8615,27 +8770,30 @@ exports.updateTestCaseElementResponse = zod.object({
  * Get the code representation of a specific test case
  * @summary Retrieve code for a test case
  */
-exports.getTestCaseCodeParams = zod.object({
+exports.GetTestCaseCodeParams = zod.object({
     "testTargetId": zod.uuid().describe('The ID of the test target'),
     "testCaseId": zod.uuid().describe('The ID of the test case')
 });
-exports.getTestCaseCodeQueryParams = zod.object({
+exports.GetTestCaseCodeQueryParams = zod.object({
     "executionUrl": zod.string().describe('URL of the app to test'),
     "environmentId": zod.uuid().optional().describe('Optional ID of the environment to use')
 });
-exports.getTestCaseCodeResponse = zod.object({
+exports.GetTestCaseCodeResponse = zod.object({
     "testCode": zod.string().describe('The code representation of the test case')
 });
 /**
  * Get the pull data for a specific test target
  * @summary Pull all test case from a test target to use it locally as json or yaml and work with the files directly. There is also a "opposite" endpoint to push the files back to the test target.
  */
-exports.getTestTargetPullDataParams = zod.object({
+exports.GetTestTargetPullDataParams = zod.object({
     "testTargetId": zod.uuid().describe('The ID of the test target')
 });
-exports.getTestTargetPullDataResponseTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = "sandbox";
-exports.getTestTargetPullDataResponseTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = new RegExp('^[^ @]*$');
-exports.getTestTargetPullDataResponse = zod.object({
+exports.GetTestTargetPullDataQueryParams = zod.object({
+    "testPlanId": zod.uuid().optional().describe('Optional test plan ID to filter test cases by a specific test plan')
+});
+exports.getTestTargetPullDataResponseTestCasesItemElementsItemInteractionOnetwoCalledWithExecTypeDefault = `sandbox`;
+exports.getTestTargetPullDataResponseTestCasesItemElementsItemInteractionOnethreeCalledWithSubAddressRegExp = new RegExp('^[^ @]*$');
+exports.GetTestTargetPullDataResponse = zod.object({
     "testCases": zod.array(zod.object({
         "version": zod.enum(['1']),
         "id": zod.uuid(),
@@ -8684,8 +8842,32 @@ exports.getTestTargetPullDataResponse = zod.object({
                     "calledWith": zod.union([zod.string(), zod.unknown()])
                 }), zod.object({
                     "action": zod.enum(['DRAG_AND_DROP']),
-                    "calledWith": zod.tuple([zod.string(),
-                        zod.union([zod.string(), zod.unknown()])])
+                    "calledWith": zod.object({
+                        "selectors": zod.array(zod.object({
+                            "selectorType": zod.enum(['FRAME', 'CSS', 'TEXT', 'ROLE', 'ALT_TEXT', 'LABEL', 'TEST_ID', 'TITLE', 'PLACEHOLDER', 'FILTER', 'FIRST', 'LAST', 'NTH']),
+                            "selector": zod.union([zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.enum(['alert', 'alertdialog', 'application', 'article', 'banner', 'blockquote', 'button', 'caption', 'cell', 'checkbox', 'code', 'columnheader', 'combobox', 'complementary', 'contentinfo', 'definition', 'deletion', 'dialog', 'directory', 'document', 'emphasis', 'feed', 'figure', 'form', 'generic', 'grid', 'gridcell', 'group', 'heading', 'img', 'insertion', 'link', 'list', 'listbox', 'listitem', 'log', 'main', 'marquee', 'math', 'meter', 'menu', 'menubar', 'menuitem', 'menuitemcheckbox', 'menuitemradio', 'navigation', 'none', 'note', 'option', 'paragraph', 'presentation', 'progressbar', 'radio', 'radiogroup', 'region', 'row', 'rowgroup', 'rowheader', 'scrollbar', 'search', 'searchbox', 'separator', 'slider', 'spinbutton', 'status', 'strong', 'subscript', 'superscript', 'switch', 'tab', 'table', 'tablist', 'tabpanel', 'term', 'textbox', 'time', 'timer', 'toolbar', 'tooltip', 'tree', 'treegrid', 'treeitem']), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.string(), zod.string(), zod.string()]).nullish(),
+                            "options": zod.object({
+                                "name": zod.union([zod.string(), zod.unknown()]).optional(),
+                                "exact": zod.boolean().optional(),
+                                "checked": zod.boolean().optional(),
+                                "disabled": zod.boolean().optional(),
+                                "expanded": zod.boolean().optional(),
+                                "includeHidden": zod.boolean().optional(),
+                                "level": zod.number().optional(),
+                                "pressed": zod.boolean().optional(),
+                                "selected": zod.boolean().optional(),
+                                "hasText": zod.union([zod.string(), zod.unknown()]).optional(),
+                                "hasNotText": zod.union([zod.string(), zod.unknown()]).optional()
+                            }).nullish()
+                        })),
+                        "options": zod.object({
+                            "targetPosition": zod.object({
+                                "x": zod.number(),
+                                "y": zod.number()
+                            }).optional(),
+                            "angularWorkaround": zod.boolean().optional()
+                        }).optional()
+                    })
                 }), zod.object({
                     "action": zod.enum(['TYPE_TEXT']),
                     "calledWith": zod.object({
@@ -8706,13 +8888,13 @@ exports.getTestTargetPullDataResponse = zod.object({
                     "action": zod.enum(['JAVASCRIPT']),
                     "calledWith": zod.object({
                         "code": zod.string(),
-                        "execType": zod.enum(['browser', 'sandbox']).default(exports.getTestTargetPullDataResponseTestCasesItemElementsItemInteractionCalledWithExecTypeDefault)
+                        "execType": zod.enum(['browser', 'sandbox']).default(exports.getTestTargetPullDataResponseTestCasesItemElementsItemInteractionOnetwoCalledWithExecTypeDefault)
                     })
                 }), zod.object({
                     "action": zod.enum(['OPEN_EMAIL']),
                     "calledWith": zod.object({
                         "subjectContaining": zod.string().nullable(),
-                        "subAddress": zod.string().regex(exports.getTestTargetPullDataResponseTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp).nullable()
+                        "subAddress": zod.string().regex(exports.getTestTargetPullDataResponseTestCasesItemElementsItemInteractionOnethreeCalledWithSubAddressRegExp).nullable()
                     }).nullish()
                 }), zod.object({
                     "action": zod.enum(['CLOSE_PAGE']),
@@ -8792,15 +8974,88 @@ exports.getTestTargetPullDataResponse = zod.object({
     }))
 }).describe('schema for import and export of test cases');
 /**
+ * Retrieve a test plan by its unique identifier
+ * @summary Get test plan by ID
+ */
+exports.GetTestPlanParams = zod.object({
+    "testTargetId": zod.uuid().describe('The ID of the test target'),
+    "id": zod.uuid().describe('The ID of the test plan')
+});
+exports.GetTestPlanResponse = zod.object({
+    "id": zod.uuid(),
+    "createdAt": zod.iso.datetime({}),
+    "updatedAt": zod.iso.datetime({}),
+    "status": zod.enum(['CREATED', 'IN_PROGRESS', 'ERROR', 'DONE']),
+    "testTargetId": zod.uuid(),
+    "context": zod.union([zod.object({
+            "source": zod.enum(['github']),
+            "issueNumber": zod.number().optional(),
+            "ref": zod.string().optional(),
+            "sha": zod.string().optional(),
+            "repo": zod.string(),
+            "owner": zod.string(),
+            "triggeredBy": zod.object({
+                "type": zod.enum(['USER']),
+                "userId": zod.string()
+            }).optional(),
+            "nodeId": zod.string().optional()
+        }), zod.object({
+            "source": zod.enum(['azureDevOps']),
+            "accessToken": zod.string(),
+            "organization": zod.string(),
+            "project": zod.string(),
+            "repositoryId": zod.string(),
+            "sha": zod.string().optional(),
+            "ref": zod.string().optional(),
+            "pullRequestId": zod.number().optional(),
+            "triggeredBy": zod.object({
+                "type": zod.enum(['USER']),
+                "userId": zod.string()
+            }).optional(),
+            "threadId": zod.string().optional()
+        }), zod.object({
+            "source": zod.enum(['discovery']),
+            "description": zod.string(),
+            "triggeredBy": zod.union([zod.object({
+                    "type": zod.enum(['INITIAL'])
+                }), zod.object({
+                    "type": zod.enum(['USER']),
+                    "userId": zod.string()
+                })])
+        }), zod.object({
+            "source": zod.enum(['manual']),
+            "description": zod.string(),
+            "triggeredBy": zod.object({
+                "type": zod.enum(['USER']),
+                "userId": zod.string()
+            })
+        }), zod.object({
+            "source": zod.enum(['scheduled']),
+            "triggeredBy": zod.object({
+                "type": zod.enum(['USER']),
+                "userId": zod.string()
+            }).optional()
+        }), zod.object({
+            "source": zod.enum(['proposal']),
+            "description": zod.string(),
+            "triggeredBy": zod.union([zod.object({
+                    "type": zod.enum(['INITIAL'])
+                }), zod.object({
+                    "type": zod.enum(['USER']),
+                    "userId": zod.string()
+                })])
+        })])
+}).describe('schema for a test plan');
+/**
  * Retrieve the typescript code in a zip file for a set of yaml based test cases. This code can then be executed by playwright.
  * @summary Get TestSuite code
  */
-exports.getTestTargetCodeParams = zod.object({
+exports.GetTestTargetCodeParams = zod.object({
     "testTargetId": zod.uuid().describe('The ID of the test target')
 });
-exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = "sandbox";
-exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = new RegExp('^[^ @]*$');
-exports.getTestTargetCodeBody = zod.object({
+exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionOnetwoCalledWithExecTypeDefault = `sandbox`;
+exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionOnethreeCalledWithSubAddressRegExp = new RegExp('^[^ @]*$');
+exports.GetTestTargetCodeBody = zod.object({
     "executionUrl": zod.url(),
     "environmentId": zod.uuid().optional(),
     "testCases": zod.array(zod.object({
@@ -8851,8 +9106,32 @@ exports.getTestTargetCodeBody = zod.object({
                     "calledWith": zod.union([zod.string(), zod.unknown()])
                 }), zod.object({
                     "action": zod.enum(['DRAG_AND_DROP']),
-                    "calledWith": zod.tuple([zod.string(),
-                        zod.union([zod.string(), zod.unknown()])])
+                    "calledWith": zod.object({
+                        "selectors": zod.array(zod.object({
+                            "selectorType": zod.enum(['FRAME', 'CSS', 'TEXT', 'ROLE', 'ALT_TEXT', 'LABEL', 'TEST_ID', 'TITLE', 'PLACEHOLDER', 'FILTER', 'FIRST', 'LAST', 'NTH']),
+                            "selector": zod.union([zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.enum(['alert', 'alertdialog', 'application', 'article', 'banner', 'blockquote', 'button', 'caption', 'cell', 'checkbox', 'code', 'columnheader', 'combobox', 'complementary', 'contentinfo', 'definition', 'deletion', 'dialog', 'directory', 'document', 'emphasis', 'feed', 'figure', 'form', 'generic', 'grid', 'gridcell', 'group', 'heading', 'img', 'insertion', 'link', 'list', 'listbox', 'listitem', 'log', 'main', 'marquee', 'math', 'meter', 'menu', 'menubar', 'menuitem', 'menuitemcheckbox', 'menuitemradio', 'navigation', 'none', 'note', 'option', 'paragraph', 'presentation', 'progressbar', 'radio', 'radiogroup', 'region', 'row', 'rowgroup', 'rowheader', 'scrollbar', 'search', 'searchbox', 'separator', 'slider', 'spinbutton', 'status', 'strong', 'subscript', 'superscript', 'switch', 'tab', 'table', 'tablist', 'tabpanel', 'term', 'textbox', 'time', 'timer', 'toolbar', 'tooltip', 'tree', 'treegrid', 'treeitem']), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.string(), zod.string(), zod.string()]).nullish(),
+                            "options": zod.object({
+                                "name": zod.union([zod.string(), zod.unknown()]).optional(),
+                                "exact": zod.boolean().optional(),
+                                "checked": zod.boolean().optional(),
+                                "disabled": zod.boolean().optional(),
+                                "expanded": zod.boolean().optional(),
+                                "includeHidden": zod.boolean().optional(),
+                                "level": zod.number().optional(),
+                                "pressed": zod.boolean().optional(),
+                                "selected": zod.boolean().optional(),
+                                "hasText": zod.union([zod.string(), zod.unknown()]).optional(),
+                                "hasNotText": zod.union([zod.string(), zod.unknown()]).optional()
+                            }).nullish()
+                        })),
+                        "options": zod.object({
+                            "targetPosition": zod.object({
+                                "x": zod.number(),
+                                "y": zod.number()
+                            }).optional(),
+                            "angularWorkaround": zod.boolean().optional()
+                        }).optional()
+                    })
                 }), zod.object({
                     "action": zod.enum(['TYPE_TEXT']),
                     "calledWith": zod.object({
@@ -8873,13 +9152,13 @@ exports.getTestTargetCodeBody = zod.object({
                     "action": zod.enum(['JAVASCRIPT']),
                     "calledWith": zod.object({
                         "code": zod.string(),
-                        "execType": zod.enum(['browser', 'sandbox']).default(exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault)
+                        "execType": zod.enum(['browser', 'sandbox']).default(exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionOnetwoCalledWithExecTypeDefault)
                     })
                 }), zod.object({
                     "action": zod.enum(['OPEN_EMAIL']),
                     "calledWith": zod.object({
                         "subjectContaining": zod.string().nullable(),
-                        "subAddress": zod.string().regex(exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp).nullable()
+                        "subAddress": zod.string().regex(exports.getTestTargetCodeBodyTestCasesItemElementsItemInteractionOnethreeCalledWithSubAddressRegExp).nullable()
                     }).nullish()
                 }), zod.object({
                     "action": zod.enum(['CLOSE_PAGE']),
@@ -8956,18 +9235,19 @@ exports.getTestTargetCodeBody = zod.object({
         "externalId": zod.string().optional(),
         "prompt": zod.string(),
         "localEditingStatus": zod.enum(['IN_PROGRESS', 'DONE', 'CANCELLED']).optional()
-    }))
+    })),
+    "filterTestCaseIds": zod.array(zod.uuid()).optional()
 }).describe('schema for export of test cases as code');
 /**
  * Pushes all test cases with the specified schema to the test target. There is also a "opposite" endpoint to pull the files back to the local machine.
  * @summary Push test target
  */
-exports.pushTestTargetParams = zod.object({
+exports.PushTestTargetParams = zod.object({
     "testTargetId": zod.uuid().describe('The ID of the test target')
 });
-exports.pushTestTargetBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = "sandbox";
-exports.pushTestTargetBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = new RegExp('^[^ @]*$');
-exports.pushTestTargetBody = zod.object({
+exports.pushTestTargetBodyTestCasesItemElementsItemInteractionOnetwoCalledWithExecTypeDefault = `sandbox`;
+exports.pushTestTargetBodyTestCasesItemElementsItemInteractionOnethreeCalledWithSubAddressRegExp = new RegExp('^[^ @]*$');
+exports.PushTestTargetBody = zod.object({
     "testCases": zod.array(zod.object({
         "version": zod.enum(['1']),
         "id": zod.uuid(),
@@ -9016,8 +9296,32 @@ exports.pushTestTargetBody = zod.object({
                     "calledWith": zod.union([zod.string(), zod.unknown()])
                 }), zod.object({
                     "action": zod.enum(['DRAG_AND_DROP']),
-                    "calledWith": zod.tuple([zod.string(),
-                        zod.union([zod.string(), zod.unknown()])])
+                    "calledWith": zod.object({
+                        "selectors": zod.array(zod.object({
+                            "selectorType": zod.enum(['FRAME', 'CSS', 'TEXT', 'ROLE', 'ALT_TEXT', 'LABEL', 'TEST_ID', 'TITLE', 'PLACEHOLDER', 'FILTER', 'FIRST', 'LAST', 'NTH']),
+                            "selector": zod.union([zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.enum(['alert', 'alertdialog', 'application', 'article', 'banner', 'blockquote', 'button', 'caption', 'cell', 'checkbox', 'code', 'columnheader', 'combobox', 'complementary', 'contentinfo', 'definition', 'deletion', 'dialog', 'directory', 'document', 'emphasis', 'feed', 'figure', 'form', 'generic', 'grid', 'gridcell', 'group', 'heading', 'img', 'insertion', 'link', 'list', 'listbox', 'listitem', 'log', 'main', 'marquee', 'math', 'meter', 'menu', 'menubar', 'menuitem', 'menuitemcheckbox', 'menuitemradio', 'navigation', 'none', 'note', 'option', 'paragraph', 'presentation', 'progressbar', 'radio', 'radiogroup', 'region', 'row', 'rowgroup', 'rowheader', 'scrollbar', 'search', 'searchbox', 'separator', 'slider', 'spinbutton', 'status', 'strong', 'subscript', 'superscript', 'switch', 'tab', 'table', 'tablist', 'tabpanel', 'term', 'textbox', 'time', 'timer', 'toolbar', 'tooltip', 'tree', 'treegrid', 'treeitem']), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.string(), zod.string(), zod.string()]).nullish(),
+                            "options": zod.object({
+                                "name": zod.union([zod.string(), zod.unknown()]).optional(),
+                                "exact": zod.boolean().optional(),
+                                "checked": zod.boolean().optional(),
+                                "disabled": zod.boolean().optional(),
+                                "expanded": zod.boolean().optional(),
+                                "includeHidden": zod.boolean().optional(),
+                                "level": zod.number().optional(),
+                                "pressed": zod.boolean().optional(),
+                                "selected": zod.boolean().optional(),
+                                "hasText": zod.union([zod.string(), zod.unknown()]).optional(),
+                                "hasNotText": zod.union([zod.string(), zod.unknown()]).optional()
+                            }).nullish()
+                        })),
+                        "options": zod.object({
+                            "targetPosition": zod.object({
+                                "x": zod.number(),
+                                "y": zod.number()
+                            }).optional(),
+                            "angularWorkaround": zod.boolean().optional()
+                        }).optional()
+                    })
                 }), zod.object({
                     "action": zod.enum(['TYPE_TEXT']),
                     "calledWith": zod.object({
@@ -9038,13 +9342,13 @@ exports.pushTestTargetBody = zod.object({
                     "action": zod.enum(['JAVASCRIPT']),
                     "calledWith": zod.object({
                         "code": zod.string(),
-                        "execType": zod.enum(['browser', 'sandbox']).default(exports.pushTestTargetBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault)
+                        "execType": zod.enum(['browser', 'sandbox']).default(exports.pushTestTargetBodyTestCasesItemElementsItemInteractionOnetwoCalledWithExecTypeDefault)
                     })
                 }), zod.object({
                     "action": zod.enum(['OPEN_EMAIL']),
                     "calledWith": zod.object({
                         "subjectContaining": zod.string().nullable(),
-                        "subAddress": zod.string().regex(exports.pushTestTargetBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp).nullable()
+                        "subAddress": zod.string().regex(exports.pushTestTargetBodyTestCasesItemElementsItemInteractionOnethreeCalledWithSubAddressRegExp).nullable()
                     }).nullish()
                 }), zod.object({
                     "action": zod.enum(['CLOSE_PAGE']),
@@ -9123,7 +9427,7 @@ exports.pushTestTargetBody = zod.object({
         "localEditingStatus": zod.enum(['IN_PROGRESS', 'DONE', 'CANCELLED']).optional()
     }))
 }).describe('schema for import and export of test cases');
-exports.pushTestTargetResponse = zod.object({
+exports.PushTestTargetResponse = zod.object({
     "success": zod.boolean(),
     "versionIds": zod.array(zod.uuid())
 });
@@ -9131,12 +9435,12 @@ exports.pushTestTargetResponse = zod.object({
  * Push all test cases from a local representation to a test target as a draft.
  * @summary Push draft test target
  */
-exports.pushTestTargetDraftParams = zod.object({
+exports.PushTestTargetDraftParams = zod.object({
     "testTargetId": zod.uuid().describe('The ID of the test target')
 });
-exports.pushTestTargetDraftBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault = "sandbox";
-exports.pushTestTargetDraftBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp = new RegExp('^[^ @]*$');
-exports.pushTestTargetDraftBody = zod.object({
+exports.pushTestTargetDraftBodyTestCasesItemElementsItemInteractionOnetwoCalledWithExecTypeDefault = `sandbox`;
+exports.pushTestTargetDraftBodyTestCasesItemElementsItemInteractionOnethreeCalledWithSubAddressRegExp = new RegExp('^[^ @]*$');
+exports.PushTestTargetDraftBody = zod.object({
     "testCases": zod.array(zod.object({
         "version": zod.enum(['1']),
         "id": zod.uuid(),
@@ -9185,8 +9489,32 @@ exports.pushTestTargetDraftBody = zod.object({
                     "calledWith": zod.union([zod.string(), zod.unknown()])
                 }), zod.object({
                     "action": zod.enum(['DRAG_AND_DROP']),
-                    "calledWith": zod.tuple([zod.string(),
-                        zod.union([zod.string(), zod.unknown()])])
+                    "calledWith": zod.object({
+                        "selectors": zod.array(zod.object({
+                            "selectorType": zod.enum(['FRAME', 'CSS', 'TEXT', 'ROLE', 'ALT_TEXT', 'LABEL', 'TEST_ID', 'TITLE', 'PLACEHOLDER', 'FILTER', 'FIRST', 'LAST', 'NTH']),
+                            "selector": zod.union([zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.enum(['alert', 'alertdialog', 'application', 'article', 'banner', 'blockquote', 'button', 'caption', 'cell', 'checkbox', 'code', 'columnheader', 'combobox', 'complementary', 'contentinfo', 'definition', 'deletion', 'dialog', 'directory', 'document', 'emphasis', 'feed', 'figure', 'form', 'generic', 'grid', 'gridcell', 'group', 'heading', 'img', 'insertion', 'link', 'list', 'listbox', 'listitem', 'log', 'main', 'marquee', 'math', 'meter', 'menu', 'menubar', 'menuitem', 'menuitemcheckbox', 'menuitemradio', 'navigation', 'none', 'note', 'option', 'paragraph', 'presentation', 'progressbar', 'radio', 'radiogroup', 'region', 'row', 'rowgroup', 'rowheader', 'scrollbar', 'search', 'searchbox', 'separator', 'slider', 'spinbutton', 'status', 'strong', 'subscript', 'superscript', 'switch', 'tab', 'table', 'tablist', 'tabpanel', 'term', 'textbox', 'time', 'timer', 'toolbar', 'tooltip', 'tree', 'treegrid', 'treeitem']), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.string(), zod.string(), zod.string()]).nullish(),
+                            "options": zod.object({
+                                "name": zod.union([zod.string(), zod.unknown()]).optional(),
+                                "exact": zod.boolean().optional(),
+                                "checked": zod.boolean().optional(),
+                                "disabled": zod.boolean().optional(),
+                                "expanded": zod.boolean().optional(),
+                                "includeHidden": zod.boolean().optional(),
+                                "level": zod.number().optional(),
+                                "pressed": zod.boolean().optional(),
+                                "selected": zod.boolean().optional(),
+                                "hasText": zod.union([zod.string(), zod.unknown()]).optional(),
+                                "hasNotText": zod.union([zod.string(), zod.unknown()]).optional()
+                            }).nullish()
+                        })),
+                        "options": zod.object({
+                            "targetPosition": zod.object({
+                                "x": zod.number(),
+                                "y": zod.number()
+                            }).optional(),
+                            "angularWorkaround": zod.boolean().optional()
+                        }).optional()
+                    })
                 }), zod.object({
                     "action": zod.enum(['TYPE_TEXT']),
                     "calledWith": zod.object({
@@ -9207,13 +9535,13 @@ exports.pushTestTargetDraftBody = zod.object({
                     "action": zod.enum(['JAVASCRIPT']),
                     "calledWith": zod.object({
                         "code": zod.string(),
-                        "execType": zod.enum(['browser', 'sandbox']).default(exports.pushTestTargetDraftBodyTestCasesItemElementsItemInteractionCalledWithExecTypeDefault)
+                        "execType": zod.enum(['browser', 'sandbox']).default(exports.pushTestTargetDraftBodyTestCasesItemElementsItemInteractionOnetwoCalledWithExecTypeDefault)
                     })
                 }), zod.object({
                     "action": zod.enum(['OPEN_EMAIL']),
                     "calledWith": zod.object({
                         "subjectContaining": zod.string().nullable(),
-                        "subAddress": zod.string().regex(exports.pushTestTargetDraftBodyTestCasesItemElementsItemInteractionCalledWithSubAddressRegExp).nullable()
+                        "subAddress": zod.string().regex(exports.pushTestTargetDraftBodyTestCasesItemElementsItemInteractionOnethreeCalledWithSubAddressRegExp).nullable()
                     }).nullish()
                 }), zod.object({
                     "action": zod.enum(['CLOSE_PAGE']),
@@ -9292,7 +9620,7 @@ exports.pushTestTargetDraftBody = zod.object({
         "localEditingStatus": zod.enum(['IN_PROGRESS', 'DONE', 'CANCELLED']).optional()
     }))
 }).describe('schema for import and export of test cases');
-exports.pushTestTargetDraftResponse = zod.object({
+exports.PushTestTargetDraftResponse = zod.object({
     "success": zod.boolean(),
     "versionIds": zod.array(zod.uuid()).describe('List of test case IDs that were pushed to the test target'),
     "syncDataByStableId": zod.record(zod.string(), zod.object({
@@ -9304,14 +9632,14 @@ exports.pushTestTargetDraftResponse = zod.object({
  * Get detailed information about a specific version of a test case, including its local editing status.
  * @summary Retrieve a specific test case version
  */
-exports.getTestCaseVersionParams = zod.object({
+exports.GetTestCaseVersionParams = zod.object({
     "testTargetId": zod.uuid().describe('The ID of the test target'),
     "testCaseId": zod.uuid().describe('The ID of the test case'),
     "versionId": zod.uuid().describe('The version ID of the test case')
 });
-exports.getTestCaseVersionResponseElementsItemInteractionCalledWithExecTypeDefault = "sandbox";
-exports.getTestCaseVersionResponseElementsItemInteractionCalledWithSubAddressRegExp = new RegExp('^[^ @]*$');
-exports.getTestCaseVersionResponse = zod.object({
+exports.getTestCaseVersionResponseOneElementsItemInteractionOnetwoCalledWithExecTypeDefault = `sandbox`;
+exports.getTestCaseVersionResponseOneElementsItemInteractionOnethreeCalledWithSubAddressRegExp = new RegExp('^[^ @]*$');
+exports.GetTestCaseVersionResponse = zod.object({
     "version": zod.enum(['1']),
     "id": zod.uuid(),
     "type": zod.enum(['LOGIN', 'COOKIE_BANNER', 'LINK', 'TEARDOWN']).optional(),
@@ -9359,8 +9687,32 @@ exports.getTestCaseVersionResponse = zod.object({
                 "calledWith": zod.union([zod.string(), zod.unknown()])
             }), zod.object({
                 "action": zod.enum(['DRAG_AND_DROP']),
-                "calledWith": zod.tuple([zod.string(),
-                    zod.union([zod.string(), zod.unknown()])])
+                "calledWith": zod.object({
+                    "selectors": zod.array(zod.object({
+                        "selectorType": zod.enum(['FRAME', 'CSS', 'TEXT', 'ROLE', 'ALT_TEXT', 'LABEL', 'TEST_ID', 'TITLE', 'PLACEHOLDER', 'FILTER', 'FIRST', 'LAST', 'NTH']),
+                        "selector": zod.union([zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.enum(['alert', 'alertdialog', 'application', 'article', 'banner', 'blockquote', 'button', 'caption', 'cell', 'checkbox', 'code', 'columnheader', 'combobox', 'complementary', 'contentinfo', 'definition', 'deletion', 'dialog', 'directory', 'document', 'emphasis', 'feed', 'figure', 'form', 'generic', 'grid', 'gridcell', 'group', 'heading', 'img', 'insertion', 'link', 'list', 'listbox', 'listitem', 'log', 'main', 'marquee', 'math', 'meter', 'menu', 'menubar', 'menuitem', 'menuitemcheckbox', 'menuitemradio', 'navigation', 'none', 'note', 'option', 'paragraph', 'presentation', 'progressbar', 'radio', 'radiogroup', 'region', 'row', 'rowgroup', 'rowheader', 'scrollbar', 'search', 'searchbox', 'separator', 'slider', 'spinbutton', 'status', 'strong', 'subscript', 'superscript', 'switch', 'tab', 'table', 'tablist', 'tabpanel', 'term', 'textbox', 'time', 'timer', 'toolbar', 'tooltip', 'tree', 'treegrid', 'treeitem']), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.union([zod.string(), zod.unknown()]), zod.string(), zod.string(), zod.string()]).nullish(),
+                        "options": zod.object({
+                            "name": zod.union([zod.string(), zod.unknown()]).optional(),
+                            "exact": zod.boolean().optional(),
+                            "checked": zod.boolean().optional(),
+                            "disabled": zod.boolean().optional(),
+                            "expanded": zod.boolean().optional(),
+                            "includeHidden": zod.boolean().optional(),
+                            "level": zod.number().optional(),
+                            "pressed": zod.boolean().optional(),
+                            "selected": zod.boolean().optional(),
+                            "hasText": zod.union([zod.string(), zod.unknown()]).optional(),
+                            "hasNotText": zod.union([zod.string(), zod.unknown()]).optional()
+                        }).nullish()
+                    })),
+                    "options": zod.object({
+                        "targetPosition": zod.object({
+                            "x": zod.number(),
+                            "y": zod.number()
+                        }).optional(),
+                        "angularWorkaround": zod.boolean().optional()
+                    }).optional()
+                })
             }), zod.object({
                 "action": zod.enum(['TYPE_TEXT']),
                 "calledWith": zod.object({
@@ -9381,13 +9733,13 @@ exports.getTestCaseVersionResponse = zod.object({
                 "action": zod.enum(['JAVASCRIPT']),
                 "calledWith": zod.object({
                     "code": zod.string(),
-                    "execType": zod.enum(['browser', 'sandbox']).default(exports.getTestCaseVersionResponseElementsItemInteractionCalledWithExecTypeDefault)
+                    "execType": zod.enum(['browser', 'sandbox']).default(exports.getTestCaseVersionResponseOneElementsItemInteractionOnetwoCalledWithExecTypeDefault)
                 })
             }), zod.object({
                 "action": zod.enum(['OPEN_EMAIL']),
                 "calledWith": zod.object({
                     "subjectContaining": zod.string().nullable(),
-                    "subAddress": zod.string().regex(exports.getTestCaseVersionResponseElementsItemInteractionCalledWithSubAddressRegExp).nullable()
+                    "subAddress": zod.string().regex(exports.getTestCaseVersionResponseOneElementsItemInteractionOnethreeCalledWithSubAddressRegExp).nullable()
                 }).nullish()
             }), zod.object({
                 "action": zod.enum(['CLOSE_PAGE']),
@@ -9472,10 +9824,10 @@ exports.getTestCaseVersionResponse = zod.object({
  * Create a new test case discovery with a given name and prompt
  * @summary Create a discovery
  */
-exports.createDiscoveryParams = zod.object({
+exports.CreateDiscoveryParams = zod.object({
     "testTargetId": zod.uuid().describe('The ID of the test target')
 });
-exports.createDiscoveryBody = zod.object({
+exports.CreateDiscoveryBody = zod.object({
     "name": zod.string().describe('Name of the discovered test case'),
     "entryPointUrlPath": zod.string().optional().describe('Entry point URL path of the discovered test case'),
     "prerequisiteName": zod.string().optional().describe('Prerequisite test case name'),
@@ -9485,7 +9837,7 @@ exports.createDiscoveryBody = zod.object({
     "folderName": zod.string().optional().describe('Folder name of the discovered test case'),
     "type": zod.enum(['LOGIN', 'COOKIE_BANNER']).optional().describe('Type of the discovered test case')
 });
-exports.createDiscoveryResponse = zod.object({
+exports.CreateDiscoveryResponse = zod.object({
     "discoveryId": zod.uuid().describe('The ID of the created discovery'),
     "testCaseId": zod.uuid().describe('The ID of the associated test case')
 });
@@ -9493,7 +9845,7 @@ exports.createDiscoveryResponse = zod.object({
 
 /***/ }),
 
-/***/ 2305:
+/***/ 4418:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -9503,10 +9855,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.logJson = exports.handleError = exports.client = exports.createClientFromUrlAndApiKey = exports.BASE_URL = void 0;
 const openapi_fetch_1 = __importDefault(__nccwpck_require__(3007));
-const config_1 = __nccwpck_require__(2464);
-const version_1 = __nccwpck_require__(7552);
-exports.BASE_URL = process.env.OCTOMIND_API_URL || "https://app.octomind.dev/api";
-const client = (0, openapi_fetch_1.default)({ baseUrl: exports.BASE_URL });
+const config_1 = __nccwpck_require__(4975);
+const logger_1 = __nccwpck_require__(4994);
+const version_1 = __nccwpck_require__(8117);
+exports.BASE_URL = process.env.OCTOMIND_API_URL || "https://app.octomind.dev";
+const client = (0, openapi_fetch_1.default)({
+    baseUrl: `${exports.BASE_URL}/api`,
+});
 exports.client = client;
 const createClientFromUrlAndApiKey = ({ baseUrl, apiKey, }) => {
     const customClient = (0, openapi_fetch_1.default)({ baseUrl });
@@ -9539,7 +9894,7 @@ const createAuthMiddleware = ({ getApiKey, }) => {
             return response;
         },
         onError({ error }) {
-            console.error(error);
+            logger_1.logger.error("error", { error });
             process.exit(1);
         },
     };
@@ -9547,23 +9902,23 @@ const createAuthMiddleware = ({ getApiKey, }) => {
 client.use(createAuthMiddleware({ getApiKey: config_1.loadConfig }));
 const handleError = (error) => {
     if (error) {
-        console.error(error);
+        logger_1.logger.error("error", { error });
         if (typeof error === "string" && error.startsWith("403")) {
-            console.error("You are not authorized. Check your API key or do a 'octomind init' to set it up.");
+            logger_1.logger.error("You are not authorized. Check your API key or do a 'octomind init' to set it up.");
         }
         process.exit(1);
     }
 };
 exports.handleError = handleError;
 const logJson = (result) => {
-    console.log(JSON.stringify(result, null, 2));
+    logger_1.logger.info(JSON.stringify(result, null, 2));
 };
 exports.logJson = logJson;
 
 
 /***/ }),
 
-/***/ 6018:
+/***/ 4201:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -9613,7 +9968,7 @@ exports.checkForConsistency = checkForConsistency;
 
 /***/ }),
 
-/***/ 4830:
+/***/ 2653:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -9624,6 +9979,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getGitContext = exports.getDefaultBranch = exports.parseGitRemote = void 0;
 const path_1 = __importDefault(__nccwpck_require__(6928));
 const simple_git_1 = __nccwpck_require__(2469);
+const logger_1 = __nccwpck_require__(4994);
 const FALLBACK_DEFAULT_BRANCH = "refs/heads/main";
 const parseGitRemote = async () => {
     try {
@@ -9649,7 +10005,7 @@ const parseGitRemote = async () => {
         return { repo: path_1.default.basename(revParse) };
     }
     catch (error) {
-        console.error(error);
+        logger_1.logger.error("Failed to parse git remote", { error });
         return {};
     }
 };
@@ -9663,14 +10019,14 @@ const getDefaultBranch = async (allowedMethod = "symbolicRef+origin") => {
                 return symbolicRefBranch;
             }
         }
-        catch (e) {
-            console.warn("could not identify symbolic ref, falling back to origin parsing", e);
+        catch (error) {
+            logger_1.logger.warn("could not identify symbolic ref, falling back to origin parsing", { error });
         }
     }
     try {
         const origin = await (0, simple_git_1.simpleGit)().remote(["show", "origin"]);
         if (!origin) {
-            console.warn("could not identify default branch, falling back to 'main'");
+            logger_1.logger.warn("could not identify default branch, falling back to 'main'");
             return FALLBACK_DEFAULT_BRANCH;
         }
         const originDefaultBranch = /HEAD branch:(<branchName>(.*))/.exec(origin);
@@ -9678,8 +10034,10 @@ const getDefaultBranch = async (allowedMethod = "symbolicRef+origin") => {
             ? `refs/heads/${originDefaultBranch?.groups?.["branchName"]}`
             : FALLBACK_DEFAULT_BRANCH;
     }
-    catch (e) {
-        console.warn("could not identify default branch, falling back to 'main'", e);
+    catch (error) {
+        logger_1.logger.warn("could not identify default branch, falling back to 'main'", {
+            error,
+        });
     }
     return FALLBACK_DEFAULT_BRANCH;
 };
@@ -9701,8 +10059,10 @@ const getGitContext = async () => {
         };
         return ctx;
     }
-    catch (e) {
-        console.warn("could not identify git context, falling back to undefined", e);
+    catch (error) {
+        logger_1.logger.warn("could not identify git context, falling back to undefined", {
+            error,
+        });
         return undefined;
     }
 };
@@ -9711,16 +10071,16 @@ exports.getGitContext = getGitContext;
 
 /***/ }),
 
-/***/ 2824:
+/***/ 8093:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 var __webpack_unused_export__;
 
 __webpack_unused_export__ = ({ value: true });
 exports.cr = exports.VC = void 0;
-const consistency_1 = __nccwpck_require__(6018);
-const git_1 = __nccwpck_require__(4830);
-const yaml_1 = __nccwpck_require__(3055);
+const consistency_1 = __nccwpck_require__(4201);
+const git_1 = __nccwpck_require__(2653);
+const yaml_1 = __nccwpck_require__(6154);
 const push = async (options) => {
     const testCases = (0, yaml_1.readTestCasesFromDir)(options.sourceDir);
     (0, consistency_1.checkForConsistency)(testCases);
@@ -9731,10 +10091,18 @@ const push = async (options) => {
         testCases,
     };
     if (isDefaultBranch) {
-        return defaultPush(body, options);
+        const pushResult = await defaultPush(body, options);
+        if (!pushResult) {
+            return undefined;
+        }
+        return { ...pushResult, pushResult: "enabled" };
     }
     else {
-        return (0, exports.cr)(body, options);
+        const pushResult = await (0, exports.cr)(body, options);
+        if (!pushResult) {
+            return undefined;
+        }
+        return { ...pushResult, pushResult: "drafts" };
     }
 };
 exports.VC = push;
@@ -9767,7 +10135,7 @@ exports.cr = draftPush;
 
 /***/ }),
 
-/***/ 3055:
+/***/ 6154:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -9775,13 +10143,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.cleanupFilesystem = exports.readTestCasesFromDir = exports.buildFilename = exports.buildFolderName = exports.writeYaml = exports.writeSingleTestCaseYaml = void 0;
+exports.cleanupFilesystem = exports.removeEmptyDirectoriesRecursively = exports.loadTestCase = exports.readTestCasesFromDir = exports.buildFilename = exports.buildFolderName = exports.writeYaml = exports.writeSingleTestCaseYaml = void 0;
 const fs_1 = __importDefault(__nccwpck_require__(9896));
 const promises_1 = __importDefault(__nccwpck_require__(1943));
 const path_1 = __importDefault(__nccwpck_require__(6928));
 const yaml_1 = __importDefault(__nccwpck_require__(6159));
-const octomindExternalAPI_1 = __nccwpck_require__(2359);
-const syncTestCaseSchema = octomindExternalAPI_1.pushTestTargetBody.shape.testCases.element;
+const logger_1 = __nccwpck_require__(4994);
+const octomindExternalAPI_1 = __nccwpck_require__(7930);
+const syncTestCaseSchema = octomindExternalAPI_1.PushTestTargetBody.shape.testCases.element;
 const removeDiacritics = (str) => {
     // diacritics lead to issues in the file system afterward, cf. https://www.reddit.com/r/MacOS/comments/jhjv41/psa_beware_of_umlauts_and_other_accented/
     return str.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
@@ -9813,10 +10182,11 @@ const writeSingleTestCaseYaml = async (filePath, testCase) => {
     return promises_1.default.writeFile(filePath, `# yaml-language-server: $schema=https://app.octomind.dev/schemas/SyncTestCaseSchema.json\n${yaml_1.default.stringify(testCase)}`);
 };
 exports.writeSingleTestCaseYaml = writeSingleTestCaseYaml;
-const writeYaml = async (data, destination) => {
+const writeYaml = async (data, destination, partialSync = false) => {
     (0, exports.cleanupFilesystem)({
-        newTestCases: data.testCases,
+        remoteTestCases: data.testCases,
         destination,
+        partialSync,
     });
     for (const testCase of data.testCases) {
         const folderName = (0, exports.buildFolderName)(testCase, data.testCases, destination);
@@ -9912,35 +10282,57 @@ const readTestCasesFromDir = (startDir) => {
             const raw = yaml_1.default.parse(content);
             const result = syncTestCaseSchema.safeParse(raw);
             if (result.success) {
-                testCases.push(result.data);
+                testCases.push({ ...result.data, filePath: file });
             }
             else {
-                console.warn(`Failed to read test case from ${file}: ${result.error.message}`);
+                logger_1.logger.warn(`Failed to read test case from ${file}: ${result.error.message}`);
             }
         }
         catch {
-            console.error(`Failed to read test case from ${file}`);
+            logger_1.logger.error(`Failed to read test case from ${file}`);
         }
     }
     return testCases;
 };
 exports.readTestCasesFromDir = readTestCasesFromDir;
-const cleanupFilesystem = ({ newTestCases, destination, }) => {
+const loadTestCase = (testCasePath) => {
+    try {
+        const content = fs_1.default.readFileSync(testCasePath, "utf8");
+        return yaml_1.default.parse(content);
+    }
+    catch (error) {
+        throw new Error(`Could not parse ${testCasePath}: ${error}`);
+    }
+};
+exports.loadTestCase = loadTestCase;
+const removeEmptyDirectoriesRecursively = (dirPath, rootFolderPath) => {
+    if (dirPath === rootFolderPath || !fs_1.default.existsSync(dirPath)) {
+        return;
+    }
+    const remainingFiles = fs_1.default.readdirSync(dirPath);
+    if (remainingFiles.length === 0) {
+        fs_1.default.rmdirSync(dirPath);
+        (0, exports.removeEmptyDirectoriesRecursively)(path_1.default.dirname(dirPath), rootFolderPath);
+    }
+};
+exports.removeEmptyDirectoriesRecursively = removeEmptyDirectoriesRecursively;
+const cleanupFilesystem = ({ remoteTestCases, destination, partialSync, }) => {
     const rootFolderPath = destination ?? process.cwd();
-    const existingtestCases = (0, exports.readTestCasesFromDir)(rootFolderPath);
-    const existingTestCasesById = new Map(existingtestCases.map((tc) => [tc.id, tc]));
+    const localTestCases = (0, exports.readTestCasesFromDir)(rootFolderPath);
+    const localTestCasesById = new Map(localTestCases.map((tc) => [tc.id, tc]));
+    const remoteTestCasesById = new Map(remoteTestCases.map((tc) => [tc.id, tc]));
     // There is generally a bigger issue here:
     // We need a better check what changed locally.
     // Imagine you rename a test case remotely, and then you locally change steps in child test case.
     // Then you pull, and you local changes will just be deleted.
     // Same applies for changing the dependency, as it will be in a different folder. We also don't clean up these folders properly.
-    for (const testCase of newTestCases) {
-        const existingTestCase = existingTestCasesById.get(testCase.id);
-        if (existingTestCase) {
-            const existingTestCasePath = (0, exports.buildFilename)(existingTestCase, rootFolderPath);
-            const oldFolderPath = path_1.default.join(rootFolderPath, existingTestCasePath.replace(/\.yaml$/, ""));
-            const oldFilePath = path_1.default.join(rootFolderPath, existingTestCasePath);
-            if (existingTestCase.description !== testCase.description) {
+    for (const remoteTestCase of remoteTestCases) {
+        const localTestCase = localTestCasesById.get(remoteTestCase.id);
+        if (localTestCase) {
+            const localTestCasePath = (0, exports.buildFilename)(localTestCase, rootFolderPath);
+            const oldFolderPath = path_1.default.join(rootFolderPath, localTestCasePath.replace(/\.yaml$/, ""));
+            const oldFilePath = path_1.default.join(rootFolderPath, localTestCasePath);
+            if (localTestCase.description !== remoteTestCase.description) {
                 if (fs_1.default.existsSync(oldFilePath)) {
                     fs_1.default.unlinkSync(oldFilePath);
                 }
@@ -9950,20 +10342,31 @@ const cleanupFilesystem = ({ newTestCases, destination, }) => {
             }
         }
     }
+    if (!partialSync) {
+        for (const localTestCase of localTestCases) {
+            // If the local test case is not in the remote test cases, remove it
+            if (!remoteTestCasesById.has(localTestCase.id) &&
+                localTestCase.filePath) {
+                fs_1.default.rmSync(localTestCase.filePath, { force: true });
+                const dirPath = path_1.default.dirname(localTestCase.filePath);
+                (0, exports.removeEmptyDirectoriesRecursively)(dirPath, rootFolderPath);
+            }
+        }
+    }
 };
 exports.cleanupFilesystem = cleanupFilesystem;
 
 
 /***/ }),
 
-/***/ 7552:
+/***/ 8117:
 /***/ ((__unused_webpack_module, exports) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.version = void 0;
 // Generated by genversion.
-exports.version = "4.1.0";
+exports.version = "4.6.0";
 
 
 /***/ }),
@@ -38835,8 +39238,8 @@ var external_node_path_ = __nccwpck_require__(6760);
 var core = __nccwpck_require__(9550);
 // EXTERNAL MODULE: ./node_modules/.pnpm/@actions+github@7.0.0/node_modules/@actions/github/lib/github.js
 var github = __nccwpck_require__(8087);
-// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@4.1.0_typescript@5.7.3_vitest@4.0.17_@types+node@25.0.8_tsx@4.21.0_yaml@2.8.2_/node_modules/@octomind/octomind/dist/tools/client.js
-var tools_client = __nccwpck_require__(2305);
+// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@4.6.0_typescript@5.7.3_vitest@4.0.17_@types+node@25.0.8_tsx@4.21.0_yaml@2.8.2_/node_modules/@octomind/octomind/dist/tools/client.js
+var tools_client = __nccwpck_require__(4418);
 ;// CONCATENATED MODULE: external "node:timers"
 const external_node_timers_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:timers");
 ;// CONCATENATED MODULE: ./src/utils.ts
@@ -38855,17 +39258,16 @@ const multilineMappingToObject = (input) => {
 
 ;// CONCATENATED MODULE: external "node:fs"
 const external_node_fs_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:fs");
-// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@4.1.0_typescript@5.7.3_vitest@4.0.17_@types+node@25.0.8_tsx@4.21.0_yaml@2.8.2_/node_modules/@octomind/octomind/dist/tools/sync/push.js
-var push = __nccwpck_require__(2824);
+// EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@4.6.0_typescript@5.7.3_vitest@4.0.17_@types+node@25.0.8_tsx@4.21.0_yaml@2.8.2_/node_modules/@octomind/octomind/dist/tools/sync/push.js
+var push = __nccwpck_require__(8093);
 ;// CONCATENATED MODULE: ./src/pushIfYmlsExist.ts
-// this import MUST be a namespace import, otherwise ncc doesn't think it needs to bundle this :)
 
 
 
-const pushIfYmlsExist = async ({ sourceDir, client, testTargetId }) => {
+const pushIfYmlsExist = async ({ sourceDir, client, testTargetId, }) => {
     const directoryExists = (0,external_node_fs_namespaceObject.existsSync)(sourceDir);
     const hasYmls = directoryExists &&
-        (0,external_node_fs_namespaceObject.readdirSync)(sourceDir).some(file => file.endsWith('.yaml'));
+        (0,external_node_fs_namespaceObject.readdirSync)(sourceDir).some((file) => file.endsWith(".yaml"));
     if (hasYmls) {
         return (0,push/* push */.VC)({
             sourceDir,
@@ -38874,12 +39276,12 @@ const pushIfYmlsExist = async ({ sourceDir, client, testTargetId }) => {
             branchName: process.env.GITHUB_HEAD_REF
                 ? `refs/heads/${process.env.GITHUB_HEAD_REF}`
                 : undefined,
-            onError: error => {
+            onError: (error) => {
                 if (error) {
                     (0,core.setFailed)(`error occurred when trying to push local ymls ${error}`);
                     process.exit(1);
                 }
-            }
+            },
         });
     }
     return undefined;
@@ -38949,32 +39351,28 @@ const executeTests = async ({ client, testTargetId, url, environmentName, browse
 
 ;// CONCATENATED MODULE: ./src/exploreTestPlan.ts
 
-const exploreTestPlan = async ({ client, testTargetId, url, environmentName, context }) => {
-    (0,core.info)('Test plan exploration triggered');
+const exploreTestPlan = async ({ client, testTargetId, url, environmentName, context, }) => {
+    (0,core.info)("Test plan exploration triggered");
     (0,core.info)(`Test target ID: ${testTargetId}`);
-    const exploreResponse = await client.POST('/apiKey/v3/test-targets/{testTargetId}/test-plan/explore', {
-        params: {
-            path: {
-                testTargetId
-            }
-        },
+    const exploreResponse = await client.POST("/apiKey/v3/test-plan/explore", {
         body: {
             url,
+            testTargetId,
             environmentName,
             context: {
-                source: 'github',
-                ...context
-            }
-        }
+                source: "github",
+                ...context,
+            },
+        },
     });
     if (!exploreResponse.data) {
-        (0,core.setFailed)('test plan exploration did not return any data');
-        throw new Error('test plan exploration did not return any data');
+        (0,core.setFailed)("test plan exploration did not return any data");
+        throw new Error("test plan exploration did not return any data");
     }
-    (0,core.info)('Test plan exploration completed successfully');
+    (0,core.info)("Test plan exploration completed successfully");
     await core.summary
-        .addHeading('🐙 Octomind - Test Plan Exploration')
-        .addRaw('Test plan exploration completed successfully')
+        .addHeading("🐙 Octomind - Test Plan Exploration")
+        .addRaw("Test plan exploration completed successfully")
         .write();
 };
 
@@ -49497,6 +49895,2506 @@ exports.visitAsync = visitAsync;
 
 /***/ }),
 
+/***/ 7752:
+/***/ ((__unused_webpack_module, exports) => {
+
+//#region rolldown:runtime
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __copyProps = (to, from, except, desc) => {
+	if (from && typeof from === "object" || typeof from === "function") for (var keys = __getOwnPropNames(from), i = 0, n = keys.length, key; i < n; i++) {
+		key = keys[i];
+		if (!__hasOwnProp.call(to, key) && key !== except) __defProp(to, key, {
+			get: ((k) => from[k]).bind(null, key),
+			enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable
+		});
+	}
+	return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", {
+	value: mod,
+	enumerable: true
+}) : target, mod));
+
+//#endregion
+
+Object.defineProperty(exports, "__toESM", ({
+  enumerable: true,
+  get: function () {
+    return __toESM;
+  }
+}));
+
+/***/ }),
+
+/***/ 4991:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+const require_filter = __nccwpck_require__(9867);
+const require_logger = __nccwpck_require__(5021);
+const require_sink = __nccwpck_require__(4760);
+
+//#region src/config.ts
+/**
+* The current configuration, if any.  Otherwise, `null`.
+*/
+let currentConfig = null;
+/**
+* Strong references to the loggers.
+* This is to prevent the loggers from being garbage collected so that their
+* sinks and filters are not removed.
+*/
+const strongRefs = /* @__PURE__ */ new Set();
+/**
+* Disposables to dispose when resetting the configuration.
+*/
+const disposables = /* @__PURE__ */ new Set();
+/**
+* Async disposables to dispose when resetting the configuration.
+*/
+const asyncDisposables = /* @__PURE__ */ new Set();
+/**
+* Check if a config is for the meta logger.
+*/
+function isLoggerConfigMeta(cfg) {
+	return cfg.category.length === 0 || cfg.category.length === 1 && cfg.category[0] === "logtape" || cfg.category.length === 2 && cfg.category[0] === "logtape" && cfg.category[1] === "meta";
+}
+/**
+* Configure the loggers with the specified configuration.
+*
+* Note that if the given sinks or filters are disposable, they will be
+* disposed when the configuration is reset, or when the process exits.
+*
+* @example
+* ```typescript
+* await configure({
+*   sinks: {
+*     console: getConsoleSink(),
+*   },
+*   filters: {
+*     slow: (log) =>
+*       "duration" in log.properties &&
+*       log.properties.duration as number > 1000,
+*   },
+*   loggers: [
+*     {
+*       category: "my-app",
+*       sinks: ["console"],
+*       lowestLevel: "info",
+*     },
+*     {
+*       category: ["my-app", "sql"],
+*       filters: ["slow"],
+*       lowestLevel: "debug",
+*     },
+*     {
+*       category: "logtape",
+*       sinks: ["console"],
+*       lowestLevel: "error",
+*     },
+*   ],
+* });
+* ```
+*
+* @param config The configuration.
+*/
+async function configure(config) {
+	if (currentConfig != null && !config.reset) throw new ConfigError("Already configured; if you want to reset, turn on the reset flag.");
+	await reset();
+	try {
+		configureInternal(config, true);
+	} catch (e) {
+		if (e instanceof ConfigError) await reset();
+		throw e;
+	}
+}
+/**
+* Configure sync loggers with the specified configuration.
+*
+* Note that if the given sinks or filters are disposable, they will be
+* disposed when the configuration is reset, or when the process exits.
+*
+* Also note that passing async sinks or filters will throw. If
+* necessary use {@link resetSync} or {@link disposeSync}.
+*
+* @example
+* ```typescript
+* configureSync({
+*   sinks: {
+*     console: getConsoleSink(),
+*   },
+*   loggers: [
+*     {
+*       category: "my-app",
+*       sinks: ["console"],
+*       lowestLevel: "info",
+*     },
+*     {
+*       category: "logtape",
+*       sinks: ["console"],
+*       lowestLevel: "error",
+*     },
+*   ],
+* });
+* ```
+*
+* @param config The configuration.
+* @since 0.9.0
+*/
+function configureSync(config) {
+	if (currentConfig != null && !config.reset) throw new ConfigError("Already configured; if you want to reset, turn on the reset flag.");
+	if (asyncDisposables.size > 0) throw new ConfigError("Previously configured async disposables are still active. Use configure() instead or explicitly dispose them using dispose().");
+	resetSync();
+	try {
+		configureInternal(config, false);
+	} catch (e) {
+		if (e instanceof ConfigError) resetSync();
+		throw e;
+	}
+}
+function configureInternal(config, allowAsync) {
+	currentConfig = config;
+	let metaConfigured = false;
+	const configuredCategories = /* @__PURE__ */ new Set();
+	for (const cfg of config.loggers) {
+		if (isLoggerConfigMeta(cfg)) metaConfigured = true;
+		const categoryKey = Array.isArray(cfg.category) ? JSON.stringify(cfg.category) : JSON.stringify([cfg.category]);
+		if (configuredCategories.has(categoryKey)) throw new ConfigError(`Duplicate logger configuration for category: ${categoryKey}. Each category can only be configured once.`);
+		configuredCategories.add(categoryKey);
+		const logger = require_logger.LoggerImpl.getLogger(cfg.category);
+		for (const sinkId of cfg.sinks ?? []) {
+			const sink = config.sinks[sinkId];
+			if (!sink) throw new ConfigError(`Sink not found: ${sinkId}.`);
+			logger.sinks.push(sink);
+		}
+		logger.parentSinks = cfg.parentSinks ?? "inherit";
+		if (cfg.lowestLevel !== void 0) logger.lowestLevel = cfg.lowestLevel;
+		for (const filterId of cfg.filters ?? []) {
+			const filter = config.filters?.[filterId];
+			if (filter === void 0) throw new ConfigError(`Filter not found: ${filterId}.`);
+			logger.filters.push(require_filter.toFilter(filter));
+		}
+		strongRefs.add(logger);
+	}
+	require_logger.LoggerImpl.getLogger().contextLocalStorage = config.contextLocalStorage;
+	for (const sink of Object.values(config.sinks)) {
+		if (Symbol.asyncDispose in sink) if (allowAsync) asyncDisposables.add(sink);
+		else throw new ConfigError("Async disposables cannot be used with configureSync().");
+		if (Symbol.dispose in sink) disposables.add(sink);
+	}
+	for (const filter of Object.values(config.filters ?? {})) {
+		if (filter == null || typeof filter === "string") continue;
+		if (Symbol.asyncDispose in filter) if (allowAsync) asyncDisposables.add(filter);
+		else throw new ConfigError("Async disposables cannot be used with configureSync().");
+		if (Symbol.dispose in filter) disposables.add(filter);
+	}
+	if (typeof globalThis.EdgeRuntime !== "string" && "process" in globalThis && !("Deno" in globalThis)) {
+		const proc = globalThis.process;
+		const onMethod = proc?.["on"];
+		if (typeof onMethod === "function") onMethod.call(proc, "exit", allowAsync ? dispose : disposeSync);
+	} else if ("Deno" in globalThis) addEventListener("unload", allowAsync ? dispose : disposeSync);
+	else addEventListener("pagehide", allowAsync ? dispose : disposeSync);
+	const meta = require_logger.LoggerImpl.getLogger(["logtape", "meta"]);
+	if (!metaConfigured) meta.sinks.push(require_sink.getConsoleSink());
+	meta.info("LogTape loggers are configured.  Note that LogTape itself uses the meta logger, which has category {metaLoggerCategory}.  The meta logger purposes to log internal errors such as sink exceptions.  If you are seeing this message, the meta logger is automatically configured.  It's recommended to configure the meta logger with a separate sink so that you can easily notice if logging itself fails or is misconfigured.  To turn off this message, configure the meta logger with higher log levels than {dismissLevel}.  See also <https://logtape.org/manual/categories#meta-logger>.", {
+		metaLoggerCategory: ["logtape", "meta"],
+		dismissLevel: "info"
+	});
+}
+/**
+* Get the current configuration, if any.  Otherwise, `null`.
+* @returns The current configuration, if any.  Otherwise, `null`.
+*/
+function getConfig() {
+	return currentConfig;
+}
+/**
+* Reset the configuration.  Mostly for testing purposes.
+*/
+async function reset() {
+	await dispose();
+	resetInternal();
+}
+/**
+* Reset the configuration.  Mostly for testing purposes. Will not clear async
+* sinks, only use with sync sinks. Use {@link reset} if you have async sinks.
+* @since 0.9.0
+*/
+function resetSync() {
+	disposeSync();
+	resetInternal();
+}
+function resetInternal() {
+	const rootLogger = require_logger.LoggerImpl.getLogger([]);
+	rootLogger.resetDescendants();
+	delete rootLogger.contextLocalStorage;
+	strongRefs.clear();
+	currentConfig = null;
+}
+/**
+* Dispose of the disposables.
+*/
+async function dispose() {
+	disposeSync();
+	const promises = [];
+	for (const disposable of asyncDisposables) {
+		promises.push(disposable[Symbol.asyncDispose]());
+		asyncDisposables.delete(disposable);
+	}
+	await Promise.all(promises);
+}
+/**
+* Dispose of the sync disposables. Async disposables will be untouched,
+* use {@link dispose} if you have async sinks.
+* @since 0.9.0
+*/
+function disposeSync() {
+	for (const disposable of disposables) disposable[Symbol.dispose]();
+	disposables.clear();
+}
+/**
+* A configuration error.
+*/
+var ConfigError = class extends Error {
+	/**
+	* Constructs a new configuration error.
+	* @param message The error message.
+	*/
+	constructor(message) {
+		super(message);
+		this.name = "ConfigureError";
+	}
+};
+
+//#endregion
+exports.ConfigError = ConfigError;
+exports.configure = configure;
+exports.configureSync = configureSync;
+exports.dispose = dispose;
+exports.disposeSync = disposeSync;
+exports.getConfig = getConfig;
+exports.reset = reset;
+exports.resetSync = resetSync;
+
+/***/ }),
+
+/***/ 2282:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+const require_logger = __nccwpck_require__(5021);
+
+//#region src/context.ts
+/**
+* Internal symbol for storing category prefix in context.
+*/
+const categoryPrefixSymbol = Symbol.for("logtape.categoryPrefix");
+/**
+* Runs a callback with the given implicit context.  Every single log record
+* in the callback will have the given context.
+*
+* If no `contextLocalStorage` is configured, this function does nothing and
+* just returns the return value of the callback.  It also logs a warning to
+* the `["logtape", "meta"]` logger in this case.
+* @param context The context to inject.
+* @param callback The callback to run.
+* @returns The return value of the callback.
+* @since 0.7.0
+*/
+function withContext(context, callback) {
+	const rootLogger = require_logger.LoggerImpl.getLogger();
+	if (rootLogger.contextLocalStorage == null) {
+		require_logger.LoggerImpl.getLogger(["logtape", "meta"]).warn("Context-local storage is not configured.  Specify contextLocalStorage option in the configure() function.");
+		return callback();
+	}
+	const parentContext = rootLogger.contextLocalStorage.getStore() ?? {};
+	return rootLogger.contextLocalStorage.run({
+		...parentContext,
+		...context
+	}, callback);
+}
+/**
+* Gets the current category prefix from context local storage.
+* @returns The current category prefix, or an empty array if not set.
+* @since 1.3.0
+*/
+function getCategoryPrefix() {
+	const rootLogger = require_logger.LoggerImpl.getLogger();
+	const store = rootLogger.contextLocalStorage?.getStore();
+	if (store == null) return [];
+	const prefix = store[categoryPrefixSymbol];
+	return Array.isArray(prefix) ? prefix : [];
+}
+/**
+* Gets the current implicit context from context local storage, excluding
+* internal symbol keys (like category prefix).
+* @returns The current implicit context without internal symbol keys.
+* @since 1.3.0
+*/
+function getImplicitContext() {
+	const rootLogger = require_logger.LoggerImpl.getLogger();
+	const store = rootLogger.contextLocalStorage?.getStore();
+	if (store == null) return {};
+	const result = {};
+	for (const key of Object.keys(store)) result[key] = store[key];
+	return result;
+}
+/**
+* Runs a callback with the given category prefix prepended to all log
+* categories within the callback context.
+*
+* This is useful for SDKs or libraries that want to add their own category
+* as a prefix to logs from their internal dependencies.
+*
+* If no `contextLocalStorage` is configured, this function does nothing and
+* just returns the return value of the callback.  It also logs a warning to
+* the `["logtape", "meta"]` logger in this case.
+*
+* @example Basic usage
+* ```typescript
+* import { getLogger, withCategoryPrefix } from "@logtape/logtape";
+*
+* export function sdkFunction() {
+*   return withCategoryPrefix(["my-sdk"], () => {
+*     // Any logs from internal libraries within this context
+*     // will have ["my-sdk"] prepended to their category
+*     return internalLibraryFunction();
+*   });
+* }
+* ```
+*
+* @param prefix The category prefix to prepend.  Can be a string or an array
+*               of strings.
+* @param callback The callback to run.
+* @returns The return value of the callback.
+* @since 1.3.0
+*/
+function withCategoryPrefix(prefix, callback) {
+	const rootLogger = require_logger.LoggerImpl.getLogger();
+	if (rootLogger.contextLocalStorage == null) {
+		require_logger.LoggerImpl.getLogger(["logtape", "meta"]).warn("Context-local storage is not configured.  Specify contextLocalStorage option in the configure() function.");
+		return callback();
+	}
+	const parentContext = rootLogger.contextLocalStorage.getStore() ?? {};
+	const parentPrefix = getCategoryPrefix();
+	const newPrefix = typeof prefix === "string" ? [prefix] : [...prefix];
+	return rootLogger.contextLocalStorage.run({
+		...parentContext,
+		[categoryPrefixSymbol]: [...parentPrefix, ...newPrefix]
+	}, callback);
+}
+
+//#endregion
+exports.getCategoryPrefix = getCategoryPrefix;
+exports.getImplicitContext = getImplicitContext;
+exports.withCategoryPrefix = withCategoryPrefix;
+exports.withContext = withContext;
+
+/***/ }),
+
+/***/ 9867:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+//#region src/filter.ts
+/**
+* Converts a {@link FilterLike} value to an actual {@link Filter}.
+*
+* @param filter The filter-like value to convert.
+* @returns The actual filter.
+*/
+function toFilter(filter) {
+	if (typeof filter === "function") return filter;
+	return getLevelFilter(filter);
+}
+/**
+* Returns a filter that accepts log records with the specified level.
+*
+* @param level The level to filter by.  If `null`, the filter will reject all
+*              records.
+* @returns The filter.
+*/
+function getLevelFilter(level) {
+	if (level == null) return () => false;
+	if (level === "fatal") return (record) => record.level === "fatal";
+	else if (level === "error") return (record) => record.level === "fatal" || record.level === "error";
+	else if (level === "warning") return (record) => record.level === "fatal" || record.level === "error" || record.level === "warning";
+	else if (level === "info") return (record) => record.level === "fatal" || record.level === "error" || record.level === "warning" || record.level === "info";
+	else if (level === "debug") return (record) => record.level === "fatal" || record.level === "error" || record.level === "warning" || record.level === "info" || record.level === "debug";
+	else if (level === "trace") return () => true;
+	throw new TypeError(`Invalid log level: ${level}.`);
+}
+
+//#endregion
+exports.getLevelFilter = getLevelFilter;
+exports.toFilter = toFilter;
+
+/***/ }),
+
+/***/ 4401:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+const require_rolldown_runtime = __nccwpck_require__(7752);
+const __util = require_rolldown_runtime.__toESM(__nccwpck_require__(5517));
+
+//#region src/formatter.ts
+/**
+* The severity level abbreviations.
+*/
+const levelAbbreviations = {
+	"trace": "TRC",
+	"debug": "DBG",
+	"info": "INF",
+	"warning": "WRN",
+	"error": "ERR",
+	"fatal": "FTL"
+};
+/**
+* A platform-specific inspect function.  In Deno, this is {@link Deno.inspect},
+* and in Node.js/Bun it is `util.inspect()`.  If neither is available, it
+* falls back to {@link JSON.stringify}.
+*
+* @param value The value to inspect.
+* @param options The options for inspecting the value.
+*                If `colors` is `true`, the output will be ANSI-colored.
+* @returns The string representation of the value.
+*/
+const inspect = typeof document !== "undefined" || typeof navigator !== "undefined" && navigator.product === "ReactNative" ? (v) => JSON.stringify(v) : "Deno" in globalThis && "inspect" in globalThis.Deno && typeof globalThis.Deno.inspect === "function" ? (v, opts) => globalThis.Deno.inspect(v, {
+	strAbbreviateSize: Infinity,
+	iterableLimit: Infinity,
+	...opts
+}) : __util != null && "inspect" in __util && typeof __util.inspect === "function" ? (v, opts) => __util.inspect(v, {
+	maxArrayLength: Infinity,
+	maxStringLength: Infinity,
+	...opts
+}) : (v) => JSON.stringify(v);
+function padZero(num) {
+	return num < 10 ? `0${num}` : `${num}`;
+}
+function padThree(num) {
+	return num < 10 ? `00${num}` : num < 100 ? `0${num}` : `${num}`;
+}
+const timestampFormatters = {
+	"date-time-timezone": (ts) => {
+		const d = new Date(ts);
+		const year = d.getUTCFullYear();
+		const month = padZero(d.getUTCMonth() + 1);
+		const day = padZero(d.getUTCDate());
+		const hour = padZero(d.getUTCHours());
+		const minute = padZero(d.getUTCMinutes());
+		const second = padZero(d.getUTCSeconds());
+		const ms = padThree(d.getUTCMilliseconds());
+		return `${year}-${month}-${day} ${hour}:${minute}:${second}.${ms} +00:00`;
+	},
+	"date-time-tz": (ts) => {
+		const d = new Date(ts);
+		const year = d.getUTCFullYear();
+		const month = padZero(d.getUTCMonth() + 1);
+		const day = padZero(d.getUTCDate());
+		const hour = padZero(d.getUTCHours());
+		const minute = padZero(d.getUTCMinutes());
+		const second = padZero(d.getUTCSeconds());
+		const ms = padThree(d.getUTCMilliseconds());
+		return `${year}-${month}-${day} ${hour}:${minute}:${second}.${ms} +00`;
+	},
+	"date-time": (ts) => {
+		const d = new Date(ts);
+		const year = d.getUTCFullYear();
+		const month = padZero(d.getUTCMonth() + 1);
+		const day = padZero(d.getUTCDate());
+		const hour = padZero(d.getUTCHours());
+		const minute = padZero(d.getUTCMinutes());
+		const second = padZero(d.getUTCSeconds());
+		const ms = padThree(d.getUTCMilliseconds());
+		return `${year}-${month}-${day} ${hour}:${minute}:${second}.${ms}`;
+	},
+	"time-timezone": (ts) => {
+		const d = new Date(ts);
+		const hour = padZero(d.getUTCHours());
+		const minute = padZero(d.getUTCMinutes());
+		const second = padZero(d.getUTCSeconds());
+		const ms = padThree(d.getUTCMilliseconds());
+		return `${hour}:${minute}:${second}.${ms} +00:00`;
+	},
+	"time-tz": (ts) => {
+		const d = new Date(ts);
+		const hour = padZero(d.getUTCHours());
+		const minute = padZero(d.getUTCMinutes());
+		const second = padZero(d.getUTCSeconds());
+		const ms = padThree(d.getUTCMilliseconds());
+		return `${hour}:${minute}:${second}.${ms} +00`;
+	},
+	"time": (ts) => {
+		const d = new Date(ts);
+		const hour = padZero(d.getUTCHours());
+		const minute = padZero(d.getUTCMinutes());
+		const second = padZero(d.getUTCSeconds());
+		const ms = padThree(d.getUTCMilliseconds());
+		return `${hour}:${minute}:${second}.${ms}`;
+	},
+	"date": (ts) => {
+		const d = new Date(ts);
+		const year = d.getUTCFullYear();
+		const month = padZero(d.getUTCMonth() + 1);
+		const day = padZero(d.getUTCDate());
+		return `${year}-${month}-${day}`;
+	},
+	"rfc3339": (ts) => new Date(ts).toISOString(),
+	"none": () => null
+};
+const levelRenderersCache = {
+	ABBR: levelAbbreviations,
+	abbr: {
+		trace: "trc",
+		debug: "dbg",
+		info: "inf",
+		warning: "wrn",
+		error: "err",
+		fatal: "ftl"
+	},
+	FULL: {
+		trace: "TRACE",
+		debug: "DEBUG",
+		info: "INFO",
+		warning: "WARNING",
+		error: "ERROR",
+		fatal: "FATAL"
+	},
+	full: {
+		trace: "trace",
+		debug: "debug",
+		info: "info",
+		warning: "warning",
+		error: "error",
+		fatal: "fatal"
+	},
+	L: {
+		trace: "T",
+		debug: "D",
+		info: "I",
+		warning: "W",
+		error: "E",
+		fatal: "F"
+	},
+	l: {
+		trace: "t",
+		debug: "d",
+		info: "i",
+		warning: "w",
+		error: "e",
+		fatal: "f"
+	}
+};
+/**
+* Helper function to get the line ending value based on the option.
+* @param lineEnding The line ending option.
+* @returns The line ending string.
+*/
+function getLineEndingValue(lineEnding) {
+	return lineEnding === "crlf" ? "\r\n" : "\n";
+}
+function jsonReplacer(_key, value) {
+	if (!(value instanceof Error)) return value;
+	const serialized = {
+		name: value.name,
+		message: value.message
+	};
+	if (typeof value.stack === "string") serialized.stack = value.stack;
+	const cause = value.cause;
+	if (cause !== void 0) serialized.cause = cause;
+	if (typeof AggregateError !== "undefined" && value instanceof AggregateError) serialized.errors = value.errors;
+	for (const key of Object.keys(value)) if (!(key in serialized)) serialized[key] = value[key];
+	return serialized;
+}
+/**
+* Get a text formatter with the specified options.  Although it's flexible
+* enough to create a custom formatter, if you want more control, you can
+* create a custom formatter that satisfies the {@link TextFormatter} type
+* instead.
+*
+* For more information on the options, see {@link TextFormatterOptions}.
+*
+* By default, the formatter formats log records as follows:
+*
+* ```
+* 2023-11-14 22:13:20.000 +00:00 [INF] category·subcategory: Hello, world!
+* ```
+* @param options The options for the text formatter.
+* @returns The text formatter.
+* @since 0.6.0
+*/
+function getTextFormatter(options = {}) {
+	const timestampRenderer = (() => {
+		const tsOption = options.timestamp;
+		if (tsOption == null) return timestampFormatters["date-time-timezone"];
+		else if (tsOption === "disabled") return timestampFormatters["none"];
+		else if (typeof tsOption === "string" && tsOption in timestampFormatters) return timestampFormatters[tsOption];
+		else return tsOption;
+	})();
+	const categorySeparator = options.category ?? "·";
+	const valueRenderer = options.value ? (v) => options.value(v, inspect) : inspect;
+	const levelRenderer = (() => {
+		const levelOption = options.level;
+		if (levelOption == null || levelOption === "ABBR") return (level) => levelRenderersCache.ABBR[level];
+		else if (levelOption === "abbr") return (level) => levelRenderersCache.abbr[level];
+		else if (levelOption === "FULL") return (level) => levelRenderersCache.FULL[level];
+		else if (levelOption === "full") return (level) => levelRenderersCache.full[level];
+		else if (levelOption === "L") return (level) => levelRenderersCache.L[level];
+		else if (levelOption === "l") return (level) => levelRenderersCache.l[level];
+		else return levelOption;
+	})();
+	const lineEnding = getLineEndingValue(options.lineEnding);
+	const formatter = options.format ?? (({ timestamp, level, category, message }) => `${timestamp ? `${timestamp} ` : ""}[${level}] ${category}: ${message}`);
+	return (record) => {
+		const msgParts = record.message;
+		const msgLen = msgParts.length;
+		let message;
+		if (msgLen === 1) message = msgParts[0];
+		else if (msgLen <= 6) {
+			message = "";
+			for (let i = 0; i < msgLen; i++) message += i % 2 === 0 ? msgParts[i] : valueRenderer(msgParts[i]);
+		} else {
+			const parts = new Array(msgLen);
+			for (let i = 0; i < msgLen; i++) parts[i] = i % 2 === 0 ? msgParts[i] : valueRenderer(msgParts[i]);
+			message = parts.join("");
+		}
+		const timestamp = timestampRenderer(record.timestamp);
+		const level = levelRenderer(record.level);
+		const category = typeof categorySeparator === "function" ? categorySeparator(record.category) : record.category.join(categorySeparator);
+		const values = {
+			timestamp,
+			level,
+			category,
+			message,
+			record
+		};
+		return `${formatter(values)}${lineEnding}`;
+	};
+}
+/**
+* The default text formatter.  This formatter formats log records as follows:
+*
+* ```
+* 2023-11-14 22:13:20.000 +00:00 [INF] category·subcategory: Hello, world!
+* ```
+*
+* @param record The log record to format.
+* @returns The formatted log record.
+*/
+const defaultTextFormatter = getTextFormatter();
+const RESET = "\x1B[0m";
+const ansiColors = {
+	black: "\x1B[30m",
+	red: "\x1B[31m",
+	green: "\x1B[32m",
+	yellow: "\x1B[33m",
+	blue: "\x1B[34m",
+	magenta: "\x1B[35m",
+	cyan: "\x1B[36m",
+	white: "\x1B[37m"
+};
+const ansiStyles = {
+	bold: "\x1B[1m",
+	dim: "\x1B[2m",
+	italic: "\x1B[3m",
+	underline: "\x1B[4m",
+	strikethrough: "\x1B[9m"
+};
+const defaultLevelColors = {
+	trace: null,
+	debug: "blue",
+	info: "green",
+	warning: "yellow",
+	error: "red",
+	fatal: "magenta"
+};
+/**
+* Get an ANSI color formatter with the specified options.
+*
+* ![A preview of an ANSI color formatter.](https://i.imgur.com/I8LlBUf.png)
+* @param option The options for the ANSI color formatter.
+* @returns The ANSI color formatter.
+* @since 0.6.0
+*/
+function getAnsiColorFormatter(options = {}) {
+	const format = options.format;
+	const timestampStyle = typeof options.timestampStyle === "undefined" ? "dim" : options.timestampStyle;
+	const timestampColor = options.timestampColor ?? null;
+	const timestampPrefix = `${timestampStyle == null ? "" : ansiStyles[timestampStyle]}${timestampColor == null ? "" : ansiColors[timestampColor]}`;
+	const timestampSuffix = timestampStyle == null && timestampColor == null ? "" : RESET;
+	const levelStyle = typeof options.levelStyle === "undefined" ? "bold" : options.levelStyle;
+	const levelColors = options.levelColors ?? defaultLevelColors;
+	const categoryStyle = typeof options.categoryStyle === "undefined" ? "dim" : options.categoryStyle;
+	const categoryColor = options.categoryColor ?? null;
+	const categoryPrefix = `${categoryStyle == null ? "" : ansiStyles[categoryStyle]}${categoryColor == null ? "" : ansiColors[categoryColor]}`;
+	const categorySuffix = categoryStyle == null && categoryColor == null ? "" : RESET;
+	return getTextFormatter({
+		timestamp: "date-time-tz",
+		value(value, fallbackInspect) {
+			return fallbackInspect(value, { colors: true });
+		},
+		...options,
+		format({ timestamp, level, category, message, record }) {
+			const levelColor = levelColors[record.level];
+			timestamp = timestamp == null ? null : `${timestampPrefix}${timestamp}${timestampSuffix}`;
+			level = `${levelStyle == null ? "" : ansiStyles[levelStyle]}${levelColor == null ? "" : ansiColors[levelColor]}${level}${levelStyle == null && levelColor == null ? "" : RESET}`;
+			return format == null ? `${timestamp == null ? "" : `${timestamp} `}${level} ${categoryPrefix}${category}:${categorySuffix} ${message}` : format({
+				timestamp,
+				level,
+				category: `${categoryPrefix}${category}${categorySuffix}`,
+				message,
+				record
+			});
+		}
+	});
+}
+/**
+* A text formatter that uses ANSI colors to format log records.
+*
+* ![A preview of ansiColorFormatter.](https://i.imgur.com/I8LlBUf.png)
+*
+* @param record The log record to format.
+* @returns The formatted log record.
+* @since 0.5.0
+*/
+const ansiColorFormatter = getAnsiColorFormatter();
+/**
+* Get a [JSON Lines] formatter with the specified options.  The log records
+* will be rendered as JSON objects, one per line, which is a common format
+* for log files.  This format is also known as Newline-Delimited JSON (NDJSON).
+* It looks like this:
+*
+* ```json
+* {"@timestamp":"2023-11-14T22:13:20.000Z","level":"INFO","message":"Hello, world!","logger":"my.logger","properties":{"key":"value"}}
+* ```
+*
+* [JSON Lines]: https://jsonlines.org/
+* @param options The options for the JSON Lines formatter.
+* @returns The JSON Lines formatter.
+* @since 0.11.0
+*/
+function getJsonLinesFormatter(options = {}) {
+	const lineEnding = getLineEndingValue(options.lineEnding);
+	if (!options.categorySeparator && !options.message && !options.properties) return (record) => {
+		if (record.message.length === 3) return JSON.stringify({
+			"@timestamp": new Date(record.timestamp).toISOString(),
+			level: record.level === "warning" ? "WARN" : record.level.toUpperCase(),
+			message: record.message[0] + JSON.stringify(record.message[1]) + record.message[2],
+			logger: record.category.join("."),
+			properties: record.properties
+		}, jsonReplacer) + lineEnding;
+		if (record.message.length === 1) return JSON.stringify({
+			"@timestamp": new Date(record.timestamp).toISOString(),
+			level: record.level === "warning" ? "WARN" : record.level.toUpperCase(),
+			message: record.message[0],
+			logger: record.category.join("."),
+			properties: record.properties
+		}, jsonReplacer) + lineEnding;
+		let msg = record.message[0];
+		for (let i = 1; i < record.message.length; i++) msg += i & 1 ? JSON.stringify(record.message[i]) : record.message[i];
+		return JSON.stringify({
+			"@timestamp": new Date(record.timestamp).toISOString(),
+			level: record.level === "warning" ? "WARN" : record.level.toUpperCase(),
+			message: msg,
+			logger: record.category.join("."),
+			properties: record.properties
+		}, jsonReplacer) + lineEnding;
+	};
+	const isTemplateMessage = options.message === "template";
+	const propertiesOption = options.properties ?? "nest:properties";
+	let joinCategory;
+	if (typeof options.categorySeparator === "function") joinCategory = options.categorySeparator;
+	else {
+		const separator = options.categorySeparator ?? ".";
+		joinCategory = (category) => category.join(separator);
+	}
+	let getProperties;
+	if (propertiesOption === "flatten") getProperties = (properties) => properties;
+	else if (propertiesOption.startsWith("prepend:")) {
+		const prefix = propertiesOption.substring(8);
+		if (prefix === "") throw new TypeError(`Invalid properties option: ${JSON.stringify(propertiesOption)}. It must be of the form "prepend:<prefix>" where <prefix> is a non-empty string.`);
+		getProperties = (properties) => {
+			const result = {};
+			for (const key in properties) result[`${prefix}${key}`] = properties[key];
+			return result;
+		};
+	} else if (propertiesOption.startsWith("nest:")) {
+		const key = propertiesOption.substring(5);
+		getProperties = (properties) => ({ [key]: properties });
+	} else throw new TypeError(`Invalid properties option: ${JSON.stringify(propertiesOption)}. It must be "flatten", "prepend:<prefix>", or "nest:<key>".`);
+	let getMessage;
+	if (isTemplateMessage) getMessage = (record) => {
+		if (typeof record.rawMessage === "string") return record.rawMessage;
+		let msg = "";
+		for (let i = 0; i < record.rawMessage.length; i++) msg += i % 2 < 1 ? record.rawMessage[i] : "{}";
+		return msg;
+	};
+	else getMessage = (record) => {
+		const msgLen = record.message.length;
+		if (msgLen === 1) return record.message[0];
+		let msg = "";
+		for (let i = 0; i < msgLen; i++) msg += i % 2 < 1 ? record.message[i] : JSON.stringify(record.message[i]);
+		return msg;
+	};
+	return (record) => {
+		return JSON.stringify({
+			"@timestamp": new Date(record.timestamp).toISOString(),
+			level: record.level === "warning" ? "WARN" : record.level.toUpperCase(),
+			message: getMessage(record),
+			logger: joinCategory(record.category),
+			...getProperties(record.properties)
+		}, jsonReplacer) + lineEnding;
+	};
+}
+/**
+* The default [JSON Lines] formatter.  This formatter formats log records
+* as JSON objects, one per line, which is a common format for log files.
+* It looks like this:
+*
+* ```json
+* {"@timestamp":"2023-11-14T22:13:20.000Z","level":"INFO","message":"Hello, world!","logger":"my.logger","properties":{"key":"value"}}
+* ```
+*
+* You can customize the output by passing options to
+* {@link getJsonLinesFormatter}.  For example, you can change the category
+* separator, the message format, and how the properties are formatted.
+*
+* [JSON Lines]: https://jsonlines.org/
+* @since 0.11.0
+*/
+const jsonLinesFormatter = getJsonLinesFormatter();
+/**
+* The styles for the log level in the console.
+*/
+const logLevelStyles = {
+	"trace": "background-color: gray; color: white;",
+	"debug": "background-color: gray; color: white;",
+	"info": "background-color: white; color: black;",
+	"warning": "background-color: orange; color: black;",
+	"error": "background-color: red; color: white;",
+	"fatal": "background-color: maroon; color: white;"
+};
+/**
+* The default console formatter.
+*
+* @param record The log record to format.
+* @returns The formatted log record, as an array of arguments for
+*          {@link console.log}.
+*/
+function defaultConsoleFormatter(record) {
+	let msg = "";
+	const values = [];
+	for (let i = 0; i < record.message.length; i++) if (i % 2 === 0) msg += record.message[i];
+	else {
+		msg += "%o";
+		values.push(record.message[i]);
+	}
+	const date = new Date(record.timestamp);
+	const time = `${date.getUTCHours().toString().padStart(2, "0")}:${date.getUTCMinutes().toString().padStart(2, "0")}:${date.getUTCSeconds().toString().padStart(2, "0")}.${date.getUTCMilliseconds().toString().padStart(3, "0")}`;
+	return [
+		`%c${time} %c${levelAbbreviations[record.level]}%c %c${record.category.join("·")} %c${msg}`,
+		"color: gray;",
+		logLevelStyles[record.level],
+		"background-color: default;",
+		"color: gray;",
+		"color: default;",
+		...values
+	];
+}
+
+//#endregion
+exports.ansiColorFormatter = ansiColorFormatter;
+exports.defaultConsoleFormatter = defaultConsoleFormatter;
+exports.defaultTextFormatter = defaultTextFormatter;
+exports.getAnsiColorFormatter = getAnsiColorFormatter;
+exports.getJsonLinesFormatter = getJsonLinesFormatter;
+exports.getTextFormatter = getTextFormatter;
+exports.jsonLinesFormatter = jsonLinesFormatter;
+
+/***/ }),
+
+/***/ 2685:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+//#region src/level.ts
+const logLevels = [
+	"trace",
+	"debug",
+	"info",
+	"warning",
+	"error",
+	"fatal"
+];
+/**
+* Lists all available log levels with the order of their severity.
+* The `"trace"` level goes first, and the `"fatal"` level goes last.
+* @returns A new copy of the array of log levels.
+* @since 1.0.0
+*/
+function getLogLevels() {
+	return [...logLevels];
+}
+/**
+* Parses a log level from a string.
+*
+* @param level The log level as a string.  This is case-insensitive.
+* @returns The log level.
+* @throws {TypeError} If the log level is invalid.
+*/
+function parseLogLevel(level) {
+	level = level.toLowerCase();
+	switch (level) {
+		case "trace":
+		case "debug":
+		case "info":
+		case "warning":
+		case "error":
+		case "fatal": return level;
+		default: throw new TypeError(`Invalid log level: ${level}.`);
+	}
+}
+/**
+* Checks if a string is a valid log level.  This function can be used as
+* as a type guard to narrow the type of a string to a {@link LogLevel}.
+*
+* @param level The log level as a string.  This is case-sensitive.
+* @returns `true` if the string is a valid log level.
+*/
+function isLogLevel(level) {
+	switch (level) {
+		case "trace":
+		case "debug":
+		case "info":
+		case "warning":
+		case "error":
+		case "fatal": return true;
+		default: return false;
+	}
+}
+/**
+* Compares two log levels.
+* @param a The first log level.
+* @param b The second log level.
+* @returns A negative number if `a` is less than `b`, a positive number if `a`
+*          is greater than `b`, or zero if they are equal.
+* @since 0.8.0
+*/
+function compareLogLevel(a, b) {
+	const aIndex = logLevels.indexOf(a);
+	if (aIndex < 0) throw new TypeError(`Invalid log level: ${JSON.stringify(a)}.`);
+	const bIndex = logLevels.indexOf(b);
+	if (bIndex < 0) throw new TypeError(`Invalid log level: ${JSON.stringify(b)}.`);
+	return aIndex - bIndex;
+}
+
+//#endregion
+exports.compareLogLevel = compareLogLevel;
+exports.getLogLevels = getLogLevels;
+exports.isLogLevel = isLogLevel;
+exports.parseLogLevel = parseLogLevel;
+
+/***/ }),
+
+/***/ 5021:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+const require_context = __nccwpck_require__(2282);
+const require_level = __nccwpck_require__(2685);
+
+//#region src/logger.ts
+/**
+* Symbol to identify lazy values.
+*/
+const lazySymbol = Symbol.for("logtape.lazy");
+/**
+* Checks if a value is a lazy value.
+*
+* @param value The value to check.
+* @returns `true` if the value is a lazy value, `false` otherwise.
+* @since 2.0.0
+*/
+function isLazy(value) {
+	return value != null && typeof value === "object" && lazySymbol in value && value[lazySymbol] === true;
+}
+/**
+* Creates a lazy value that is evaluated at logging time.
+*
+* This is useful for logging contextual properties that may change over time,
+* such as the current user or request context.
+*
+* @example
+* ```typescript
+* let currentUser: string | null = null;
+* const logger = getLogger("app").with({ user: lazy(() => currentUser) });
+*
+* logger.info("User action");  // logs with user: null
+* currentUser = "alice";
+* logger.info("User action");  // logs with user: "alice"
+* ```
+*
+* @typeParam T The type of the value.
+* @param getter A function that returns the value.
+* @returns A lazy value.
+* @since 2.0.0
+*/
+function lazy(getter) {
+	return {
+		[lazySymbol]: true,
+		getter
+	};
+}
+/**
+* Resolves lazy values in a properties object.
+*
+* @param properties The properties object with potential lazy values.
+* @returns A new object with all lazy values resolved.
+*/
+function resolveProperties(properties) {
+	const resolved = {};
+	for (const key in properties) {
+		const value = properties[key];
+		resolved[key] = isLazy(value) ? value.getter() : value;
+	}
+	return resolved;
+}
+/**
+* Get a logger with the given category.
+*
+* ```typescript
+* const logger = getLogger(["my-app"]);
+* ```
+*
+* @param category The category of the logger.  It can be a string or an array
+*                 of strings.  If it is a string, it is equivalent to an array
+*                 with a single element.
+* @returns The logger.
+*/
+function getLogger(category = []) {
+	return LoggerImpl.getLogger(category);
+}
+/**
+* The symbol for the global root logger.
+*/
+const globalRootLoggerSymbol = Symbol.for("logtape.rootLogger");
+/**
+* A logger implementation.  Do not use this directly; use {@link getLogger}
+* instead.  This class is exported for testing purposes.
+*/
+var LoggerImpl = class LoggerImpl {
+	parent;
+	children;
+	category;
+	sinks;
+	parentSinks = "inherit";
+	filters;
+	lowestLevel = "trace";
+	contextLocalStorage;
+	static getLogger(category = []) {
+		let rootLogger = globalRootLoggerSymbol in globalThis ? globalThis[globalRootLoggerSymbol] ?? null : null;
+		if (rootLogger == null) {
+			rootLogger = new LoggerImpl(null, []);
+			globalThis[globalRootLoggerSymbol] = rootLogger;
+		}
+		if (typeof category === "string") return rootLogger.getChild(category);
+		if (category.length === 0) return rootLogger;
+		return rootLogger.getChild(category);
+	}
+	constructor(parent, category) {
+		this.parent = parent;
+		this.children = {};
+		this.category = category;
+		this.sinks = [];
+		this.filters = [];
+	}
+	getChild(subcategory) {
+		const name = typeof subcategory === "string" ? subcategory : subcategory[0];
+		const childRef = this.children[name];
+		let child = childRef instanceof LoggerImpl ? childRef : childRef?.deref();
+		if (child == null) {
+			child = new LoggerImpl(this, [...this.category, name]);
+			this.children[name] = "WeakRef" in globalThis ? new WeakRef(child) : child;
+		}
+		if (typeof subcategory === "string" || subcategory.length === 1) return child;
+		return child.getChild(subcategory.slice(1));
+	}
+	/**
+	* Reset the logger.  This removes all sinks and filters from the logger.
+	*/
+	reset() {
+		while (this.sinks.length > 0) this.sinks.shift();
+		this.parentSinks = "inherit";
+		while (this.filters.length > 0) this.filters.shift();
+		this.lowestLevel = "trace";
+	}
+	/**
+	* Reset the logger and all its descendants.  This removes all sinks and
+	* filters from the logger and all its descendants.
+	*/
+	resetDescendants() {
+		for (const child of Object.values(this.children)) {
+			const logger = child instanceof LoggerImpl ? child : child.deref();
+			if (logger != null) logger.resetDescendants();
+		}
+		this.reset();
+	}
+	with(properties) {
+		return new LoggerCtx(this, { ...properties });
+	}
+	filter(record) {
+		for (const filter of this.filters) if (!filter(record)) return false;
+		if (this.filters.length < 1) return this.parent?.filter(record) ?? true;
+		return true;
+	}
+	*getSinks(level) {
+		if (this.lowestLevel === null || require_level.compareLogLevel(level, this.lowestLevel) < 0) return;
+		if (this.parent != null && this.parentSinks === "inherit") for (const sink of this.parent.getSinks(level)) yield sink;
+		for (const sink of this.sinks) yield sink;
+	}
+	isEnabledFor(level) {
+		if (this.lowestLevel === null || require_level.compareLogLevel(level, this.lowestLevel) < 0) return false;
+		for (const _ of this.getSinks(level)) return true;
+		return false;
+	}
+	emit(record, bypassSinks) {
+		const categoryPrefix = require_context.getCategoryPrefix();
+		const baseCategory = "category" in record ? record.category : this.category;
+		const fullCategory = categoryPrefix.length > 0 ? [...categoryPrefix, ...baseCategory] : baseCategory;
+		const descriptors = Object.getOwnPropertyDescriptors(record);
+		descriptors.category = {
+			value: fullCategory,
+			enumerable: true,
+			configurable: true
+		};
+		const fullRecord = Object.defineProperties({}, descriptors);
+		if (this.lowestLevel === null || require_level.compareLogLevel(fullRecord.level, this.lowestLevel) < 0 || !this.filter(fullRecord)) return;
+		for (const sink of this.getSinks(fullRecord.level)) {
+			if (bypassSinks?.has(sink)) continue;
+			try {
+				sink(fullRecord);
+			} catch (error) {
+				const bypassSinks2 = new Set(bypassSinks);
+				bypassSinks2.add(sink);
+				metaLogger.log("fatal", "Failed to emit a log record to sink {sink}: {error}", {
+					sink,
+					error,
+					record: fullRecord
+				}, bypassSinks2);
+			}
+		}
+	}
+	log(level, rawMessage, properties, bypassSinks) {
+		const implicitContext = require_context.getImplicitContext();
+		let cachedProps = void 0;
+		const record = typeof properties === "function" ? {
+			category: this.category,
+			level,
+			timestamp: Date.now(),
+			get message() {
+				return parseMessageTemplate(rawMessage, this.properties);
+			},
+			rawMessage,
+			get properties() {
+				if (cachedProps == null) cachedProps = {
+					...implicitContext,
+					...properties()
+				};
+				return cachedProps;
+			}
+		} : {
+			category: this.category,
+			level,
+			timestamp: Date.now(),
+			message: parseMessageTemplate(rawMessage, {
+				...implicitContext,
+				...properties
+			}),
+			rawMessage,
+			properties: {
+				...implicitContext,
+				...properties
+			}
+		};
+		this.emit(record, bypassSinks);
+	}
+	logLazily(level, callback, properties = {}) {
+		const implicitContext = require_context.getImplicitContext();
+		let rawMessage = void 0;
+		let msg = void 0;
+		function realizeMessage() {
+			if (msg == null || rawMessage == null) {
+				msg = callback((tpl, ...values) => {
+					rawMessage = tpl;
+					return renderMessage(tpl, values);
+				});
+				if (rawMessage == null) throw new TypeError("No log record was made.");
+			}
+			return [msg, rawMessage];
+		}
+		this.emit({
+			category: this.category,
+			level,
+			get message() {
+				return realizeMessage()[0];
+			},
+			get rawMessage() {
+				return realizeMessage()[1];
+			},
+			timestamp: Date.now(),
+			properties: {
+				...implicitContext,
+				...properties
+			}
+		});
+	}
+	logTemplate(level, messageTemplate, values, properties = {}) {
+		const implicitContext = require_context.getImplicitContext();
+		this.emit({
+			category: this.category,
+			level,
+			message: renderMessage(messageTemplate, values),
+			rawMessage: messageTemplate,
+			timestamp: Date.now(),
+			properties: {
+				...implicitContext,
+				...properties
+			}
+		});
+	}
+	trace(message, ...values) {
+		if (typeof message === "string") {
+			const props = values[0];
+			if (typeof props === "function") {
+				if (props.constructor.name === "AsyncFunction") {
+					if (!this.isEnabledFor("trace")) return Promise.resolve();
+					return props().then((resolvedProps) => {
+						this.log("trace", message, resolvedProps);
+					});
+				}
+				const result = props();
+				if (result instanceof Promise) {
+					if (!this.isEnabledFor("trace")) return Promise.resolve();
+					return result.then((resolvedProps) => {
+						this.log("trace", message, resolvedProps);
+					});
+				}
+				this.log("trace", message, result);
+				return;
+			}
+			this.log("trace", message, props ?? {});
+		} else if (typeof message === "function") this.logLazily("trace", message);
+		else if (!Array.isArray(message)) this.log("trace", "{*}", message);
+		else this.logTemplate("trace", message, values);
+	}
+	debug(message, ...values) {
+		if (typeof message === "string") {
+			const props = values[0];
+			if (typeof props === "function") {
+				if (props.constructor.name === "AsyncFunction") {
+					if (!this.isEnabledFor("debug")) return Promise.resolve();
+					return props().then((resolvedProps) => {
+						this.log("debug", message, resolvedProps);
+					});
+				}
+				const result = props();
+				if (result instanceof Promise) {
+					if (!this.isEnabledFor("debug")) return Promise.resolve();
+					return result.then((resolvedProps) => {
+						this.log("debug", message, resolvedProps);
+					});
+				}
+				this.log("debug", message, result);
+				return;
+			}
+			this.log("debug", message, props ?? {});
+		} else if (typeof message === "function") this.logLazily("debug", message);
+		else if (!Array.isArray(message)) this.log("debug", "{*}", message);
+		else this.logTemplate("debug", message, values);
+	}
+	info(message, ...values) {
+		if (typeof message === "string") {
+			const props = values[0];
+			if (typeof props === "function") {
+				if (props.constructor.name === "AsyncFunction") {
+					if (!this.isEnabledFor("info")) return Promise.resolve();
+					return props().then((resolvedProps) => {
+						this.log("info", message, resolvedProps);
+					});
+				}
+				const result = props();
+				if (result instanceof Promise) {
+					if (!this.isEnabledFor("info")) return Promise.resolve();
+					return result.then((resolvedProps) => {
+						this.log("info", message, resolvedProps);
+					});
+				}
+				this.log("info", message, result);
+				return;
+			}
+			this.log("info", message, props ?? {});
+		} else if (typeof message === "function") this.logLazily("info", message);
+		else if (!Array.isArray(message)) this.log("info", "{*}", message);
+		else this.logTemplate("info", message, values);
+	}
+	warn(message, ...values) {
+		if (message instanceof Error) this.log("warning", "{error.message}", { error: message });
+		else if (typeof message === "string" && values[0] instanceof Error) this.log("warning", message, { error: values[0] });
+		else if (typeof message === "string") {
+			const props = values[0];
+			if (typeof props === "function") {
+				if (props.constructor.name === "AsyncFunction") {
+					if (!this.isEnabledFor("warning")) return Promise.resolve();
+					return props().then((resolvedProps) => {
+						this.log("warning", message, resolvedProps);
+					});
+				}
+				const result = props();
+				if (result instanceof Promise) {
+					if (!this.isEnabledFor("warning")) return Promise.resolve();
+					return result.then((resolvedProps) => {
+						this.log("warning", message, resolvedProps);
+					});
+				}
+				this.log("warning", message, result);
+				return;
+			}
+			this.log("warning", message, props ?? {});
+		} else if (typeof message === "function") this.logLazily("warning", message);
+		else if (!Array.isArray(message)) this.log("warning", "{*}", message);
+		else this.logTemplate("warning", message, values);
+	}
+	warning(message, ...values) {
+		if (message instanceof Error) this.log("warning", "{error.message}", { error: message });
+		else if (typeof message === "string" && values[0] instanceof Error) this.log("warning", message, { error: values[0] });
+		else if (typeof message === "string") {
+			const props = values[0];
+			if (typeof props === "function") {
+				if (props.constructor.name === "AsyncFunction") {
+					if (!this.isEnabledFor("warning")) return Promise.resolve();
+					return props().then((resolvedProps) => {
+						this.log("warning", message, resolvedProps);
+					});
+				}
+				const result = props();
+				if (result instanceof Promise) {
+					if (!this.isEnabledFor("warning")) return Promise.resolve();
+					return result.then((resolvedProps) => {
+						this.log("warning", message, resolvedProps);
+					});
+				}
+				this.log("warning", message, result);
+				return;
+			}
+			this.log("warning", message, props ?? {});
+		} else if (typeof message === "function") this.logLazily("warning", message);
+		else if (!Array.isArray(message)) this.log("warning", "{*}", message);
+		else this.logTemplate("warning", message, values);
+	}
+	error(message, ...values) {
+		if (message instanceof Error) this.log("error", "{error.message}", { error: message });
+		else if (typeof message === "string" && values[0] instanceof Error) this.log("error", message, { error: values[0] });
+		else if (typeof message === "string") {
+			const props = values[0];
+			if (typeof props === "function") {
+				if (props.constructor.name === "AsyncFunction") {
+					if (!this.isEnabledFor("error")) return Promise.resolve();
+					return props().then((resolvedProps) => {
+						this.log("error", message, resolvedProps);
+					});
+				}
+				const result = props();
+				if (result instanceof Promise) {
+					if (!this.isEnabledFor("error")) return Promise.resolve();
+					return result.then((resolvedProps) => {
+						this.log("error", message, resolvedProps);
+					});
+				}
+				this.log("error", message, result);
+				return;
+			}
+			this.log("error", message, props ?? {});
+		} else if (typeof message === "function") this.logLazily("error", message);
+		else if (!Array.isArray(message)) this.log("error", "{*}", message);
+		else this.logTemplate("error", message, values);
+	}
+	fatal(message, ...values) {
+		if (message instanceof Error) this.log("fatal", "{error.message}", { error: message });
+		else if (typeof message === "string" && values[0] instanceof Error) this.log("fatal", message, { error: values[0] });
+		else if (typeof message === "string") {
+			const props = values[0];
+			if (typeof props === "function") {
+				if (props.constructor.name === "AsyncFunction") {
+					if (!this.isEnabledFor("fatal")) return Promise.resolve();
+					return props().then((resolvedProps) => {
+						this.log("fatal", message, resolvedProps);
+					});
+				}
+				const result = props();
+				if (result instanceof Promise) {
+					if (!this.isEnabledFor("fatal")) return Promise.resolve();
+					return result.then((resolvedProps) => {
+						this.log("fatal", message, resolvedProps);
+					});
+				}
+				this.log("fatal", message, result);
+				return;
+			}
+			this.log("fatal", message, props ?? {});
+		} else if (typeof message === "function") this.logLazily("fatal", message);
+		else if (!Array.isArray(message)) this.log("fatal", "{*}", message);
+		else this.logTemplate("fatal", message, values);
+	}
+};
+/**
+* A logger implementation with contextual properties.  Do not use this
+* directly; use {@link Logger.with} instead.  This class is exported
+* for testing purposes.
+*/
+var LoggerCtx = class LoggerCtx {
+	logger;
+	properties;
+	constructor(logger, properties) {
+		this.logger = logger;
+		this.properties = properties;
+	}
+	get category() {
+		return this.logger.category;
+	}
+	get parent() {
+		return this.logger.parent;
+	}
+	getChild(subcategory) {
+		return this.logger.getChild(subcategory).with(this.properties);
+	}
+	with(properties) {
+		return new LoggerCtx(this.logger, {
+			...this.properties,
+			...properties
+		});
+	}
+	log(level, message, properties, bypassSinks) {
+		const contextProps = this.properties;
+		this.logger.log(level, message, typeof properties === "function" ? () => resolveProperties({
+			...contextProps,
+			...properties()
+		}) : () => resolveProperties({
+			...contextProps,
+			...properties
+		}), bypassSinks);
+	}
+	logLazily(level, callback) {
+		this.logger.logLazily(level, callback, resolveProperties(this.properties));
+	}
+	logTemplate(level, messageTemplate, values) {
+		this.logger.logTemplate(level, messageTemplate, values, resolveProperties(this.properties));
+	}
+	emit(record) {
+		const recordWithContext = {
+			...record,
+			properties: resolveProperties({
+				...this.properties,
+				...record.properties
+			})
+		};
+		this.logger.emit(recordWithContext);
+	}
+	isEnabledFor(level) {
+		return this.logger.isEnabledFor(level);
+	}
+	trace(message, ...values) {
+		if (typeof message === "string") {
+			const props = values[0];
+			if (typeof props === "function") {
+				if (props.constructor.name === "AsyncFunction") {
+					if (!this.isEnabledFor("trace")) return Promise.resolve();
+					return props().then((resolvedProps) => {
+						this.log("trace", message, resolvedProps);
+					});
+				}
+				const result = props();
+				if (result instanceof Promise) {
+					if (!this.isEnabledFor("trace")) return Promise.resolve();
+					return result.then((resolvedProps) => {
+						this.log("trace", message, resolvedProps);
+					});
+				}
+				this.log("trace", message, result);
+				return;
+			}
+			this.log("trace", message, props ?? {});
+		} else if (typeof message === "function") this.logLazily("trace", message);
+		else if (!Array.isArray(message)) this.log("trace", "{*}", message);
+		else this.logTemplate("trace", message, values);
+	}
+	debug(message, ...values) {
+		if (typeof message === "string") {
+			const props = values[0];
+			if (typeof props === "function") {
+				if (props.constructor.name === "AsyncFunction") {
+					if (!this.isEnabledFor("debug")) return Promise.resolve();
+					return props().then((resolvedProps) => {
+						this.log("debug", message, resolvedProps);
+					});
+				}
+				const result = props();
+				if (result instanceof Promise) {
+					if (!this.isEnabledFor("debug")) return Promise.resolve();
+					return result.then((resolvedProps) => {
+						this.log("debug", message, resolvedProps);
+					});
+				}
+				this.log("debug", message, result);
+				return;
+			}
+			this.log("debug", message, props ?? {});
+		} else if (typeof message === "function") this.logLazily("debug", message);
+		else if (!Array.isArray(message)) this.log("debug", "{*}", message);
+		else this.logTemplate("debug", message, values);
+	}
+	info(message, ...values) {
+		if (typeof message === "string") {
+			const props = values[0];
+			if (typeof props === "function") {
+				if (props.constructor.name === "AsyncFunction") {
+					if (!this.isEnabledFor("info")) return Promise.resolve();
+					return props().then((resolvedProps) => {
+						this.log("info", message, resolvedProps);
+					});
+				}
+				const result = props();
+				if (result instanceof Promise) {
+					if (!this.isEnabledFor("info")) return Promise.resolve();
+					return result.then((resolvedProps) => {
+						this.log("info", message, resolvedProps);
+					});
+				}
+				this.log("info", message, result);
+				return;
+			}
+			this.log("info", message, props ?? {});
+		} else if (typeof message === "function") this.logLazily("info", message);
+		else if (!Array.isArray(message)) this.log("info", "{*}", message);
+		else this.logTemplate("info", message, values);
+	}
+	warn(message, ...values) {
+		if (message instanceof Error) this.log("warning", "{error.message}", { error: message });
+		else if (typeof message === "string" && values[0] instanceof Error) this.log("warning", message, { error: values[0] });
+		else if (typeof message === "string") {
+			const props = values[0];
+			if (typeof props === "function") {
+				if (props.constructor.name === "AsyncFunction") {
+					if (!this.isEnabledFor("warning")) return Promise.resolve();
+					return props().then((resolvedProps) => {
+						this.log("warning", message, resolvedProps);
+					});
+				}
+				const result = props();
+				if (result instanceof Promise) {
+					if (!this.isEnabledFor("warning")) return Promise.resolve();
+					return result.then((resolvedProps) => {
+						this.log("warning", message, resolvedProps);
+					});
+				}
+				this.log("warning", message, result);
+				return;
+			}
+			this.log("warning", message, props ?? {});
+		} else if (typeof message === "function") this.logLazily("warning", message);
+		else if (!Array.isArray(message)) this.log("warning", "{*}", message);
+		else this.logTemplate("warning", message, values);
+	}
+	warning(message, ...values) {
+		if (message instanceof Error) this.log("warning", "{error.message}", { error: message });
+		else if (typeof message === "string" && values[0] instanceof Error) this.log("warning", message, { error: values[0] });
+		else if (typeof message === "string") {
+			const props = values[0];
+			if (typeof props === "function") {
+				if (props.constructor.name === "AsyncFunction") {
+					if (!this.isEnabledFor("warning")) return Promise.resolve();
+					return props().then((resolvedProps) => {
+						this.log("warning", message, resolvedProps);
+					});
+				}
+				const result = props();
+				if (result instanceof Promise) {
+					if (!this.isEnabledFor("warning")) return Promise.resolve();
+					return result.then((resolvedProps) => {
+						this.log("warning", message, resolvedProps);
+					});
+				}
+				this.log("warning", message, result);
+				return;
+			}
+			this.log("warning", message, props ?? {});
+		} else if (typeof message === "function") this.logLazily("warning", message);
+		else if (!Array.isArray(message)) this.log("warning", "{*}", message);
+		else this.logTemplate("warning", message, values);
+	}
+	error(message, ...values) {
+		if (message instanceof Error) this.log("error", "{error.message}", { error: message });
+		else if (typeof message === "string" && values[0] instanceof Error) this.log("error", message, { error: values[0] });
+		else if (typeof message === "string") {
+			const props = values[0];
+			if (typeof props === "function") {
+				if (props.constructor.name === "AsyncFunction") {
+					if (!this.isEnabledFor("error")) return Promise.resolve();
+					return props().then((resolvedProps) => {
+						this.log("error", message, resolvedProps);
+					});
+				}
+				const result = props();
+				if (result instanceof Promise) {
+					if (!this.isEnabledFor("error")) return Promise.resolve();
+					return result.then((resolvedProps) => {
+						this.log("error", message, resolvedProps);
+					});
+				}
+				this.log("error", message, result);
+				return;
+			}
+			this.log("error", message, props ?? {});
+		} else if (typeof message === "function") this.logLazily("error", message);
+		else if (!Array.isArray(message)) this.log("error", "{*}", message);
+		else this.logTemplate("error", message, values);
+	}
+	fatal(message, ...values) {
+		if (message instanceof Error) this.log("fatal", "{error.message}", { error: message });
+		else if (typeof message === "string" && values[0] instanceof Error) this.log("fatal", message, { error: values[0] });
+		else if (typeof message === "string") {
+			const props = values[0];
+			if (typeof props === "function") {
+				if (props.constructor.name === "AsyncFunction") {
+					if (!this.isEnabledFor("fatal")) return Promise.resolve();
+					return props().then((resolvedProps) => {
+						this.log("fatal", message, resolvedProps);
+					});
+				}
+				const result = props();
+				if (result instanceof Promise) {
+					if (!this.isEnabledFor("fatal")) return Promise.resolve();
+					return result.then((resolvedProps) => {
+						this.log("fatal", message, resolvedProps);
+					});
+				}
+				this.log("fatal", message, result);
+				return;
+			}
+			this.log("fatal", message, props ?? {});
+		} else if (typeof message === "function") this.logLazily("fatal", message);
+		else if (!Array.isArray(message)) this.log("fatal", "{*}", message);
+		else this.logTemplate("fatal", message, values);
+	}
+};
+/**
+* The meta logger.  It is a logger with the category `["logtape", "meta"]`.
+*/
+const metaLogger = LoggerImpl.getLogger(["logtape", "meta"]);
+/**
+* Check if a property access key contains nested access patterns.
+* @param key The property key to check.
+* @returns True if the key contains nested access patterns.
+*/
+function isNestedAccess(key) {
+	return key.includes(".") || key.includes("[") || key.includes("?.");
+}
+/**
+* Safely access an own property from an object, blocking prototype pollution.
+*
+* @param obj The object to access the property from.
+* @param key The property key to access.
+* @returns The property value or undefined if not accessible.
+*/
+function getOwnProperty(obj, key) {
+	if (key === "__proto__" || key === "prototype" || key === "constructor") return void 0;
+	if ((typeof obj === "object" || typeof obj === "function") && obj !== null) return Object.prototype.hasOwnProperty.call(obj, key) ? obj[key] : void 0;
+	return void 0;
+}
+/**
+* Parse the next segment from a property path string.
+*
+* @param path The full property path string.
+* @param fromIndex The index to start parsing from.
+* @returns The parsed segment and next index, or null if parsing fails.
+*/
+function parseNextSegment(path, fromIndex) {
+	const len = path.length;
+	let i = fromIndex;
+	if (i >= len) return null;
+	let segment;
+	if (path[i] === "[") {
+		i++;
+		if (i >= len) return null;
+		if (path[i] === "\"" || path[i] === "'") {
+			const quote = path[i];
+			i++;
+			let segmentStr = "";
+			while (i < len && path[i] !== quote) if (path[i] === "\\") {
+				i++;
+				if (i < len) {
+					const escapeChar = path[i];
+					switch (escapeChar) {
+						case "n":
+							segmentStr += "\n";
+							break;
+						case "t":
+							segmentStr += "	";
+							break;
+						case "r":
+							segmentStr += "\r";
+							break;
+						case "b":
+							segmentStr += "\b";
+							break;
+						case "f":
+							segmentStr += "\f";
+							break;
+						case "v":
+							segmentStr += "\v";
+							break;
+						case "0":
+							segmentStr += "\0";
+							break;
+						case "\\":
+							segmentStr += "\\";
+							break;
+						case "\"":
+							segmentStr += "\"";
+							break;
+						case "'":
+							segmentStr += "'";
+							break;
+						case "u":
+							if (i + 4 < len) {
+								const hex = path.slice(i + 1, i + 5);
+								const codePoint = Number.parseInt(hex, 16);
+								if (!Number.isNaN(codePoint)) {
+									segmentStr += String.fromCharCode(codePoint);
+									i += 4;
+								} else segmentStr += escapeChar;
+							} else segmentStr += escapeChar;
+							break;
+						default: segmentStr += escapeChar;
+					}
+					i++;
+				}
+			} else {
+				segmentStr += path[i];
+				i++;
+			}
+			if (i >= len) return null;
+			segment = segmentStr;
+			i++;
+		} else {
+			const startIndex = i;
+			while (i < len && path[i] !== "]" && path[i] !== "'" && path[i] !== "\"") i++;
+			if (i >= len) return null;
+			const indexStr = path.slice(startIndex, i);
+			if (indexStr.length === 0) return null;
+			const indexNum = Number(indexStr);
+			segment = Number.isNaN(indexNum) ? indexStr : indexNum;
+		}
+		while (i < len && path[i] !== "]") i++;
+		if (i < len) i++;
+	} else {
+		const startIndex = i;
+		while (i < len && path[i] !== "." && path[i] !== "[" && path[i] !== "?" && path[i] !== "]") i++;
+		segment = path.slice(startIndex, i);
+		if (segment.length === 0) return null;
+	}
+	if (i < len && path[i] === ".") i++;
+	return {
+		segment,
+		nextIndex: i
+	};
+}
+/**
+* Access a property or index on an object or array.
+*
+* @param obj The object or array to access.
+* @param segment The property key or array index.
+* @returns The accessed value or undefined if not accessible.
+*/
+function accessProperty(obj, segment) {
+	if (typeof segment === "string") return getOwnProperty(obj, segment);
+	if (Array.isArray(obj) && segment >= 0 && segment < obj.length) return obj[segment];
+	return void 0;
+}
+/**
+* Resolve a nested property path from an object.
+*
+* There are two types of property access patterns:
+* 1. Array/index access: [0] or ["prop"]
+* 2. Property access: prop or prop?.next
+*
+* @param obj The object to traverse.
+* @param path The property path (e.g., "user.name", "users[0].email", "user['full-name']").
+* @returns The resolved value or undefined if path doesn't exist.
+*/
+function resolvePropertyPath(obj, path) {
+	if (obj == null) return void 0;
+	if (path.length === 0 || path.endsWith(".")) return void 0;
+	let current = obj;
+	let i = 0;
+	const len = path.length;
+	while (i < len) {
+		const isOptional = path.slice(i, i + 2) === "?.";
+		if (isOptional) {
+			i += 2;
+			if (current == null) return void 0;
+		} else if (current == null) return void 0;
+		const result = parseNextSegment(path, i);
+		if (result === null) return void 0;
+		const { segment, nextIndex } = result;
+		i = nextIndex;
+		current = accessProperty(current, segment);
+		if (current === void 0) return void 0;
+	}
+	return current;
+}
+/**
+* Parse a message template into a message template array and a values array.
+*
+* Placeholders to be replaced with `values` are indicated by keys in curly braces
+* (e.g., `{value}`). The system supports both simple property access and nested
+* property access patterns:
+*
+* **Simple property access:**
+* ```ts
+* parseMessageTemplate("Hello, {user}!", { user: "foo" })
+* // Returns: ["Hello, ", "foo", "!"]
+* ```
+*
+* **Nested property access (dot notation):**
+* ```ts
+* parseMessageTemplate("Hello, {user.name}!", {
+*   user: { name: "foo", email: "foo@example.com" }
+* })
+* // Returns: ["Hello, ", "foo", "!"]
+* ```
+*
+* **Array indexing:**
+* ```ts
+* parseMessageTemplate("First: {users[0]}", {
+*   users: ["foo", "bar", "baz"]
+* })
+* // Returns: ["First: ", "foo", ""]
+* ```
+*
+* **Bracket notation for special property names:**
+* ```ts
+* parseMessageTemplate("Name: {user[\"full-name\"]}", {
+*   user: { "full-name": "foo bar" }
+* })
+* // Returns: ["Name: ", "foo bar", ""]
+* ```
+*
+* **Optional chaining for safe navigation:**
+* ```ts
+* parseMessageTemplate("Email: {user?.profile?.email}", {
+*   user: { name: "foo" }
+* })
+* // Returns: ["Email: ", undefined, ""]
+* ```
+*
+* **Wildcard patterns:**
+* - `{*}` - Replaced with the entire properties object
+* - `{ key-with-whitespace }` - Whitespace is trimmed when looking up keys
+*
+* **Escaping:**
+* - `{{` and `}}` are escaped literal braces
+*
+* **Error handling:**
+* - Non-existent paths return `undefined`
+* - Malformed expressions resolve to `undefined` without throwing errors
+* - Out of bounds array access returns `undefined`
+*
+* @param template The message template string containing placeholders.
+* @param properties The values to replace placeholders with.
+* @returns The message template array with values interleaved between text segments.
+*/
+function parseMessageTemplate(template, properties) {
+	const length = template.length;
+	if (length === 0) return [""];
+	if (!template.includes("{")) return [template];
+	const message = [];
+	let startIndex = 0;
+	for (let i = 0; i < length; i++) {
+		const char = template[i];
+		if (char === "{") {
+			const nextChar = i + 1 < length ? template[i + 1] : "";
+			if (nextChar === "{") {
+				i++;
+				continue;
+			}
+			const closeIndex = template.indexOf("}", i + 1);
+			if (closeIndex === -1) continue;
+			const beforeText = template.slice(startIndex, i);
+			message.push(beforeText.replace(/{{/g, "{").replace(/}}/g, "}"));
+			const key = template.slice(i + 1, closeIndex);
+			let prop;
+			const trimmedKey = key.trim();
+			if (trimmedKey === "*") prop = key in properties ? properties[key] : "*" in properties ? properties["*"] : properties;
+			else {
+				if (key !== trimmedKey) prop = key in properties ? properties[key] : properties[trimmedKey];
+				else prop = properties[key];
+				if (prop === void 0 && isNestedAccess(trimmedKey)) prop = resolvePropertyPath(properties, trimmedKey);
+			}
+			message.push(prop);
+			i = closeIndex;
+			startIndex = i + 1;
+		} else if (char === "}" && i + 1 < length && template[i + 1] === "}") i++;
+	}
+	const remainingText = template.slice(startIndex);
+	message.push(remainingText.replace(/{{/g, "{").replace(/}}/g, "}"));
+	return message;
+}
+/**
+* Render a message template with values.
+* @param template The message template.
+* @param values The message template values.
+* @returns The message template values interleaved between the substitution
+*          values.
+*/
+function renderMessage(template, values) {
+	const args = [];
+	for (let i = 0; i < template.length; i++) {
+		args.push(template[i]);
+		if (i < values.length) args.push(values[i]);
+	}
+	return args;
+}
+
+//#endregion
+exports.LoggerImpl = LoggerImpl;
+exports.getLogger = getLogger;
+exports.isLazy = isLazy;
+exports.lazy = lazy;
+
+/***/ }),
+
+/***/ 9823:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+const require_filter = __nccwpck_require__(9867);
+const require_context = __nccwpck_require__(2282);
+const require_level = __nccwpck_require__(2685);
+const require_logger = __nccwpck_require__(5021);
+const require_formatter = __nccwpck_require__(4401);
+const require_sink = __nccwpck_require__(4760);
+const require_config = __nccwpck_require__(4991);
+
+exports.ConfigError = require_config.ConfigError;
+exports.ansiColorFormatter = require_formatter.ansiColorFormatter;
+exports.compareLogLevel = require_level.compareLogLevel;
+exports.configure = require_config.configure;
+exports.configureSync = require_config.configureSync;
+exports.defaultConsoleFormatter = require_formatter.defaultConsoleFormatter;
+exports.defaultTextFormatter = require_formatter.defaultTextFormatter;
+exports.dispose = require_config.dispose;
+exports.disposeSync = require_config.disposeSync;
+exports.fingersCrossed = require_sink.fingersCrossed;
+exports.fromAsyncSink = require_sink.fromAsyncSink;
+exports.getAnsiColorFormatter = require_formatter.getAnsiColorFormatter;
+exports.getConfig = require_config.getConfig;
+exports.getConsoleSink = require_sink.getConsoleSink;
+exports.getJsonLinesFormatter = require_formatter.getJsonLinesFormatter;
+exports.getLevelFilter = require_filter.getLevelFilter;
+exports.getLogLevels = require_level.getLogLevels;
+exports.getLogger = require_logger.getLogger;
+exports.getStreamSink = require_sink.getStreamSink;
+exports.getTextFormatter = require_formatter.getTextFormatter;
+exports.isLazy = require_logger.isLazy;
+exports.isLogLevel = require_level.isLogLevel;
+exports.jsonLinesFormatter = require_formatter.jsonLinesFormatter;
+exports.lazy = require_logger.lazy;
+exports.parseLogLevel = require_level.parseLogLevel;
+exports.reset = require_config.reset;
+exports.resetSync = require_config.resetSync;
+exports.toFilter = require_filter.toFilter;
+exports.withCategoryPrefix = require_context.withCategoryPrefix;
+exports.withContext = require_context.withContext;
+exports.withFilter = require_sink.withFilter;
+
+/***/ }),
+
+/***/ 4760:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+const require_filter = __nccwpck_require__(9867);
+const require_level = __nccwpck_require__(2685);
+const require_formatter = __nccwpck_require__(4401);
+
+//#region src/sink.ts
+/**
+* Turns a sink into a filtered sink.  The returned sink only logs records that
+* pass the filter.
+*
+* @example Filter a console sink to only log records with the info level
+* ```typescript
+* const sink = withFilter(getConsoleSink(), "info");
+* ```
+*
+* @param sink A sink to be filtered.
+* @param filter A filter to apply to the sink.  It can be either a filter
+*               function or a {@link LogLevel} string.
+* @returns A sink that only logs records that pass the filter.
+*/
+function withFilter(sink, filter) {
+	const filterFunc = require_filter.toFilter(filter);
+	return (record) => {
+		if (filterFunc(record)) sink(record);
+	};
+}
+/**
+* A factory that returns a sink that writes to a {@link WritableStream}.
+*
+* Note that the `stream` is of Web Streams API, which is different from
+* Node.js streams.  You can convert a Node.js stream to a Web Streams API
+* stream using [`stream.Writable.toWeb()`] method.
+*
+* [`stream.Writable.toWeb()`]: https://nodejs.org/api/stream.html#streamwritabletowebstreamwritable
+*
+* @example Sink to the standard error in Deno
+* ```typescript
+* const stderrSink = getStreamSink(Deno.stderr.writable);
+* ```
+*
+* @example Sink to the standard error in Node.js
+* ```typescript
+* import stream from "node:stream";
+* const stderrSink = getStreamSink(stream.Writable.toWeb(process.stderr));
+* ```
+*
+* @param stream The stream to write to.
+* @param options The options for the sink.
+* @returns A sink that writes to the stream.
+*/
+function getStreamSink(stream, options = {}) {
+	const formatter = options.formatter ?? require_formatter.defaultTextFormatter;
+	const encoder = options.encoder ?? new TextEncoder();
+	const writer = stream.getWriter();
+	if (!options.nonBlocking) {
+		let lastPromise = Promise.resolve();
+		const sink = (record) => {
+			const bytes = encoder.encode(formatter(record));
+			lastPromise = lastPromise.then(() => writer.ready).then(() => writer.write(bytes));
+		};
+		sink[Symbol.asyncDispose] = async () => {
+			await lastPromise;
+			await writer.close();
+		};
+		return sink;
+	}
+	const nonBlockingConfig = options.nonBlocking === true ? {} : options.nonBlocking;
+	const bufferSize = nonBlockingConfig.bufferSize ?? 100;
+	const flushInterval = nonBlockingConfig.flushInterval ?? 100;
+	const buffer = [];
+	let flushTimer = null;
+	let disposed = false;
+	let activeFlush = null;
+	const maxBufferSize = bufferSize * 2;
+	async function flush() {
+		if (buffer.length === 0) return;
+		const records = buffer.splice(0);
+		for (const record of records) try {
+			const bytes = encoder.encode(formatter(record));
+			await writer.ready;
+			await writer.write(bytes);
+		} catch {}
+	}
+	function scheduleFlush() {
+		if (activeFlush) return;
+		activeFlush = flush().finally(() => {
+			activeFlush = null;
+		});
+	}
+	function startFlushTimer() {
+		if (flushTimer !== null || disposed) return;
+		flushTimer = setInterval(() => {
+			scheduleFlush();
+		}, flushInterval);
+	}
+	const nonBlockingSink = (record) => {
+		if (disposed) return;
+		if (buffer.length >= maxBufferSize) buffer.shift();
+		buffer.push(record);
+		if (buffer.length >= bufferSize) scheduleFlush();
+		else if (flushTimer === null) startFlushTimer();
+	};
+	nonBlockingSink[Symbol.asyncDispose] = async () => {
+		disposed = true;
+		if (flushTimer !== null) {
+			clearInterval(flushTimer);
+			flushTimer = null;
+		}
+		await flush();
+		try {
+			await writer.close();
+		} catch {}
+	};
+	return nonBlockingSink;
+}
+/**
+* A console sink factory that returns a sink that logs to the console.
+*
+* @param options The options for the sink.
+* @returns A sink that logs to the console. If `nonBlocking` is enabled,
+*          returns a sink that also implements {@link Disposable}.
+*/
+function getConsoleSink(options = {}) {
+	const formatter = options.formatter ?? require_formatter.defaultConsoleFormatter;
+	const levelMap = {
+		trace: "debug",
+		debug: "debug",
+		info: "info",
+		warning: "warn",
+		error: "error",
+		fatal: "error",
+		...options.levelMap ?? {}
+	};
+	const console = options.console ?? globalThis.console;
+	const baseSink = (record) => {
+		const args = formatter(record);
+		const method = levelMap[record.level];
+		if (method === void 0) throw new TypeError(`Invalid log level: ${record.level}.`);
+		if (typeof args === "string") {
+			const msg = args.replace(/\r?\n$/, "");
+			console[method](msg);
+		} else console[method](...args);
+	};
+	if (!options.nonBlocking) return baseSink;
+	const nonBlockingConfig = options.nonBlocking === true ? {} : options.nonBlocking;
+	const bufferSize = nonBlockingConfig.bufferSize ?? 100;
+	const flushInterval = nonBlockingConfig.flushInterval ?? 100;
+	const buffer = [];
+	let flushTimer = null;
+	let disposed = false;
+	let flushScheduled = false;
+	const maxBufferSize = bufferSize * 2;
+	function flush() {
+		if (buffer.length === 0) return;
+		const records = buffer.splice(0);
+		for (const record of records) try {
+			baseSink(record);
+		} catch {}
+	}
+	function scheduleFlush() {
+		if (flushScheduled) return;
+		flushScheduled = true;
+		setTimeout(() => {
+			flushScheduled = false;
+			flush();
+		}, 0);
+	}
+	function startFlushTimer() {
+		if (flushTimer !== null || disposed) return;
+		flushTimer = setInterval(() => {
+			flush();
+		}, flushInterval);
+	}
+	const nonBlockingSink = (record) => {
+		if (disposed) return;
+		if (buffer.length >= maxBufferSize) buffer.shift();
+		buffer.push(record);
+		if (buffer.length >= bufferSize) scheduleFlush();
+		else if (flushTimer === null) startFlushTimer();
+	};
+	nonBlockingSink[Symbol.dispose] = () => {
+		disposed = true;
+		if (flushTimer !== null) {
+			clearInterval(flushTimer);
+			flushTimer = null;
+		}
+		flush();
+	};
+	return nonBlockingSink;
+}
+/**
+* Converts an async sink into a regular sink with proper async handling.
+* The returned sink chains async operations to ensure proper ordering and
+* implements AsyncDisposable to wait for all pending operations on disposal.
+*
+* @example Create a sink that asynchronously posts to a webhook
+* ```typescript
+* const asyncSink: AsyncSink = async (record) => {
+*   await fetch("https://example.com/logs", {
+*     method: "POST",
+*     body: JSON.stringify(record),
+*   });
+* };
+* const sink = fromAsyncSink(asyncSink);
+* ```
+*
+* @param asyncSink The async sink function to convert.
+* @returns A sink that properly handles async operations and disposal.
+* @since 1.0.0
+*/
+function fromAsyncSink(asyncSink) {
+	let lastPromise = Promise.resolve();
+	const sink = (record) => {
+		lastPromise = lastPromise.then(() => asyncSink(record)).catch(() => {});
+	};
+	sink[Symbol.asyncDispose] = async () => {
+		await lastPromise;
+	};
+	return sink;
+}
+/**
+* Creates a sink that buffers log records until a trigger level is reached.
+* This pattern, known as "fingers crossed" logging, keeps detailed debug logs
+* in memory and only outputs them when an error or other significant event occurs.
+*
+* @example Basic usage with default settings
+* ```typescript
+* const sink = fingersCrossed(getConsoleSink());
+* // Debug and info logs are buffered
+* // When an error occurs, all buffered logs + the error are output
+* ```
+*
+* @example Custom trigger level and buffer size
+* ```typescript
+* const sink = fingersCrossed(getConsoleSink(), {
+*   triggerLevel: "warning",  // Trigger on warning or higher
+*   maxBufferSize: 500        // Keep last 500 records
+* });
+* ```
+*
+* @example Category isolation
+* ```typescript
+* const sink = fingersCrossed(getConsoleSink(), {
+*   isolateByCategory: "descendant"  // Separate buffers per category
+* });
+* // Error in ["app"] triggers flush of ["app"] and ["app", "module"] buffers
+* // But not ["other"] buffer
+* ```
+*
+* @param sink The sink to wrap. Buffered records are sent to this sink when
+*             triggered.
+* @param options Configuration options for the fingers crossed behavior.
+* @returns A sink that buffers records until the trigger level is reached.
+* @since 1.1.0
+*/
+function fingersCrossed(sink, options = {}) {
+	const triggerLevel = options.triggerLevel ?? "error";
+	const bufferLevel = options.bufferLevel;
+	const maxBufferSize = Math.max(0, options.maxBufferSize ?? 1e3);
+	const isolateByCategory = options.isolateByCategory;
+	const isolateByContext = options.isolateByContext;
+	const bufferTtlMs = isolateByContext?.bufferTtlMs;
+	const cleanupIntervalMs = isolateByContext?.cleanupIntervalMs ?? 3e4;
+	const maxContexts = isolateByContext?.maxContexts;
+	const hasTtl = bufferTtlMs != null && bufferTtlMs > 0;
+	const hasLru = maxContexts != null && maxContexts > 0;
+	try {
+		require_level.compareLogLevel("trace", triggerLevel);
+	} catch (error) {
+		throw new TypeError(`Invalid triggerLevel: ${JSON.stringify(triggerLevel)}. ${error instanceof Error ? error.message : String(error)}`);
+	}
+	if (bufferLevel != null) {
+		try {
+			require_level.compareLogLevel("trace", bufferLevel);
+		} catch (error) {
+			throw new TypeError(`Invalid bufferLevel: ${JSON.stringify(bufferLevel)}. ${error instanceof Error ? error.message : String(error)}`);
+		}
+		if (require_level.compareLogLevel(bufferLevel, triggerLevel) >= 0) throw new RangeError(`bufferLevel (${JSON.stringify(bufferLevel)}) must be lower than triggerLevel (${JSON.stringify(triggerLevel)}).`);
+	}
+	function isDescendant(parent, child) {
+		if (parent.length === 0 || child.length === 0) return false;
+		if (parent.length > child.length) return false;
+		return parent.every((p, i) => p === child[i]);
+	}
+	function isAncestor(child, parent) {
+		if (child.length === 0 || parent.length === 0) return false;
+		if (child.length < parent.length) return false;
+		return parent.every((p, i) => p === child[i]);
+	}
+	let shouldFlushBuffer = null;
+	if (isolateByCategory) if (typeof isolateByCategory === "function") shouldFlushBuffer = isolateByCategory;
+	else switch (isolateByCategory) {
+		case "descendant":
+			shouldFlushBuffer = (trigger, buffered) => isDescendant(trigger, buffered);
+			break;
+		case "ancestor":
+			shouldFlushBuffer = (trigger, buffered) => isAncestor(trigger, buffered);
+			break;
+		case "both":
+			shouldFlushBuffer = (trigger, buffered) => isDescendant(trigger, buffered) || isAncestor(trigger, buffered);
+			break;
+	}
+	function getCategoryKey(category) {
+		return JSON.stringify(category);
+	}
+	function parseCategoryKey(key) {
+		return JSON.parse(key);
+	}
+	function getContextKey(properties) {
+		if (!isolateByContext || isolateByContext.keys.length === 0) return "";
+		const contextValues = {};
+		for (const key of isolateByContext.keys) if (key in properties) contextValues[key] = properties[key];
+		return JSON.stringify(contextValues);
+	}
+	function getBufferKey(category, properties) {
+		const categoryKey = getCategoryKey(category);
+		if (!isolateByContext) return categoryKey;
+		const contextKey = getContextKey(properties);
+		return `${categoryKey}:${contextKey}`;
+	}
+	function parseBufferKey(key) {
+		if (!isolateByContext) return {
+			category: parseCategoryKey(key),
+			context: ""
+		};
+		const separatorIndex = key.indexOf("]:");
+		if (separatorIndex === -1) return {
+			category: parseCategoryKey(key),
+			context: ""
+		};
+		const categoryPart = key.substring(0, separatorIndex + 1);
+		const contextPart = key.substring(separatorIndex + 2);
+		return {
+			category: parseCategoryKey(categoryPart),
+			context: contextPart
+		};
+	}
+	function cleanupExpiredBuffers(buffers) {
+		if (!hasTtl) return;
+		const now = Date.now();
+		const expiredKeys = [];
+		for (const [key, metadata] of buffers) {
+			if (metadata.buffer.length === 0) continue;
+			const lastRecordTimestamp = metadata.buffer[metadata.buffer.length - 1].timestamp;
+			if (now - lastRecordTimestamp > bufferTtlMs) expiredKeys.push(key);
+		}
+		for (const key of expiredKeys) buffers.delete(key);
+	}
+	function evictLruBuffers(buffers, numToEvict) {
+		if (!hasLru) return;
+		const toEvict = numToEvict ?? Math.max(0, buffers.size - maxContexts);
+		if (toEvict <= 0) return;
+		const sortedEntries = Array.from(buffers.entries()).sort(([, a], [, b]) => a.lastAccess - b.lastAccess);
+		for (let i = 0; i < toEvict; i++) {
+			const [key] = sortedEntries[i];
+			buffers.delete(key);
+		}
+	}
+	if (!isolateByCategory && !isolateByContext) {
+		const buffer = [];
+		let triggered = false;
+		return (record) => {
+			if (triggered) {
+				sink(record);
+				return;
+			}
+			if (require_level.compareLogLevel(record.level, triggerLevel) >= 0) {
+				triggered = true;
+				for (const bufferedRecord of buffer) sink(bufferedRecord);
+				buffer.length = 0;
+				sink(record);
+			} else if (bufferLevel != null && require_level.compareLogLevel(record.level, bufferLevel) > 0) sink(record);
+			else {
+				buffer.push(record);
+				while (buffer.length > maxBufferSize) buffer.shift();
+			}
+		};
+	} else {
+		const buffers = /* @__PURE__ */ new Map();
+		const triggered = /* @__PURE__ */ new Set();
+		let cleanupTimer = null;
+		if (hasTtl) cleanupTimer = setInterval(() => {
+			cleanupExpiredBuffers(buffers);
+		}, cleanupIntervalMs);
+		const fingersCrossedSink = (record) => {
+			const bufferKey = getBufferKey(record.category, record.properties);
+			if (triggered.has(bufferKey)) {
+				sink(record);
+				return;
+			}
+			if (require_level.compareLogLevel(record.level, triggerLevel) >= 0) {
+				const keysToFlush = /* @__PURE__ */ new Set();
+				for (const [bufferedKey] of buffers) if (bufferedKey === bufferKey) keysToFlush.add(bufferedKey);
+				else {
+					const { category: bufferedCategory, context: bufferedContext } = parseBufferKey(bufferedKey);
+					const { context: triggerContext } = parseBufferKey(bufferKey);
+					let contextMatches = true;
+					if (isolateByContext) contextMatches = bufferedContext === triggerContext;
+					let categoryMatches = false;
+					if (!isolateByCategory) categoryMatches = contextMatches;
+					else if (shouldFlushBuffer) try {
+						categoryMatches = shouldFlushBuffer(record.category, bufferedCategory);
+					} catch {}
+					else categoryMatches = getCategoryKey(record.category) === getCategoryKey(bufferedCategory);
+					if (contextMatches && categoryMatches) keysToFlush.add(bufferedKey);
+				}
+				const allRecordsToFlush = [];
+				for (const key of keysToFlush) {
+					const metadata = buffers.get(key);
+					if (metadata) {
+						allRecordsToFlush.push(...metadata.buffer);
+						buffers.delete(key);
+						triggered.add(key);
+					}
+				}
+				allRecordsToFlush.sort((a, b) => a.timestamp - b.timestamp);
+				for (const bufferedRecord of allRecordsToFlush) sink(bufferedRecord);
+				triggered.add(bufferKey);
+				sink(record);
+			} else if (bufferLevel != null && require_level.compareLogLevel(record.level, bufferLevel) > 0) sink(record);
+			else {
+				const now = Date.now();
+				let metadata = buffers.get(bufferKey);
+				if (!metadata) {
+					if (hasLru && buffers.size >= maxContexts) {
+						const numToEvict = buffers.size - maxContexts + 1;
+						evictLruBuffers(buffers, numToEvict);
+					}
+					metadata = {
+						buffer: [],
+						lastAccess: now
+					};
+					buffers.set(bufferKey, metadata);
+				} else metadata.lastAccess = now;
+				metadata.buffer.push(record);
+				while (metadata.buffer.length > maxBufferSize) metadata.buffer.shift();
+			}
+		};
+		if (cleanupTimer !== null) fingersCrossedSink[Symbol.dispose] = () => {
+			if (cleanupTimer !== null) {
+				clearInterval(cleanupTimer);
+				cleanupTimer = null;
+			}
+		};
+		return fingersCrossedSink;
+	}
+}
+
+//#endregion
+exports.fingersCrossed = fingersCrossed;
+exports.fromAsyncSink = fromAsyncSink;
+exports.getConsoleSink = getConsoleSink;
+exports.getStreamSink = getStreamSink;
+exports.withFilter = withFilter;
+
+/***/ }),
+
+/***/ 5517:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+const require_rolldown_runtime = __nccwpck_require__(7752);
+const node_util = require_rolldown_runtime.__toESM(__nccwpck_require__(7975));
+
+//#region src/util.node.ts
+function inspect(obj, options) {
+	return node_util.default.inspect(obj, options);
+}
+
+//#endregion
+exports.inspect = inspect;
+
+/***/ }),
+
 /***/ 3007:
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -50039,7 +52937,7 @@ exports.wrapAsPathBasedClient = wrapAsPathBasedClient;
 
 /***/ }),
 
-/***/ 4466:
+/***/ 7151:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -50071,21 +52969,21 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.z = void 0;
-const z = __importStar(__nccwpck_require__(2521));
+const z = __importStar(__nccwpck_require__(5908));
 exports.z = z;
-__exportStar(__nccwpck_require__(2521), exports);
+__exportStar(__nccwpck_require__(5908), exports);
 exports["default"] = z;
 
 
 /***/ }),
 
-/***/ 6327:
+/***/ 2914:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.slugify = exports.toUpperCase = exports.toLowerCase = exports.trim = exports.normalize = exports.overwrite = exports.mime = exports.property = exports.endsWith = exports.startsWith = exports.includes = exports.uppercase = exports.lowercase = exports.regex = exports.length = exports.minLength = exports.maxLength = exports.size = exports.minSize = exports.maxSize = exports.multipleOf = exports.nonnegative = exports.nonpositive = exports.negative = exports.positive = exports.gte = exports.gt = exports.lte = exports.lt = void 0;
-var index_js_1 = __nccwpck_require__(4723);
+var index_js_1 = __nccwpck_require__(2786);
 Object.defineProperty(exports, "lt", ({ enumerable: true, get: function () { return index_js_1._lt; } }));
 Object.defineProperty(exports, "lte", ({ enumerable: true, get: function () { return index_js_1._lte; } }));
 Object.defineProperty(exports, "gt", ({ enumerable: true, get: function () { return index_js_1._gt; } }));
@@ -50119,7 +53017,7 @@ Object.defineProperty(exports, "slugify", ({ enumerable: true, get: function () 
 
 /***/ }),
 
-/***/ 3787:
+/***/ 4294:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -50152,8 +53050,8 @@ exports.number = number;
 exports.boolean = boolean;
 exports.bigint = bigint;
 exports.date = date;
-const core = __importStar(__nccwpck_require__(4723));
-const schemas = __importStar(__nccwpck_require__(692));
+const core = __importStar(__nccwpck_require__(2786));
+const schemas = __importStar(__nccwpck_require__(3139));
 function string(params) {
     return core._coercedString(schemas.ZodString, params);
 }
@@ -50173,7 +53071,7 @@ function date(params) {
 
 /***/ }),
 
-/***/ 7722:
+/***/ 9875:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -50205,7 +53103,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ZodFirstPartyTypeKind = exports.config = exports.$brand = exports.ZodIssueCode = void 0;
 exports.setErrorMap = setErrorMap;
 exports.getErrorMap = getErrorMap;
-const core = __importStar(__nccwpck_require__(4723));
+const core = __importStar(__nccwpck_require__(2786));
 /** @deprecated Use the raw string literal codes instead, e.g. "invalid_type". */
 exports.ZodIssueCode = {
     invalid_type: "invalid_type",
@@ -50220,7 +53118,7 @@ exports.ZodIssueCode = {
     invalid_value: "invalid_value",
     custom: "custom",
 };
-var index_js_1 = __nccwpck_require__(4723);
+var index_js_1 = __nccwpck_require__(2786);
 Object.defineProperty(exports, "$brand", ({ enumerable: true, get: function () { return index_js_1.$brand; } }));
 Object.defineProperty(exports, "config", ({ enumerable: true, get: function () { return index_js_1.config; } }));
 /** @deprecated Use `z.config(params)` instead. */
@@ -50241,7 +53139,7 @@ var ZodFirstPartyTypeKind;
 
 /***/ }),
 
-/***/ 8153:
+/***/ 7540:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -50270,9 +53168,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ZodRealError = exports.ZodError = void 0;
-const core = __importStar(__nccwpck_require__(4723));
-const index_js_1 = __nccwpck_require__(4723);
-const util = __importStar(__nccwpck_require__(9693));
+const core = __importStar(__nccwpck_require__(2786));
+const index_js_1 = __nccwpck_require__(2786);
+const util = __importStar(__nccwpck_require__(6466));
 const initializer = (inst, issues) => {
     index_js_1.$ZodError.init(inst, issues);
     inst.name = "ZodError";
@@ -50322,7 +53220,7 @@ exports.ZodRealError = core.$constructor("ZodError", initializer, {
 
 /***/ }),
 
-/***/ 2521:
+/***/ 5908:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -50357,17 +53255,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.coerce = exports.iso = exports.ZodISODuration = exports.ZodISOTime = exports.ZodISODate = exports.ZodISODateTime = exports.locales = exports.fromJSONSchema = exports.toJSONSchema = exports.NEVER = exports.util = exports.TimePrecision = exports.flattenError = exports.formatError = exports.prettifyError = exports.treeifyError = exports.regexes = exports.clone = exports.$brand = exports.$input = exports.$output = exports.config = exports.registry = exports.globalRegistry = exports.core = void 0;
-exports.core = __importStar(__nccwpck_require__(4723));
-__exportStar(__nccwpck_require__(692), exports);
-__exportStar(__nccwpck_require__(6327), exports);
-__exportStar(__nccwpck_require__(8153), exports);
-__exportStar(__nccwpck_require__(5001), exports);
-__exportStar(__nccwpck_require__(7722), exports);
+exports.core = __importStar(__nccwpck_require__(2786));
+__exportStar(__nccwpck_require__(3139), exports);
+__exportStar(__nccwpck_require__(2914), exports);
+__exportStar(__nccwpck_require__(7540), exports);
+__exportStar(__nccwpck_require__(9006), exports);
+__exportStar(__nccwpck_require__(9875), exports);
 // zod-specified
-const index_js_1 = __nccwpck_require__(4723);
-const en_js_1 = __importDefault(__nccwpck_require__(8826));
+const index_js_1 = __nccwpck_require__(2786);
+const en_js_1 = __importDefault(__nccwpck_require__(6291));
 (0, index_js_1.config)((0, en_js_1.default)());
-var index_js_2 = __nccwpck_require__(4723);
+var index_js_2 = __nccwpck_require__(2786);
 Object.defineProperty(exports, "globalRegistry", ({ enumerable: true, get: function () { return index_js_2.globalRegistry; } }));
 Object.defineProperty(exports, "registry", ({ enumerable: true, get: function () { return index_js_2.registry; } }));
 Object.defineProperty(exports, "config", ({ enumerable: true, get: function () { return index_js_2.config; } }));
@@ -50383,26 +53281,26 @@ Object.defineProperty(exports, "flattenError", ({ enumerable: true, get: functio
 Object.defineProperty(exports, "TimePrecision", ({ enumerable: true, get: function () { return index_js_2.TimePrecision; } }));
 Object.defineProperty(exports, "util", ({ enumerable: true, get: function () { return index_js_2.util; } }));
 Object.defineProperty(exports, "NEVER", ({ enumerable: true, get: function () { return index_js_2.NEVER; } }));
-var json_schema_processors_js_1 = __nccwpck_require__(5745);
+var json_schema_processors_js_1 = __nccwpck_require__(2822);
 Object.defineProperty(exports, "toJSONSchema", ({ enumerable: true, get: function () { return json_schema_processors_js_1.toJSONSchema; } }));
-var from_json_schema_js_1 = __nccwpck_require__(6517);
+var from_json_schema_js_1 = __nccwpck_require__(8956);
 Object.defineProperty(exports, "fromJSONSchema", ({ enumerable: true, get: function () { return from_json_schema_js_1.fromJSONSchema; } }));
-exports.locales = __importStar(__nccwpck_require__(7269));
+exports.locales = __importStar(__nccwpck_require__(7722));
 // iso
 // must be exported from top-level
 // https://github.com/colinhacks/zod/issues/4491
-var iso_js_1 = __nccwpck_require__(4915);
+var iso_js_1 = __nccwpck_require__(6484);
 Object.defineProperty(exports, "ZodISODateTime", ({ enumerable: true, get: function () { return iso_js_1.ZodISODateTime; } }));
 Object.defineProperty(exports, "ZodISODate", ({ enumerable: true, get: function () { return iso_js_1.ZodISODate; } }));
 Object.defineProperty(exports, "ZodISOTime", ({ enumerable: true, get: function () { return iso_js_1.ZodISOTime; } }));
 Object.defineProperty(exports, "ZodISODuration", ({ enumerable: true, get: function () { return iso_js_1.ZodISODuration; } }));
-exports.iso = __importStar(__nccwpck_require__(4915));
-exports.coerce = __importStar(__nccwpck_require__(3787));
+exports.iso = __importStar(__nccwpck_require__(6484));
+exports.coerce = __importStar(__nccwpck_require__(4294));
 
 
 /***/ }),
 
-/***/ 6517:
+/***/ 8956:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -50431,10 +53329,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.fromJSONSchema = fromJSONSchema;
-const registries_js_1 = __nccwpck_require__(1104);
-const _checks = __importStar(__nccwpck_require__(6327));
-const _iso = __importStar(__nccwpck_require__(4915));
-const _schemas = __importStar(__nccwpck_require__(692));
+const registries_js_1 = __nccwpck_require__(5935);
+const _checks = __importStar(__nccwpck_require__(2914));
+const _iso = __importStar(__nccwpck_require__(6484));
+const _schemas = __importStar(__nccwpck_require__(3139));
 // Local z object to avoid circular dependency with ../index.js
 const z = {
     ..._schemas,
@@ -51019,7 +53917,7 @@ function fromJSONSchema(schema, params) {
 
 /***/ }),
 
-/***/ 4915:
+/***/ 6484:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -51052,8 +53950,8 @@ exports.datetime = datetime;
 exports.date = date;
 exports.time = time;
 exports.duration = duration;
-const core = __importStar(__nccwpck_require__(4723));
-const schemas = __importStar(__nccwpck_require__(692));
+const core = __importStar(__nccwpck_require__(2786));
+const schemas = __importStar(__nccwpck_require__(3139));
 exports.ZodISODateTime = core.$constructor("ZodISODateTime", (inst, def) => {
     core.$ZodISODateTime.init(inst, def);
     schemas.ZodStringFormat.init(inst, def);
@@ -51086,7 +53984,7 @@ function duration(params) {
 
 /***/ }),
 
-/***/ 5001:
+/***/ 9006:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -51115,8 +54013,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.safeDecodeAsync = exports.safeEncodeAsync = exports.safeDecode = exports.safeEncode = exports.decodeAsync = exports.encodeAsync = exports.decode = exports.encode = exports.safeParseAsync = exports.safeParse = exports.parseAsync = exports.parse = void 0;
-const core = __importStar(__nccwpck_require__(4723));
-const errors_js_1 = __nccwpck_require__(8153);
+const core = __importStar(__nccwpck_require__(2786));
+const errors_js_1 = __nccwpck_require__(7540);
 exports.parse = core._parse(errors_js_1.ZodRealError);
 exports.parseAsync = core._parseAsync(errors_js_1.ZodRealError);
 exports.safeParse = core._safeParse(errors_js_1.ZodRealError);
@@ -51134,7 +54032,7 @@ exports.safeDecodeAsync = core._safeDecodeAsync(errors_js_1.ZodRealError);
 
 /***/ }),
 
-/***/ 692:
+/***/ 3139:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -51258,13 +54156,13 @@ exports.superRefine = superRefine;
 exports["instanceof"] = _instanceof;
 exports.json = json;
 exports.preprocess = preprocess;
-const core = __importStar(__nccwpck_require__(4723));
-const index_js_1 = __nccwpck_require__(4723);
-const processors = __importStar(__nccwpck_require__(5745));
-const to_json_schema_js_1 = __nccwpck_require__(4387);
-const checks = __importStar(__nccwpck_require__(6327));
-const iso = __importStar(__nccwpck_require__(4915));
-const parse = __importStar(__nccwpck_require__(5001));
+const core = __importStar(__nccwpck_require__(2786));
+const index_js_1 = __nccwpck_require__(2786);
+const processors = __importStar(__nccwpck_require__(2822));
+const to_json_schema_js_1 = __nccwpck_require__(7440);
+const checks = __importStar(__nccwpck_require__(2914));
+const iso = __importStar(__nccwpck_require__(6484));
+const parse = __importStar(__nccwpck_require__(9006));
 exports.ZodType = core.$constructor("ZodType", (inst, def) => {
     core.$ZodType.init(inst, def);
     Object.assign(inst["~standard"], {
@@ -52413,7 +55311,7 @@ function preprocess(fn, schema) {
 
 /***/ }),
 
-/***/ 7499:
+/***/ 8562:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -52562,10 +55460,10 @@ exports.describe = describe;
 exports.meta = meta;
 exports._stringbool = _stringbool;
 exports._stringFormat = _stringFormat;
-const checks = __importStar(__nccwpck_require__(1182));
-const registries = __importStar(__nccwpck_require__(1104));
-const schemas = __importStar(__nccwpck_require__(9759));
-const util = __importStar(__nccwpck_require__(9693));
+const checks = __importStar(__nccwpck_require__(6777));
+const registries = __importStar(__nccwpck_require__(5935));
+const schemas = __importStar(__nccwpck_require__(166));
+const util = __importStar(__nccwpck_require__(6466));
 // @__NO_SIDE_EFFECTS__
 function _string(Class, params) {
     return new Class({
@@ -53642,7 +56540,7 @@ function _stringFormat(Class, format, fnOrRegex, _params = {}) {
 
 /***/ }),
 
-/***/ 1182:
+/***/ 6777:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -53672,9 +56570,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.$ZodCheckOverwrite = exports.$ZodCheckMimeType = exports.$ZodCheckProperty = exports.$ZodCheckEndsWith = exports.$ZodCheckStartsWith = exports.$ZodCheckIncludes = exports.$ZodCheckUpperCase = exports.$ZodCheckLowerCase = exports.$ZodCheckRegex = exports.$ZodCheckStringFormat = exports.$ZodCheckLengthEquals = exports.$ZodCheckMinLength = exports.$ZodCheckMaxLength = exports.$ZodCheckSizeEquals = exports.$ZodCheckMinSize = exports.$ZodCheckMaxSize = exports.$ZodCheckBigIntFormat = exports.$ZodCheckNumberFormat = exports.$ZodCheckMultipleOf = exports.$ZodCheckGreaterThan = exports.$ZodCheckLessThan = exports.$ZodCheck = void 0;
-const core = __importStar(__nccwpck_require__(7880));
-const regexes = __importStar(__nccwpck_require__(9070));
-const util = __importStar(__nccwpck_require__(9693));
+const core = __importStar(__nccwpck_require__(3695));
+const regexes = __importStar(__nccwpck_require__(6747));
+const util = __importStar(__nccwpck_require__(6466));
 exports.$ZodCheck = core.$constructor("$ZodCheck", (inst, def) => {
     var _a;
     inst._zod ?? (inst._zod = {});
@@ -54250,7 +57148,7 @@ exports.$ZodCheckOverwrite = core.$constructor("$ZodCheckOverwrite", (inst, def)
 
 /***/ }),
 
-/***/ 7880:
+/***/ 3695:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -54340,7 +57238,7 @@ function config(newConfig) {
 
 /***/ }),
 
-/***/ 5837:
+/***/ 3036:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -54386,7 +57284,7 @@ exports.Doc = Doc;
 
 /***/ }),
 
-/***/ 5880:
+/***/ 3084:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -54420,8 +57318,8 @@ exports.formatError = formatError;
 exports.treeifyError = treeifyError;
 exports.toDotPath = toDotPath;
 exports.prettifyError = prettifyError;
-const core_js_1 = __nccwpck_require__(7880);
-const util = __importStar(__nccwpck_require__(9693));
+const core_js_1 = __nccwpck_require__(3695);
+const util = __importStar(__nccwpck_require__(6466));
 const initializer = (inst, def) => {
     inst.name = "$ZodError";
     Object.defineProperty(inst, "_zod", {
@@ -54606,7 +57504,7 @@ function prettifyError(error) {
 
 /***/ }),
 
-/***/ 4723:
+/***/ 2786:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -54638,36 +57536,36 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.JSONSchema = exports.JSONSchemaGenerator = exports.toJSONSchema = exports.locales = exports.regexes = exports.util = void 0;
-__exportStar(__nccwpck_require__(7880), exports);
-__exportStar(__nccwpck_require__(5026), exports);
-__exportStar(__nccwpck_require__(5880), exports);
-__exportStar(__nccwpck_require__(9759), exports);
-__exportStar(__nccwpck_require__(1182), exports);
-__exportStar(__nccwpck_require__(4310), exports);
-exports.util = __importStar(__nccwpck_require__(9693));
-exports.regexes = __importStar(__nccwpck_require__(9070));
-exports.locales = __importStar(__nccwpck_require__(7269));
-__exportStar(__nccwpck_require__(1104), exports);
-__exportStar(__nccwpck_require__(5837), exports);
-__exportStar(__nccwpck_require__(7499), exports);
-__exportStar(__nccwpck_require__(4387), exports);
-var json_schema_processors_js_1 = __nccwpck_require__(5745);
+__exportStar(__nccwpck_require__(3695), exports);
+__exportStar(__nccwpck_require__(5055), exports);
+__exportStar(__nccwpck_require__(3084), exports);
+__exportStar(__nccwpck_require__(166), exports);
+__exportStar(__nccwpck_require__(6777), exports);
+__exportStar(__nccwpck_require__(5213), exports);
+exports.util = __importStar(__nccwpck_require__(6466));
+exports.regexes = __importStar(__nccwpck_require__(6747));
+exports.locales = __importStar(__nccwpck_require__(7722));
+__exportStar(__nccwpck_require__(5935), exports);
+__exportStar(__nccwpck_require__(3036), exports);
+__exportStar(__nccwpck_require__(8562), exports);
+__exportStar(__nccwpck_require__(7440), exports);
+var json_schema_processors_js_1 = __nccwpck_require__(2822);
 Object.defineProperty(exports, "toJSONSchema", ({ enumerable: true, get: function () { return json_schema_processors_js_1.toJSONSchema; } }));
-var json_schema_generator_js_1 = __nccwpck_require__(4977);
+var json_schema_generator_js_1 = __nccwpck_require__(4144);
 Object.defineProperty(exports, "JSONSchemaGenerator", ({ enumerable: true, get: function () { return json_schema_generator_js_1.JSONSchemaGenerator; } }));
-exports.JSONSchema = __importStar(__nccwpck_require__(597));
+exports.JSONSchema = __importStar(__nccwpck_require__(2068));
 
 
 /***/ }),
 
-/***/ 4977:
+/***/ 4144:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.JSONSchemaGenerator = void 0;
-const json_schema_processors_js_1 = __nccwpck_require__(5745);
-const to_json_schema_js_1 = __nccwpck_require__(4387);
+const json_schema_processors_js_1 = __nccwpck_require__(2822);
+const to_json_schema_js_1 = __nccwpck_require__(7440);
 /**
  * Legacy class-based interface for JSON Schema generation.
  * This class wraps the new functional implementation to provide backward compatibility.
@@ -54766,15 +57664,15 @@ exports.JSONSchemaGenerator = JSONSchemaGenerator;
 
 /***/ }),
 
-/***/ 5745:
+/***/ 2822:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.allProcessors = exports.lazyProcessor = exports.optionalProcessor = exports.promiseProcessor = exports.readonlyProcessor = exports.pipeProcessor = exports.catchProcessor = exports.prefaultProcessor = exports.defaultProcessor = exports.nonoptionalProcessor = exports.nullableProcessor = exports.recordProcessor = exports.tupleProcessor = exports.intersectionProcessor = exports.unionProcessor = exports.objectProcessor = exports.arrayProcessor = exports.setProcessor = exports.mapProcessor = exports.transformProcessor = exports.functionProcessor = exports.customProcessor = exports.successProcessor = exports.fileProcessor = exports.templateLiteralProcessor = exports.nanProcessor = exports.literalProcessor = exports.enumProcessor = exports.dateProcessor = exports.unknownProcessor = exports.anyProcessor = exports.neverProcessor = exports.voidProcessor = exports.undefinedProcessor = exports.nullProcessor = exports.symbolProcessor = exports.bigintProcessor = exports.booleanProcessor = exports.numberProcessor = exports.stringProcessor = void 0;
 exports.toJSONSchema = toJSONSchema;
-const to_json_schema_js_1 = __nccwpck_require__(4387);
-const util_js_1 = __nccwpck_require__(9693);
+const to_json_schema_js_1 = __nccwpck_require__(7440);
+const util_js_1 = __nccwpck_require__(6466);
 const formatMap = {
     guid: "uuid",
     url: "uri",
@@ -55421,7 +58319,7 @@ function toJSONSchema(input, params) {
 
 /***/ }),
 
-/***/ 597:
+/***/ 2068:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -55430,7 +58328,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 /***/ }),
 
-/***/ 5026:
+/***/ 5055:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -55459,9 +58357,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.safeDecodeAsync = exports._safeDecodeAsync = exports.safeEncodeAsync = exports._safeEncodeAsync = exports.safeDecode = exports._safeDecode = exports.safeEncode = exports._safeEncode = exports.decodeAsync = exports._decodeAsync = exports.encodeAsync = exports._encodeAsync = exports.decode = exports._decode = exports.encode = exports._encode = exports.safeParseAsync = exports._safeParseAsync = exports.safeParse = exports._safeParse = exports.parseAsync = exports._parseAsync = exports.parse = exports._parse = void 0;
-const core = __importStar(__nccwpck_require__(7880));
-const errors = __importStar(__nccwpck_require__(5880));
-const util = __importStar(__nccwpck_require__(9693));
+const core = __importStar(__nccwpck_require__(3695));
+const errors = __importStar(__nccwpck_require__(3084));
+const util = __importStar(__nccwpck_require__(6466));
 const _parse = (_Err) => (schema, value, _ctx, _params) => {
     const ctx = _ctx ? Object.assign(_ctx, { async: false }) : { async: false };
     const result = schema._zod.run({ value, issues: [] }, ctx);
@@ -55568,7 +58466,7 @@ exports.safeDecodeAsync = (0, exports._safeDecodeAsync)(errors.$ZodRealError);
 
 /***/ }),
 
-/***/ 9070:
+/***/ 6747:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -55601,7 +58499,7 @@ exports.sha512_base64url = exports.sha512_base64 = exports.sha512_hex = exports.
 exports.emoji = emoji;
 exports.time = time;
 exports.datetime = datetime;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 exports.cuid = /^[cC][^\s-]{8,}$/;
 exports.cuid2 = /^[0-9a-z]+$/;
 exports.ulid = /^[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}$/;
@@ -55741,7 +58639,7 @@ exports.sha512_base64url = fixedBase64url(86);
 
 /***/ }),
 
-/***/ 1104:
+/***/ 5935:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -55804,7 +58702,7 @@ exports.globalRegistry = globalThis.__zod_globalRegistry;
 
 /***/ }),
 
-/***/ 9759:
+/***/ 166:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -55837,13 +58735,13 @@ exports.$ZodCustom = exports.$ZodLazy = exports.$ZodPromise = exports.$ZodFuncti
 exports.isValidBase64 = isValidBase64;
 exports.isValidBase64URL = isValidBase64URL;
 exports.isValidJWT = isValidJWT;
-const checks = __importStar(__nccwpck_require__(1182));
-const core = __importStar(__nccwpck_require__(7880));
-const doc_js_1 = __nccwpck_require__(5837);
-const parse_js_1 = __nccwpck_require__(5026);
-const regexes = __importStar(__nccwpck_require__(9070));
-const util = __importStar(__nccwpck_require__(9693));
-const versions_js_1 = __nccwpck_require__(4310);
+const checks = __importStar(__nccwpck_require__(6777));
+const core = __importStar(__nccwpck_require__(3695));
+const doc_js_1 = __nccwpck_require__(3036);
+const parse_js_1 = __nccwpck_require__(5055);
+const regexes = __importStar(__nccwpck_require__(6747));
+const util = __importStar(__nccwpck_require__(6466));
+const versions_js_1 = __nccwpck_require__(5213);
 exports.$ZodType = core.$constructor("$ZodType", (inst, def) => {
     var _a;
     inst ?? (inst = {});
@@ -55966,7 +58864,7 @@ exports.$ZodType = core.$constructor("$ZodType", (inst, def) => {
         version: 1,
     }));
 });
-var util_js_1 = __nccwpck_require__(9693);
+var util_js_1 = __nccwpck_require__(6466);
 Object.defineProperty(exports, "clone", ({ enumerable: true, get: function () { return util_js_1.clone; } }));
 exports.$ZodString = core.$constructor("$ZodString", (inst, def) => {
     exports.$ZodType.init(inst, def);
@@ -57205,11 +60103,9 @@ exports.$ZodRecord = core.$constructor("$ZodRecord", (inst, def) => {
                 if (keyResult instanceof Promise) {
                     throw new Error("Async schemas not supported in object keys currently");
                 }
-                // Numeric string fallback: if key failed with "expected number", retry with Number(key)
-                const checkNumericKey = typeof key === "string" &&
-                    regexes.number.test(key) &&
-                    keyResult.issues.length &&
-                    keyResult.issues.some((iss) => iss.code === "invalid_type" && iss.expected === "number");
+                // Numeric string fallback: if key is a numeric string and failed, retry with Number(key)
+                // This handles z.number(), z.literal([1, 2, 3]), and unions containing numeric literals
+                const checkNumericKey = typeof key === "string" && regexes.number.test(key) && keyResult.issues.length;
                 if (checkNumericKey) {
                     const retryResult = def.keyType._zod.run({ value: Number(key), issues: [] }, ctx);
                     if (retryResult instanceof Promise) {
@@ -57937,7 +60833,7 @@ function handleRefineResult(result, payload, input, inst) {
 
 /***/ }),
 
-/***/ 4387:
+/***/ 7440:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 
@@ -57947,7 +60843,7 @@ exports.initializeContext = initializeContext;
 exports.process = process;
 exports.extractDefs = extractDefs;
 exports.finalize = finalize;
-const registries_js_1 = __nccwpck_require__(1104);
+const registries_js_1 = __nccwpck_require__(5935);
 // function initializeContext<T extends schemas.$ZodType>(inputs: JSONSchemaGeneratorParams<T>): ToJSONSchemaContext<T> {
 //   return {
 //     processor: inputs.processor,
@@ -58202,7 +61098,7 @@ function finalize(ctx, schema) {
                 }
             }
             // When ref was extracted to $defs, remove properties that match the definition
-            if (refSchema.$ref) {
+            if (refSchema.$ref && refSeen.def) {
                 for (const key in schema) {
                     if (key === "$ref" || key === "allOf")
                         continue;
@@ -58390,7 +61286,7 @@ exports.createStandardJSONSchemaMethod = createStandardJSONSchemaMethod;
 
 /***/ }),
 
-/***/ 9693:
+/***/ 6466:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -59107,7 +62003,7 @@ exports.Class = Class;
 
 /***/ }),
 
-/***/ 4310:
+/***/ 5213:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -59116,13 +62012,13 @@ exports.version = void 0;
 exports.version = {
     major: 4,
     minor: 3,
-    patch: 5,
+    patch: 6,
 };
 
 
 /***/ }),
 
-/***/ 2810:
+/***/ 1715:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -59151,7 +62047,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "حرف", verb: "أن يحوي" },
@@ -59262,7 +62158,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 5522:
+/***/ 5211:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -59291,7 +62187,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "simvol", verb: "olmalıdır" },
@@ -59401,7 +62297,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 3404:
+/***/ 4877:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -59430,7 +62326,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 function getBelarusianPlural(count, one, few, many) {
     const absCount = Math.abs(count);
     const lastDigit = absCount % 10;
@@ -59591,7 +62487,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 4478:
+/***/ 7207:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -59620,7 +62516,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "символа", verb: "да съдържа" },
@@ -59745,7 +62641,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 7143:
+/***/ 3274:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -59774,7 +62670,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "caràcters", verb: "contenir" },
@@ -59886,7 +62782,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 4781:
+/***/ 6664:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -59915,7 +62811,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "znaků", verb: "mít" },
@@ -60031,7 +62927,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 3294:
+/***/ 9531:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -60060,7 +62956,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "tegn", verb: "havde" },
@@ -60180,7 +63076,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 306:
+/***/ 3351:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -60209,7 +63105,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "Zeichen", verb: "zu haben" },
@@ -60322,7 +63218,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 8826:
+/***/ 6291:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -60351,7 +63247,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "characters", verb: "to have" },
@@ -60465,7 +63361,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 9771:
+/***/ 8354:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -60494,7 +63390,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "karaktrojn", verb: "havi" },
@@ -60608,7 +63504,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 9583:
+/***/ 7510:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -60637,7 +63533,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "caracteres", verb: "tener" },
@@ -60774,7 +63670,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 3124:
+/***/ 1157:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -60803,7 +63699,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "کاراکتر", verb: "داشته باشد" },
@@ -60922,7 +63818,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 3692:
+/***/ 4397:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -60951,7 +63847,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "merkkiä", subject: "merkkijonon" },
@@ -61068,7 +63964,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 7896:
+/***/ 5803:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -61097,7 +63993,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "caractères", verb: "avoir" },
@@ -61209,7 +64105,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 5815:
+/***/ 3358:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -61238,7 +64134,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "caractères", verb: "avoir" },
@@ -61351,7 +64247,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 3470:
+/***/ 1587:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -61380,7 +64276,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     // Hebrew labels + grammatical gender
     const TypeNames = {
@@ -61599,7 +64495,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 2430:
+/***/ 3203:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -61628,7 +64524,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "karakter", verb: "legyen" },
@@ -61741,7 +64637,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 2474:
+/***/ 9079:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -61770,7 +64666,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 function getArmenianPlural(count, one, many) {
     return Math.abs(count) === 1 ? one : many;
 }
@@ -61922,7 +64818,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 7292:
+/***/ 3981:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -61951,7 +64847,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "karakter", verb: "memiliki" },
@@ -62062,7 +64958,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 7269:
+/***/ 7722:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -62071,109 +64967,109 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.yo = exports.zhTW = exports.zhCN = exports.vi = exports.uz = exports.ur = exports.uk = exports.ua = exports.tr = exports.th = exports.ta = exports.sv = exports.sl = exports.ru = exports.pt = exports.pl = exports.ps = exports.ota = exports.no = exports.nl = exports.ms = exports.mk = exports.lt = exports.ko = exports.km = exports.kh = exports.ka = exports.ja = exports.it = exports.is = exports.id = exports.hy = exports.hu = exports.he = exports.frCA = exports.fr = exports.fi = exports.fa = exports.es = exports.eo = exports.en = exports.de = exports.da = exports.cs = exports.ca = exports.bg = exports.be = exports.az = exports.ar = void 0;
-var ar_js_1 = __nccwpck_require__(2810);
+var ar_js_1 = __nccwpck_require__(1715);
 Object.defineProperty(exports, "ar", ({ enumerable: true, get: function () { return __importDefault(ar_js_1).default; } }));
-var az_js_1 = __nccwpck_require__(5522);
+var az_js_1 = __nccwpck_require__(5211);
 Object.defineProperty(exports, "az", ({ enumerable: true, get: function () { return __importDefault(az_js_1).default; } }));
-var be_js_1 = __nccwpck_require__(3404);
+var be_js_1 = __nccwpck_require__(4877);
 Object.defineProperty(exports, "be", ({ enumerable: true, get: function () { return __importDefault(be_js_1).default; } }));
-var bg_js_1 = __nccwpck_require__(4478);
+var bg_js_1 = __nccwpck_require__(7207);
 Object.defineProperty(exports, "bg", ({ enumerable: true, get: function () { return __importDefault(bg_js_1).default; } }));
-var ca_js_1 = __nccwpck_require__(7143);
+var ca_js_1 = __nccwpck_require__(3274);
 Object.defineProperty(exports, "ca", ({ enumerable: true, get: function () { return __importDefault(ca_js_1).default; } }));
-var cs_js_1 = __nccwpck_require__(4781);
+var cs_js_1 = __nccwpck_require__(6664);
 Object.defineProperty(exports, "cs", ({ enumerable: true, get: function () { return __importDefault(cs_js_1).default; } }));
-var da_js_1 = __nccwpck_require__(3294);
+var da_js_1 = __nccwpck_require__(9531);
 Object.defineProperty(exports, "da", ({ enumerable: true, get: function () { return __importDefault(da_js_1).default; } }));
-var de_js_1 = __nccwpck_require__(306);
+var de_js_1 = __nccwpck_require__(3351);
 Object.defineProperty(exports, "de", ({ enumerable: true, get: function () { return __importDefault(de_js_1).default; } }));
-var en_js_1 = __nccwpck_require__(8826);
+var en_js_1 = __nccwpck_require__(6291);
 Object.defineProperty(exports, "en", ({ enumerable: true, get: function () { return __importDefault(en_js_1).default; } }));
-var eo_js_1 = __nccwpck_require__(9771);
+var eo_js_1 = __nccwpck_require__(8354);
 Object.defineProperty(exports, "eo", ({ enumerable: true, get: function () { return __importDefault(eo_js_1).default; } }));
-var es_js_1 = __nccwpck_require__(9583);
+var es_js_1 = __nccwpck_require__(7510);
 Object.defineProperty(exports, "es", ({ enumerable: true, get: function () { return __importDefault(es_js_1).default; } }));
-var fa_js_1 = __nccwpck_require__(3124);
+var fa_js_1 = __nccwpck_require__(1157);
 Object.defineProperty(exports, "fa", ({ enumerable: true, get: function () { return __importDefault(fa_js_1).default; } }));
-var fi_js_1 = __nccwpck_require__(3692);
+var fi_js_1 = __nccwpck_require__(4397);
 Object.defineProperty(exports, "fi", ({ enumerable: true, get: function () { return __importDefault(fi_js_1).default; } }));
-var fr_js_1 = __nccwpck_require__(5815);
+var fr_js_1 = __nccwpck_require__(3358);
 Object.defineProperty(exports, "fr", ({ enumerable: true, get: function () { return __importDefault(fr_js_1).default; } }));
-var fr_CA_js_1 = __nccwpck_require__(7896);
+var fr_CA_js_1 = __nccwpck_require__(5803);
 Object.defineProperty(exports, "frCA", ({ enumerable: true, get: function () { return __importDefault(fr_CA_js_1).default; } }));
-var he_js_1 = __nccwpck_require__(3470);
+var he_js_1 = __nccwpck_require__(1587);
 Object.defineProperty(exports, "he", ({ enumerable: true, get: function () { return __importDefault(he_js_1).default; } }));
-var hu_js_1 = __nccwpck_require__(2430);
+var hu_js_1 = __nccwpck_require__(3203);
 Object.defineProperty(exports, "hu", ({ enumerable: true, get: function () { return __importDefault(hu_js_1).default; } }));
-var hy_js_1 = __nccwpck_require__(2474);
+var hy_js_1 = __nccwpck_require__(9079);
 Object.defineProperty(exports, "hy", ({ enumerable: true, get: function () { return __importDefault(hy_js_1).default; } }));
-var id_js_1 = __nccwpck_require__(7292);
+var id_js_1 = __nccwpck_require__(3981);
 Object.defineProperty(exports, "id", ({ enumerable: true, get: function () { return __importDefault(id_js_1).default; } }));
-var is_js_1 = __nccwpck_require__(6739);
+var is_js_1 = __nccwpck_require__(522);
 Object.defineProperty(exports, "is", ({ enumerable: true, get: function () { return __importDefault(is_js_1).default; } }));
-var it_js_1 = __nccwpck_require__(5436);
+var it_js_1 = __nccwpck_require__(4797);
 Object.defineProperty(exports, "it", ({ enumerable: true, get: function () { return __importDefault(it_js_1).default; } }));
-var ja_js_1 = __nccwpck_require__(3560);
+var ja_js_1 = __nccwpck_require__(5849);
 Object.defineProperty(exports, "ja", ({ enumerable: true, get: function () { return __importDefault(ja_js_1).default; } }));
-var ka_js_1 = __nccwpck_require__(1151);
+var ka_js_1 = __nccwpck_require__(7682);
 Object.defineProperty(exports, "ka", ({ enumerable: true, get: function () { return __importDefault(ka_js_1).default; } }));
-var kh_js_1 = __nccwpck_require__(6166);
+var kh_js_1 = __nccwpck_require__(1099);
 Object.defineProperty(exports, "kh", ({ enumerable: true, get: function () { return __importDefault(kh_js_1).default; } }));
-var km_js_1 = __nccwpck_require__(9883);
+var km_js_1 = __nccwpck_require__(9750);
 Object.defineProperty(exports, "km", ({ enumerable: true, get: function () { return __importDefault(km_js_1).default; } }));
-var ko_js_1 = __nccwpck_require__(9713);
+var ko_js_1 = __nccwpck_require__(100);
 Object.defineProperty(exports, "ko", ({ enumerable: true, get: function () { return __importDefault(ko_js_1).default; } }));
-var lt_js_1 = __nccwpck_require__(9579);
+var lt_js_1 = __nccwpck_require__(7230);
 Object.defineProperty(exports, "lt", ({ enumerable: true, get: function () { return __importDefault(lt_js_1).default; } }));
-var mk_js_1 = __nccwpck_require__(4847);
+var mk_js_1 = __nccwpck_require__(9590);
 Object.defineProperty(exports, "mk", ({ enumerable: true, get: function () { return __importDefault(mk_js_1).default; } }));
-var ms_js_1 = __nccwpck_require__(2423);
+var ms_js_1 = __nccwpck_require__(1342);
 Object.defineProperty(exports, "ms", ({ enumerable: true, get: function () { return __importDefault(ms_js_1).default; } }));
-var nl_js_1 = __nccwpck_require__(2977);
+var nl_js_1 = __nccwpck_require__(8256);
 Object.defineProperty(exports, "nl", ({ enumerable: true, get: function () { return __importDefault(nl_js_1).default; } }));
-var no_js_1 = __nccwpck_require__(5226);
+var no_js_1 = __nccwpck_require__(1379);
 Object.defineProperty(exports, "no", ({ enumerable: true, get: function () { return __importDefault(no_js_1).default; } }));
-var ota_js_1 = __nccwpck_require__(8947);
+var ota_js_1 = __nccwpck_require__(6448);
 Object.defineProperty(exports, "ota", ({ enumerable: true, get: function () { return __importDefault(ota_js_1).default; } }));
-var ps_js_1 = __nccwpck_require__(424);
+var ps_js_1 = __nccwpck_require__(1101);
 Object.defineProperty(exports, "ps", ({ enumerable: true, get: function () { return __importDefault(ps_js_1).default; } }));
-var pl_js_1 = __nccwpck_require__(5727);
+var pl_js_1 = __nccwpck_require__(8770);
 Object.defineProperty(exports, "pl", ({ enumerable: true, get: function () { return __importDefault(pl_js_1).default; } }));
-var pt_js_1 = __nccwpck_require__(6823);
+var pt_js_1 = __nccwpck_require__(9258);
 Object.defineProperty(exports, "pt", ({ enumerable: true, get: function () { return __importDefault(pt_js_1).default; } }));
-var ru_js_1 = __nccwpck_require__(9196);
+var ru_js_1 = __nccwpck_require__(4493);
 Object.defineProperty(exports, "ru", ({ enumerable: true, get: function () { return __importDefault(ru_js_1).default; } }));
-var sl_js_1 = __nccwpck_require__(6946);
+var sl_js_1 = __nccwpck_require__(9999);
 Object.defineProperty(exports, "sl", ({ enumerable: true, get: function () { return __importDefault(sl_js_1).default; } }));
-var sv_js_1 = __nccwpck_require__(2888);
+var sv_js_1 = __nccwpck_require__(3517);
 Object.defineProperty(exports, "sv", ({ enumerable: true, get: function () { return __importDefault(sv_js_1).default; } }));
-var ta_js_1 = __nccwpck_require__(9854);
+var ta_js_1 = __nccwpck_require__(5707);
 Object.defineProperty(exports, "ta", ({ enumerable: true, get: function () { return __importDefault(ta_js_1).default; } }));
-var th_js_1 = __nccwpck_require__(6839);
+var th_js_1 = __nccwpck_require__(4530);
 Object.defineProperty(exports, "th", ({ enumerable: true, get: function () { return __importDefault(th_js_1).default; } }));
-var tr_js_1 = __nccwpck_require__(9650);
+var tr_js_1 = __nccwpck_require__(4824);
 Object.defineProperty(exports, "tr", ({ enumerable: true, get: function () { return __importDefault(tr_js_1).default; } }));
-var ua_js_1 = __nccwpck_require__(8709);
+var ua_js_1 = __nccwpck_require__(1588);
 Object.defineProperty(exports, "ua", ({ enumerable: true, get: function () { return __importDefault(ua_js_1).default; } }));
-var uk_js_1 = __nccwpck_require__(2983);
+var uk_js_1 = __nccwpck_require__(9742);
 Object.defineProperty(exports, "uk", ({ enumerable: true, get: function () { return __importDefault(uk_js_1).default; } }));
-var ur_js_1 = __nccwpck_require__(6190);
+var ur_js_1 = __nccwpck_require__(6535);
 Object.defineProperty(exports, "ur", ({ enumerable: true, get: function () { return __importDefault(ur_js_1).default; } }));
-var uz_js_1 = __nccwpck_require__(9926);
+var uz_js_1 = __nccwpck_require__(2751);
 Object.defineProperty(exports, "uz", ({ enumerable: true, get: function () { return __importDefault(uz_js_1).default; } }));
-var vi_js_1 = __nccwpck_require__(9660);
+var vi_js_1 = __nccwpck_require__(8301);
 Object.defineProperty(exports, "vi", ({ enumerable: true, get: function () { return __importDefault(vi_js_1).default; } }));
-var zh_CN_js_1 = __nccwpck_require__(2213);
+var zh_CN_js_1 = __nccwpck_require__(8346);
 Object.defineProperty(exports, "zhCN", ({ enumerable: true, get: function () { return __importDefault(zh_CN_js_1).default; } }));
-var zh_TW_js_1 = __nccwpck_require__(9981);
+var zh_TW_js_1 = __nccwpck_require__(6462);
 Object.defineProperty(exports, "zhTW", ({ enumerable: true, get: function () { return __importDefault(zh_TW_js_1).default; } }));
-var yo_js_1 = __nccwpck_require__(9895);
+var yo_js_1 = __nccwpck_require__(318);
 Object.defineProperty(exports, "yo", ({ enumerable: true, get: function () { return __importDefault(yo_js_1).default; } }));
 
 
 /***/ }),
 
-/***/ 6739:
+/***/ 522:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -62202,7 +65098,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "stafi", verb: "að hafa" },
@@ -62316,7 +65212,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 5436:
+/***/ 4797:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -62345,7 +65241,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "caratteri", verb: "avere" },
@@ -62458,7 +65354,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 3560:
+/***/ 5849:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -62487,7 +65383,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "文字", verb: "である" },
@@ -62599,7 +65495,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 1151:
+/***/ 7682:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -62628,7 +65524,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "სიმბოლო", verb: "უნდა შეიცავდეს" },
@@ -62745,7 +65641,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 6166:
+/***/ 1099:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -62754,7 +65650,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const km_js_1 = __importDefault(__nccwpck_require__(9883));
+const km_js_1 = __importDefault(__nccwpck_require__(9750));
 /** @deprecated Use `km` instead. */
 function default_1() {
     return (0, km_js_1.default)();
@@ -62764,7 +65660,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 9883:
+/***/ 9750:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -62793,7 +65689,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "តួអក្សរ", verb: "គួរមាន" },
@@ -62908,7 +65804,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 9713:
+/***/ 100:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -62937,7 +65833,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "문자", verb: "to have" },
@@ -63053,7 +65949,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 9579:
+/***/ 7230:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -63082,7 +65978,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const capitalizeFirstCharacter = (text) => {
     return text.charAt(0).toUpperCase() + text.slice(1);
 };
@@ -63290,7 +66186,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 4847:
+/***/ 9590:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -63319,7 +66215,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "знаци", verb: "да имаат" },
@@ -63433,7 +66329,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 2423:
+/***/ 1342:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -63462,7 +66358,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "aksara", verb: "mempunyai" },
@@ -63574,7 +66470,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 2977:
+/***/ 8256:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -63603,7 +66499,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "tekens", verb: "heeft" },
@@ -63718,7 +66614,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 5226:
+/***/ 1379:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -63747,7 +66643,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "tegn", verb: "å ha" },
@@ -63860,7 +66756,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 8947:
+/***/ 6448:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -63889,7 +66785,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "harf", verb: "olmalıdır" },
@@ -64003,7 +66899,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 5727:
+/***/ 8770:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -64032,7 +66928,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "znaków", verb: "mieć" },
@@ -64146,7 +67042,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 424:
+/***/ 1101:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -64175,7 +67071,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "توکي", verb: "ولري" },
@@ -64294,7 +67190,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 6823:
+/***/ 9258:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -64323,7 +67219,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "caracteres", verb: "ter" },
@@ -64436,7 +67332,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 9196:
+/***/ 4493:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -64465,7 +67361,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 function getRussianPlural(count, one, few, many) {
     const absCount = Math.abs(count);
     const lastDigit = absCount % 10;
@@ -64626,7 +67522,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 6946:
+/***/ 9999:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -64655,7 +67551,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "znakov", verb: "imeti" },
@@ -64769,7 +67665,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 2888:
+/***/ 3517:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -64798,7 +67694,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "tecken", verb: "att ha" },
@@ -64913,7 +67809,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 9854:
+/***/ 5707:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -64942,7 +67838,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "எழுத்துக்கள்", verb: "கொண்டிருக்க வேண்டும்" },
@@ -65057,7 +67953,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 6839:
+/***/ 4530:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -65086,7 +67982,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "ตัวอักษร", verb: "ควรมี" },
@@ -65201,7 +68097,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 9650:
+/***/ 4824:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -65230,7 +68126,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "karakter", verb: "olmalı" },
@@ -65340,7 +68236,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 8709:
+/***/ 1588:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -65349,7 +68245,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const uk_js_1 = __importDefault(__nccwpck_require__(2983));
+const uk_js_1 = __importDefault(__nccwpck_require__(9742));
 /** @deprecated Use `uk` instead. */
 function default_1() {
     return (0, uk_js_1.default)();
@@ -65359,7 +68255,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 2983:
+/***/ 9742:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -65388,7 +68284,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "символів", verb: "матиме" },
@@ -65501,7 +68397,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 6190:
+/***/ 6535:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -65530,7 +68426,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "حروف", verb: "ہونا" },
@@ -65645,7 +68541,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 9926:
+/***/ 2751:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -65674,7 +68570,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "belgi", verb: "bo‘lishi kerak" },
@@ -65788,7 +68684,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 9660:
+/***/ 8301:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -65817,7 +68713,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "ký tự", verb: "có" },
@@ -65930,7 +68826,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 9895:
+/***/ 318:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -65959,7 +68855,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "àmi", verb: "ní" },
@@ -66071,7 +68967,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 2213:
+/***/ 8346:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -66100,7 +68996,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "字符", verb: "包含" },
@@ -66214,7 +69110,7 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ 9981:
+/***/ 6462:
 /***/ (function(module, exports, __nccwpck_require__) {
 
 
@@ -66243,7 +69139,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = default_1;
-const util = __importStar(__nccwpck_require__(9693));
+const util = __importStar(__nccwpck_require__(6466));
 const error = () => {
     const Sizable = {
         string: { unit: "字元", verb: "擁有" },
