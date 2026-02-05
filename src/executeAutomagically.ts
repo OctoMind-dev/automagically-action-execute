@@ -35,17 +35,18 @@ export const executeAutomagically = async ({
     );
   }
 
-  // For PRs the SHA is NOT the actual triggering commit, it is the merge commit of a merge of this branch onto main.
+  // For PRs the SHA and ref is NOT of the actual triggering commit, it is the merge commit of a merge of this branch onto main.
   // to ensure that we get the actual triggering commit we need to use the pull request data
   // cf. https://github.com/orgs/community/discussions/26325 + https://github.com/orgs/community/discussions/59677
   const sha = github.context.payload.pull_request?.head?.sha ?? github.context.sha;
+  const ref = github.context.payload.pull_request?.head?.ref ?? github.context.ref;
 
   // common parameters
   const context = {
     issueNumber,
     repo: github.context.repo.repo,
     owner: github.context.repo.owner,
-    ref: github.context.ref,
+    ref,
     sha,
   };
 

@@ -21,7 +21,6 @@ vi.mock("@actions/github", () => ({
       number: 10,
     },
     payload: {
-      // eslint-disable-next-line camelcase
       pull_request: {
         number: 10,
         head: {
@@ -236,8 +235,11 @@ describe(executeAutomagically.name, () => {
   describe("context building", () => {
     it("builds GitHub context correctly on pull request event", async () => {
       context.sha = "differentCommitSha";
+      context.ref = "branch-different-name";
       // biome-ignore lint/style/noNonNullAssertion: bug in biome
       context.payload.pull_request!.head.sha = "abc123";
+      // biome-ignore lint/style/noNonNullAssertion: bug in biome
+      context.payload.pull_request!.head.ref = "branch-2";
 
       await executeAutomagically();
 
@@ -247,7 +249,7 @@ describe(executeAutomagically.name, () => {
             issueNumber: 10,
             repo: "some repo",
             owner: "some owner",
-            ref: "refs/heads/main",
+            ref: "branch-2",
             sha: "abc123",
           },
         }),
@@ -255,9 +257,9 @@ describe(executeAutomagically.name, () => {
     });
 
     it("builds GitHub context correctly on non-pr", async () => {
-      // eslint-disable-next-line camelcase
       context.payload.pull_request = undefined;
       context.sha = "abc123";
+      context.ref = "branch-1";
       await executeAutomagically();
 
       expect(executeTests).toHaveBeenCalledWith(
@@ -266,7 +268,7 @@ describe(executeAutomagically.name, () => {
             issueNumber: 10,
             repo: "some repo",
             owner: "some owner",
-            ref: "refs/heads/main",
+            ref: "branch-1",
             sha: "abc123",
           },
         }),
