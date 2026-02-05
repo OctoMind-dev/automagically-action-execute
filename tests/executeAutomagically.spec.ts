@@ -1,4 +1,4 @@
-import core from "@actions/core";
+import * as core from "@actions/core";
 import type github from "@actions/github";
 import { context } from "@actions/github";
 import { createClientFromUrlAndApiKey } from "@octomind/octomind/client";
