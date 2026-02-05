@@ -1,296 +1,276 @@
-import core from '@actions/core'
-import github, {context} from '@actions/github'
-import {createClientFromUrlAndApiKey} from '@octomind/octomind/client'
-import {beforeEach, describe, expect, it, vi} from 'vitest'
-import {type DeepMockProxy, mockDeep} from 'vitest-mock-extended'
-import {executeAutomagically} from '../src/executeAutomagically'
-import {executeTests} from '../src/executeTests'
-import {exploreTestPlan} from '../src/exploreTestPlan'
+import core from "@actions/core";
+import type github from "@actions/github";
+import { context } from "@actions/github";
+import { createClientFromUrlAndApiKey } from "@octomind/octomind/client";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { type DeepMockProxy, mockDeep } from "vitest-mock-extended";
+import { executeAutomagically } from "../src/executeAutomagically";
+import { executeTests } from "../src/executeTests";
+import { exploreTestPlan } from "../src/exploreTestPlan";
 
-vi.mock('@octomind/octomind/client')
-vi.mock('@actions/core')
-vi.mock('../src/executeTests')
-vi.mock('../src/exploreTestPlan')
-vi.mock('@actions/github', () => ({
+vi.mock("@octomind/octomind/client");
+vi.mock("@actions/core");
+vi.mock("../src/executeTests");
+vi.mock("../src/exploreTestPlan");
+vi.mock("@actions/github", () => ({
   default: vi.fn(),
   context: {
     issue: {
-      owner: 'owner',
-      repo: 'repository',
-      number: 10
+      owner: "owner",
+      repo: "repository",
+      number: 10,
     },
     payload: {
       // eslint-disable-next-line camelcase
       pull_request: {
         number: 10,
         head: {
-          sha: 'abc123'
-        }
-      }
+          sha: "abc123",
+        },
+      },
     },
     repo: {
-      repo: 'some repo',
-      owner: 'some owner'
+      repo: "some repo",
+      owner: "some owner",
     },
-    ref: 'refs/heads/main',
-    sha: 'abc123'
-  } as Partial<typeof github.context>
-}))
+    ref: "refs/heads/main",
+    sha: "abc123",
+  } as Partial<typeof github.context>,
+}));
 
 describe(executeAutomagically.name, () => {
-  let mockedClient: DeepMockProxy<
-    ReturnType<typeof createClientFromUrlAndApiKey>
-  >
+  let mockedClient: DeepMockProxy<ReturnType<typeof createClientFromUrlAndApiKey>>;
 
   beforeEach(() => {
-    mockedClient = mockDeep()
-    vi.mocked(createClientFromUrlAndApiKey).mockReturnValue(mockedClient)
+    mockedClient = mockDeep();
+    vi.mocked(createClientFromUrlAndApiKey).mockReturnValue(mockedClient);
 
     vi.mocked(core.getInput).mockImplementation((name: string) => {
-      if (name === 'token') return 'test-token'
-      if (name === 'testTargetId') return 'test-target-id'
-      if (name === 'url') return 'https://example.com'
-      if (name === 'environmentName') return 'default'
-      if (name === 'browser') return 'CHROMIUM'
-      if (name === 'breakpoint') return 'DESKTOP'
-      return ''
-    })
+      if (name === "token") return "test-token";
+      if (name === "testTargetId") return "test-target-id";
+      if (name === "url") return "https://example.com";
+      if (name === "environmentName") return "default";
+      if (name === "browser") return "CHROMIUM";
+      if (name === "breakpoint") return "DESKTOP";
+      return "";
+    });
 
-    vi.mocked(core.getBooleanInput).mockReturnValue(false)
-    vi.mocked(core.getMultilineInput).mockReturnValue([])
-    vi.mocked(executeTests).mockResolvedValue(undefined)
-    vi.mocked(exploreTestPlan).mockResolvedValue(undefined)
-  })
+    vi.mocked(core.getBooleanInput).mockReturnValue(false);
+    vi.mocked(core.getMultilineInput).mockReturnValue([]);
+    vi.mocked(executeTests).mockResolvedValue(undefined);
+    vi.mocked(exploreTestPlan).mockResolvedValue(undefined);
+  });
 
-  describe('action dispatching', () => {
+  describe("action dispatching", () => {
     it('dispatches to executeTests when action is "execute-tests"', async () => {
       vi.mocked(core.getInput).mockImplementation((name: string) => {
-        if (name === 'action') return 'execute-tests'
-        if (name === 'token') return 'test-token'
-        if (name === 'testTargetId') return 'test-target-id'
-        if (name === 'url') return 'https://example.com'
-        if (name === 'environmentName') return 'default'
-        if (name === 'browser') return 'CHROMIUM'
-        if (name === 'breakpoint') return 'DESKTOP'
-        return ''
-      })
+        if (name === "action") return "execute-tests";
+        if (name === "token") return "test-token";
+        if (name === "testTargetId") return "test-target-id";
+        if (name === "url") return "https://example.com";
+        if (name === "environmentName") return "default";
+        if (name === "browser") return "CHROMIUM";
+        if (name === "breakpoint") return "DESKTOP";
+        return "";
+      });
 
-      await executeAutomagically()
+      await executeAutomagically();
 
       expect(executeTests).toHaveBeenCalledWith(
         expect.objectContaining({
           client: mockedClient,
-          testTargetId: 'test-target-id',
-          url: 'https://example.com',
-          environmentName: 'default'
-        })
-      )
-      expect(exploreTestPlan).not.toHaveBeenCalled()
-    })
+          testTargetId: "test-target-id",
+          url: "https://example.com",
+          environmentName: "default",
+        }),
+      );
+      expect(exploreTestPlan).not.toHaveBeenCalled();
+    });
 
-    it('dispatches to executeTests when action is empty (backwards compatibility)', async () => {
-      await executeAutomagically()
+    it("dispatches to executeTests when action is empty (backwards compatibility)", async () => {
+      await executeAutomagically();
 
-      expect(executeTests).toHaveBeenCalled()
-      expect(exploreTestPlan).not.toHaveBeenCalled()
-    })
+      expect(executeTests).toHaveBeenCalled();
+      expect(exploreTestPlan).not.toHaveBeenCalled();
+    });
 
     it('dispatches to exploreTestPlan when action is "explore-test-plan"', async () => {
       vi.mocked(core.getInput).mockImplementation((name: string) => {
-        if (name === 'action') return 'explore-test-plan'
-        if (name === 'token') return 'test-token'
-        if (name === 'testTargetId') return 'test-target-id'
-        if (name === 'url') return 'https://example.com'
-        if (name === 'environmentName') return 'staging'
-        return ''
-      })
+        if (name === "action") return "explore-test-plan";
+        if (name === "token") return "test-token";
+        if (name === "testTargetId") return "test-target-id";
+        if (name === "url") return "https://example.com";
+        if (name === "environmentName") return "staging";
+        return "";
+      });
 
-      await executeAutomagically()
+      await executeAutomagically();
 
       expect(exploreTestPlan).toHaveBeenCalledWith({
         client: mockedClient,
-        testTargetId: 'test-target-id',
-        url: 'https://example.com',
-        environmentName: 'staging',
+        testTargetId: "test-target-id",
+        url: "https://example.com",
+        environmentName: "staging",
         context: {
           issueNumber: 10,
-          repo: 'some repo',
-          owner: 'some owner',
-          ref: 'refs/heads/main',
-          sha: 'abc123'
-        }
-      })
-      expect(executeTests).not.toHaveBeenCalled()
-    })
-  })
+          repo: "some repo",
+          owner: "some owner",
+          ref: "refs/heads/main",
+          sha: "abc123",
+        },
+      });
+      expect(executeTests).not.toHaveBeenCalled();
+    });
+  });
 
-  describe('input validation', () => {
-    it('fails when token is empty', async () => {
+  describe("input validation", () => {
+    it("fails when token is empty", async () => {
       vi.mocked(core.getInput).mockImplementation((name: string) => {
-        if (name === 'token') return ''
-        if (name === 'testTargetId') return 'test-target-id'
-        return ''
-      })
+        if (name === "token") return "";
+        if (name === "testTargetId") return "test-target-id";
+        return "";
+      });
 
-      await expect(executeAutomagically()).rejects.toThrow(
-        'token is set to an empty string'
-      )
+      await expect(executeAutomagically()).rejects.toThrow("token is set to an empty string");
 
-      expect(core.setFailed).toHaveBeenCalledWith(
-        'token is set to an empty string'
-      )
-    })
+      expect(core.setFailed).toHaveBeenCalledWith("token is set to an empty string");
+    });
 
-    it('fails when testTargetId is empty', async () => {
+    it("fails when testTargetId is empty", async () => {
       vi.mocked(core.getInput).mockImplementation((name: string) => {
-        if (name === 'token') return 'test-token'
-        if (name === 'url') return 'https://example.com'
-        if (name === 'testTargetId') return ''
-        return ''
-      })
+        if (name === "token") return "test-token";
+        if (name === "url") return "https://example.com";
+        if (name === "testTargetId") return "";
+        return "";
+      });
 
-      await expect(executeAutomagically()).rejects.toThrow(
-        'testTargetId is set to an empty string'
-      )
+      await expect(executeAutomagically()).rejects.toThrow("testTargetId is set to an empty string");
 
-      expect(core.setFailed).toHaveBeenCalledWith(
-        'testTargetId is set to an empty string'
-      )
-    })
+      expect(core.setFailed).toHaveBeenCalledWith("testTargetId is set to an empty string");
+    });
 
-    it('fails when url is empty for execute-tests action', async () => {
+    it("fails when url is empty for execute-tests action", async () => {
       vi.mocked(core.getInput).mockImplementation((name: string) => {
-        if (name === 'token') return 'test-token'
-        if (name === 'testTargetId') return 'test-target-id'
-        if (name === 'url') return ''
-        return ''
-      })
+        if (name === "token") return "test-token";
+        if (name === "testTargetId") return "test-target-id";
+        if (name === "url") return "";
+        return "";
+      });
 
-      await expect(executeAutomagically()).rejects.toThrow(
-        'url is set to an empty string'
-      )
+      await expect(executeAutomagically()).rejects.toThrow("url is set to an empty string");
 
-      expect(core.setFailed).toHaveBeenCalledWith(
-        'url is set to an empty string'
-      )
-    })
+      expect(core.setFailed).toHaveBeenCalledWith("url is set to an empty string");
+    });
 
-    it('fails when url is empty for explore-test-plan action', async () => {
+    it("fails when url is empty for explore-test-plan action", async () => {
       vi.mocked(core.getInput).mockImplementation((name: string) => {
-        if (name === 'action') return 'explore-test-plan'
-        if (name === 'token') return 'test-token'
-        if (name === 'testTargetId') return 'test-target-id'
-        if (name === 'url') return ''
-        return ''
-      })
+        if (name === "action") return "explore-test-plan";
+        if (name === "token") return "test-token";
+        if (name === "testTargetId") return "test-target-id";
+        if (name === "url") return "";
+        return "";
+      });
 
-      await expect(executeAutomagically()).rejects.toThrow(
-        'url is set to an empty string'
-      )
+      await expect(executeAutomagically()).rejects.toThrow("url is set to an empty string");
 
-      expect(core.setFailed).toHaveBeenCalledWith(
-        'url is set to an empty string'
-      )
-    })
-  })
+      expect(core.setFailed).toHaveBeenCalledWith("url is set to an empty string");
+    });
+  });
 
-  describe('error handling', () => {
-    it('handles errors from executeTests', async () => {
-      const error = new Error('Test execution failed')
-      vi.mocked(executeTests).mockRejectedValueOnce(error)
+  describe("error handling", () => {
+    it("handles errors from executeTests", async () => {
+      const error = new Error("Test execution failed");
+      vi.mocked(executeTests).mockRejectedValueOnce(error);
 
-      await executeAutomagically()
+      await executeAutomagically();
 
-      expect(core.setFailed).toHaveBeenCalledWith(
-        expect.stringContaining('unable to execute automagically')
-      )
-    })
+      expect(core.setFailed).toHaveBeenCalledWith(expect.stringContaining("unable to execute automagically"));
+    });
 
-    it('handles errors from exploreTestPlan', async () => {
+    it("handles errors from exploreTestPlan", async () => {
       vi.mocked(core.getInput).mockImplementation((name: string) => {
-        if (name === 'action') return 'explore-test-plan'
-        if (name === 'token') return 'test-token'
-        if (name === 'testTargetId') return 'test-target-id'
-        if (name === 'url') return 'https://example.com'
-        return ''
-      })
+        if (name === "action") return "explore-test-plan";
+        if (name === "token") return "test-token";
+        if (name === "testTargetId") return "test-target-id";
+        if (name === "url") return "https://example.com";
+        return "";
+      });
 
-      const error = new Error('Exploration failed')
-      vi.mocked(exploreTestPlan).mockRejectedValueOnce(error)
+      const error = new Error("Exploration failed");
+      vi.mocked(exploreTestPlan).mockRejectedValueOnce(error);
 
-      await executeAutomagically()
+      await executeAutomagically();
 
-      expect(core.setFailed).toHaveBeenCalledWith(
-        expect.stringContaining('unable to execute automagically')
-      )
-    })
-  })
+      expect(core.setFailed).toHaveBeenCalledWith(expect.stringContaining("unable to execute automagically"));
+    });
+  });
 
-  describe('client creation', () => {
-    it('creates client with correct base URL and API key', async () => {
-      await executeAutomagically()
+  describe("client creation", () => {
+    it("creates client with correct base URL and API key", async () => {
+      await executeAutomagically();
 
       expect(createClientFromUrlAndApiKey).toHaveBeenCalledWith({
-        baseUrl: 'https://app.octomind.dev/api',
-        apiKey: 'test-token'
-      })
-    })
+        baseUrl: "https://app.octomind.dev/api",
+        apiKey: "test-token",
+      });
+    });
 
-    it('uses custom base URL when provided', async () => {
+    it("uses custom base URL when provided", async () => {
       vi.mocked(core.getInput).mockImplementation((name: string) => {
-        if (name === 'automagicallyBaseUrl') return 'https://custom.url'
-        if (name === 'token') return 'test-token'
-        if (name === 'testTargetId') return 'test-target-id'
-        if (name === 'url') return 'https://example.com'
-        return ''
-      })
+        if (name === "automagicallyBaseUrl") return "https://custom.url";
+        if (name === "token") return "test-token";
+        if (name === "testTargetId") return "test-target-id";
+        if (name === "url") return "https://example.com";
+        return "";
+      });
 
-      await executeAutomagically()
+      await executeAutomagically();
 
       expect(createClientFromUrlAndApiKey).toHaveBeenCalledWith({
-        baseUrl: 'https://custom.url/api',
-        apiKey: 'test-token'
-      })
-    })
-  })
+        baseUrl: "https://custom.url/api",
+        apiKey: "test-token",
+      });
+    });
+  });
 
-  describe('context building', () => {
-    it('builds GitHub context correctly on pull request event', async () => {
-      context.sha = 'differentCommitSha'
-      context.payload.pull_request!.head.sha = 'abc123'
+  describe("context building", () => {
+    it("builds GitHub context correctly on pull request event", async () => {
+      context.sha = "differentCommitSha";
+      // biome-ignore lint/style/noNonNullAssertion: bug in biome
+      context.payload.pull_request!.head.sha = "abc123";
 
-      await executeAutomagically()
+      await executeAutomagically();
 
       expect(executeTests).toHaveBeenCalledWith(
         expect.objectContaining({
           context: {
             issueNumber: 10,
-            repo: 'some repo',
-            owner: 'some owner',
-            ref: 'refs/heads/main',
-            sha: 'abc123'
-          }
-        })
-      )
-    })
+            repo: "some repo",
+            owner: "some owner",
+            ref: "refs/heads/main",
+            sha: "abc123",
+          },
+        }),
+      );
+    });
 
-    it('builds GitHub context correctly on non-pr', async () => {
+    it("builds GitHub context correctly on non-pr", async () => {
       // eslint-disable-next-line camelcase
-      context.payload.pull_request = undefined
-      context.sha = 'abc123'
-      await executeAutomagically()
+      context.payload.pull_request = undefined;
+      context.sha = "abc123";
+      await executeAutomagically();
 
       expect(executeTests).toHaveBeenCalledWith(
         expect.objectContaining({
           context: {
             issueNumber: 10,
-            repo: 'some repo',
-            owner: 'some owner',
-            ref: 'refs/heads/main',
-            sha: 'abc123'
-          }
-        })
-      )
-    })
-  })
-})
+            repo: "some repo",
+            owner: "some owner",
+            ref: "refs/heads/main",
+            sha: "abc123",
+          },
+        }),
+      );
+    });
+  });
+});
