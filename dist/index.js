@@ -11181,7 +11181,7 @@ exports.colors = [6, 2, 3, 4, 5, 1];
 try {
 	// Optional dependency (as in, doesn't need to be installed, NOT like optionalDependencies in package.json)
 	// eslint-disable-next-line import/no-extraneous-dependencies
-	const supportsColor = __nccwpck_require__(4327);
+	const supportsColor = __nccwpck_require__(2204);
 
 	if (supportsColor && (supportsColor.stderr || supportsColor).level >= 2) {
 		exports.colors = [
@@ -11444,16 +11444,16 @@ exports.Deprecation = Deprecation;
 
 /***/ }),
 
-/***/ 7435:
+/***/ 5614:
 /***/ ((module) => {
 
 
-
-module.exports = (flag, argv = process.argv) => {
+module.exports = (flag, argv) => {
+	argv = argv || process.argv;
 	const prefix = flag.startsWith('-') ? '' : (flag.length === 1 ? '-' : '--');
-	const position = argv.indexOf(prefix + flag);
-	const terminatorPosition = argv.indexOf('--');
-	return position !== -1 && (terminatorPosition === -1 || position < terminatorPosition);
+	const pos = argv.indexOf(prefix + flag);
+	const terminatorPos = argv.indexOf('--');
+	return pos !== -1 && (terminatorPos === -1 ? true : pos < terminatorPos);
 };
 
 
@@ -16641,37 +16641,28 @@ module.exports = Object.assign(simpleGit, { gitP: gitP2, simpleGit });
 
 /***/ }),
 
-/***/ 4327:
+/***/ 2204:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 
 const os = __nccwpck_require__(857);
-const tty = __nccwpck_require__(2018);
-const hasFlag = __nccwpck_require__(7435);
+const hasFlag = __nccwpck_require__(5614);
 
-const {env} = process;
+const env = process.env;
 
 let forceColor;
 if (hasFlag('no-color') ||
 	hasFlag('no-colors') ||
-	hasFlag('color=false') ||
-	hasFlag('color=never')) {
-	forceColor = 0;
+	hasFlag('color=false')) {
+	forceColor = false;
 } else if (hasFlag('color') ||
 	hasFlag('colors') ||
 	hasFlag('color=true') ||
 	hasFlag('color=always')) {
-	forceColor = 1;
+	forceColor = true;
 }
-
 if ('FORCE_COLOR' in env) {
-	if (env.FORCE_COLOR === 'true') {
-		forceColor = 1;
-	} else if (env.FORCE_COLOR === 'false') {
-		forceColor = 0;
-	} else {
-		forceColor = env.FORCE_COLOR.length === 0 ? 1 : Math.min(parseInt(env.FORCE_COLOR, 10), 3);
-	}
+	forceColor = env.FORCE_COLOR.length === 0 || parseInt(env.FORCE_COLOR, 10) !== 0;
 }
 
 function translateLevel(level) {
@@ -16687,8 +16678,8 @@ function translateLevel(level) {
 	};
 }
 
-function supportsColor(haveStream, streamIsTTY) {
-	if (forceColor === 0) {
+function supportsColor(stream) {
+	if (forceColor === false) {
 		return 0;
 	}
 
@@ -16702,21 +16693,22 @@ function supportsColor(haveStream, streamIsTTY) {
 		return 2;
 	}
 
-	if (haveStream && !streamIsTTY && forceColor === undefined) {
+	if (stream && !stream.isTTY && forceColor !== true) {
 		return 0;
 	}
 
-	const min = forceColor || 0;
-
-	if (env.TERM === 'dumb') {
-		return min;
-	}
+	const min = forceColor ? 1 : 0;
 
 	if (process.platform === 'win32') {
-		// Windows 10 build 10586 is the first Windows release that supports 256 colors.
-		// Windows 10 build 14931 is the first release that supports 16m/TrueColor.
+		// Node.js 7.5.0 is the first version of Node.js to include a patch to
+		// libuv that enables 256 color output on Windows. Anything earlier and it
+		// won't work. However, here we target Node.js 8 at minimum as it is an LTS
+		// release, and Node.js 7 is not. Windows 10 build 10586 is the first Windows
+		// release that supports 256 colors. Windows 10 build 14931 is the first release
+		// that supports 16m/TrueColor.
 		const osRelease = os.release().split('.');
 		if (
+			Number(process.versions.node.split('.')[0]) >= 8 &&
 			Number(osRelease[0]) >= 10 &&
 			Number(osRelease[2]) >= 10586
 		) {
@@ -16727,7 +16719,7 @@ function supportsColor(haveStream, streamIsTTY) {
 	}
 
 	if ('CI' in env) {
-		if (['TRAVIS', 'CIRCLECI', 'APPVEYOR', 'GITLAB_CI', 'GITHUB_ACTIONS', 'BUILDKITE'].some(sign => sign in env) || env.CI_NAME === 'codeship') {
+		if (['TRAVIS', 'CIRCLECI', 'APPVEYOR', 'GITLAB_CI'].some(sign => sign in env) || env.CI_NAME === 'codeship') {
 			return 1;
 		}
 
@@ -16766,18 +16758,22 @@ function supportsColor(haveStream, streamIsTTY) {
 		return 1;
 	}
 
+	if (env.TERM === 'dumb') {
+		return min;
+	}
+
 	return min;
 }
 
 function getSupportLevel(stream) {
-	const level = supportsColor(stream, stream && stream.isTTY);
+	const level = supportsColor(stream);
 	return translateLevel(level);
 }
 
 module.exports = {
 	supportsColor: getSupportLevel,
-	stdout: translateLevel(supportsColor(true, tty.isatty(1))),
-	stderr: translateLevel(supportsColor(true, tty.isatty(2)))
+	stdout: getSupportLevel(process.stdout),
+	stderr: getSupportLevel(process.stderr)
 };
 
 
@@ -66551,22 +66547,6 @@ var core = __nccwpck_require__(9550);
 var github = __nccwpck_require__(8087);
 // EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@4.6.0_typescript@5.7.3_vitest@4.0.17_@types+node@25.0.8_tsx@4.21.0_yaml@2.8.2_/node_modules/@octomind/octomind/dist/tools/client.js
 var tools_client = __nccwpck_require__(4418);
-;// CONCATENATED MODULE: external "node:timers"
-const external_node_timers_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:timers");
-;// CONCATENATED MODULE: ./src/utils.ts
-
-const TIME_BETWEEN_POLLS_MILLISECONDS = 5_000;
-const MAXIMUM_POLL_TIME_MILLISECONDS = 2 * 60 * 60 * 1000;
-const DEFAULT_URL = 'https://app.octomind.dev';
-const sleep = (timeInMilliseconds) => new Promise(resolve => (0,external_node_timers_namespaceObject.setTimeout)(resolve, timeInMilliseconds));
-const multilineMappingToObject = (input) => {
-    const keySplitOff = input
-        .filter(mapping => mapping.length > 0)
-        .map(mapping => mapping.split(':'))
-        .map(parts => [parts[0], [parts.slice(1).join(':')]]);
-    return Object.fromEntries(keySplitOff);
-};
-
 ;// CONCATENATED MODULE: external "node:fs"
 const external_node_fs_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:fs");
 // EXTERNAL MODULE: ./node_modules/.pnpm/@octomind+octomind@4.6.0_typescript@5.7.3_vitest@4.0.17_@types+node@25.0.8_tsx@4.21.0_yaml@2.8.2_/node_modules/@octomind/octomind/dist/tools/sync/push.js
@@ -66575,40 +66555,53 @@ var push = __nccwpck_require__(8093);
 
 
 
-const pushIfYmlsExist = async ({ sourceDir, client, testTargetId }) => {
+const pushIfYmlsExist = async ({ sourceDir, client, testTargetId, }) => {
     const directoryExists = (0,external_node_fs_namespaceObject.existsSync)(sourceDir);
-    const hasYmls = directoryExists &&
-        (0,external_node_fs_namespaceObject.readdirSync)(sourceDir).some(file => file.endsWith('.yaml'));
+    const hasYmls = directoryExists && (0,external_node_fs_namespaceObject.readdirSync)(sourceDir).some((file) => file.endsWith(".yaml"));
     if (hasYmls) {
         return (0,push/* push */.VC)({
             sourceDir,
             client,
             testTargetId,
-            branchName: process.env.GITHUB_HEAD_REF
-                ? `refs/heads/${process.env.GITHUB_HEAD_REF}`
-                : undefined,
-            onError: error => {
+            branchName: process.env.GITHUB_HEAD_REF ? `refs/heads/${process.env.GITHUB_HEAD_REF}` : undefined,
+            onError: (error) => {
                 if (error) {
                     (0,core.setFailed)(`error occurred when trying to push local ymls ${error}`);
                     process.exit(1);
                 }
-            }
+            },
         });
     }
     return undefined;
+};
+
+;// CONCATENATED MODULE: external "node:timers"
+const external_node_timers_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:timers");
+;// CONCATENATED MODULE: ./src/utils.ts
+
+const TIME_BETWEEN_POLLS_MILLISECONDS = 5_000;
+const MAXIMUM_POLL_TIME_MILLISECONDS = 2 * 60 * 60 * 1000;
+const DEFAULT_URL = "https://app.octomind.dev";
+const sleep = (timeInMilliseconds) => new Promise((resolve) => (0,external_node_timers_namespaceObject.setTimeout)(resolve, timeInMilliseconds));
+const multilineMappingToObject = (input) => {
+    const keySplitOff = input
+        .filter((mapping) => mapping.length > 0)
+        .map((mapping) => mapping.split(":"))
+        .map((parts) => [parts[0], [parts.slice(1).join(":")]]);
+    return Object.fromEntries(keySplitOff);
 };
 
 ;// CONCATENATED MODULE: ./src/executeTests.ts
 
 
 
-const executeTests = async ({ client, testTargetId, url, environmentName, browser, breakpoint, variablesToOverwriteObject, tags, ymlDirectoryWithFallback, context, blocking, pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS, maximumPollingTimeInMilliseconds = MAXIMUM_POLL_TIME_MILLISECONDS }) => {
+const executeTests = async ({ client, testTargetId, url, environmentName, browser, breakpoint, variablesToOverwriteObject, tags, ymlDirectoryWithFallback, context, blocking, pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS, maximumPollingTimeInMilliseconds = MAXIMUM_POLL_TIME_MILLISECONDS, }) => {
     const pushed = await pushIfYmlsExist({
         client,
         testTargetId,
-        sourceDir: ymlDirectoryWithFallback
+        sourceDir: ymlDirectoryWithFallback,
     });
-    const executeResponse = await client.POST('/apiKey/v3/execute', {
+    const executeResponse = await client.POST("/apiKey/v3/execute", {
         body: {
             url,
             testTargetId,
@@ -66618,43 +66611,39 @@ const executeTests = async ({ client, testTargetId, url, environmentName, browse
             browser: browser,
             breakpoint: breakpoint,
             context: {
-                source: 'github',
-                ...context
+                source: "github",
+                ...context,
             },
-            testCaseVersionIds: pushed?.versionIds
-        }
+            testCaseVersionIds: pushed?.versionIds,
+        },
     });
     if (!executeResponse.data?.testReportUrl ||
         !executeResponse.data?.testReport ||
         !executeResponse.data.testReport.id) {
-        (0,core.setFailed)('execute did not return any data');
-        throw new Error('execute did not return any data');
+        (0,core.setFailed)("execute did not return any data");
+        throw new Error("execute did not return any data");
     }
     const testReportUrl = executeResponse.data.testReportUrl;
-    (0,core.setOutput)('testReportUrl', testReportUrl);
-    await core.summary
-        .addHeading('🐙 Octomind')
-        .addLink('View your Test Report', testReportUrl)
-        .write();
+    (0,core.setOutput)("testReportUrl", testReportUrl);
+    await core.summary.addHeading("🐙 Octomind").addLink("View your Test Report", testReportUrl).write();
     if (blocking) {
         let currentStatus = executeResponse.data.testReport.status;
         const start = Date.now();
         let now = start;
-        while (currentStatus === 'WAITING' &&
-            now - start < maximumPollingTimeInMilliseconds) {
-            const testReport = await client.GET('/apiKey/v3/test-targets/{testTargetId}/test-reports/{testReportId}', {
+        while (currentStatus === "WAITING" && now - start < maximumPollingTimeInMilliseconds) {
+            const testReport = await client.GET("/apiKey/v3/test-targets/{testTargetId}/test-reports/{testReportId}", {
                 params: {
                     path: {
                         testTargetId,
-                        testReportId: executeResponse.data.testReport.id
-                    }
-                }
+                        testReportId: executeResponse.data.testReport.id,
+                    },
+                },
             });
             currentStatus = testReport.data?.status;
             await sleep(pollingIntervalInMilliseconds);
             now = Date.now();
         }
-        if (currentStatus !== 'PASSED') {
+        if (currentStatus !== "PASSED") {
             (0,core.setFailed)(`some test results failed, check your test report at ${testReportUrl} to find out more.`);
         }
     }
@@ -66662,28 +66651,28 @@ const executeTests = async ({ client, testTargetId, url, environmentName, browse
 
 ;// CONCATENATED MODULE: ./src/exploreTestPlan.ts
 
-const exploreTestPlan = async ({ client, testTargetId, url, environmentName, context }) => {
-    (0,core.info)('Test plan exploration triggered');
+const exploreTestPlan = async ({ client, testTargetId, url, environmentName, context, }) => {
+    (0,core.info)("Test plan exploration triggered");
     (0,core.info)(`Test target ID: ${testTargetId}`);
-    const exploreResponse = await client.POST('/apiKey/v3/test-plan/explore', {
+    const exploreResponse = await client.POST("/apiKey/v3/test-plan/explore", {
         body: {
             url,
             testTargetId,
             environmentName,
             context: {
-                source: 'github',
-                ...context
-            }
-        }
+                source: "github",
+                ...context,
+            },
+        },
     });
     if (!exploreResponse.data) {
-        (0,core.setFailed)('test plan exploration did not return any data');
-        throw new Error('test plan exploration did not return any data');
+        (0,core.setFailed)("test plan exploration did not return any data");
+        throw new Error("test plan exploration did not return any data");
     }
-    (0,core.info)('Test plan exploration completed successfully');
+    (0,core.info)("Test plan exploration completed successfully");
     await core.summary
-        .addHeading('🐙 Octomind - Test Plan Exploration')
-        .addRaw('Test plan exploration completed successfully')
+        .addHeading("🐙 Octomind - Test Plan Exploration")
+        .addRaw("Test plan exploration completed successfully")
         .write();
 };
 
@@ -66699,14 +66688,14 @@ const exploreTestPlan = async ({ client, testTargetId, url, environmentName, con
 
 
 
-const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS, maximumPollingTimeInMilliseconds = MAXIMUM_POLL_TIME_MILLISECONDS } = {}) => {
-    const urlOverride = core.getInput('automagicallyBaseUrl');
+const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWEEN_POLLS_MILLISECONDS, maximumPollingTimeInMilliseconds = MAXIMUM_POLL_TIME_MILLISECONDS, } = {}) => {
+    const urlOverride = core.getInput("automagicallyBaseUrl");
     const automagicallyUrl = urlOverride.length === 0 ? DEFAULT_URL : urlOverride;
     const issueNumber = github.context.issue.number;
     if (!issueNumber || issueNumber < 1) {
-        core.warning('issue.number variable (Pull Request ID) not available. ' +
-            'Make sure you run this action in a workflow triggered by pull request ' +
-            'if you expect a comment with the test results on your PR');
+        core.warning("issue.number variable (Pull Request ID) not available. " +
+            "Make sure you run this action in a workflow triggered by pull request " +
+            "if you expect a comment with the test results on your PR");
     }
     // For PRs the SHA is NOT the actual triggering commit, it is the merge commit of a merge of this branch onto main.
     // to ensure that we get the actual triggering commit we need to use the pull request data
@@ -66718,30 +66707,29 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
         repo: github.context.repo.repo,
         owner: github.context.repo.owner,
         ref: github.context.ref,
-        sha
+        sha,
     };
     core.debug(JSON.stringify({ context }, null, 2));
-    const token = core.getInput('token');
+    const token = core.getInput("token");
     if (token.length === 0) {
-        core.setFailed('token is set to an empty string');
-        throw new Error('token is set to an empty string');
+        core.setFailed("token is set to an empty string");
+        throw new Error("token is set to an empty string");
     }
-    const url = core.getInput('url');
+    const url = core.getInput("url");
     if (url.length === 0) {
-        core.setFailed('url is set to an empty string');
-        throw new Error('url is set to an empty string');
+        core.setFailed("url is set to an empty string");
+        throw new Error("url is set to an empty string");
     }
-    const environmentName = core.getInput('environmentName');
-    const testTargetId = core.getInput('testTargetId');
+    const environmentName = core.getInput("environmentName");
+    const testTargetId = core.getInput("testTargetId");
     if (testTargetId.length === 0) {
-        core.setFailed('testTargetId is set to an empty string');
-        throw new Error('testTargetId is set to an empty string');
+        core.setFailed("testTargetId is set to an empty string");
+        throw new Error("testTargetId is set to an empty string");
     }
-    const actionInput = core.getInput('action');
-    let action = 'execute-tests';
+    const actionInput = core.getInput("action");
+    let action = "execute-tests";
     if (actionInput.length > 0) {
-        if (actionInput === 'execute-tests' ||
-            actionInput === 'explore-test-plan') {
+        if (actionInput === "execute-tests" || actionInput === "explore-test-plan") {
             action = actionInput;
         }
         else {
@@ -66749,32 +66737,30 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
         }
     }
     const urlWithApiPostfix = new URL(automagicallyUrl);
-    urlWithApiPostfix.pathname = `${urlWithApiPostfix.pathname.replace(/\/$/, '')}/api`;
+    urlWithApiPostfix.pathname = `${urlWithApiPostfix.pathname.replace(/\/$/, "")}/api`;
     const client = (0,tools_client.createClientFromUrlAndApiKey)({
         baseUrl: urlWithApiPostfix.href,
-        apiKey: token
+        apiKey: token,
     });
     try {
-        if (action === 'explore-test-plan') {
+        if (action === "explore-test-plan") {
             await exploreTestPlan({
                 client,
                 testTargetId,
                 url,
                 environmentName,
-                context
+                context,
             });
         }
         else {
-            const blocking = core.getBooleanInput('blocking');
-            const browser = core.getInput('browser');
-            const breakpoint = core.getInput('breakpoint');
-            const variablesToOverwrite = core.getMultilineInput('variablesToOverwrite');
+            const blocking = core.getBooleanInput("blocking");
+            const browser = core.getInput("browser");
+            const breakpoint = core.getInput("breakpoint");
+            const variablesToOverwrite = core.getMultilineInput("variablesToOverwrite");
             const variablesToOverwriteObject = multilineMappingToObject(variablesToOverwrite);
-            const tags = core.getMultilineInput('tags');
-            const ymlSourceDirectory = core.getInput('ymlDirectory');
-            const ymlDirectoryWithFallback = ymlSourceDirectory.length > 0
-                ? ymlSourceDirectory
-                : (0,external_node_path_.join)(process.cwd(), '.octomind');
+            const tags = core.getMultilineInput("tags");
+            const ymlSourceDirectory = core.getInput("ymlDirectory");
+            const ymlDirectoryWithFallback = ymlSourceDirectory.length > 0 ? ymlSourceDirectory : (0,external_node_path_.join)(process.cwd(), ".octomind");
             await executeTests({
                 client,
                 testTargetId,
@@ -66788,20 +66774,20 @@ const executeAutomagically = async ({ pollingIntervalInMilliseconds = TIME_BETWE
                 context,
                 blocking,
                 pollingIntervalInMilliseconds,
-                maximumPollingTimeInMilliseconds
+                maximumPollingTimeInMilliseconds,
             });
         }
     }
     catch (error) {
         if (error instanceof Error) {
-            core.setFailed(`unable to execute automagically:  ${typeof error.message === 'object'
+            core.setFailed(`unable to execute automagically:  ${typeof error.message === "object"
                 ? JSON.stringify({
-                    error: error.message
+                    error: error.message,
                 })
                 : error.message}`);
         }
         else {
-            core.setFailed('unknown Error');
+            core.setFailed("unknown Error");
         }
     }
 };
@@ -71798,7 +71784,7 @@ exports.NodeBase = NodeBase;
 
 
 var createNode = __nccwpck_require__(8964);
-var stringifyPair = __nccwpck_require__(1946);
+var stringifyPair = __nccwpck_require__(4327);
 var addPairToJSMap = __nccwpck_require__(4496);
 var identity = __nccwpck_require__(695);
 
@@ -76568,7 +76554,7 @@ exports.stringifyNumber = stringifyNumber;
 
 /***/ }),
 
-/***/ 1946:
+/***/ 4327:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 
