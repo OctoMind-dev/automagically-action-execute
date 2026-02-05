@@ -1,5 +1,5 @@
 import * as core from "@actions/core";
-import type github from "@actions/github";
+import type * as  github from "@actions/github";
 import { context } from "@actions/github";
 import { createClientFromUrlAndApiKey } from "@octomind/octomind/client";
 import { beforeEach, describe, expect, it, vi } from "vitest";
