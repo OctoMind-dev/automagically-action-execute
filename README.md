@@ -18,8 +18,7 @@ See the [docs](https://octomind.dev/docs) for more details.
     url: <publicly accessible url to your deployment>
     token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
     testTargetId: <your testTargetId that you also get from us>
-    environmentName: <environment name> that your test cases should run against. optional, 
-                     will use the "default" environment otherwise.
+    environmentName: <environment name, optional - defaults to "default">
     blocking: <if the pipeline should wait for all test results to pass, optional, default is FALSE>
     variablesToOverwrite: <multiline string in the form of VARIABLE_NAME:value per line>
     tags: <if only a subset of your tests should be executed use this multiline string, with one tag per line>
