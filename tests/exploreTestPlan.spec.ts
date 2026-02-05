@@ -1,4 +1,4 @@
-import core from "@actions/core";
+import * as core from "@actions/core";
 import { createClientFromUrlAndApiKey } from "@octomind/octomind/client";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { type DeepMockProxy, mockDeep } from "vitest-mock-extended";
