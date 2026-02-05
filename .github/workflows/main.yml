@@ -2,7 +2,7 @@ name: Test Execute Action
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 permissions:
   contents: read
@@ -78,7 +78,7 @@ jobs:
           url: 'https://storage.googleapis.com/mocktopus/index.html'
           testTargetId: '35c8bfca-48d2-4eb2-8042-4ee50707a295'
           token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
-          environmentName: "test"
+          environmentName: 'test'
 
       - name: Execute Automagically with browser
         id: automagically-browser
@@ -87,7 +87,7 @@ jobs:
           url: 'https://storage.googleapis.com/mocktopus/index.html'
           testTargetId: '35c8bfca-48d2-4eb2-8042-4ee50707a295'
           token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
-          browser: "FIREFOX"
+          browser: 'FIREFOX'
 
       - name: Execute Automagically with breakpoint
         id: automagically-breakpoint
@@ -96,7 +96,7 @@ jobs:
           url: 'https://storage.googleapis.com/mocktopus/index.html'
           testTargetId: '35c8bfca-48d2-4eb2-8042-4ee50707a295'
           token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
-          breakpoint: "MOBILE"
+          breakpoint: 'MOBILE'
 
       - name: Execute Automagically with overwriting variables
         id: automagically-variable-overwrite
@@ -105,7 +105,7 @@ jobs:
           url: 'https://storage.googleapis.com/mocktopus/index.html'
           testTargetId: '35c8bfca-48d2-4eb2-8042-4ee50707a295'
           token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
-          environmentName: "test"
+          environmentName: 'test'
           variablesToOverwrite: |-
             VARIABLE1:someValue
             VARIABLE2:someOtherValue
@@ -117,11 +117,10 @@ jobs:
           url: 'https://storage.googleapis.com/mocktopus/index.html'
           testTargetId: '35c8bfca-48d2-4eb2-8042-4ee50707a295'
           token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
-          environmentName: "test"
+          environmentName: 'test'
           tags: |-
             critical
             login
-            
 
       - name: Execute Automagically with ymls
         id: automagically-tags-yml
@@ -130,5 +129,4 @@ jobs:
           url: 'https://storage.googleapis.com/mocktopus/index.html'
           testTargetId: '0c051842-2098-4717-851e-9a93082627cf'
           token: ${{ secrets.AUTOMAGICALLY_TOKEN }}
-          ymlDirectory: ".octomind-special"
-
+          ymlDirectory: '.octomind-special'

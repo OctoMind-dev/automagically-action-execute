@@ -33,10 +33,10 @@ elements:
       expectation: VISIBLE
     selectors:
       - selectorType: TEXT
-        selector: "- a@a.com"
+        selector: '- a@a.com'
         options:
           exact: true
     ignoreFailure: false
 runStatus: ON
-prompt: ""
-version: "1"
+prompt: ''
+version: '1'
