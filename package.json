@@ -24,7 +24,7 @@
     "@octomind/octomind": "4.7.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.2",
+    "@biomejs/biome": "2.4.4",
     "@types/node": "25.2.1",
     "@vercel/ncc": "0.38.4",
     "rimraf": "6.1.3",
